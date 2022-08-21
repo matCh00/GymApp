@@ -7,6 +7,9 @@ import { OwnButtonModel } from "../models/OwnButtonModel";
 
 const OwnButton = (props: OwnButtonModel) => {
 
+  /**
+   * props
+   */
   const {title, onPress, backgroundColor, color} = props;
 
   return (

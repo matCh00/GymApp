@@ -7,16 +7,22 @@ import { MaterialCommunityIcons } from "@expo/vector-icons";
 import ImageModeScreen from '../screens/ImageModeScreen';
 import ListModeScreen from '../screens/ListModeScreen';
 
-/** parametry */
+/** 
+ * parametry 
+ */
 export type ModesStackParams = {
   ImageMode: undefined;
   ListMode: undefined;
 };
 
-/** navigator */
+/** 
+ * navigator 
+ */
 const ModesStack = createMaterialTopTabNavigator<ModesStackParams>();
 
-/** nawigacja */
+/** 
+ * nawigacja 
+ */
 const ModesNavigation = () => {
   return (
     <ModesStack.Navigator

@@ -6,16 +6,22 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import CreatorScreen from '../screens/CreatorScreen';
 import ModesNavigation from "./ModesNavigation";
 
-/** parametry */
+/** 
+ * parametry 
+ */
 export type CreatorStackParams = {
   Creator: undefined;
   Modes: undefined;
 };
 
-/** navigator */
+/** 
+ * navigator 
+ */
 const CreatorStack = createNativeStackNavigator<CreatorStackParams>();
 
-/** nawigacja */
+/** 
+ * nawigacja 
+ */
 const CreatorNavigation = () => {
   return (
     <CreatorStack.Navigator initialRouteName="Creator">

@@ -18,7 +18,9 @@ import { AuthModel } from '../../shared/models/AuthModel';
 import { AuthContext } from '../../shared/state/AuthContext';
 import { Alert, Text } from 'react-native';
 
-/** parametry */
+/** 
+ * parametry 
+ */
 export type ProfileStackParams = {
   Profile: undefined;
   Workouts: undefined;
@@ -26,14 +28,24 @@ export type ProfileStackParams = {
   Settings: undefined;
 };
 
-/** navigator */
+/** 
+ * navigator 
+ */
 const ProfileStack = createDrawerNavigator<ProfileStackParams>();
 
-/** item Logout */
+/** 
+ * item Logout 
+ */
 const CustomDrawerContent = (props: any) => {
 
+  /**
+   * context uwierzytelniania
+   */
   const {setLoggedIn} = useContext<AuthModel>(AuthContext);
 
+  /**
+   * wylogowanie
+   */
   const handleLogOut = () => {
     Alert.alert("LogOut", "Are you sure you want to log out?", [
       { text: "No", onPress: () => null },
@@ -51,7 +63,9 @@ const CustomDrawerContent = (props: any) => {
   );
 }
 
-/** nawigacja */
+/** 
+ * nawigacja 
+ */
 const ProfileNavigation = () => {
   return (
     <ProfileStack.Navigator 

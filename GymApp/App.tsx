@@ -1,5 +1,5 @@
 /**
- * Główna funkcja aplikacji.
+ * Główna funkcja aplikacji
  */
 
 import { StatusBar } from 'expo-status-bar';

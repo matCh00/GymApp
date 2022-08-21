@@ -8,18 +8,27 @@ import { Alert, BackHandler } from "react-native";
 import LoginScreen from "../screens/LoginScreen";
 import RegisterScreen from "../screens/RegisterScreen";
 
-/** parametry */
+/** 
+ * parametry 
+ */
 export type AuthStackParams = {
   Login: undefined;
   Register: undefined;
 };
 
-/** navigator */
+/** 
+ * navigator 
+ */
 const AuthStack = createNativeStackNavigator<AuthStackParams>();
 
-/** nawigacja */
+/** 
+ * nawigacja 
+ */
 const AuthNavigation = () => {
 
+  /**
+   * zapytanie czy wyjść z aplikacji
+   */
   useEffect(() => {
     const handleBackButton = () => {
       Alert.alert("Close", "Are you sure you want to close app?", [

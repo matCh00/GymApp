@@ -5,7 +5,9 @@
 import { createContext, useState } from "react";
 import { AuthModel } from "../models/AuthModel";
 
-/** stan początkowy */
+/** 
+ * stan początkowy 
+ */
 const initialState = {
   email: "",
   setEmail: () => {},
@@ -13,10 +15,14 @@ const initialState = {
   setLoggedIn: () => {},
 }
 
-/** context */
+/** 
+ * context
+ */
 export const AuthContext = createContext<AuthModel>(initialState);
 
-/** provider */
+/** 
+ * provider 
+ */
 export const AuthProvider = ({children}: any) => {
 
   const [email, setEmail] = useState("");

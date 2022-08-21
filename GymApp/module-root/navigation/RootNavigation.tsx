@@ -10,19 +10,28 @@ import ProfileNavigation from "../../module-profile/navigation/ProfileNavigation
 import { Alert, BackHandler } from "react-native";
 import { useEffect } from "react";
 
-/** parametry */ 
+/** 
+ * parametry 
+ */ 
 export type RootStackParams = {
   ProfileModule: undefined;
   PlansModule: undefined;
   CreatorModule: undefined;
 };
 
-/** navigator */
+/** 
+ * navigator 
+ */
 const RootStack = createBottomTabNavigator<RootStackParams>();
 
-/** nawigacja */
+/** 
+ * nawigacja 
+ */
 const RootNavigation = () => {
 
+  /**
+   * zapytanie czy wyjść z aplikacji
+   */
   useEffect(() => {
     const handleBackButton = () => {
       Alert.alert("Close", "Are you sure you want to close app?", [

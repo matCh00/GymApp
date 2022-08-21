@@ -9,6 +9,9 @@ import { AuthContext } from '../../shared/state/AuthContext';
 
 const ProfileScreen = () => {
 
+  /**
+   * context uwierzytelniania
+   */
   const {email} = useContext<AuthModel>(AuthContext);
   
   return (

@@ -17,10 +17,19 @@ const RegisterScreen = () => {
   const [emailInput, setEmailInput] = useState('');
   const [passwordInput, setPasswordInput] = useState('');
 
+  /**
+   * context uwierzytelniania
+   */
   const {setEmail, setLoggedIn} = useContext<AuthModel>(AuthContext);
 
+  /**
+   * nawigcja
+   */
   const navigation = useNavigation<NativeStackNavigationProp<AuthStackParams>>();
 
+  /**
+   * rejestracja
+   */
   const handleRegister = () => {
     setEmail(emailInput);
     setLoggedIn(true);

@@ -7,6 +7,9 @@ import { OwnInputModel } from '../models/OwnInputModel';
 
 const OwnInput = (props: OwnInputModel) => {
 
+  /**
+   * props
+   */
   const {placeholder, value, onChangeText, secureTextEntry} = props;
 
   return (

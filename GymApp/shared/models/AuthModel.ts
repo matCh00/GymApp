@@ -1,6 +1,8 @@
 import { Dispatch } from "react";
 
-/** model uwierzytelniania */
+/** 
+ * model uwierzytelniania 
+ */
 export interface AuthModel {
   email: string,
   setEmail: Dispatch<string>,

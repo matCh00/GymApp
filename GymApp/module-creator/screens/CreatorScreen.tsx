@@ -9,6 +9,9 @@ import { CreatorStackParams } from '../navigation/CreatorNavigation';
 
 const CreatorScreen = () => {
 
+  /**
+   * nawigacja
+   */
   const navigation = useNavigation<NativeStackNavigationProp<CreatorStackParams>>();
   
   return (

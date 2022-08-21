@@ -9,6 +9,9 @@ import { PlansStackParams } from '../navigation/PlansNavigation';
 
 const PlansScreen = () => {
 
+  /**
+   * nawigacja
+   */
   const navigation = useNavigation<NativeStackNavigationProp<PlansStackParams>>();
 
   return (

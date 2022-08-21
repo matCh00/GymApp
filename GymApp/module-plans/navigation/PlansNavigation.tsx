@@ -7,17 +7,23 @@ import PlanScreen from "../screens/PlanScreen";
 import PlansScreen from '../screens/PlansScreen';
 import WorkoutScreen from "../screens/WorkoutScreen";
 
-/** parametry */
+/** 
+ * parametry 
+ */
 export type PlansStackParams = {
   Plans: undefined;
   Plan: undefined;
   Workout: undefined;
 };
 
-/** navigator */
+/** 
+ * navigator 
+ */
 const PlansStack = createNativeStackNavigator<PlansStackParams>();
 
-/** nawigacja */
+/** 
+ * nawigacja 
+ */
 const PlansNavigation = () => {
   return (
     <PlansStack.Navigator initialRouteName="Plans">

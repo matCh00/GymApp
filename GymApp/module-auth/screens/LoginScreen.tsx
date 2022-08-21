@@ -17,10 +17,19 @@ const LoginScreen = () => {
   const [emailInput, setEmailInput] = useState('');
   const [passwordInput, setPasswordInput] = useState('');
 
+  /**
+   * context uwierzytelniania
+   */
   const {setEmail, setLoggedIn} = useContext<AuthModel>(AuthContext);
 
+  /**
+   * nawigacja
+   */
   const navigation = useNavigation<NativeStackNavigationProp<AuthStackParams>>();
 
+  /**
+   * logowanie
+   */
   const handleLogin = () => {
     setEmail(emailInput);
     setLoggedIn(true);

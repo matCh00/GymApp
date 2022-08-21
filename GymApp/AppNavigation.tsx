@@ -1,5 +1,5 @@
 /**
- * Nawigacja podczas korzystania z aplikacji.
+ * Nawigacja podczas korzystania z aplikacji
  */
 
 import { NavigationContainer } from "@react-navigation/native";
@@ -10,12 +10,19 @@ import { AuthModel } from "./shared/models/AuthModel";
 import { AuthContext } from "./shared/state/AuthContext";
 
 
-/** nawigacja */ 
+/** 
+ * nawigacja 
+ */ 
 const AppNavigation = () => {
 
+  /**
+   * context uwierzytelniania
+   */
   const {loggedIn} = useContext<AuthModel>(AuthContext)
 
-  /** warunkowe renderowanie */
+  /** 
+   * warunkowe renderowanie 
+   */
   const renderContent = () => {
     if (loggedIn) {
       return (

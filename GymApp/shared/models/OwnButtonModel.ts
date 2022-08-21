@@ -1,4 +1,6 @@
-/** model własnego buttona */
+/** 
+ * model własnego buttona 
+ */
 export interface OwnButtonModel {
     title: string,
     onPress: () => void,
