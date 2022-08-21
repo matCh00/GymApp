@@ -3,22 +3,19 @@
  */
 
 import { NavigationContainer } from "@react-navigation/native";
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import { useContext } from "react";
 import AuthNavigation from "./module-auth/navigation/AuthNavigation";
 import RootNavigation from "./module-root/navigation/RootNavigation";
+import { AuthModel } from "./shared/models/AuthModel";
+import { AuthContext } from "./shared/state/AuthContext";
 
-/** parametry */
-export type AppStackParams = {};
-
-/** navigator */ 
-const AppStack = createNativeStackNavigator<AppStackParams>();
 
 /** nawigacja */ 
 const AppNavigation = () => {
 
-  const loggedIn = true;
+  const {loggedIn} = useContext<AuthModel>(AuthContext)
 
-  /** przejście pomiędzy uwierzytelnianiem a właściwą aplikacją */
+  /** warunkowe renderowanie */
   const renderContent = () => {
     if (loggedIn) {
       return (

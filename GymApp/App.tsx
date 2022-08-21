@@ -5,6 +5,7 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, View } from 'react-native';
 import AppNavigation from './AppNavigation';
+import { AuthProvider } from './shared/state/AuthContext';
 
 export default function App() {
   
@@ -13,7 +14,10 @@ export default function App() {
 
       <StatusBar style="auto" />
 
-      <AppNavigation />
+      {/** dostęp do uwierzytelniania w całej aplikacji */}
+      <AuthProvider>
+        <AppNavigation />
+      </AuthProvider>
       
     </View>
   );
@@ -22,6 +26,6 @@ export default function App() {
 const styles = StyleSheet.create({
   appContainer: {
     flex: 1,
-    paddingTop: 20
+    paddingTop: 30
   }
 });
