@@ -1,5 +1,5 @@
 /**
- * Ekran główny planów treningowych
+ * Ekran wybranego planu treningowego
  */
 
 import { useNavigation } from '@react-navigation/native';
@@ -7,24 +7,20 @@ import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { StyleSheet, Text, View, Pressable } from 'react-native';
 import { PlansStackParams } from '../navigation/PlansNavigation';
 
-const PlansScreen = () => {
+const PlanScreen = () => {
 
   const navigation = useNavigation<NativeStackNavigationProp<PlansStackParams>>();
 
   return (
-    <View style={styles.container}>
-      <Text>MyPlans</Text>
-      <Pressable onPress={() => {navigation.push("Plan")}}>
-        <Text>navigate to Plan</Text>
+    <View>
+      <Text>PlanScreen</Text>
+      <Pressable onPress={() => {navigation.push("Workout")}}>
+        <Text>navigate to Workout</Text>
       </Pressable>
     </View>
   );
 };
 
-export default PlansScreen;
+export default PlanScreen;
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  }
-});
+const styles = StyleSheet.create({});
