@@ -5,17 +5,26 @@
 import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { useContext, useState } from 'react';
-import { StyleSheet, Text, Pressable, KeyboardAvoidingView } from 'react-native';
+import { StyleSheet, Text, Pressable, KeyboardAvoidingView, Switch } from 'react-native';
 import OwnButton from '../../shared/components/OwnButton';
 import OwnInput from '../../shared/components/OwnInput';
 import { AuthModel } from '../../shared/models/AuthModel';
 import { AuthContext } from '../../shared/state/AuthContext';
+import useTheme from '../../theme/hooks/useTheme';
+import useThemedStyles from '../../theme/hooks/useThemeStyles';
+import { ThemeModel } from '../../theme/models/ThemeModel';
 import { AuthStackParams } from '../navigation/AuthNavigation';
 
 const LoginScreen = () => {
 
   const [emailInput, setEmailInput] = useState('');
   const [passwordInput, setPasswordInput] = useState('');
+
+  /**
+   * motyw
+   */
+  const theme = useTheme();
+  const style = useThemedStyles(styles);
 
   /**
    * context uwierzytelniania
@@ -36,7 +45,7 @@ const LoginScreen = () => {
   }
 
   return (
-    <KeyboardAvoidingView style={styles.container}>
+    <KeyboardAvoidingView style={style.container}>
 
       <OwnInput placeholder='email' value={emailInput} onChangeText={text => setEmailInput(text)} />
       <OwnInput placeholder='password' value={passwordInput} onChangeText={text => setPasswordInput(text)} secureTextEntry />
@@ -46,6 +55,8 @@ const LoginScreen = () => {
       <Pressable onPress={() => {navigation.replace("Register")}}>
         <Text>navigate to Register</Text>
       </Pressable>
+
+      <Switch onValueChange={theme.toggleTheme} value={theme.isLightTheme} />
       
     </KeyboardAvoidingView>
   );
@@ -53,10 +64,12 @@ const LoginScreen = () => {
 
 export default LoginScreen;
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-});
+const styles = (theme: ThemeModel) =>
+  StyleSheet.create({
+    container: {
+      flex: 1,
+      justifyContent: 'center',
+      alignItems: 'center',
+      backgroundColor: theme.colors.BACKGROUND,
+    },
+  });

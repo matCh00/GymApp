@@ -1,8 +1,9 @@
+/** 
+ * Model własnego inputa
+ */
+
 import { Dispatch } from "react";
 
-/** 
- * model własnego inputu 
- */
 export interface OwnInputModel {
   placeholder: string,
   value: string,
