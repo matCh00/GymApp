@@ -9,6 +9,7 @@ import CreatorNavigation from "../../module-creator/navigation/CreatorNavigation
 import ProfileNavigation from "../../module-profile/navigation/ProfileNavigation";
 import { Alert, BackHandler } from "react-native";
 import { useEffect } from "react";
+import useTheme from "../../theme/hooks/useTheme";
 
 /** 
  * parametry 
@@ -43,25 +44,34 @@ const RootNavigation = () => {
     BackHandler.addEventListener("hardwareBackPress", handleBackButton)
   }, [])
   
+  /**
+   * motyw
+   */
+  const theme = useTheme();
+
   return (
     <RootStack.Navigator 
       initialRouteName="ProfileModule" 
       backBehavior='none'
       screenOptions={{
         headerShown: false,
-        tabBarShowLabel: false
-      }}>
-
+        tabBarShowLabel: false,
+        tabBarStyle: {backgroundColor: theme.colors.BACKGROUND_SECOND_HEADER, borderTopColor: theme.colors.BACKGROUND_SCREEN_PRIMARY},
+        tabBarActiveBackgroundColor: theme.colors.ACTIVE_BACKGROUND,
+        tabBarActiveTintColor: theme.colors.ACTIVE_TINT,
+        tabBarInactiveBackgroundColor: theme.colors.INACTIVE_BACKGROUND,
+        tabBarInactiveTintColor: theme.colors.INACTIVE_TINT,
+      }}
+    >
       <RootStack.Screen 
         name="ProfileModule" 
         component={ProfileNavigation} 
-        
         options={{
           tabBarIcon: ({ color, size }) => {
             return <MaterialCommunityIcons name="home" color={color} size={size} />
           },
         }}
-        />
+      />
 
       <RootStack.Screen 
         name="PlansModule" 
@@ -71,7 +81,7 @@ const RootNavigation = () => {
             return <MaterialCommunityIcons name="home" color={color} size={size} />
           },
         }}
-        />
+      />
 
       <RootStack.Screen 
         name="CreatorModule" 
@@ -81,7 +91,7 @@ const RootNavigation = () => {
             return <MaterialCommunityIcons name="home" color={color} size={size} />
           },
         }}
-        />
+      />
         
     </RootStack.Navigator>
   );

@@ -2,36 +2,29 @@
  * Kolory
  */
 
-// Colors palette source https://flatuicolors.com/palette/defo
-
 import { ColorsModel } from "../models/ColorsModel";
 
-const SUN_FLOWER = '#f1c40f';
-const ASBESTOS = '#7f8c8d';
-const MIDNIGHT_BLUE = '#2c3e50';
-const EMERALD = '#2ecc71';
-const ALIZARIN = '#e74c3c';
-const CLOUDS = '#ecf0f1';
-const SILVER = '#bdc3c7';
-
 const common = {
- PRIMARY: SUN_FLOWER,
- SUCCESS: EMERALD,
- ERROR: ALIZARIN,
+  SUCCESS: 'green',
+  WARNING: 'yellow',
+  ERROR: 'red', 
 };
 
-const light = {
- ...common,
- BACKGROUND: CLOUDS,
- TEXT: MIDNIGHT_BLUE,
- TEXT_SECONDARY: ASBESTOS,
-};
+const green_black = {
+  ...common,
+  PRIMARY: '#4deb38',
+  SECONDARY: '#232323',   
+  BACKGROUND_HEADER: '#232323',
+  BACKGROUND_SECOND_HEADER: '#353535',
+  BACKGROUND_SCREEN_PRIMARY: '#4deb38',
+  BACKGROUND_SCREEN_SECONDARY: '#21a210',
+  BACKGROUND_SCREEN_TERTIARY: '#0d4006',
+  TEXT_PRIMARY: '#ebeced',
+  TEXT_SECONDARY: '#9ff494',
+  ACTIVE_TINT: '#4deb38',
+  ACTIVE_BACKGROUND: '#232323',
+  INACTIVE_TINT: '#21a210',
+  INACTIVE_BACKGROUND: '#353535',
+}
 
-const dark = {
- ...common,
- BACKGROUND: MIDNIGHT_BLUE,
- TEXT: CLOUDS,
- TEXT_SECONDARY: SILVER,
-};
-
-export const colors: ColorsModel = {light, dark};
+export const colors: ColorsModel = {green_black,};

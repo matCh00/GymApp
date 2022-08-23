@@ -5,6 +5,7 @@
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { useEffect } from "react";
 import { Alert, BackHandler } from "react-native";
+import useTheme from "../../theme/hooks/useTheme";
 import LoginScreen from "../screens/LoginScreen";
 import RegisterScreen from "../screens/RegisterScreen";
 
@@ -39,10 +40,17 @@ const AuthNavigation = () => {
     };
     BackHandler.addEventListener("hardwareBackPress", handleBackButton)
   }, [])
+
+  /**
+   * motyw
+   */
+  const theme = useTheme();
   
   return (
-    <AuthStack.Navigator initialRouteName="Login">
-
+    <AuthStack.Navigator 
+      initialRouteName="Login" 
+      screenOptions={{headerStyle: {backgroundColor: theme.colors.BACKGROUND_HEADER}, headerTintColor: theme.colors.TEXT_SECONDARY}} 
+    >
       <AuthStack.Screen name="Login" component={LoginScreen} />
 
       <AuthStack.Screen name="Register" component={RegisterScreen} options={{ headerLeft: () => <></> }} />

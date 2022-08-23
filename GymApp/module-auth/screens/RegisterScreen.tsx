@@ -10,12 +10,21 @@ import OwnButton from '../../shared/components/OwnButton';
 import OwnInput from '../../shared/components/OwnInput';
 import { AuthModel } from '../../shared/models/AuthModel';
 import { AuthContext } from '../../shared/state/AuthContext';
+import useTheme from '../../theme/hooks/useTheme';
+import useThemedStyles from '../../theme/hooks/useThemeStyles';
+import { ThemeModel } from '../../theme/models/ThemeModel';
 import { AuthStackParams } from '../navigation/AuthNavigation';
 
 const RegisterScreen = () => {
 
   const [emailInput, setEmailInput] = useState('');
   const [passwordInput, setPasswordInput] = useState('');
+
+  /**
+   * motyw
+   */
+  const theme = useTheme();
+  const style = useThemedStyles(styles);
 
   /**
    * context uwierzytelniania
@@ -36,12 +45,12 @@ const RegisterScreen = () => {
   }
 
   return (
-    <KeyboardAvoidingView style={styles.container}>
+    <KeyboardAvoidingView style={style.container}>
 
       <OwnInput placeholder='email' value={emailInput} onChangeText={text => setEmailInput(text)} />
       <OwnInput placeholder='password' value={passwordInput} onChangeText={text => setPasswordInput(text)} secureTextEntry />
 
-      <OwnButton title='Register' onPress={handleRegister} backgroundColor='#0782e9' color='white' />
+      <OwnButton title='Register' onPress={handleRegister} backgroundColor={theme.colors.SECONDARY} color={theme.colors.TEXT_PRIMARY} />
 
       <Pressable onPress={() => {navigation.replace("Login")}}>
         <Text>navigate to Login</Text>
@@ -53,10 +62,12 @@ const RegisterScreen = () => {
 
 export default RegisterScreen;
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  }
-});
+const styles = (theme: ThemeModel) =>
+  StyleSheet.create({
+    container: {
+      flex: 1,
+      justifyContent: 'center',
+      alignItems: 'center',
+      backgroundColor: theme.colors.BACKGROUND_SCREEN_PRIMARY,
+    },
+  });

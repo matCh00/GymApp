@@ -50,13 +50,11 @@ const LoginScreen = () => {
       <OwnInput placeholder='email' value={emailInput} onChangeText={text => setEmailInput(text)} />
       <OwnInput placeholder='password' value={passwordInput} onChangeText={text => setPasswordInput(text)} secureTextEntry />
 
-      <OwnButton title='Login' onPress={handleLogin} backgroundColor='#0782e9' color='white' />
+      <OwnButton title='Login' onPress={handleLogin} backgroundColor={theme.colors.SECONDARY} color={theme.colors.TEXT_PRIMARY} />
 
       <Pressable onPress={() => {navigation.replace("Register")}}>
         <Text>navigate to Register</Text>
       </Pressable>
-
-      <Switch onValueChange={theme.toggleTheme} value={theme.isLightTheme} />
       
     </KeyboardAvoidingView>
   );
@@ -70,6 +68,6 @@ const styles = (theme: ThemeModel) =>
       flex: 1,
       justifyContent: 'center',
       alignItems: 'center',
-      backgroundColor: theme.colors.BACKGROUND,
+      backgroundColor: theme.colors.BACKGROUND_SCREEN_PRIMARY,
     },
   });

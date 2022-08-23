@@ -8,13 +8,15 @@ import AppNavigation from './AppNavigation';
 import { AuthProvider } from './shared/state/AuthContext';
 import ThemeProvider from './theme/utils/ThemeProvider';
 
+const statusBarInsideHeader = false;
+
 export default function App() {
   return (
     <ThemeProvider>
       <View style={styles.appContainer}>
 
-        <StatusBar style="auto" />
-
+        {statusBarInsideHeader ? <StatusBar style="auto" /> : null}
+        
         <AuthProvider>
           <AppNavigation />
         </AuthProvider>
@@ -27,6 +29,5 @@ export default function App() {
 const styles = StyleSheet.create({
   appContainer: {
     flex: 1,
-    paddingTop: 30,
   }
 });

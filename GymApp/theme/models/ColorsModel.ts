@@ -3,18 +3,27 @@
  */
 
 interface CommonModel {
-  PRIMARY: string;
-  SUCCESS: string;
-  ERROR: string;
+  SUCCESS: string,
+  WARNING: string,
+  ERROR: string, 
 }
 
 export interface ColorModel extends CommonModel {
-  BACKGROUND: string;
-  TEXT: string;
-  TEXT_SECONDARY: string;
+  PRIMARY: string, 
+  SECONDARY: string, 
+  BACKGROUND_HEADER: string, 
+  BACKGROUND_SECOND_HEADER: string, 
+  BACKGROUND_SCREEN_PRIMARY: string, 
+  BACKGROUND_SCREEN_SECONDARY: string, 
+  BACKGROUND_SCREEN_TERTIARY: string, 
+  TEXT_PRIMARY: string, 
+  TEXT_SECONDARY: string, 
+  ACTIVE_TINT: string, 
+  ACTIVE_BACKGROUND: string, 
+  INACTIVE_TINT: string, 
+  INACTIVE_BACKGROUND: string, 
 }
 
 export interface ColorsModel {
-  light: ColorModel;
-  dark: ColorModel;
+  green_black: ColorModel;
 }

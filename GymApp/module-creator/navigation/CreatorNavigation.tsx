@@ -3,6 +3,7 @@
  */
 
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import useTheme from "../../theme/hooks/useTheme";
 import CreatorScreen from '../screens/CreatorScreen';
 import ModesNavigation from "./ModesNavigation";
 
@@ -23,9 +24,17 @@ const CreatorStack = createNativeStackNavigator<CreatorStackParams>();
  * nawigacja 
  */
 const CreatorNavigation = () => {
-  return (
-    <CreatorStack.Navigator initialRouteName="Creator">
 
+  /**
+   * motyw
+   */
+  const theme = useTheme();
+
+  return (
+    <CreatorStack.Navigator 
+      initialRouteName="Creator"
+      screenOptions={{headerStyle: {backgroundColor: theme.colors.BACKGROUND_HEADER}, headerTintColor: theme.colors.TEXT_SECONDARY}}  
+    >
       <CreatorStack.Screen name="Creator" component={CreatorScreen} />
 
       <CreatorStack.Screen name="Modes" component={ModesNavigation} />

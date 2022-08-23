@@ -3,6 +3,7 @@
  */
 
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import useTheme from "../../theme/hooks/useTheme";
 import PlanScreen from "../screens/PlanScreen";
 import PlansScreen from '../screens/PlansScreen';
 import WorkoutScreen from "../screens/WorkoutScreen";
@@ -25,9 +26,17 @@ const PlansStack = createNativeStackNavigator<PlansStackParams>();
  * nawigacja 
  */
 const PlansNavigation = () => {
-  return (
-    <PlansStack.Navigator initialRouteName="Plans">
 
+  /**
+   * motyw
+   */
+  const theme = useTheme();
+
+  return (
+    <PlansStack.Navigator 
+      initialRouteName="Plans"
+      screenOptions={{headerStyle: {backgroundColor: theme.colors.BACKGROUND_HEADER}, headerTintColor: theme.colors.TEXT_SECONDARY}}  
+    >
       <PlansStack.Screen name="Plans" component={PlansScreen} />
 
       <PlansStack.Screen name="Plan" component={PlanScreen} />
