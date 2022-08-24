@@ -14,6 +14,8 @@ import useTheme from '../../theme/hooks/useTheme';
 import useThemedStyles from '../../theme/hooks/useThemeStyles';
 import { ThemeModel } from '../../theme/models/ThemeModel';
 import { AuthStackParams } from '../navigation/AuthNavigation';
+import BackgroundTemplate from '../../shared/components/BackgroundTemplate';
+import { GlobalStyles } from '../../theme/utils/GlobalStyles';
 
 const RegisterScreen = () => {
 
@@ -45,29 +47,24 @@ const RegisterScreen = () => {
   }
 
   return (
-    <KeyboardAvoidingView style={style.container}>
+    <BackgroundTemplate>
+      <KeyboardAvoidingView style={GlobalStyles.container}>
 
-      <OwnInput placeholder='email' value={emailInput} onChangeText={text => setEmailInput(text)} />
-      <OwnInput placeholder='password' value={passwordInput} onChangeText={text => setPasswordInput(text)} secureTextEntry />
+        <OwnInput placeholder='email' value={emailInput} onChangeText={text => setEmailInput(text)} />
+        <OwnInput placeholder='password' value={passwordInput} onChangeText={text => setPasswordInput(text)} secureTextEntry />
 
-      <OwnButton title='Register' onPress={handleRegister} backgroundColor={theme.colors.SECONDARY} color={theme.colors.TEXT_PRIMARY} />
+        <OwnButton title='Register' onPress={handleRegister} />
 
-      <Pressable onPress={() => {navigation.replace("Login")}}>
-        <Text>navigate to Login</Text>
-      </Pressable>
-      
-    </KeyboardAvoidingView>
+        <Pressable onPress={() => {navigation.replace("Login")}}>
+          <Text>navigate to Login</Text>
+        </Pressable>
+        
+      </KeyboardAvoidingView>
+    </BackgroundTemplate>
   );
 };
 
 export default RegisterScreen;
 
 const styles = (theme: ThemeModel) =>
-  StyleSheet.create({
-    container: {
-      flex: 1,
-      justifyContent: 'center',
-      alignItems: 'center',
-      backgroundColor: theme.colors.BACKGROUND_SCREEN_PRIMARY,
-    },
-  });
+  StyleSheet.create({});

@@ -88,7 +88,7 @@ const ProfileNavigation = () => {
       initialRouteName='Profile' 
       drawerContent={props => <CustomDrawerContent {...props} />}
       screenOptions={{
-        drawerStyle: {backgroundColor: theme.colors.BACKGROUND_SECOND_HEADER},
+        drawerStyle: {backgroundColor: theme.colors.BACKGROUND_HEADER},
         drawerActiveBackgroundColor: theme.colors.ACTIVE_BACKGROUND,
         drawerActiveTintColor: theme.colors.ACTIVE_TINT,
         drawerInactiveBackgroundColor: theme.colors.INACTIVE_BACKGROUND,

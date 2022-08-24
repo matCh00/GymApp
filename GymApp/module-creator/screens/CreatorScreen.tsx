@@ -9,6 +9,8 @@ import useTheme from '../../theme/hooks/useTheme';
 import useThemedStyles from '../../theme/hooks/useThemeStyles';
 import { ThemeModel } from '../../theme/models/ThemeModel';
 import { CreatorStackParams } from '../navigation/CreatorNavigation';
+import BackgroundTemplate from '../../shared/components/BackgroundTemplate';
+import { GlobalStyles } from '../../theme/utils/GlobalStyles';
 
 const CreatorScreen = () => {
 
@@ -24,23 +26,18 @@ const CreatorScreen = () => {
   const navigation = useNavigation<NativeStackNavigationProp<CreatorStackParams>>();
   
   return (
-    <View style={style.container}>
-      <Text>PlanCreator</Text>
-      <Pressable onPress={() => {navigation.push("Modes")}}>
-        <Text>navigate to Modes</Text>
-      </Pressable>
-    </View>
+    <BackgroundTemplate>
+      <View style={GlobalStyles.container}>
+        <Text>PlanCreator</Text>
+        <Pressable onPress={() => {navigation.push("Modes")}}>
+          <Text>navigate to Modes</Text>
+        </Pressable>
+      </View>
+    </BackgroundTemplate>
   );
 };
 
 export default CreatorScreen;
 
 const styles = (theme: ThemeModel) =>
-  StyleSheet.create({
-    container: {
-      flex: 1,
-      justifyContent: 'center',
-      alignItems: 'center',
-      backgroundColor: theme.colors.BACKGROUND_SCREEN_PRIMARY,
-    },
-  });
+  StyleSheet.create({});

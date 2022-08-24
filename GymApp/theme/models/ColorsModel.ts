@@ -26,4 +26,5 @@ export interface ColorModel extends CommonModel {
 
 export interface ColorsModel {
   green_black: ColorModel;
+  blue_pink: ColorModel;
 }

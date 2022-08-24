@@ -9,6 +9,8 @@ import { AuthContext } from '../../shared/state/AuthContext';
 import useTheme from '../../theme/hooks/useTheme';
 import useThemedStyles from '../../theme/hooks/useThemeStyles';
 import { ThemeModel } from '../../theme/models/ThemeModel';
+import BackgroundTemplate from '../../shared/components/BackgroundTemplate';
+import { GlobalStyles } from '../../theme/utils/GlobalStyles';
 
 const ProfileScreen = () => {
 
@@ -24,20 +26,15 @@ const ProfileScreen = () => {
   const {email} = useContext<AuthModel>(AuthContext);
   
   return (
-    <View style={style.container}>
-      <Text>Profile: {email}</Text>
-    </View>
+    <BackgroundTemplate>
+      <View style={GlobalStyles.container}>
+        <Text>Profile: {email}</Text>
+      </View>
+    </BackgroundTemplate>
   );
 };
 
 export default ProfileScreen;
 
 const styles = (theme: ThemeModel) =>
-  StyleSheet.create({
-    container: {
-      flex: 1,
-      justifyContent: 'center',
-      alignItems: 'center',
-      backgroundColor: theme.colors.BACKGROUND_SCREEN_PRIMARY,
-    },
-  });
+  StyleSheet.create({});

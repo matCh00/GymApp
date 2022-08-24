@@ -6,6 +6,8 @@ import { StyleSheet, Text, View } from 'react-native'
 import useTheme from '../../theme/hooks/useTheme';
 import useThemedStyles from '../../theme/hooks/useThemeStyles';
 import { ThemeModel } from '../../theme/models/ThemeModel';
+import BackgroundTemplate from '../../shared/components/BackgroundTemplate';
+import { GlobalStyles } from '../../theme/utils/GlobalStyles';
 
 const ListModeScreen = () => {
 
@@ -16,20 +18,15 @@ const ListModeScreen = () => {
   const style = useThemedStyles(styles);
 
   return (
-    <View style={style.container}>
-      <Text>ListModeScreen</Text>
-    </View>
+    <BackgroundTemplate>
+      <View style={GlobalStyles.container}>
+        <Text>ListModeScreen</Text>
+      </View>
+    </BackgroundTemplate>
   );
 };
 
 export default ListModeScreen;
 
 const styles = (theme: ThemeModel) =>
-  StyleSheet.create({
-    container: {
-      flex: 1,
-      justifyContent: 'center',
-      alignItems: 'center',
-      backgroundColor: theme.colors.BACKGROUND_SCREEN_PRIMARY,
-    },
-  });
+  StyleSheet.create({});

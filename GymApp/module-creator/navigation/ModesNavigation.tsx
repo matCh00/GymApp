@@ -41,6 +41,7 @@ const ModesNavigation = () => {
         tabBarIndicatorStyle: {backgroundColor: theme.colors.BACKGROUND_SECOND_HEADER},
         tabBarActiveTintColor: theme.colors.ACTIVE_TINT,
         tabBarInactiveTintColor: theme.colors.INACTIVE_TINT,
+        tabBarItemStyle: {borderColor: theme.colors.BACKGROUND_HEADER, borderWidth: 1}
       }}
     >
       <ModesStack.Screen

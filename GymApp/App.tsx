@@ -15,7 +15,7 @@ export default function App() {
     <ThemeProvider>
       <View style={styles.appContainer}>
 
-        {statusBarInsideHeader ? <StatusBar style="auto" /> : null}
+        {statusBarInsideHeader ? <StatusBar style="light" /> : null}
         
         <AuthProvider>
           <AppNavigation />
