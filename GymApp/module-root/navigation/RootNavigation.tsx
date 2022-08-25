@@ -56,12 +56,12 @@ const RootNavigation = () => {
       screenOptions={{
         headerShown: false,
         tabBarShowLabel: false,
-        tabBarStyle: {backgroundColor: theme.colors.BACKGROUND_SECOND_HEADER, borderTopColor: theme.colors.BACKGROUND_SCREEN_TERTIARY},
-        tabBarActiveBackgroundColor: theme.colors.BACKGROUND_SECOND_HEADER,
-        tabBarActiveTintColor: theme.colors.ACTIVE_TINT,
-        tabBarInactiveBackgroundColor: theme.colors.BACKGROUND_HEADER,
-        tabBarInactiveTintColor: theme.colors.INACTIVE_TINT,
-        tabBarItemStyle: {borderColor: theme.colors.BACKGROUND_SECOND_HEADER, borderWidth: 1}
+        tabBarStyle: {backgroundColor: theme.colors.STEP_0, borderTopColor: theme.colors.STEP_00},
+        tabBarActiveBackgroundColor: theme.colors.STEP_1,
+        tabBarActiveTintColor: theme.colors.STEP_9,
+        tabBarInactiveBackgroundColor: theme.colors.STEP_0,
+        tabBarInactiveTintColor: theme.colors.STEP_4,
+        tabBarItemStyle: {borderColor: theme.colors.STEP_00, borderWidth: 1}
       }}
     >
       <RootStack.Screen 

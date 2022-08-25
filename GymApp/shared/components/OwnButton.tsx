@@ -27,7 +27,7 @@ const OwnButton = (props: OwnButtonModel) => {
       <TouchableOpacity 
         onPress={onPress} 
         style={[style.button]}
-        activeOpacity={.5}
+        activeOpacity={.7}
       >
         <Text style={[style.buttonText]}> {title} </Text>
       </TouchableOpacity>
@@ -49,12 +49,12 @@ const styles = (theme: ThemeModel) =>
     button: {
       width: '80%',
       alignItems: 'center',
-      backgroundColor: theme.colors.SECONDARY,
+      backgroundColor: theme.colors.STEP_0,
       padding: 15,
       borderRadius: 10,
     },
     buttonText: {
-      color: theme.colors.TEXT_SECONDARY,
+      color: theme.colors.STEP_999,
       fontWeight: '700',
       fontSize: theme.typography.size.S,
     }

@@ -16,9 +16,13 @@ const BackgroundTemplate = ({children}) => {
   return (
     <LinearGradient
       colors={[
-        theme.colors.BACKGROUND_SCREEN_PRIMARY, 
-        theme.colors.BACKGROUND_SCREEN_SECONDARY, 
-        theme.colors.BACKGROUND_SCREEN_TERTIARY
+        theme.colors.STEP_3, 
+        theme.colors.STEP_4, 
+        theme.colors.STEP_5,
+        theme.colors.STEP_6,
+        theme.colors.STEP_5,
+        theme.colors.STEP_4, 
+        theme.colors.STEP_3, 
       ]}
       style={{flex: 1}}
     >

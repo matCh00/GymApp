@@ -37,11 +37,11 @@ const ModesNavigation = () => {
       backBehavior='none'
       screenOptions={{
         tabBarShowLabel: false,
-        tabBarStyle: {backgroundColor: theme.colors.BACKGROUND_SECOND_HEADER},
-        tabBarIndicatorStyle: {backgroundColor: theme.colors.BACKGROUND_SECOND_HEADER},
-        tabBarActiveTintColor: theme.colors.ACTIVE_TINT,
-        tabBarInactiveTintColor: theme.colors.INACTIVE_TINT,
-        tabBarItemStyle: {borderColor: theme.colors.BACKGROUND_HEADER, borderWidth: 1}
+        tabBarStyle: {backgroundColor: theme.colors.STEP_1},
+        tabBarIndicatorStyle: {backgroundColor: theme.colors.STEP_5},
+        tabBarActiveTintColor: theme.colors.STEP_9,
+        tabBarInactiveTintColor: theme.colors.STEP_5,
+        tabBarItemStyle: {borderColor: theme.colors.STEP_0, borderWidth: 1}
       }}
     >
       <ModesStack.Screen

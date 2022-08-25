@@ -6,29 +6,33 @@ import { createContext, useState } from "react";
 import { colors } from "./Colors";
 import { typography } from "./Typography";
 import { ThemeModel } from "../models/ThemeModel";
+import { ColorModel } from "../models/ColorsModel";
 
 export const ThemeContext = createContext<ThemeModel>(
   {
-    colors: {SUCCESS: '', WARNING: '', ERROR: '', PRIMARY: '', SECONDARY: '', BACKGROUND_HEADER: '', BACKGROUND_SECOND_HEADER: '', 
-      BACKGROUND_SCREEN_PRIMARY: '', BACKGROUND_SCREEN_SECONDARY: '', BACKGROUND_SCREEN_TERTIARY: '', TEXT_PRIMARY: '', 
-      TEXT_SECONDARY: '', ACTIVE_TINT: '', ACTIVE_BACKGROUND: '', INACTIVE_TINT: '', INACTIVE_BACKGROUND: ''},
+    colors: {SUCCESS: '', WARNING: '', ERROR: '', STEP_0000: '', STEP_000: '', STEP_00: '', STEP_0: '', STEP_1: '', STEP_2: '', STEP_3: '', 
+    STEP_4: '', STEP_5: '', STEP_6: '', STEP_7: '',  STEP_8: '', STEP_9: '', STEP_99: '', STEP_999: '', STEP_9999: ''},
     typography: {size: {S: 9, M: 9, L: 9}, letterSpacing: {S: 9, M: 9, L: 9}}, 
-    toggleTheme: ()=>{}, 
-    isLightTheme: true
+    setCurrentTheme: () => {}
   }
 );
 
 const ThemeProvider = ({ children }: any) => {
 
   // TODO: STAN JAKO STRING BO MOŻE BYĆ WIELE MOTYWÓW, KIEDYŚ ZAPISAYWAĆ W BAZIE DANYCH
-  const [isLightTheme, setLightTheme] = useState(true);
-  const toggleTheme = () => setLightTheme((previousState) => !previousState);
+  const [currentTheme, setCurrentTheme] = useState('green_black');
 
   const theme = {
-    colors: /*isLightTheme ? colors.light : colors.dark,*/ colors.green_black,
+    colors: 
+      currentTheme === 'green_black' ? colors.green_black : 
+      currentTheme === 'vine_red' ? colors.vine_red : 
+      currentTheme === 'gold_black' ? colors.gold_black : 
+      currentTheme === 'blue_sea' ? colors.blue_sea : 
+      currentTheme === 'blue_black' ? colors.blue_black : 
+      currentTheme === 'white_purple' ? colors.white_purple : 
+      colors.green_black,
     typography,
-    toggleTheme,
-    isLightTheme,
+    setCurrentTheme,
   };
 
   return (

@@ -8,6 +8,5 @@ import { TypographyModel } from "./TypographyModel";
 export interface ThemeModel {
   colors: ColorModel;
   typography: TypographyModel;
-  isLightTheme: boolean;
-  toggleTheme: (value: boolean) => void | Promise<void>;
+  setCurrentTheme: (value: string) => void | Promise<void>;
 }

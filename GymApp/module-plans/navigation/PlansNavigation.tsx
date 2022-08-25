@@ -35,7 +35,7 @@ const PlansNavigation = () => {
   return (
     <PlansStack.Navigator 
       initialRouteName="Plans"
-      screenOptions={{headerStyle: {backgroundColor: theme.colors.BACKGROUND_HEADER}, headerTintColor: theme.colors.TEXT_SECONDARY}}  
+      screenOptions={{headerStyle: {backgroundColor: theme.colors.STEP_0}, headerTintColor: theme.colors.STEP_999}}  
     >
       <PlansStack.Screen name="Plans" component={PlansScreen} />
 

@@ -16,7 +16,7 @@ import SettingsScreen from '../screens/SettingsScreen';
 import { useContext } from 'react';
 import { AuthModel } from '../../shared/models/AuthModel';
 import { AuthContext } from '../../shared/state/AuthContext';
-import { Alert, Text } from 'react-native';
+import { Alert, Text, View } from 'react-native';
 import useTheme from '../../theme/hooks/useTheme';
 
 /** 
@@ -63,11 +63,14 @@ const CustomDrawerContent = (props: any) => {
     <DrawerContentScrollView {...props}>
       <DrawerItemList {...props} />
       <DrawerItem label={() => 
-        <Text style={{color: theme.colors.INACTIVE_TINT}}>
-          Logout
-        </Text>}
+        <View style={{flex: 1, flexDirection: 'row', alignItems: 'center'}}>
+          <MaterialCommunityIcons name="home" color={theme.colors.STEP_99} size={24} />
+          <Text style={{color: theme.colors.STEP_99, marginLeft: 30}}>
+            Logout
+          </Text>
+        </View>}
         onPress={handleLogOut}
-        style={{backgroundColor: theme.colors.INACTIVE_BACKGROUND}}
+        style={{backgroundColor: theme.colors.STEP_2}}
       />
     </DrawerContentScrollView>
   );
@@ -88,11 +91,11 @@ const ProfileNavigation = () => {
       initialRouteName='Profile' 
       drawerContent={props => <CustomDrawerContent {...props} />}
       screenOptions={{
-        drawerStyle: {backgroundColor: theme.colors.BACKGROUND_HEADER},
-        drawerActiveBackgroundColor: theme.colors.ACTIVE_BACKGROUND,
-        drawerActiveTintColor: theme.colors.ACTIVE_TINT,
-        drawerInactiveBackgroundColor: theme.colors.INACTIVE_BACKGROUND,
-        drawerInactiveTintColor: theme.colors.INACTIVE_TINT,
+        drawerStyle: {backgroundColor: theme.colors.STEP_1},
+        drawerActiveBackgroundColor: theme.colors.STEP_4,
+        drawerActiveTintColor: theme.colors.STEP_99,
+        drawerInactiveBackgroundColor: theme.colors.STEP_2,
+        drawerInactiveTintColor: theme.colors.STEP_99,
       }}
     >
       <ProfileStack.Screen 
@@ -100,8 +103,8 @@ const ProfileNavigation = () => {
         component={ProfileScreen} 
         options={{
           title: 'Profile',
-          headerStyle: {backgroundColor: theme.colors.BACKGROUND_HEADER},
-          headerTintColor: theme.colors.TEXT_SECONDARY,
+          headerStyle: {backgroundColor: theme.colors.STEP_0},
+          headerTintColor: theme.colors.STEP_999,
           drawerIcon: ({ color, size }) => (
             <MaterialCommunityIcons name="home" color={color} size={size} />
           ),
@@ -113,8 +116,8 @@ const ProfileNavigation = () => {
         component={WorkoutsChartScreen} 
         options={{
           title: 'Workouts',
-          headerStyle: {backgroundColor: theme.colors.BACKGROUND_HEADER},
-          headerTintColor: theme.colors.TEXT_SECONDARY,
+          headerStyle: {backgroundColor: theme.colors.STEP_0},
+          headerTintColor: theme.colors.STEP_999,
           drawerIcon: ({ color, size }) => (
             <MaterialCommunityIcons name="home" color={color} size={size} />
           ),
@@ -126,8 +129,8 @@ const ProfileNavigation = () => {
         component={WeightsChartScreen} 
         options={{
           title: 'Weights',
-          headerStyle: {backgroundColor: theme.colors.BACKGROUND_HEADER},
-          headerTintColor: theme.colors.TEXT_SECONDARY,
+          headerStyle: {backgroundColor: theme.colors.STEP_0},
+          headerTintColor: theme.colors.STEP_999,
           drawerIcon: ({ color, size }) => (
             <MaterialCommunityIcons name="home" color={color} size={size} />
           ),
@@ -139,8 +142,8 @@ const ProfileNavigation = () => {
         component={SettingsScreen} 
         options={{
           title: 'Settings',
-          headerStyle: {backgroundColor: theme.colors.BACKGROUND_HEADER},
-          headerTintColor: theme.colors.TEXT_SECONDARY,
+          headerStyle: {backgroundColor: theme.colors.STEP_0},
+          headerTintColor: theme.colors.STEP_999,
           drawerIcon: ({ color, size }) => (
             <MaterialCommunityIcons name="home" color={color} size={size} />
           ),

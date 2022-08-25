@@ -42,7 +42,8 @@ const styles = (theme: ThemeModel) =>
       width: '80%',
     },
     input: {
-      backgroundColor: theme.colors.TEXT_SECONDARY,
+      backgroundColor: theme.colors.STEP_999,
+      color: theme.colors.STEP_000,
       paddingHorizontal: 15,
       paddingVertical: 10,
       borderRadius: 10,
