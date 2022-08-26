@@ -34,4 +34,6 @@ export interface ColorsModel {
   blue_sea: ColorModel;
   blue_black: ColorModel;
   white_purple: ColorModel;
+  gray_shades: ColorModel;
+  milk_coffee: ColorModel;
 }

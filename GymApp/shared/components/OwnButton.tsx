@@ -41,7 +41,7 @@ export default OwnButton;
 const styles = (theme: ThemeModel) =>
   StyleSheet.create({
     buttonContainer: {
-      width: '60%',
+      width: '50%',
       justifyContent: 'center',
       alignItems: 'center',
       marginTop: 40,

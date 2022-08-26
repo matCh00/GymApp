@@ -12,12 +12,12 @@ import ProfileScreen from '../screens/ProfileScreen';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import WorkoutsChartScreen from '../screens/WorkoutsChartScreen';
 import WeightsChartScreen from '../screens/WeightsChartScreen';
-import SettingsScreen from '../screens/SettingsScreen';
 import { useContext } from 'react';
 import { AuthModel } from '../../shared/models/AuthModel';
 import { AuthContext } from '../../shared/state/AuthContext';
 import { Alert, Text, View } from 'react-native';
 import useTheme from '../../theme/hooks/useTheme';
+import SettingsNavigation from './SettingsNavigation';
 
 /** 
  * parametry 
@@ -26,7 +26,7 @@ export type ProfileStackParams = {
   Profile: undefined;
   Workouts: undefined;
   Weights: undefined;
-  Settings: undefined;
+  SettingsMain: undefined;
 };
 
 /** 
@@ -138,10 +138,10 @@ const ProfileNavigation = () => {
       />
 
       <ProfileStack.Screen 
-        name="Settings" 
-        component={SettingsScreen} 
+        name="SettingsMain" 
+        component={SettingsNavigation} 
         options={{
-          title: 'Settings',
+          title: "Settings",
           headerStyle: {backgroundColor: theme.colors.STEP_0},
           headerTintColor: theme.colors.STEP_999,
           drawerIcon: ({ color, size }) => (

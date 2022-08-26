@@ -30,6 +30,8 @@ const ThemeProvider = ({ children }: any) => {
       currentTheme === 'blue_sea' ? colors.blue_sea : 
       currentTheme === 'blue_black' ? colors.blue_black : 
       currentTheme === 'white_purple' ? colors.white_purple : 
+      currentTheme === 'gray_shades' ? colors.gray_shades :
+      currentTheme === 'milk_coffee' ? colors.milk_coffee :
       colors.green_black,
     typography,
     setCurrentTheme,
