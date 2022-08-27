@@ -11,6 +11,7 @@ import { ThemeModel } from '../../theme/models/ThemeModel';
 import { PlansStackParams } from '../navigation/PlansNavigation';
 import BackgroundTemplate from '../../shared/components/BackgroundTemplate';
 import { GlobalStyles } from '../../theme/utils/GlobalStyles';
+import OwnButton from '../../shared/components/OwnButton';
 
 const PlansScreen = () => {
 
@@ -28,10 +29,10 @@ const PlansScreen = () => {
   return (
     <BackgroundTemplate>
       <View style={GlobalStyles.container}>
-        <Text>MyPlans</Text>
-        <Pressable onPress={() => {navigation.push("Plan")}}>
-          <Text>navigate to Plan</Text>
-        </Pressable>
+        <Text>Plans</Text>
+
+        <OwnButton title="Plan" onPress={() => {navigation.push("Plan")}} />
+
       </View>
     </BackgroundTemplate>
   );

@@ -20,7 +20,7 @@ const WorkoutScreen = () => {
   return (
     <BackgroundTemplate>
       <View style={GlobalStyles.container}>
-        <Text>WorkoutScreen</Text>
+        <Text>Workout</Text>
       </View>
     </BackgroundTemplate>
   );

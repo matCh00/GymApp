@@ -11,6 +11,7 @@ import { ThemeModel } from '../../theme/models/ThemeModel';
 import { PlansStackParams } from '../navigation/PlansNavigation';
 import BackgroundTemplate from '../../shared/components/BackgroundTemplate';
 import { GlobalStyles } from '../../theme/utils/GlobalStyles';
+import OwnButton from '../../shared/components/OwnButton';
 
 const PlanScreen = () => {
 
@@ -28,10 +29,10 @@ const PlanScreen = () => {
   return (
     <BackgroundTemplate>
       <View style={GlobalStyles.container}>
-        <Text>PlanScreen</Text>
-        <Pressable onPress={() => {navigation.push("Workout")}}>
-          <Text>navigate to Workout</Text>
-        </Pressable>
+        <Text>Plan</Text>
+
+        <OwnButton title="Start workout!" onPress={() => {navigation.push("Workout")}} />
+
       </View>
     </BackgroundTemplate>
   );

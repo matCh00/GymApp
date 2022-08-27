@@ -49,7 +49,7 @@ const styles = (theme: ThemeModel) =>
     button: {
       width: '80%',
       alignItems: 'center',
-      backgroundColor: theme.colors.STEP_0,
+      backgroundColor: theme.colors.STEP_1,
       padding: 15,
       borderRadius: 10,
     },

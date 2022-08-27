@@ -11,6 +11,7 @@ import { ThemeModel } from '../../theme/models/ThemeModel';
 import { CreatorStackParams } from '../navigation/CreatorNavigation';
 import BackgroundTemplate from '../../shared/components/BackgroundTemplate';
 import { GlobalStyles } from '../../theme/utils/GlobalStyles';
+import OwnButton from '../../shared/components/OwnButton';
 
 const CreatorScreen = () => {
 
@@ -28,10 +29,9 @@ const CreatorScreen = () => {
   return (
     <BackgroundTemplate>
       <View style={GlobalStyles.container}>
-        <Text>PlanCreator</Text>
-        <Pressable onPress={() => {navigation.push("Modes")}}>
-          <Text>navigate to Modes</Text>
-        </Pressable>
+
+        <OwnButton title="Create" onPress={() => {navigation.push("Modes")}} />
+ 
       </View>
     </BackgroundTemplate>
   );

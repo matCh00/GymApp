@@ -20,7 +20,7 @@ const ListModeScreen = () => {
   return (
     <BackgroundTemplate>
       <View style={GlobalStyles.container}>
-        <Text>ListModeScreen</Text>
+        <Text>List view</Text>
       </View>
     </BackgroundTemplate>
   );

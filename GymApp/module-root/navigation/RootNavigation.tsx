@@ -7,8 +7,7 @@ import { MaterialCommunityIcons } from '@expo/vector-icons';
 import PlansNavigation from "../../module-plans/navigation/PlansNavigation";
 import CreatorNavigation from "../../module-creator/navigation/CreatorNavigation";
 import ProfileNavigation from "../../module-profile/navigation/ProfileNavigation";
-import { Alert, BackHandler, Text } from "react-native";
-import { useEffect } from "react";
+import { Text } from "react-native";
 import useTheme from "../../theme/hooks/useTheme";
 
 /** 
@@ -29,20 +28,6 @@ const RootStack = createBottomTabNavigator<RootStackParams>();
  * nawigacja 
  */
 const RootNavigation = () => {
-
-  /**
-   * zapytanie czy wyjść z aplikacji
-   */
-  useEffect(() => {
-    const handleBackButton = () => {
-      Alert.alert("Close", "Are you sure you want to close app?", [
-        { text: "Cancel", onPress: () => null },
-        { text: "Bye!", onPress: () => BackHandler.exitApp() }
-      ]);
-      return true;
-    };
-    BackHandler.addEventListener("hardwareBackPress", handleBackButton)
-  }, [])
   
   /**
    * motyw
@@ -70,8 +55,8 @@ const RootNavigation = () => {
           tabBarIcon: ({ color, size }) => {
             return <MaterialCommunityIcons name="account" color={color} size={size} />
           },
-          tabBarLabel: () => { 
-            return <Text style={{color: theme.colors.STEP_9, fontSize: 12}}>Profile</Text>
+          tabBarLabel: ({ color }) => { 
+            return <Text style={{color: color, fontSize: 12}}>Profile</Text>
           },
         }}
       />
@@ -83,8 +68,8 @@ const RootNavigation = () => {
           tabBarIcon: ({ color, size }) => {
             return <MaterialCommunityIcons name="table-large" color={color} size={size} />
           },
-          tabBarLabel: () => { 
-            return <Text style={{color: theme.colors.STEP_9, fontSize: 12}}>Plans</Text>
+          tabBarLabel: ({ color }) => { 
+            return <Text style={{color: color, fontSize: 12}}>Plans</Text>
           },
         }}
       />
@@ -96,8 +81,8 @@ const RootNavigation = () => {
           tabBarIcon: ({ color, size }) => {
             return <MaterialCommunityIcons name="credit-card-plus-outline" color={color} size={size} />
           },
-          tabBarLabel: () => { 
-            return <Text style={{color: theme.colors.STEP_9, fontSize: 12}}>Creator</Text>
+          tabBarLabel: ({ color }) => { 
+            return <Text style={{color: color, fontSize: 12}}>Creator</Text>
           },
         }}
       />

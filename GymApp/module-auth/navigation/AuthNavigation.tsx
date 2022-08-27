@@ -3,8 +3,6 @@
  */
 
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { useEffect } from "react";
-import { Alert, BackHandler } from "react-native";
 import useTheme from "../../theme/hooks/useTheme";
 import LoginScreen from "../screens/LoginScreen";
 import RegisterScreen from "../screens/RegisterScreen";
@@ -26,20 +24,6 @@ const AuthStack = createNativeStackNavigator<AuthStackParams>();
  * nawigacja 
  */
 const AuthNavigation = () => {
-
-  /**
-   * zapytanie czy wyjść z aplikacji
-   */
-  useEffect(() => {
-    const handleBackButton = () => {
-      Alert.alert("Close", "Are you sure you want to close app?", [
-        { text: "Cancel", onPress: () => null },
-        { text: "Bye!", onPress: () => BackHandler.exitApp() }
-      ]);
-      return true;
-    };
-    BackHandler.addEventListener("hardwareBackPress", handleBackButton)
-  }, [])
 
   /**
    * motyw

@@ -8,6 +8,7 @@ import useThemedStyles from '../../theme/hooks/useThemeStyles';
 import { ThemeModel } from '../../theme/models/ThemeModel';
 import BackgroundTemplate from '../../shared/components/BackgroundTemplate';
 import { GlobalStyles } from '../../theme/utils/GlobalStyles';
+import ImageMode from '../components/ImageMode';
 
 const ImageModeScreen = () => {
 
@@ -20,7 +21,7 @@ const ImageModeScreen = () => {
   return (
     <BackgroundTemplate>
       <View style={GlobalStyles.container}>
-        <Text>ImageModeScreen</Text>
+        <ImageMode />
       </View>
     </BackgroundTemplate>
   );
