@@ -7,7 +7,7 @@ import { MaterialCommunityIcons } from '@expo/vector-icons';
 import PlansNavigation from "../../module-plans/navigation/PlansNavigation";
 import CreatorNavigation from "../../module-creator/navigation/CreatorNavigation";
 import ProfileNavigation from "../../module-profile/navigation/ProfileNavigation";
-import { Alert, BackHandler } from "react-native";
+import { Alert, BackHandler, Text } from "react-native";
 import { useEffect } from "react";
 import useTheme from "../../theme/hooks/useTheme";
 
@@ -55,7 +55,6 @@ const RootNavigation = () => {
       backBehavior='none'
       screenOptions={{
         headerShown: false,
-        tabBarShowLabel: false,
         tabBarStyle: {backgroundColor: theme.colors.STEP_0, borderTopColor: theme.colors.STEP_00},
         tabBarActiveBackgroundColor: theme.colors.STEP_1,
         tabBarActiveTintColor: theme.colors.STEP_9,
@@ -69,7 +68,10 @@ const RootNavigation = () => {
         component={ProfileNavigation} 
         options={{
           tabBarIcon: ({ color, size }) => {
-            return <MaterialCommunityIcons name="home" color={color} size={size} />
+            return <MaterialCommunityIcons name="account" color={color} size={size} />
+          },
+          tabBarLabel: () => { 
+            return <Text style={{color: theme.colors.STEP_9, fontSize: 12}}>Profile</Text>
           },
         }}
       />
@@ -79,7 +81,10 @@ const RootNavigation = () => {
         component={PlansNavigation} 
         options={{
           tabBarIcon: ({ color, size }) => {
-            return <MaterialCommunityIcons name="home" color={color} size={size} />
+            return <MaterialCommunityIcons name="table-large" color={color} size={size} />
+          },
+          tabBarLabel: () => { 
+            return <Text style={{color: theme.colors.STEP_9, fontSize: 12}}>Plans</Text>
           },
         }}
       />
@@ -89,7 +94,10 @@ const RootNavigation = () => {
         component={CreatorNavigation} 
         options={{
           tabBarIcon: ({ color, size }) => {
-            return <MaterialCommunityIcons name="home" color={color} size={size} />
+            return <MaterialCommunityIcons name="credit-card-plus-outline" color={color} size={size} />
+          },
+          tabBarLabel: () => { 
+            return <Text style={{color: theme.colors.STEP_9, fontSize: 12}}>Creator</Text>
           },
         }}
       />

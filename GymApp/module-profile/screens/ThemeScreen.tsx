@@ -9,9 +9,9 @@
  import { ThemeModel } from '../../theme/models/ThemeModel';
  import BackgroundTemplate from '../../shared/components/BackgroundTemplate';
  import { GlobalStyles } from '../../theme/utils/GlobalStyles';
+import { ProfileStackParams } from '../navigation/ProfileNavigation';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { useNavigation } from '@react-navigation/native';
-import { SettingsStackParams } from '../navigation/SettingsNavigation';
 
 const ThemeScreen = () => {
   
@@ -24,20 +24,18 @@ const ThemeScreen = () => {
   /**
    * nawigacja
    */
-  const navigation = useNavigation<NativeStackNavigationProp<SettingsStackParams>>();
+  const navigation = useNavigation<NativeStackNavigationProp<ProfileStackParams>>();
 
   /**
    * zapisanie motywu
    */
   const handleSave = () => {
-    navigation.replace("Settings")
+    navigation.navigate("Profile")
   }
 
   return (
     <BackgroundTemplate>
       <View style={GlobalStyles.container}>
-
-        <Text>Themes</Text>
         
         <View style={style.innerContainer}>
           <OwnButton title='green' onPress={() => {theme.setCurrentTheme('green_black')}} />

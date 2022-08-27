@@ -17,7 +17,8 @@ import { AuthModel } from '../../shared/models/AuthModel';
 import { AuthContext } from '../../shared/state/AuthContext';
 import { Alert, Text, View } from 'react-native';
 import useTheme from '../../theme/hooks/useTheme';
-import SettingsNavigation from './SettingsNavigation';
+import SettingsScreen from '../screens/SettingsScreen';
+import ThemeScreen from '../screens/ThemeScreen';
 
 /** 
  * parametry 
@@ -26,7 +27,8 @@ export type ProfileStackParams = {
   Profile: undefined;
   Workouts: undefined;
   Weights: undefined;
-  SettingsMain: undefined;
+  Theme: undefined;
+  Settings: undefined;
 };
 
 /** 
@@ -64,7 +66,7 @@ const CustomDrawerContent = (props: any) => {
       <DrawerItemList {...props} />
       <DrawerItem label={() => 
         <View style={{flex: 1, flexDirection: 'row', alignItems: 'center'}}>
-          <MaterialCommunityIcons name="home" color={theme.colors.STEP_99} size={24} />
+          <MaterialCommunityIcons name="logout" color={theme.colors.STEP_99} size={24} />
           <Text style={{color: theme.colors.STEP_99, marginLeft: 30}}>
             Logout
           </Text>
@@ -106,7 +108,7 @@ const ProfileNavigation = () => {
           headerStyle: {backgroundColor: theme.colors.STEP_0},
           headerTintColor: theme.colors.STEP_999,
           drawerIcon: ({ color, size }) => (
-            <MaterialCommunityIcons name="home" color={color} size={size} />
+            <MaterialCommunityIcons name="account" color={color} size={size} />
           ),
         }}
       />
@@ -119,7 +121,7 @@ const ProfileNavigation = () => {
           headerStyle: {backgroundColor: theme.colors.STEP_0},
           headerTintColor: theme.colors.STEP_999,
           drawerIcon: ({ color, size }) => (
-            <MaterialCommunityIcons name="home" color={color} size={size} />
+            <MaterialCommunityIcons name="table" color={color} size={size} />
           ),
         }}
       />
@@ -132,20 +134,35 @@ const ProfileNavigation = () => {
           headerStyle: {backgroundColor: theme.colors.STEP_0},
           headerTintColor: theme.colors.STEP_999,
           drawerIcon: ({ color, size }) => (
-            <MaterialCommunityIcons name="home" color={color} size={size} />
+            <MaterialCommunityIcons name="dumbbell" color={color} size={size} />
           ),
         }}
       />
 
       <ProfileStack.Screen 
-        name="SettingsMain" 
-        component={SettingsNavigation} 
+        name="Theme" 
+        component={ThemeScreen} 
+        options={{
+          title: "Theme",
+          headerStyle: {backgroundColor: theme.colors.STEP_0},
+          headerTintColor: theme.colors.STEP_999,
+          
+          drawerIcon: ({ color, size }) => (
+            <MaterialCommunityIcons name="format-color-fill" color={color} size={size} />
+          ),
+        }}
+      />
+
+      <ProfileStack.Screen 
+        name="Settings" 
+        component={SettingsScreen} 
         options={{
           title: "Settings",
           headerStyle: {backgroundColor: theme.colors.STEP_0},
           headerTintColor: theme.colors.STEP_999,
+          
           drawerIcon: ({ color, size }) => (
-            <MaterialCommunityIcons name="home" color={color} size={size} />
+            <MaterialCommunityIcons name="tools" color={color} size={size} />
           ),
         }}
       />

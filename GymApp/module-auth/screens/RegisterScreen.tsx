@@ -55,9 +55,7 @@ const RegisterScreen = () => {
 
         <OwnButton title='Register' onPress={handleRegister} />
 
-        <Pressable onPress={() => {navigation.replace("Login")}}>
-          <Text>navigate to Login</Text>
-        </Pressable>
+        <OwnButton title="go to Login" onPress={() => {navigation.replace("Login")}} />
         
       </KeyboardAvoidingView>
     </BackgroundTemplate>

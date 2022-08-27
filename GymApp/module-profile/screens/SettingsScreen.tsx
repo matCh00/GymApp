@@ -11,7 +11,7 @@ import BackgroundTemplate from '../../shared/components/BackgroundTemplate';
 import { GlobalStyles } from '../../theme/utils/GlobalStyles';
 import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
-import { SettingsStackParams } from '../navigation/SettingsNavigation';
+import { ProfileStackParams } from '../navigation/ProfileNavigation';
 
 const SettingsScreen = () => {
 
@@ -24,13 +24,20 @@ const SettingsScreen = () => {
   /**
    * nawigacja
    */
-  const navigation = useNavigation<NativeStackNavigationProp<SettingsStackParams>>();
+  const navigation = useNavigation<NativeStackNavigationProp<ProfileStackParams>>();
+
+   /**
+    * zapisanie motywu
+    */
+  const handleSave = () => {
+    navigation.navigate("Profile")
+  }
 
   return (
     <BackgroundTemplate>
       <View style={GlobalStyles.container}>
         
-        <OwnButton title='Themes' onPress={() => {navigation.replace("Themes")}} />
+        <OwnButton title='Save' onPress={handleSave} />
 
       </View>
     </BackgroundTemplate>
