@@ -8,6 +8,8 @@ import { Alert, BackHandler, StyleSheet, View } from 'react-native';
 import AppNavigation from './AppNavigation';
 import { AuthProvider } from './shared/state/AuthContext';
 import ThemeProvider from './theme/utils/ThemeProvider';
+import { Provider } from 'react-redux';
+import { store } from './shared/redux/AppStore';
 
 const statusBarInsideHeader = false;
 
@@ -34,7 +36,11 @@ export default function App() {
         {statusBarInsideHeader ? <StatusBar style="light" /> : null}
         
         <AuthProvider>
-          <AppNavigation />
+          <Provider store={store}>
+
+            <AppNavigation />
+
+          </Provider>
         </AuthProvider>
         
       </View>

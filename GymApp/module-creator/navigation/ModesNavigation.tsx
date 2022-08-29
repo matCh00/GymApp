@@ -33,7 +33,7 @@ const ModesNavigation = () => {
 
   return (
     <ModesStack.Navigator
-      initialRouteName="ImageMode"
+      initialRouteName="ListMode"
       backBehavior='none'
       screenOptions={{
         tabBarShowLabel: false,
@@ -45,19 +45,6 @@ const ModesNavigation = () => {
       }}
     >
       <ModesStack.Screen
-        name="ImageMode"
-        component={ImageModeScreen}
-        options={{
-          tabBarPressColor: 'transparent',
-          tabBarIcon: ({ color }) => {
-            return (
-              <MaterialCommunityIcons name="image" color={color} size={24} />
-            );
-          },
-        }}
-      />
-
-      <ModesStack.Screen
         name="ListMode"
         component={ListModeScreen}
         options={{
@@ -65,6 +52,19 @@ const ModesNavigation = () => {
           tabBarIcon: ({ color }) => {
             return (
               <MaterialCommunityIcons name="table" color={color} size={24} />
+            );
+          },
+        }}
+      />
+
+      <ModesStack.Screen
+        name="ImageMode"
+        component={ImageModeScreen}
+        options={{
+          tabBarPressColor: 'transparent',
+          tabBarIcon: ({ color }) => {
+            return (
+              <MaterialCommunityIcons name="image" color={color} size={24} />
             );
           },
         }}
