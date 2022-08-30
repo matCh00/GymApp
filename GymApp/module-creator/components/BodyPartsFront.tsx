@@ -8,22 +8,21 @@ import Svg, { Image, Path } from "react-native-svg";
 import { useDispatch } from "react-redux";
 import { ThemeModel } from "../../theme/models/ThemeModel";
 import { changeMuscle } from "../redux/MusclesReducer";
-import MusclesEnum from "../utils/MusclesEnum";
 
 const BodyPartsFront = (props: any) => {
   
   const inactive: string = "#F8D8D8";
   const active: string = "#9988FF";
-  const [selected, setSelected] = useState<string>('' as MusclesEnum);
+  const [selected, setSelected] = useState<string>('');
 
   /**
    * dispatch z reducera
    */
   const dispatch = useDispatch();
 
-   /**
-    * zaktualizowanie stanu w reducerze
-    */
+  /**
+   * zaktualizowanie stanu w reducerze
+   */
   const onChangeMuscle = () => {
     dispatch(changeMuscle({muscle: selected}));
   }
@@ -49,7 +48,7 @@ const BodyPartsFront = (props: any) => {
         fill={selected === 'delts' ? active : inactive}
         fillOpacity={0.6}
         onPressIn={() => {
-          selected === 'delts' as MusclesEnum ? setSelected("") : setSelected(MusclesEnum["delts"]);
+          selected === 'delts' ? setSelected("") : setSelected("delts");
         }}
         onPress={() => {
           onChangeMuscle();
@@ -62,7 +61,7 @@ const BodyPartsFront = (props: any) => {
         fill={selected === 'triceps' ? active : inactive}
         fillOpacity={0.6}
         onPressIn={() => {
-          selected === 'triceps' as MusclesEnum ? setSelected("") : setSelected(MusclesEnum["triceps"]);
+          selected === 'triceps' ? setSelected("") : setSelected("triceps");
         }}
         onPress={() => {
           onChangeMuscle();
@@ -75,7 +74,7 @@ const BodyPartsFront = (props: any) => {
         fill={selected === 'biceps' ? active : inactive}
         fillOpacity={0.6}
         onPressIn={() => {
-          selected === 'biceps' as MusclesEnum ? setSelected("") : setSelected(MusclesEnum["biceps"]);
+          selected === 'biceps' ? setSelected("") : setSelected("biceps");
         }}
         onPress={() => {
           onChangeMuscle();
@@ -88,7 +87,7 @@ const BodyPartsFront = (props: any) => {
         fill={selected === 'traps' ? active : inactive}
         fillOpacity={0.6}
         onPressIn={() => {
-          selected === 'traps' as MusclesEnum ? setSelected("") : setSelected(MusclesEnum["traps"]);
+          selected === 'traps' ? setSelected("") : setSelected("traps");
         }}
         onPress={() => {
           onChangeMuscle();
@@ -101,7 +100,7 @@ const BodyPartsFront = (props: any) => {
         fill={selected === 'pecs' ? active : inactive}
         fillOpacity={0.6}
         onPressIn={() => {
-          selected === 'pecs' as MusclesEnum ? setSelected("") : setSelected(MusclesEnum["pecs"]);
+          selected === 'pecs' ? setSelected("") : setSelected("pecs");
         }}
         onPress={() => {
           onChangeMuscle();
@@ -114,7 +113,7 @@ const BodyPartsFront = (props: any) => {
         fill={selected === 'pecs' ? active : inactive}
         fillOpacity={0.6}
         onPressIn={() => {
-          selected === 'pecs' as MusclesEnum ? setSelected("") : setSelected(MusclesEnum["pecs"]);
+          selected === 'pecs' ? setSelected("") : setSelected("pecs");
         }}
         onPress={() => {
           onChangeMuscle();
@@ -127,7 +126,7 @@ const BodyPartsFront = (props: any) => {
         fill={selected === 'oblique' ? active : inactive}
         fillOpacity={0.6}
         onPressIn={() => {
-          selected === 'oblique' as MusclesEnum ? setSelected("") : setSelected(MusclesEnum["oblique"]);
+          selected === 'oblique' ? setSelected("") : setSelected("oblique");
         }}
         onPress={() => {
           onChangeMuscle();
@@ -140,7 +139,7 @@ const BodyPartsFront = (props: any) => {
         fill={selected === 'delts' ? active : inactive}
         fillOpacity={0.6}
         onPressIn={() => {
-          selected === 'delts' as MusclesEnum ? setSelected("") : setSelected(MusclesEnum["delts"]);
+          selected === 'delts' ? setSelected("") : setSelected("delts");
         }}
         onPress={() => {
           onChangeMuscle();
@@ -153,7 +152,7 @@ const BodyPartsFront = (props: any) => {
         fill={selected === 'biceps' ? active : inactive}
         fillOpacity={0.6}
         onPressIn={() => {
-          selected === 'biceps' as MusclesEnum ? setSelected("") : setSelected(MusclesEnum["biceps"]);
+          selected === 'biceps' ? setSelected("") : setSelected("biceps");
         }}
         onPress={() => {
           onChangeMuscle();
@@ -166,7 +165,7 @@ const BodyPartsFront = (props: any) => {
         fill={selected === 'triceps' ? active : inactive}
         fillOpacity={0.6}
         onPressIn={() => {
-          selected === 'triceps' as MusclesEnum ? setSelected("") : setSelected(MusclesEnum["triceps"]);
+          selected === 'triceps' ? setSelected("") : setSelected("triceps");
         }}
         onPress={() => {
           onChangeMuscle();
@@ -179,7 +178,7 @@ const BodyPartsFront = (props: any) => {
         fill={selected === 'forearms' ? active : inactive}
         fillOpacity={0.6}
         onPressIn={() => {
-          selected === 'forearms' as MusclesEnum ? setSelected("") : setSelected(MusclesEnum["forearms"]);
+          selected === 'forearms' ? setSelected("") : setSelected("forearms");
         }}
         onPress={() => {
           onChangeMuscle();
@@ -192,7 +191,7 @@ const BodyPartsFront = (props: any) => {
         fill={selected === 'forearms' ? active : inactive}
         fillOpacity={0.6}
         onPressIn={() => {
-          selected === 'forearms' as MusclesEnum ? setSelected("") : setSelected(MusclesEnum["forearms"]);
+          selected === 'forearms' ? setSelected("") : setSelected("forearms");
         }}
         onPress={() => {
           onChangeMuscle();
@@ -205,7 +204,7 @@ const BodyPartsFront = (props: any) => {
         fill={selected === 'glutes' ? active : inactive}
         fillOpacity={0.6}
         onPressIn={() => {
-          selected === 'glutes' as MusclesEnum ? setSelected("") : setSelected(MusclesEnum["glutes"]);
+          selected === 'glutes' ? setSelected("") : setSelected("glutes");
         }}
         onPress={() => {
           onChangeMuscle();
@@ -218,7 +217,7 @@ const BodyPartsFront = (props: any) => {
         fill={selected === 'quads' ? active : inactive}
         fillOpacity={0.6}
         onPressIn={() => {
-          selected === 'quads' as MusclesEnum ? setSelected("") : setSelected(MusclesEnum["quads"]);
+          selected === 'quads' ? setSelected("") : setSelected("quads");
         }}
         onPress={() => {
           onChangeMuscle();
@@ -231,7 +230,7 @@ const BodyPartsFront = (props: any) => {
         fill={selected === 'quads' ? active : inactive}
         fillOpacity={0.6}
         onPressIn={() => {
-          selected === 'quads' as MusclesEnum ? setSelected("") : setSelected(MusclesEnum["quads"]);
+          selected === 'quads' ? setSelected("") : setSelected("quads");
         }}
         onPress={() => {
           onChangeMuscle();
@@ -244,7 +243,7 @@ const BodyPartsFront = (props: any) => {
         fill={selected === 'calves' ? active : inactive}
         fillOpacity={0.6}
         onPressIn={() => {
-          selected === 'calves' as MusclesEnum ? setSelected("") : setSelected(MusclesEnum["calves"]);
+          selected === 'calves' ? setSelected("") : setSelected("calves");
         }}
         onPress={() => {
           onChangeMuscle();
@@ -257,7 +256,7 @@ const BodyPartsFront = (props: any) => {
         fill={selected === 'calves' ? active : inactive}
         fillOpacity={0.6}
         onPressIn={() => {
-          selected === 'calves' as MusclesEnum ? setSelected("") : setSelected(MusclesEnum["calves"]);
+          selected === 'calves' ? setSelected("") : setSelected("calves");
         }}
         onPress={() => {
           onChangeMuscle();
@@ -270,7 +269,7 @@ const BodyPartsFront = (props: any) => {
         fill={selected === 'hams' ? active : inactive}
         fillOpacity={0.6}
         onPressIn={() => {
-          selected === 'hams' as MusclesEnum ? setSelected("") : setSelected(MusclesEnum["hams"]);
+          selected === 'hams' ? setSelected("") : setSelected("hams");
         }}
         onPress={() => {
           onChangeMuscle();
@@ -283,7 +282,7 @@ const BodyPartsFront = (props: any) => {
         fill={selected === 'upperAbs' ? active : inactive}
         fillOpacity={0.6}
         onPressIn={() => {
-          selected === 'upperAbs' as MusclesEnum ? setSelected("") : setSelected(MusclesEnum["upperAbs"]);
+          selected === 'upperAbs' ? setSelected("") : setSelected("upperAbs");
         }}
         onPress={() => {
           onChangeMuscle();
@@ -296,7 +295,7 @@ const BodyPartsFront = (props: any) => {
         fill={selected === 'lowerAbs' ? active : inactive}
         fillOpacity={0.6}
         onPressIn={() => {
-          selected === 'lowerAbs' as MusclesEnum ? setSelected("") : setSelected(MusclesEnum["lowerAbs"]);
+          selected === 'lowerAbs' ? setSelected("") : setSelected("lowerAbs");
         }}
         onPress={() => {
           onChangeMuscle();

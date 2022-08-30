@@ -30,7 +30,7 @@ const CreatorScreen = () => {
     <BackgroundTemplate>
       <View style={GlobalStyles.container}>
 
-        <OwnButton title="Create" onPress={() => {navigation.push("Modes")}} />
+        <OwnButton title="Add exercise" onPress={() => {navigation.push("Modes")}} />
  
       </View>
     </BackgroundTemplate>

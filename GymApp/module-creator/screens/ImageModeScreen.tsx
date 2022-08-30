@@ -17,6 +17,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { CreatorStackParams } from '../navigation/CreatorNavigation';
+import { changeMuscle } from '../redux/MusclesReducer';
 
 const ImageModeScreen = () => {
 
@@ -32,6 +33,11 @@ const ImageModeScreen = () => {
    */
   const theme = useTheme();
   const style = useThemedStyles(styles);
+
+  /**
+   * dispatch z reducera
+   */
+  const dispatch = useDispatch();
 
   /**
    * nawigacja
@@ -52,6 +58,14 @@ const ImageModeScreen = () => {
     }
   }
 
+  /**
+   * zmiana widoku
+   */
+  const swapSides = () => {
+    dispatch(changeMuscle({muscle: ''}));
+    setIsFront((value) => !value);
+  }
+
   return (
     <BackgroundTemplate>
       <View style={GlobalStyles.container}>
@@ -65,7 +79,7 @@ const ImageModeScreen = () => {
 
       <View style={{marginBottom: 10, marginTop: -30, flexDirection: 'row'}}>
 
-        <OwnButton title="Swap" onPress={() => {setIsFront((value) => !value)}} />
+        <OwnButton title="Swap" onPress={swapSides} />
 
         <OwnButton title="Choose" onPress={goToExercise} />
 
