@@ -29,15 +29,15 @@ const ImageModeScreen = () => {
   const muscle = useSelector((state: any) => state.selectedMuscle.muscle);
 
   /**
+   * dispatch z reducera
+   */
+  const dispatch = useDispatch();
+
+  /**
    * motyw
    */
   const theme = useTheme();
   const style = useThemedStyles(styles);
-
-  /**
-   * dispatch z reducera
-   */
-  const dispatch = useDispatch();
 
   /**
    * nawigacja

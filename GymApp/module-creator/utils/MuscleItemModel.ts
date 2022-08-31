@@ -2,6 +2,6 @@
  * Model własnego itemu listy
  */
 
-export interface OwnItemModel {
+export interface MuscleItemModel {
   muscleKey: string;
 }

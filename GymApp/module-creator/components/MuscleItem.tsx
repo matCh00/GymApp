@@ -1,15 +1,19 @@
+/**
+ * Element listy partii mięśniowych
+ */
+
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 import useTheme from '../../theme/hooks/useTheme';
 import useThemedStyles from '../../theme/hooks/useThemeStyles';
 import { ThemeModel } from '../../theme/models/ThemeModel';
-import { OwnItemModel } from '../utils/OwnItemModel';
+import { MuscleItemModel } from '../utils/MuscleItemModel';
 import MusclesEnum from '../utils/MusclesEnum';
 import { Image } from "react-native";
 import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { CreatorStackParams } from '../navigation/CreatorNavigation';
 
-const OwnItem = (props: OwnItemModel) => {
+const MuscleItem = (props: MuscleItemModel) => {
 
   /**
    * props
@@ -31,7 +35,7 @@ const OwnItem = (props: OwnItemModel) => {
    * przekierowanie na stronę z przekazanym parametrem
    */
   const goToExercise = () => {
-    navigation.push("Exercises", {muscle: muscleKey})
+    navigation.push("Exercises", {muscle: muscleKey});    
   }
 
   return (
@@ -53,7 +57,7 @@ const OwnItem = (props: OwnItemModel) => {
   );
 };
 
-export default OwnItem;
+export default MuscleItem;
 
 const styles = (theme: ThemeModel) =>
   StyleSheet.create({
@@ -70,7 +74,7 @@ const styles = (theme: ThemeModel) =>
       textAlign: 'center',
       color: theme.colors.STEP_000,
       fontWeight: '600',
-      fontSize: theme.typography.size.S,
+      fontSize: theme.typography.size.M,
       marginBottom: 10,
     },
     image: {

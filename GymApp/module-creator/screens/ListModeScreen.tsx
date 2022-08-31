@@ -9,7 +9,7 @@ import { ThemeModel } from '../../theme/models/ThemeModel';
 import BackgroundTemplate from '../../shared/components/BackgroundTemplate';
 import { GlobalStyles } from '../../theme/utils/GlobalStyles';
 import MusclesEnum from '../utils/MusclesEnum';
-import OwnItem from '../components/OwnItem';
+import MuscleItem from '../components/MuscleItem';
 
 const ListModeScreen = () => {
 
@@ -30,7 +30,7 @@ const ListModeScreen = () => {
           renderItem={(itemData) => {
             return (
               <View style={style.listContainer}>
-                <OwnItem muscleKey={itemData.item}></OwnItem>
+                <MuscleItem muscleKey={itemData.item} />
               </View>
             );
           }}
