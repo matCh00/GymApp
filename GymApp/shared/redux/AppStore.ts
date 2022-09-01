@@ -4,9 +4,11 @@
 
 import { configureStore } from '@reduxjs/toolkit';
 import muscleReducer from '../../module-creator/redux/MusclesReducer';
+import creatorReducer from '../../module-creator/redux/CreatorReducer';
 
 export const store = configureStore({
   reducer: {
-    selectedMuscle: muscleReducer
+    selectedMuscle: muscleReducer,
+    selectedExercises: creatorReducer,
   }
 });

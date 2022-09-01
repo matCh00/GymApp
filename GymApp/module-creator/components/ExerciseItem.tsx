@@ -3,11 +3,13 @@
  */
 
 import { StyleSheet, Text, View, Image } from 'react-native';
+import { useDispatch, useSelector } from 'react-redux';
 import OwnButton from '../../shared/components/OwnButton';
 import useTheme from '../../theme/hooks/useTheme';
 import useThemedStyles from '../../theme/hooks/useThemeStyles';
 import { ThemeModel } from '../../theme/models/ThemeModel';
 import { ExerciseItemModel } from '../utils/ExerciseItemModel';
+import { addExercise, removeExercise } from '../redux/CreatorReducer';
 
 const ExerciseItem = (props: ExerciseItemModel) => {
 
@@ -15,6 +17,16 @@ const ExerciseItem = (props: ExerciseItemModel) => {
    * props
    */
   const {imagePath, exerciseName, exerciseKey} = props;
+
+  /**
+   * dispatch z reducera
+   */
+  const dispatch = useDispatch();
+
+  /**
+   * stan exercises z reducera
+   */
+  const exercises = useSelector((state: any) => state.selectedExercises.exercises);
 
   /**
    * motyw
@@ -26,6 +38,14 @@ const ExerciseItem = (props: ExerciseItemModel) => {
    * dodanie ćwiczenia do listy
    */
   const handleAdd = () => {
+    dispatch(addExercise({exercise: props}));    
+  }
+
+  /**
+   * usunięcie ćwiczenia z listy
+   */
+  const handleRemove = () => {
+    dispatch(removeExercise({exerciseKey: exerciseKey}));
   }
 
   return (
@@ -38,7 +58,11 @@ const ExerciseItem = (props: ExerciseItemModel) => {
         style={style.image}
       />
 
-      <OwnButton title='Add' onPress={handleAdd} />
+      <View style={{flexDirection: 'row'}}>
+        <OwnButton title='Add' onPress={handleAdd} />
+
+        <OwnButton title='Remove' onPress={handleRemove} />
+      </View>
 
     </View>
   );
