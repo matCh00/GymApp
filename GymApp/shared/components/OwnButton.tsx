@@ -7,13 +7,14 @@ import useTheme from "../../theme/hooks/useTheme";
 import useThemedStyles from "../../theme/hooks/useThemeStyles";
 import { ThemeModel } from "../../theme/models/ThemeModel";
 import { OwnButtonModel } from "../models/OwnButtonModel";
+import { MaterialCommunityIcons } from '@expo/vector-icons';
 
 const OwnButton = (props: OwnButtonModel) => {
 
   /**
    * props
    */
-  const {title, onPress} = props;
+  const {title, onPress, alignSelf, icon} = props;
 
   /**
    * motyw
@@ -26,10 +27,14 @@ const OwnButton = (props: OwnButtonModel) => {
 
       <TouchableOpacity 
         onPress={onPress} 
-        style={[style.button]}
+        style={[style.button, alignSelf ? {alignSelf: 'center'} : {width: '80%'}]}
         activeOpacity={.7}
       >
-        <Text style={[style.buttonText]}> {title} </Text>
+        {icon?.length > 0
+          ? <MaterialCommunityIcons name={icon as undefined} color={theme.colors.STEP_99} size={24} />
+          : <Text style={[style.buttonText]}> {title} </Text>
+        }
+        
       </TouchableOpacity>
 
     </View>
@@ -47,11 +52,10 @@ const styles = (theme: ThemeModel) =>
       marginTop: 40,
     },
     button: {
-      width: '80%',
       alignItems: 'center',
       backgroundColor: theme.colors.STEP_1,
       padding: 15,
-      borderRadius: 10,
+      borderRadius: 50,
     },
     buttonText: {
       color: theme.colors.STEP_999,

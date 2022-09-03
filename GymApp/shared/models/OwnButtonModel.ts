@@ -3,7 +3,9 @@
  */
 
 export interface OwnButtonModel {
-    title: string,
-    onPress: () => void,
-  }
+  onPress: () => void,
+  title?: string,
+  alignSelf?: boolean,
+  icon?: string,
+}
   

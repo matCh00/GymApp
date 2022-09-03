@@ -59,9 +59,9 @@ const ExerciseItem = (props: ExerciseItemModel) => {
       />
 
       <View style={{flexDirection: 'row'}}>
-        <OwnButton title='Add' onPress={handleAdd} />
+        <OwnButton icon='plus' onPress={handleAdd} alignSelf={true} />
 
-        <OwnButton title='Remove' onPress={handleRemove} />
+        <OwnButton icon='minus' onPress={handleRemove} alignSelf={true} />
       </View>
 
     </View>
