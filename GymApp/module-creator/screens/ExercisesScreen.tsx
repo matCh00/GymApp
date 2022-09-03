@@ -10,6 +10,8 @@ import { ThemeModel } from '../../theme/models/ThemeModel';
 import { CreatorStackParams } from '../navigation/CreatorNavigation';
 import BackgroundTemplate from '../../shared/components/BackgroundTemplate';
 import ExerciseItem from '../components/ExerciseItem';
+import { FloatingAction } from "react-native-floating-action";
+import { MaterialCommunityIcons } from '@expo/vector-icons';
 
 type Props = NativeStackScreenProps<CreatorStackParams, 'Exercises'>;
 
@@ -48,6 +50,19 @@ const ExercisesScreen = ({route, navigation}: Props) => {
         }}
         keyExtractor={(item, index) => { return item.toString(); }} 
         numColumns={1} 
+      />
+
+      <FloatingAction
+        //actions={actions}
+        color={theme.colors.STEP_0}
+        floatingIcon={<MaterialCommunityIcons name="dumbbell" color={theme.colors.STEP_99} size={24} />}
+        showBackground={false}
+        onOpen={() => {
+          console.log(`opened`);
+        }}
+        onClose={() => {
+          console.log(`closed`);
+        }}
       />
 
     </BackgroundTemplate>
