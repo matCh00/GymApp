@@ -12,6 +12,7 @@ import BackgroundTemplate from '../../shared/components/BackgroundTemplate';
 import ExerciseItem from '../components/ExerciseItem';
 import { FloatingAction } from "react-native-floating-action";
 import { MaterialCommunityIcons } from '@expo/vector-icons';
+import { Exercises } from '../utils/Exercises';
 
 type Props = NativeStackScreenProps<CreatorStackParams, 'Exercises'>;
 
@@ -22,7 +23,10 @@ const ExercisesScreen = ({route, navigation}: Props) => {
    */
   const muscle = route.params.muscle;
 
-  const exercisesArray = ['1', '2', '3', '4', '5', '6'];
+  /**
+   * pobranie obiektów ćwiczeń na wybraną partię mięsniową
+   */
+  const hardcodedExercises = Exercises[muscle];
 
   /**
    * motyw
@@ -36,19 +40,20 @@ const ExercisesScreen = ({route, navigation}: Props) => {
       <Text style={style.text}>{muscle}</Text>
 
       <FlatList
-        data={exercisesArray}
+        data={hardcodedExercises}
         renderItem={(itemData) => {
           return (
             <View style={style.listContainer}>
               <ExerciseItem 
-                imagePath={itemData.item} 
-                exerciseKey={itemData.item} 
-                exerciseName={itemData.item}
+                pathName={itemData.item.pathName} 
+                muscleName={itemData.item.muscle}
+                exerciseName={itemData.item.name}
+                exerciseKey={itemData.item.pathName} 
               />
             </View>
           );
         }}
-        keyExtractor={(item, index) => { return item.toString(); }} 
+        keyExtractor={(item, index) => { return 'key' + index + muscle; }} 
         numColumns={1} 
       />
 

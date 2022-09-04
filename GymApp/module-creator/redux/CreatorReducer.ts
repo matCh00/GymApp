@@ -12,7 +12,7 @@ const creatorReducer = createSlice({
   },
   reducers: {
     addExercise: (state, action) => {
-      state.exercises.push(action.payload.exercise);
+      state.exercises.push(action.payload.exercise);      
     },
     removeExercise: (state, action) => {
       state.exercises = state.exercises.filter(e => {return (e.exerciseKey !== action.payload.exerciseKey)});

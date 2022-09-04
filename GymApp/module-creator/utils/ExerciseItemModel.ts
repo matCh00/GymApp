@@ -3,7 +3,8 @@
  */
 
 export interface ExerciseItemModel {
-  imagePath: string;
+  pathName: string;
+  muscleName: string;
   exerciseName: string;
   exerciseKey: string;
 }

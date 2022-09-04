@@ -2,7 +2,7 @@
  * Element listy ćwiczeń na wybraną partię mięśniową 
  */
 
-import { StyleSheet, Text, View, Image } from 'react-native';
+import { StyleSheet, Text, View, Image, ActivityIndicator } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import OwnButton from '../../shared/components/OwnButton';
 import useTheme from '../../theme/hooks/useTheme';
@@ -10,13 +10,40 @@ import useThemedStyles from '../../theme/hooks/useThemeStyles';
 import { ThemeModel } from '../../theme/models/ThemeModel';
 import { ExerciseItemModel } from '../utils/ExerciseItemModel';
 import { addExercise, removeExercise } from '../redux/CreatorReducer';
+import { useEffect, useState } from 'react';
+import { ref, getDownloadURL } from 'firebase/storage';
+import { storage } from '../../firebase/Init';
+
 
 const ExerciseItem = (props: ExerciseItemModel) => {
 
   /**
    * props
    */
-  const {imagePath, exerciseName, exerciseKey} = props;
+  const {pathName, muscleName, exerciseName, exerciseKey} = props;
+
+  /**
+   * linki do obrazków przechowywanych w Firebase
+   */
+  const [url, setUrl] = useState(null);
+  const [urlLoaded, setUrlLoaded] = useState(false);
+
+  /**
+   * załadowanie obrazka ze Storage w Firebase
+   */
+  useEffect(() => {
+    const load = async () => {
+      setUrlLoaded(false);
+
+      const reference = ref(storage, '/gifs/' + muscleName + '/' + pathName);
+
+      await getDownloadURL(reference).then((res) => {
+        setUrl(res);
+        setUrlLoaded(true);
+      })
+    }
+    if (url === null) load();
+  }, []);
 
   /**
    * dispatch z reducera
@@ -53,10 +80,10 @@ const ExerciseItem = (props: ExerciseItemModel) => {
 
       <Text style={style.text}>{exerciseName}</Text>
 
-      <Image 
-        source={require('../../assets/images/wall.png')}
-        style={style.image}
-      />
+      {urlLoaded
+        ? <Image source={{uri: url}} style={style.image} />
+        : <ActivityIndicator color={theme.colors.STEP_0} size={40} />
+      }
 
       <View style={{flexDirection: 'row'}}>
         <OwnButton icon='plus' onPress={handleAdd} alignSelf={true} />
@@ -89,8 +116,8 @@ const styles = (theme: ThemeModel) =>
       marginBottom: 10,
     },
     image: {
-      width: "80%", 
-      height: 180, 
+      width: "90%", 
+      height: 160, 
       resizeMode: 'contain',
       marginBottom: -20,
     }

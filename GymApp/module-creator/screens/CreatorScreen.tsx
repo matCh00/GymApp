@@ -31,7 +31,7 @@ const CreatorScreen = () => {
   /**
    * stan exercises z reducera
    */
-  const exercises = useSelector((state: any) => state.selectedExercises.exercises);
+  const stateExercises = useSelector((state: any) => state.selectedExercises.exercises);
 
   /**
    * nawigacja
@@ -47,14 +47,15 @@ const CreatorScreen = () => {
         <Text style={style.text}>Exercises</Text>
 
         <FlatList
-          data={exercises}
+          data={stateExercises}
           renderItem={(itemData) => {
             return (
               <View style={style.listContainer}>
                 <ExerciseItem 
-                  imagePath={itemData.item.imagePath} 
-                  exerciseKey={itemData.item.exerciseKey} 
+                  pathName={itemData.item.pathName} 
+                  muscleName={itemData.item.muscleName}
                   exerciseName={itemData.item.exerciseName}
+                  exerciseKey={itemData.item.exerciseKey} 
                 />
               </View>
             );
