@@ -42,7 +42,12 @@ const CreatorScreen = () => {
     <BackgroundTemplate>
       <View style={GlobalStyles.container}>
 
-        <OwnButton title="Add exercise" onPress={() => {navigation.push("Modes")}} />
+        <View style={{flexDirection: 'row-reverse'}}>
+
+          <OwnButton title="Add exercise" onPress={() => {navigation.push("Modes")}} />
+          <OwnButton title="Submit plan" onPress={() => {}} />
+
+        </View>
 
         <Text style={style.text}>Exercises</Text>
 

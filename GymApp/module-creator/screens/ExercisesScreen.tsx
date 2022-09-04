@@ -3,7 +3,7 @@
  */
 
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
-import { StyleSheet, Text, View, FlatList } from 'react-native';
+import { StyleSheet, Text, View, FlatList, useWindowDimensions } from 'react-native';
 import useTheme from '../../theme/hooks/useTheme';
 import useThemedStyles from '../../theme/hooks/useThemeStyles';
 import { ThemeModel } from '../../theme/models/ThemeModel';
@@ -13,10 +13,20 @@ import ExerciseItem from '../components/ExerciseItem';
 import { FloatingAction } from "react-native-floating-action";
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { Exercises } from '../utils/Exercises';
+import OwnPopup from '../../shared/components/OwnPopup';
+import { useState } from 'react';
+import ExercisesLook from '../components/ExercisesLook';
 
 type Props = NativeStackScreenProps<CreatorStackParams, 'Exercises'>;
 
 const ExercisesScreen = ({route, navigation}: Props) => {
+
+  const [modalOpend, setModalOpened] = useState(false);
+
+  /**
+   * wymiary ekranu
+   */
+  const { width, height } = useWindowDimensions();
   
   /**
    * wybrana partia mięśniowa
@@ -63,11 +73,19 @@ const ExercisesScreen = ({route, navigation}: Props) => {
         floatingIcon={<MaterialCommunityIcons name="dumbbell" color={theme.colors.STEP_99} size={24} />}
         showBackground={false}
         onOpen={() => {
-          console.log(`opened`);
+          setModalOpened(true);
         }}
         onClose={() => {
-          console.log(`closed`);
+          setModalOpened(false);
         }}
+      />
+
+      <OwnPopup 
+        visible={modalOpend} 
+        setVisible={setModalOpened} 
+        children={
+          <ExercisesLook width={width} />
+        } 
       />
 
     </BackgroundTemplate>
@@ -87,7 +105,7 @@ const styles = (theme: ThemeModel) =>
       color: theme.colors.STEP_999,
       fontWeight: '600',
       fontSize: theme.typography.size.L,
-      marginBottom: 10,
+      marginBottom: 20,
       marginTop: 20,
     },
   });

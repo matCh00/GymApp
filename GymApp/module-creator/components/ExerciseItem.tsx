@@ -86,9 +86,9 @@ const ExerciseItem = (props: ExerciseItemModel) => {
       }
 
       <View style={{flexDirection: 'row'}}>
-        <OwnButton icon='plus' onPress={handleAdd} alignSelf={true} />
+        <OwnButton icon='plus-box-multiple-outline' onPress={handleAdd} />
 
-        <OwnButton icon='minus' onPress={handleRemove} alignSelf={true} />
+        <OwnButton icon='minus-box-multiple-outline' onPress={handleRemove} />
       </View>
 
     </View>
@@ -104,7 +104,7 @@ const styles = (theme: ThemeModel) =>
       alignItems: 'center',
       backgroundColor: theme.colors.STEP_99,
       paddingVertical: 10,
-      borderRadius: 16,
+      borderRadius: 40,
       margin: 16,
       elevation: 20
     },
@@ -119,6 +119,6 @@ const styles = (theme: ThemeModel) =>
       width: "90%", 
       height: 160, 
       resizeMode: 'contain',
-      marginBottom: -20,
+      marginBottom: -30,
     }
   });

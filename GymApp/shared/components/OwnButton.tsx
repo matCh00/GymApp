@@ -14,7 +14,7 @@ const OwnButton = (props: OwnButtonModel) => {
   /**
    * props
    */
-  const {title, onPress, alignSelf, icon} = props;
+  const {title, onPress, icon} = props;
 
   /**
    * motyw
@@ -27,7 +27,7 @@ const OwnButton = (props: OwnButtonModel) => {
 
       <TouchableOpacity 
         onPress={onPress} 
-        style={[style.button, alignSelf ? {alignSelf: 'center'} : {width: '80%'}]}
+        style={[style.button, icon ? {alignSelf: 'center'} : {width: '80%'}]}
         activeOpacity={.7}
       >
         {icon?.length > 0

@@ -1,20 +1,20 @@
 enum MusclesEnum {
-  traps = "traps",
-  delts = "delts",
   biceps = "biceps",
   triceps = "triceps",
-  pecs = "pecs",
-  forearms = "forearms",
   upperAbs = "upper abs",
   lowerAbs = "lower abs",
-  lats = "lats",
+  pecs = "pecs",
   oblique = "oblique",
+  traps = "traps",
+  delts = "delts",
   back = "back",
   lowerBack = "lower back",
+  quads = "quads",
+  calves = "calves",
   glutes = "glutes",
   hams = "hams",
-  calves = "calves",
-  quads = "quads",
+  forearms = "forearms",
+  lats = "lats",
 }
 
 export default MusclesEnum

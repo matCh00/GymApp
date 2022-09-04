@@ -2,7 +2,7 @@
  * Element listy partii mięśniowych
  */
 
-import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, ActivityIndicator, TouchableOpacity } from 'react-native';
 import useTheme from '../../theme/hooks/useTheme';
 import useThemedStyles from '../../theme/hooks/useThemeStyles';
 import { ThemeModel } from '../../theme/models/ThemeModel';
@@ -12,13 +12,39 @@ import { Image } from "react-native";
 import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { CreatorStackParams } from '../navigation/CreatorNavigation';
+import { useEffect, useState } from 'react';
+import { ref, getDownloadURL } from 'firebase/storage';
+import { storage } from '../../firebase/Init';
 
 const MuscleItem = (props: MuscleItemModel) => {
+
+  /**
+   * link do obrazka przechowywanego w Firebase
+   */
+  const [url, setUrl] = useState(null);
+  const [urlLoaded, setUrlLoaded] = useState(false);
 
   /**
    * props
    */
   const {muscleKey} = props;
+
+  /**
+   * załadowanie obrazka ze Storage w Firebase
+   */
+   useEffect(() => {
+    const load = async () => {
+      setUrlLoaded(false)
+
+      const reference = ref(storage, '/images/' + muscleKey + '/cart_photo.png');
+
+      await getDownloadURL(reference).then((res) => {
+        setUrl(res);
+        setUrlLoaded(true);
+      })
+    }
+    if (url === null) load();
+  }, []);
 
   /**
    * motyw
@@ -48,10 +74,10 @@ const MuscleItem = (props: MuscleItemModel) => {
         {MusclesEnum[muscleKey]} 
       </Text>
 
-      <Image 
-        source={require('../../assets/images/wall.png')}
-        style={style.image}
-      />
+      {urlLoaded
+        ? <Image source={{uri: url}} style={style.image} />
+        : <ActivityIndicator color={theme.colors.STEP_0} size={30} />
+      }
 
     </TouchableOpacity>
   );
