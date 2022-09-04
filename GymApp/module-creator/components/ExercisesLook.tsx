@@ -9,12 +9,10 @@ import useThemedStyles from '../../theme/hooks/useThemeStyles';
 import { ThemeModel } from '../../theme/models/ThemeModel';
 import { removeExercise } from '../redux/CreatorReducer';
 import OwnButton from '../../shared/components/OwnButton';
-import { useEffect, useState } from 'react';
-import { ref, getDownloadURL } from 'firebase/storage';
-import { storage } from '../../firebase/Init';
 import MusclesEnum from '../utils/MusclesEnum';
+import { ExerciseItemModel } from "../utils/ExerciseItemModel";
 
-const ExercisesLook = ({width}) => {
+const ExercisesLook = () => {
 
   /**
    * motyw
@@ -41,40 +39,58 @@ const ExercisesLook = ({width}) => {
    * usunięcie ćwiczenia z listy
    */
   const handleRemove = (exerciseKey: string) => {
-    dispatch(removeExercise({exerciseKey: exerciseKey}));
-    console.log(stateExercises);
-    
+    dispatch(removeExercise({exerciseKey: exerciseKey}));    
   }
 
   return (
-    <View style={style.listContainer}>
 
-      {stateExercises.length > 0
-        ?
-          <FlatList
-            data={stateExercises}
-            renderItem={(itemData) => {
-              return (
-                <View style={[style.itemContainer, {width: width * 2 / 3}]}>
+    <FlatList
+      data={musclesArray}
+      renderItem={(itemDataOuter) => {
+        return (
+          <View style={style.outerContainer}>
 
-                  <Text style={style.text}>
-                    {itemData.item.exerciseName}
-                  </Text>
+            <Text style={style.textMuscle}>
+              {itemDataOuter.item}
+            </Text>
 
-                  <OwnButton icon='minus' onPress={() => handleRemove(itemData.item.exerciseKey)} />
+            {stateExercises.filter((e: ExerciseItemModel) => {return e.muscleName === itemDataOuter.item}).length > 0
+              ?
+                <FlatList
+                  data={stateExercises.filter((e: ExerciseItemModel) => {return e.muscleName === itemDataOuter.item})}
+                  renderItem={(itemData) => {
+                    return (
+                      <View style={style.innerContainer}>
 
-                </View>
-              );
-            }}
-            keyExtractor={(item, index) => { return index.toString(); }} 
+                        <Text style={style.text}>
+                          {itemData.item.exerciseName}
+                        </Text>
 
-            numColumns={1}
-          />
-        :
-          <Text style={style.textEmpty}>List is empty!</Text>
-      }
+                        <OwnButton 
+                          icon='minus' 
+                          onPress={() => handleRemove(itemData.item.exerciseKey)} 
+                          size={5} 
+                          marginTop={6}
+                        />
 
-    </View>
+                      </View>
+                    );
+                  }}
+                  keyExtractor={(item, index) => { return index.toString() + 'inner'; }} 
+
+                  numColumns={2}
+                />
+              :  
+                <Text style={style.textEmpty}>No exercises!</Text>          
+            }
+
+          </View>
+        );
+      }}
+      keyExtractor={(item, index) => { return index.toString(); }} 
+
+      numColumns={1}
+    />
   );
 };
 
@@ -82,30 +98,39 @@ export default ExercisesLook;
 
 const styles = (theme: ThemeModel) =>
   StyleSheet.create({
-    listContainer: {
-      alignItems: 'center',
-      marginTop: 40,
-    },
-    itemContainer: {
+    outerContainer: {
+      width: '90%',
       alignItems: 'center',
       backgroundColor: theme.colors.STEP_99,
       padding: 10,
       borderRadius: 60,
       margin: 16,
+      marginTop: 20,
+    },
+    innerContainer: {
+      width: '45%',
+      alignItems: 'center',
+      backgroundColor: theme.colors.STEP_999,
+      borderRadius: 30,
+      padding: 6,
+      margin: 6,
+    },
+    textMuscle: {
+      textAlign: 'center',
+      color: theme.colors.STEP_000,
+      fontWeight: '800',
+      fontSize: theme.typography.size.M,
     },
     text: {
       textAlign: 'center',
       color: theme.colors.STEP_000,
       fontWeight: '600',
-      fontSize: theme.typography.size.M,
-      marginBottom: -25,
+      fontSize: theme.typography.size.S,
     },
     textEmpty: {
       textAlign: 'center',
-      color: theme.colors.STEP_999,
+      color: theme.colors.STEP_3,
       fontWeight: '600',
-      fontSize: theme.typography.size.L,
-      marginBottom: 20,
-      marginTop: 20,
+      fontSize: theme.typography.size.S,
     }
   });

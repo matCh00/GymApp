@@ -14,7 +14,7 @@ const OwnButton = (props: OwnButtonModel) => {
   /**
    * props
    */
-  const {title, onPress, icon} = props;
+  const {title, onPress, icon, size, marginTop} = props;
 
   /**
    * motyw
@@ -23,11 +23,11 @@ const OwnButton = (props: OwnButtonModel) => {
   const style = useThemedStyles(styles);
 
   return (
-    <View style={style.buttonContainer}>
+    <View style={[style.buttonContainer, marginTop ? {marginTop: marginTop} : {marginTop: 40}]}>
 
       <TouchableOpacity 
         onPress={onPress} 
-        style={[style.button, icon ? {alignSelf: 'center'} : {width: '80%'}]}
+        style={[style.button, icon ? {alignSelf: 'center'} : {width: '80%'}, size ? {padding: size} : {padding: 15}]}
         activeOpacity={.7}
       >
         {icon?.length > 0
@@ -54,7 +54,6 @@ const styles = (theme: ThemeModel) =>
     button: {
       alignItems: 'center',
       backgroundColor: theme.colors.STEP_1,
-      padding: 15,
       borderRadius: 50,
     },
     buttonText: {

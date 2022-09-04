@@ -3,7 +3,7 @@
  */
 
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
-import { StyleSheet, Text, View, FlatList, useWindowDimensions } from 'react-native';
+import { StyleSheet, Text, View, FlatList } from 'react-native';
 import useTheme from '../../theme/hooks/useTheme';
 import useThemedStyles from '../../theme/hooks/useThemeStyles';
 import { ThemeModel } from '../../theme/models/ThemeModel';
@@ -22,11 +22,6 @@ type Props = NativeStackScreenProps<CreatorStackParams, 'Exercises'>;
 const ExercisesScreen = ({route, navigation}: Props) => {
 
   const [modalOpend, setModalOpened] = useState(false);
-
-  /**
-   * wymiary ekranu
-   */
-  const { width, height } = useWindowDimensions();
   
   /**
    * wybrana partia mięśniowa
@@ -70,13 +65,10 @@ const ExercisesScreen = ({route, navigation}: Props) => {
       <FloatingAction
         //actions={actions}
         color={theme.colors.STEP_0}
-        floatingIcon={<MaterialCommunityIcons name="dumbbell" color={theme.colors.STEP_99} size={24} />}
+        floatingIcon={<MaterialCommunityIcons name="checkbox-multiple-blank-outline" color={theme.colors.STEP_99} size={24} />}
         showBackground={false}
-        onOpen={() => {
+        onPressMain={() => {
           setModalOpened(true);
-        }}
-        onClose={() => {
-          setModalOpened(false);
         }}
       />
 
@@ -84,7 +76,7 @@ const ExercisesScreen = ({route, navigation}: Props) => {
         visible={modalOpend} 
         setVisible={setModalOpened} 
         children={
-          <ExercisesLook width={width} />
+          <ExercisesLook />
         } 
       />
 

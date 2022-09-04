@@ -6,5 +6,7 @@ export interface OwnButtonModel {
   onPress: () => void,
   title?: string,
   icon?: string,
+  size?: number
+  marginTop?: number,
 }
   
