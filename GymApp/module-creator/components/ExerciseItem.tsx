@@ -9,11 +9,11 @@ import useTheme from '../../theme/hooks/useTheme';
 import useThemedStyles from '../../theme/hooks/useThemeStyles';
 import { ThemeModel } from '../../theme/models/ThemeModel';
 import { ExerciseItemModel } from '../utils/ExerciseItemModel';
-import { addExercise, removeExercise } from '../redux/CreatorReducer';
+import { addExercise, removeExercise, swapExercises } from '../redux/CreatorReducer';
 import { useEffect, useState } from 'react';
 import { ref, getDownloadURL } from 'firebase/storage';
 import { storage } from '../../firebase/Init';
-
+import { useRoute } from '@react-navigation/native';
 
 const ExerciseItem = (props: ExerciseItemModel) => {
 
@@ -21,6 +21,11 @@ const ExerciseItem = (props: ExerciseItemModel) => {
    * props
    */
   const {pathName, muscleName, exerciseName, exerciseKey} = props;
+
+  /**
+   * aktualna ścieżka
+   */
+  const route = useRoute();
 
   /**
    * linki do obrazków przechowywanych w Firebase
@@ -72,7 +77,23 @@ const ExerciseItem = (props: ExerciseItemModel) => {
    * usunięcie ćwiczenia z listy
    */
   const handleRemove = () => {
-    dispatch(removeExercise({exerciseKey: exerciseKey}));
+    dispatch(removeExercise({exerciseKey: exerciseKey}));  
+  }
+
+  /**
+   * przesunięcie ćwiczenia do góry
+   */
+  const handleUp = () => {
+    let index = exercises.findIndex((e: ExerciseItemModel) => {return e.exerciseKey === exerciseKey});
+    dispatch(swapExercises({index: index, direction: 'up'}));  
+  }
+
+  /**
+   * przesunięcie ćwiczenia na dół
+   */
+  const handleDown = () => {
+    let index = exercises.findIndex((e: ExerciseItemModel) => {return e.exerciseKey === exerciseKey});
+    dispatch(swapExercises({index: index, direction: 'down'}));  
   }
 
   return (
@@ -86,11 +107,20 @@ const ExerciseItem = (props: ExerciseItemModel) => {
       }
 
       <View style={{flexDirection: 'row'}}>
-        <OwnButton icon='plus-box-multiple-outline' onPress={handleAdd} />
 
-        <OwnButton icon='minus-box-multiple-outline' onPress={handleRemove} />
+        {route.name !== "Creator"
+          ? <>
+              <OwnButton icon='plus-box-multiple-outline' onPress={handleAdd} numberInRow={2} />
+              <OwnButton icon='minus-box-multiple-outline' onPress={handleRemove} numberInRow={2} />
+            </>
+          : <>
+              <OwnButton icon='minus-box-multiple-outline' onPress={handleRemove} numberInRow={3} />
+              <OwnButton icon='arrow-up-bold-box-outline' onPress={handleUp} numberInRow={3} />
+              <OwnButton icon='arrow-down-bold-box-outline' onPress={handleDown} numberInRow={3} />
+            </>
+        }
+
       </View>
-
     </View>
   );
 };
@@ -100,7 +130,7 @@ export default ExerciseItem;
 const styles = (theme: ThemeModel) =>
   StyleSheet.create({
     itemContainer: {
-      width: '80%', 
+      minWidth: '90%',
       alignItems: 'center',
       backgroundColor: theme.colors.STEP_99,
       paddingVertical: 10,
@@ -116,7 +146,7 @@ const styles = (theme: ThemeModel) =>
       marginBottom: 10,
     },
     image: {
-      width: "90%", 
+      minWidth: "90%", 
       height: 160, 
       resizeMode: 'contain',
       marginBottom: -30,

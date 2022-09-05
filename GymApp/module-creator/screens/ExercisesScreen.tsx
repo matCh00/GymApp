@@ -53,7 +53,7 @@ const ExercisesScreen = ({route, navigation}: Props) => {
                 pathName={itemData.item.pathName} 
                 muscleName={itemData.item.muscle}
                 exerciseName={itemData.item.name}
-                exerciseKey={itemData.item.pathName} 
+                exerciseKey={itemData.item.pathName}
               />
             </View>
           );
@@ -63,7 +63,6 @@ const ExercisesScreen = ({route, navigation}: Props) => {
       />
 
       <FloatingAction
-        //actions={actions}
         color={theme.colors.STEP_0}
         floatingIcon={<MaterialCommunityIcons name="checkbox-multiple-blank-outline" color={theme.colors.STEP_99} size={24} />}
         showBackground={false}
@@ -76,7 +75,7 @@ const ExercisesScreen = ({route, navigation}: Props) => {
         visible={modalOpend} 
         setVisible={setModalOpened} 
         children={
-          <ExercisesLook />
+          <ExercisesLook currentMuscle={muscle} />
         } 
       />
 

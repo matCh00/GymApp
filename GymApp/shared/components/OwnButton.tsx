@@ -14,7 +14,7 @@ const OwnButton = (props: OwnButtonModel) => {
   /**
    * props
    */
-  const {title, onPress, icon, size, marginTop} = props;
+  const {title, onPress, icon, size, marginTop, numberInRow} = props;
 
   /**
    * motyw
@@ -23,11 +23,18 @@ const OwnButton = (props: OwnButtonModel) => {
   const style = useThemedStyles(styles);
 
   return (
-    <View style={[style.buttonContainer, marginTop ? {marginTop: marginTop} : {marginTop: 40}]}>
+    <View style={[
+        style.buttonContainer, 
+        marginTop ? {marginTop: marginTop} : {marginTop: 40},
+        numberInRow ? {width: (100 / numberInRow).toString() + '%'} : {width: '50%'}
+      ]}>
 
       <TouchableOpacity 
         onPress={onPress} 
-        style={[style.button, icon ? {alignSelf: 'center'} : {width: '80%'}, size ? {padding: size} : {padding: 15}]}
+        style={[
+          style.button, icon ? {alignSelf: 'center'} : {width: '80%'}, 
+          size ? {padding: size} : {padding: 15}
+        ]}
         activeOpacity={.7}
       >
         {icon?.length > 0
@@ -46,7 +53,6 @@ export default OwnButton;
 const styles = (theme: ThemeModel) =>
   StyleSheet.create({
     buttonContainer: {
-      width: '50%',
       justifyContent: 'center',
       alignItems: 'center',
       marginTop: 40,

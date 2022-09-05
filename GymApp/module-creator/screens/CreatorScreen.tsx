@@ -60,7 +60,7 @@ const CreatorScreen = () => {
                   pathName={itemData.item.pathName} 
                   muscleName={itemData.item.muscleName}
                   exerciseName={itemData.item.exerciseName}
-                  exerciseKey={itemData.item.exerciseKey} 
+                  exerciseKey={itemData.item.exerciseKey}
                 />
               </View>
             );
@@ -80,7 +80,7 @@ export default CreatorScreen;
 const styles = (theme: ThemeModel) =>
   StyleSheet.create({
     listContainer: {
-      width: '100%',
+      minWidth: '100%',
       alignItems: 'center',
     },
     text: {
