@@ -8,6 +8,7 @@ import {
   createUserWithEmailAndPassword,
   signOut,
 } from "firebase/auth";
+import { getUsers } from "./Init";
 
 export const registerWithEmailAndPassword = async (email: string, password: string) => {  
   try {
@@ -19,6 +20,8 @@ export const registerWithEmailAndPassword = async (email: string, password: stri
 };
 
 export const logInWithEmailAndPassword = async (email: string, password: string) => {
+  console.log(getUsers());
+  
   try {
     await signInWithEmailAndPassword(auth, email, password);
   } 

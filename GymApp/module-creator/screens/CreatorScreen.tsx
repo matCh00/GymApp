@@ -14,8 +14,25 @@ import { GlobalStyles } from '../../theme/utils/GlobalStyles';
 import OwnButton from '../../shared/components/OwnButton';
 import { useDispatch, useSelector } from 'react-redux';
 import ExerciseItem from '../components/ExerciseItem';
+import { FloatingAction } from "react-native-floating-action";
+import { MaterialCommunityIcons } from '@expo/vector-icons';
+import OwnPopup from '../../shared/components/OwnPopup';
+import DropDownPicker from 'react-native-dropdown-picker';
+import { useState } from 'react';
+import { ExerciseItemModel } from '../utils/ExerciseItemModel';
+import MusclesEnum from '../utils/MusclesEnum';
 
 const CreatorScreen = () => {
+
+  const [modalOpend, setModalOpened] = useState(false);
+
+  const [filterOpen, setFilterOpen] = useState(false);
+  const [filterValue, setFilterValue] = useState(null);
+  const filterItems: {label: string, value: string}[] = [];
+
+  Object.values(MusclesEnum).forEach((e: string) => {
+    filterItems.push({label: e, value: e});
+  });
 
   /**
    * motyw
@@ -34,9 +51,32 @@ const CreatorScreen = () => {
   const stateExercises = useSelector((state: any) => state.selectedExercises.exercises);
 
   /**
+   * przefiltrowane ćwiczenia
+   */
+  const [stateExercisesFiltered, setStateExercisesFiltered] = useState<ExerciseItemModel[]>(stateExercises);
+
+  /**
    * nawigacja
    */
   const navigation = useNavigation<NativeStackNavigationProp<CreatorStackParams>>();
+
+  /**
+   * reset filtrów
+   */
+  const handleReset = () => {
+    setStateExercisesFiltered(stateExercises);
+    setModalOpened(false);
+  }
+
+  /**
+   * zastosowanie filtrów
+   */
+  const handleFilter = () => {
+    let filtered: ExerciseItemModel[] = [];
+    filtered = stateExercises.filter((e: ExerciseItemModel) => {return e.muscleName === filterValue});
+    setStateExercisesFiltered(filtered);
+    setModalOpened(false);
+  }
   
   return (
     <BackgroundTemplate>
@@ -44,15 +84,15 @@ const CreatorScreen = () => {
 
         <View style={{flexDirection: 'row-reverse'}}>
 
-          <OwnButton title="Add exercise" onPress={() => {navigation.push("Modes")}} />
-          <OwnButton title="Submit plan" onPress={() => {}} />
+          <OwnButton title="Add exercise" numberInRow={2} onPress={() => {navigation.push("Modes")}} />
+          <OwnButton title="Submit plan" numberInRow={2} onPress={() => {}} />
 
         </View>
 
         <Text style={style.text}>Exercises</Text>
 
         <FlatList
-          data={stateExercises}
+          data={stateExercisesFiltered}
           renderItem={(itemData) => {
             return (
               <View style={style.listContainer}>
@@ -69,6 +109,42 @@ const CreatorScreen = () => {
 
           numColumns={1}
         />
+
+      <FloatingAction
+        color={theme.colors.STEP_0}
+        floatingIcon={<MaterialCommunityIcons name="filter-outline" color={theme.colors.STEP_99} size={24} />}
+        showBackground={false}
+        onPressMain={() => {
+          setModalOpened(true);
+        }}
+      />
+
+      <OwnPopup 
+        visible={modalOpend} 
+        setVisible={setModalOpened} 
+        children={
+          <View style={style.container}>
+            <DropDownPicker
+              open={filterOpen}
+              value={filterValue}
+              items={filterItems}
+              setOpen={setFilterOpen}
+              setValue={setFilterValue}
+              listMode="SCROLLVIEW"
+              style={{
+                backgroundColor: theme.colors.STEP_9999
+              }}
+            />
+
+            <View style={{flexDirection: 'row'}}>
+
+              <OwnButton title='Reset' onPress={handleReset} numberInRow={2} />
+              <OwnButton title='Filter' onPress={handleFilter} numberInRow={2} />
+             
+            </View>
+          </View>
+        } 
+      />
  
       </View>
     </BackgroundTemplate>
@@ -91,4 +167,13 @@ const styles = (theme: ThemeModel) =>
       marginBottom: 10,
       marginTop: 20,
     },
+    container: {
+      width: '80%',
+      alignItems: 'center',
+      backgroundColor: theme.colors.STEP_99,
+      borderRadius: 30,
+      paddingHorizontal: 10,
+      paddingVertical: 20,
+      margin: 6,
+    }
   });

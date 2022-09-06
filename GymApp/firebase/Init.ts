@@ -3,7 +3,7 @@
  */
 
 import { initializeApp } from "firebase/app";
-import { getFirestore } from "firebase/firestore";
+import { collection, getDocs, getFirestore } from "firebase/firestore";
 import { getAuth } from "firebase/auth";
 import { getStorage } from 'firebase/storage'
 
@@ -21,3 +21,13 @@ const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app);
 export const firestore = getFirestore(app);
 export const storage = getStorage(app);
+
+const usersRef = collection(firestore, 'users');
+
+export const getUsers = () => {
+  getDocs(usersRef).then(
+    (snapshot: any) => {
+      console.log(snapshot.docs);
+    }
+  )
+}

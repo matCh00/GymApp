@@ -9,7 +9,7 @@ import useTheme from '../../theme/hooks/useTheme';
 import useThemedStyles from '../../theme/hooks/useThemeStyles';
 import { ThemeModel } from '../../theme/models/ThemeModel';
 import { ExerciseItemModel } from '../utils/ExerciseItemModel';
-import { addExercise, removeExercise, swapExercises } from '../redux/CreatorReducer';
+import { addExercise, removeExercise } from '../redux/CreatorReducer';
 import { useEffect, useState } from 'react';
 import { ref, getDownloadURL } from 'firebase/storage';
 import { storage } from '../../firebase/Init';
@@ -40,7 +40,7 @@ const ExerciseItem = (props: ExerciseItemModel) => {
     const load = async () => {
       setUrlLoaded(false);
 
-      const reference = ref(storage, '/gifs/' + muscleName + '/' + pathName);
+      const reference = ref(storage, '/gifs/' + muscleName + 'Lite/' + pathName);
 
       await getDownloadURL(reference).then((res) => {
         setUrl(res);
@@ -80,22 +80,6 @@ const ExerciseItem = (props: ExerciseItemModel) => {
     dispatch(removeExercise({exerciseKey: exerciseKey}));  
   }
 
-  /**
-   * przesunięcie ćwiczenia do góry
-   */
-  const handleUp = () => {
-    let index = exercises.findIndex((e: ExerciseItemModel) => {return e.exerciseKey === exerciseKey});
-    dispatch(swapExercises({index: index, direction: 'up'}));  
-  }
-
-  /**
-   * przesunięcie ćwiczenia na dół
-   */
-  const handleDown = () => {
-    let index = exercises.findIndex((e: ExerciseItemModel) => {return e.exerciseKey === exerciseKey});
-    dispatch(swapExercises({index: index, direction: 'down'}));  
-  }
-
   return (
     <View style={style.itemContainer}>
 
@@ -114,9 +98,7 @@ const ExerciseItem = (props: ExerciseItemModel) => {
               <OwnButton icon='minus-box-multiple-outline' onPress={handleRemove} numberInRow={2} />
             </>
           : <>
-              <OwnButton icon='minus-box-multiple-outline' onPress={handleRemove} numberInRow={3} />
-              <OwnButton icon='arrow-up-bold-box-outline' onPress={handleUp} numberInRow={3} />
-              <OwnButton icon='arrow-down-bold-box-outline' onPress={handleDown} numberInRow={3} />
+              <OwnButton icon='minus-box-multiple-outline' onPress={handleRemove} numberInRow={1} />
             </>
         }
 

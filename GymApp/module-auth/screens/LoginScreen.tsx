@@ -6,6 +6,7 @@ import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { useContext, useState } from 'react';
 import { StyleSheet, Text, Pressable, KeyboardAvoidingView, Switch } from 'react-native';
+import { logInWithEmailAndPassword } from '../../firebase/Auth';
 import BackgroundTemplate from '../../shared/components/BackgroundTemplate';
 import OwnButton from '../../shared/components/OwnButton';
 import OwnInput from '../../shared/components/OwnInput';
@@ -44,6 +45,7 @@ const LoginScreen = () => {
   const handleLogin = () => {
     setEmail(emailInput);
     setLoggedIn(true);
+    logInWithEmailAndPassword(emailInput, passwordInput)
   }
 
   return (
