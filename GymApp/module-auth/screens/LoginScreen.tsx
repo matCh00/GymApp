@@ -43,9 +43,15 @@ const LoginScreen = () => {
    * logowanie
    */
   const handleLogin = () => {
-    setEmail(emailInput);
-    setLoggedIn(true);
-    logInWithEmailAndPassword(emailInput, passwordInput)
+    logInWithEmailAndPassword(emailInput, passwordInput).then(
+      (email: any) => {        
+        setEmail(email);
+        setLoggedIn(true);
+      }
+    )
+    .catch((error: any) => {
+      console.log(error);
+    })
   }
 
   return (

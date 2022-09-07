@@ -19,6 +19,7 @@ import { Alert, Text, View } from 'react-native';
 import useTheme from '../../theme/hooks/useTheme';
 import SettingsScreen from '../screens/SettingsScreen';
 import ThemeScreen from '../screens/ThemeScreen';
+import { logout } from '../../firebase/Auth';
 
 /** 
  * parametry 
@@ -52,7 +53,11 @@ const CustomDrawerContent = (props: any) => {
   const handleLogOut = () => {
     Alert.alert("LogOut", "Are you sure you want to log out?", [
       { text: "No", onPress: () => null },
-      { text: "Yes", onPress: () => setLoggedIn(false) }
+      { text: "Yes", onPress: () => {
+        logout().then(
+          () => setLoggedIn(false)
+        )
+      }}
     ]);
   }
   

@@ -16,6 +16,7 @@ import { ThemeModel } from '../../theme/models/ThemeModel';
 import { AuthStackParams } from '../navigation/AuthNavigation';
 import BackgroundTemplate from '../../shared/components/BackgroundTemplate';
 import { GlobalStyles } from '../../theme/utils/GlobalStyles';
+import { registerWithEmailAndPassword } from '../../firebase/Auth';
 
 const RegisterScreen = () => {
 
@@ -42,8 +43,15 @@ const RegisterScreen = () => {
    * rejestracja
    */
   const handleRegister = () => {
-    setEmail(emailInput);
-    setLoggedIn(true);
+    registerWithEmailAndPassword(emailInput, passwordInput).then(
+      (email: any) => {
+        setEmail(email);
+        setLoggedIn(true);
+      }
+    )
+    .catch((error: any) => {
+      console.log(error);
+    })
   }
 
   return (

@@ -2,34 +2,54 @@
  * Uwierzytelnianie
  */
 
-import { auth } from "./Init";
 import {
   signInWithEmailAndPassword,
   createUserWithEmailAndPassword,
   signOut,
+  onAuthStateChanged,
 } from "firebase/auth";
-import { getUsers } from "./Init";
+import { auth } from "./Init";
+import { addUser } from "./Database";
 
+
+/**
+ * rejestracja uzytkownika
+ */
 export const registerWithEmailAndPassword = async (email: string, password: string) => {  
-  try {
-    await createUserWithEmailAndPassword(auth, email, password);
-  } 
-  catch (err: any) {
-    console.error(err);
-  }
+
+  const credentials = await createUserWithEmailAndPassword(auth, email, password);
+  const user = credentials.user;
+
+  await addUser(user.email);
+
+  return user.email;
 };
 
+
+/**
+ * logowanie uzytkownika
+ */
 export const logInWithEmailAndPassword = async (email: string, password: string) => {
-  console.log(getUsers());
-  
-  try {
-    await signInWithEmailAndPassword(auth, email, password);
-  } 
-  catch (err: any) {
-    console.error(err);
-  }
+
+  const credentials = await signInWithEmailAndPassword(auth, email, password);
+  const user = credentials.user;
+
+  return user.email;
 };
 
-export const logout = () => {
-  signOut(auth);
+
+/**
+ * wylogowanie uzytkownika
+ */
+export const logout = async () => {
+
+  await signOut(auth);
 };
+
+
+/**
+ * nasłuchiwanie zmiany stanu uwierzytelniania
+ */
+onAuthStateChanged(auth, (user: any) => {
+  //console.log(user);
+})

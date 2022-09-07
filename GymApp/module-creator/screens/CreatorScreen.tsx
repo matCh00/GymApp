@@ -18,7 +18,7 @@ import { FloatingAction } from "react-native-floating-action";
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import OwnPopup from '../../shared/components/OwnPopup';
 import DropDownPicker from 'react-native-dropdown-picker';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { ExerciseItemModel } from '../utils/ExerciseItemModel';
 import MusclesEnum from '../utils/MusclesEnum';
 
@@ -54,6 +54,13 @@ const CreatorScreen = () => {
    * przefiltrowane ćwiczenia
    */
   const [stateExercisesFiltered, setStateExercisesFiltered] = useState<ExerciseItemModel[]>(stateExercises);
+
+  /**
+   * odświezanie listy
+   */
+  useEffect(() => {
+    setStateExercisesFiltered(stateExercises)
+  }, [stateExercises])
 
   /**
    * nawigacja
@@ -130,7 +137,6 @@ const CreatorScreen = () => {
               items={filterItems}
               setOpen={setFilterOpen}
               setValue={setFilterValue}
-              listMode="SCROLLVIEW"
               style={{
                 backgroundColor: theme.colors.STEP_9999
               }}
