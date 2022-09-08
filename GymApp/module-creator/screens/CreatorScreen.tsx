@@ -25,6 +25,7 @@ import MusclesEnum from '../utils/MusclesEnum';
 const CreatorScreen = () => {
 
   const [modalOpend, setModalOpened] = useState(false);
+  const [filteredItems, setFilteredItems] = useState<ExerciseItemModel[]>([]);
 
   const [filterOpen, setFilterOpen] = useState(false);
   const [filterValue, setFilterValue] = useState(null);
@@ -82,7 +83,15 @@ const CreatorScreen = () => {
     let filtered: ExerciseItemModel[] = [];
     filtered = stateExercises.filter((e: ExerciseItemModel) => {return e.muscleName === filterValue});
     setStateExercisesFiltered(filtered);
+    setFilteredItems(filtered)
     setModalOpened(false);
+  }
+
+  /**
+   * sygnał usunięcia elementu listy
+   */
+  const handleSignal = () => {
+    setStateExercisesFiltered(filteredItems)
   }
   
   return (
@@ -108,6 +117,7 @@ const CreatorScreen = () => {
                   muscleName={itemData.item.muscleName}
                   exerciseName={itemData.item.exerciseName}
                   exerciseKey={itemData.item.exerciseKey}
+                  signal={handleSignal}
                 />
               </View>
             );

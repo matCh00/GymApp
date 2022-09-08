@@ -14,13 +14,15 @@ import { useEffect, useState } from 'react';
 import { ref, getDownloadURL } from 'firebase/storage';
 import { storage } from '../../firebase/Init';
 import { useRoute } from '@react-navigation/native';
+import CachedImage from 'expo-cached-image';
+
 
 const ExerciseItem = (props: ExerciseItemModel) => {
 
   /**
    * props
    */
-  const {pathName, muscleName, exerciseName, exerciseKey} = props;
+  const {pathName, muscleName, exerciseName, exerciseKey, signal} = props;
 
   /**
    * aktualna ścieżka
@@ -78,6 +80,7 @@ const ExerciseItem = (props: ExerciseItemModel) => {
    */
   const handleRemove = () => {
     dispatch(removeExercise({exerciseKey: exerciseKey}));  
+    signal();
   }
 
   return (
@@ -86,7 +89,7 @@ const ExerciseItem = (props: ExerciseItemModel) => {
       <Text style={style.text}>{exerciseName}</Text>
 
       {urlLoaded
-        ? <Image source={{uri: url}} style={style.image} />
+        ? <CachedImage source={{uri: url}} cacheKey={exerciseKey} style={style.image} />
         : <ActivityIndicator color={theme.colors.STEP_0} size={40} />
       }
 

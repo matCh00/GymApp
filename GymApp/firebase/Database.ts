@@ -73,6 +73,7 @@ export const addTheme = async (email: string, theme: string) => {
   await updateDoc(docRef, {theme: theme});
 }
 
+
 /**
  * dodaj zapisany motyw użytkownikowi
  */
