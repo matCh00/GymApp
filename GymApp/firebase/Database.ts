@@ -60,7 +60,7 @@ export const deleteUser = async (email: string) => {
 
 
 /**
- * dodaj zapisany motyw użytkownikowi
+ * aktualizuj motyw użytkownika, dodaj gdy nie ma
  */
 export const addTheme = async (email: string, theme: string) => {
   
@@ -70,26 +70,17 @@ export const addTheme = async (email: string, theme: string) => {
 
   const docRef = doc(usersRef, querySnapshot.docs[0].id);
 
-  await updateDoc(docRef, {theme: theme})
+  await updateDoc(docRef, {theme: theme});
 }
 
 /**
  * dodaj zapisany motyw użytkownikowi
  */
- export const getTheme = async (email: string) => {
+export const getTheme = async (email: string) => {
   
-  // const q = query(usersRef, where("email", '==', email));
+  const q = query(usersRef, where("email", '==', email));
 
-  // const querySnapshot = await getDocs(q);
+  const querySnapshot = await getDocs(q);  
 
-  // const theme = doc(usersRef, querySnapshot.docs[0].data['theme']);
-
-  // console.log(theme);
-
-  getDocs(usersRef).then((snapshot: any) => {
-  
-    snapshot.docs.forEach((doc: any) => {
-      console.log({ ...doc.data().theme });
-    });
-  })
+  return querySnapshot.docs[0].get("theme");
 }
