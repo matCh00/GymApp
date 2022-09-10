@@ -8,24 +8,23 @@ import OwnButton from '../../shared/components/OwnButton';
 import useTheme from '../../theme/hooks/useTheme';
 import useThemedStyles from '../../theme/hooks/useThemeStyles';
 import { ThemeModel } from '../../theme/models/ThemeModel';
-import { ExerciseItemModel } from '../utils/ExerciseItemModel';
+import { ExerciseModel } from '../utils/ExerciseModel';
 import { addExercise, removeExercise } from '../redux/CreatorReducer';
 import { useEffect, useState } from 'react';
 import { ref, getDownloadURL } from 'firebase/storage';
 import { storage } from '../../firebase/Init';
 import { useRoute } from '@react-navigation/native';
 import CachedImage from 'expo-cached-image';
-import { GlobalStyles } from '../../theme/utils/GlobalStyles';
-import CountItem from './ExerciseSetting';
+import ExerciseMetadata from './ExerciseMetadata';
 
 /**
  * rozszerzenie props
  */
-interface ExerciseModel extends ExerciseItemModel {
+interface ExerciseModelExtended extends ExerciseModel {
   refreshSignal?: () => void;
 }
 
-const ExerciseItem = (props: ExerciseModel) => {
+const ExerciseItem = (props: ExerciseModelExtended) => {
 
   const [setsCount, setSetsCount] = useState(0);
   const [repsCount, setRepsCount] = useState(0);
@@ -39,15 +38,31 @@ const ExerciseItem = (props: ExerciseModel) => {
     sets, reps, weight, refreshSignal} = props;
 
   /**
-   * aktualna ścieżka
+   * motyw
    */
-  const route = useRoute();
+  const theme = useTheme();
+  const style = useThemedStyles(styles);
 
   /**
-   * linki do obrazków przechowywanych w Firebase
+   * linki do obrazków przechowywanych w Storage
    */
   const [url, setUrl] = useState(null);
   const [urlLoaded, setUrlLoaded] = useState(false);
+
+  /**
+   * dispatch z reducera
+   */
+  const dispatch = useDispatch();
+
+  /**
+   * stan exercises z reducera
+   */
+  const stateExercises = useSelector((state: any) => state.selectedExercises.exercises);
+
+  /**
+   * aktualna ścieżka
+   */
+  const route = useRoute();
 
   /**
    * załadowanie obrazka ze Storage w Firebase
@@ -65,31 +80,6 @@ const ExerciseItem = (props: ExerciseModel) => {
     }
     if (url === null) load();
   }, []);
-
-  /**
-   * załadowanie serii, powtórzeń, obciążenia
-   */
-   useEffect(() => {
-    sets ? setSetsCount(sets) : null; 
-    reps ? setRepsCount(reps) : null; 
-    weight ? setWeightCount(weight) : null; 
-  }, [])
-
-  /**
-   * dispatch z reducera
-   */
-  const dispatch = useDispatch();
-
-  /**
-   * stan exercises z reducera
-   */
-  const stateExercises = useSelector((state: any) => state.selectedExercises.exercises);
-
-  /**
-   * motyw
-   */
-  const theme = useTheme();
-  const style = useThemedStyles(styles);
 
   /**
    * dodanie ćwiczenia do listy
@@ -127,7 +117,7 @@ const ExerciseItem = (props: ExerciseModel) => {
 
       {route.name !== "Creator"
         ? <>
-            {stateExercises.filter((e: ExerciseItemModel) => {return e.exerciseKey === exerciseKey}).length > 0
+            {stateExercises.filter((e: ExerciseModel) => {return e.exerciseKey === exerciseKey}).length > 0
               ?
                 <View style={{flexDirection: 'row'}}>
                   <OwnButton icon='minus-box-multiple-outline' onPress={handleRemove} numberInRow={1} />
@@ -142,9 +132,9 @@ const ExerciseItem = (props: ExerciseModel) => {
                   {settingsOpened
                     ?
                       <>
-                        <CountItem name={'Sets'} count={setsCount} setCount={setSetsCount} />
-                        <CountItem name={'Reps'} count={repsCount} setCount={setRepsCount} />
-                        <CountItem type={'weight'} name={'Weight'} count={weightCount} setCount={setWeightCount} />
+                        <ExerciseMetadata name={'Sets'} count={setsCount} setCount={setSetsCount} />
+                        <ExerciseMetadata name={'Reps'} count={repsCount} setCount={setRepsCount} />
+                        <ExerciseMetadata type={'weight'} name={'Weight'} count={weightCount} setCount={setWeightCount} />
                       </>
                     : null
                   }

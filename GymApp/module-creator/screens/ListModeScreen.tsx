@@ -13,6 +13,9 @@ import MuscleItem from '../components/MuscleItem';
 
 const ListModeScreen = () => {
 
+  /**
+   * partie mięsniowe
+   */
   const musclesArray = Object.keys(MusclesEnum);
 
   /**

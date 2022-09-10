@@ -52,7 +52,7 @@ const BodyPartsFront = (props: any) => {
   const dispatch = useDispatch();
 
   /**
-   * zaktualizowanie stanu w reducerze
+   * zaktualizowanie wybranej partii mięśniowej
    */
   const onChangeMuscle = () => {
     dispatch(changeMuscle({muscle: selected}));

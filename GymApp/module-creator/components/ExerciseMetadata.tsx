@@ -1,5 +1,5 @@
 /**
- * Komponent do ustawiania serii, powtórzeń, ciężaru danego ćwiczenia
+ * Komponent do ustawiania serii, powtórzeń i ciężaru danego ćwiczenia
  */
 
 import { StyleSheet, Text, View, TextInput } from 'react-native';
@@ -7,12 +7,16 @@ import useTheme from '../../theme/hooks/useTheme';
 import useThemedStyles from '../../theme/hooks/useThemeStyles';
 import { ThemeModel } from '../../theme/models/ThemeModel';
 import OwnButton from '../../shared/components/OwnButton';
-import { ExerciseSettingModel } from '../utils/ExerciseSettingModel';
+import { ExerciseMetadataModel } from '../utils/ExerciseMetadataModel';
 
-const ExerciseSetting = (props: ExerciseSettingModel) => {
+const ExerciseMetadata = (props: ExerciseMetadataModel) => {
 
-  const {name, count, setCount, type} = props;
   const step = 1;
+
+  /**
+   * props
+   */
+  const {name, count, setCount, type} = props;
 
   /**
    * motyw
@@ -52,7 +56,7 @@ const ExerciseSetting = (props: ExerciseSettingModel) => {
   );
 };
 
-export default ExerciseSetting;
+export default ExerciseMetadata;
 
 const styles = (theme: ThemeModel) =>
   StyleSheet.create({

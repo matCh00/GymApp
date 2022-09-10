@@ -15,7 +15,7 @@ import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { Exercises } from '../utils/Exercises';
 import OwnPopup from '../../shared/components/OwnPopup';
 import { useState } from 'react';
-import ExercisesLook from '../components/ExercisesLook';
+import ExercisesPopupView from '../components/ExercisesPopupView';
 
 type Props = NativeStackScreenProps<CreatorStackParams, 'Exercises'>;
 
@@ -75,7 +75,7 @@ const ExercisesScreen = ({route, navigation}: Props) => {
         visible={modalOpend} 
         setVisible={setModalOpened} 
         children={
-          <ExercisesLook currentMuscle={muscle} />
+          <ExercisesPopupView currentMuscle={muscle} />
         } 
       />
 

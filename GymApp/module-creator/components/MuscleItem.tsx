@@ -6,7 +6,7 @@ import { StyleSheet, Text, ActivityIndicator, TouchableOpacity } from 'react-nat
 import useTheme from '../../theme/hooks/useTheme';
 import useThemedStyles from '../../theme/hooks/useThemeStyles';
 import { ThemeModel } from '../../theme/models/ThemeModel';
-import { MuscleItemModel } from '../utils/MuscleItemModel';
+import { MuscleModel } from '../utils/MuscleModel';
 import MusclesEnum from '../utils/MusclesEnum';
 import { Image } from "react-native";
 import { useNavigation } from '@react-navigation/native';
@@ -16,18 +16,29 @@ import { useEffect, useState } from 'react';
 import { ref, getDownloadURL } from 'firebase/storage';
 import { storage } from '../../firebase/Init';
 
-const MuscleItem = (props: MuscleItemModel) => {
-
-  /**
-   * link do obrazka przechowywanego w Firebase
-   */
-  const [url, setUrl] = useState(null);
-  const [urlLoaded, setUrlLoaded] = useState(false);
+const MuscleItem = (props: MuscleModel) => {
 
   /**
    * props
    */
   const {muscleKey} = props;
+
+  /**
+   * link do obrazka przechowywanego w Storage
+   */
+  const [url, setUrl] = useState(null);
+  const [urlLoaded, setUrlLoaded] = useState(false);
+
+  /**
+   * motyw
+   */
+  const theme = useTheme();
+  const style = useThemedStyles(styles);
+
+  /**
+   * nawigacja
+   */
+  const navigation = useNavigation<NativeStackNavigationProp<CreatorStackParams>>();
 
   /**
    * załadowanie obrazka ze Storage w Firebase
@@ -46,19 +57,9 @@ const MuscleItem = (props: MuscleItemModel) => {
     if (url === null) load();
   }, []);
 
+  
   /**
-   * motyw
-   */
-  const theme = useTheme();
-  const style = useThemedStyles(styles);
-
-  /**
-   * nawigacja
-   */
-  const navigation = useNavigation<NativeStackNavigationProp<CreatorStackParams>>();
-
-  /**
-   * przekierowanie na stronę z przekazanym parametrem
+   * przekierowanie na stronę ćwiczeń na wybraną partię mięśniową
    */
   const goToExercise = () => {
     navigation.push("Exercises", {muscle: muscleKey});    

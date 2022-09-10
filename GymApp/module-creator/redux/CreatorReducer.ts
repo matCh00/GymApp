@@ -1,26 +1,32 @@
 /**
  * Slice to zbiór logiki reducera dla danej funkcji
+ * Reducer dla logiki powiązanej z wyborem ćwiczeń
  */
 
 import { createSlice } from "@reduxjs/toolkit";
-import { ExerciseItemModel } from "../utils/ExerciseItemModel";
+import { ExerciseModel } from "../utils/ExerciseModel";
 
 const creatorReducer = createSlice({
   name: "selectedExercises",
+
   initialState: {
-    exercises: [] as ExerciseItemModel[],
+    exercises: [] as ExerciseModel[],
   },
+
   reducers: {
     addExercise: (state, action) => {
       state.exercises.push(action.payload.exercise);      
     },
+
     removeExercise: (state, action) => {
       state.exercises = state.exercises.filter(e => {return (e.exerciseKey !== action.payload.exerciseKey)});
       //state.exercises.splice(state.exercises.findIndex(e => {e.exerciseKey === action.payload.exerciseKey}), 1)
     },
+
     clearExercises: (state, action) => {
       state.exercises = [];
     },
+    
     swapExercises: (state, action) => {
       let index = action.payload.index;
       let direction = action.payload.direction;

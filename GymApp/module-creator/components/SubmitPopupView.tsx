@@ -16,7 +16,7 @@ import { GlobalStyles } from '../../theme/utils/GlobalStyles';
 import { AuthModel } from '../../shared/models/AuthModel';
 import { AuthContext } from '../../shared/state/AuthContext';
 
-const SubmitView = ({setSubmitModalOpend}) => {
+const SubmitPopupView = ({setSubmitModalOpend}) => {
 
   const [planName, setPlanName] = useState('');
 
@@ -73,7 +73,7 @@ const SubmitView = ({setSubmitModalOpend}) => {
   );
 };
 
-export default SubmitView;
+export default SubmitPopupView;
 
 const styles = (theme: ThemeModel) =>
   StyleSheet.create({

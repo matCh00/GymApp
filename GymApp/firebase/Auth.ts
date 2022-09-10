@@ -1,12 +1,11 @@
 /**
- * Uwierzytelnianie
+ * Obsługa uwierzytelniania
  */
 
 import {
   signInWithEmailAndPassword,
   createUserWithEmailAndPassword,
   signOut,
-  onAuthStateChanged,
 } from "firebase/auth";
 import { auth } from "./Init";
 import { addUserDB } from "./Database";
@@ -45,11 +44,3 @@ export const logout = async () => {
 
   await signOut(auth);
 };
-
-
-/**
- * nasłuchiwanie zmiany stanu uwierzytelniania
- */
-onAuthStateChanged(auth, (user: any) => {
-  //console.log(user);
-})

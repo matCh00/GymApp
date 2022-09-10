@@ -1,5 +1,5 @@
 /**
- * Podgląd wybranych ćwiczeń - wejście z FloatingAction
+ * Widok podglądu wybranych ćwiczeń danej partii mięśniowej
  */
 
 import { StyleSheet, Text, View, FlatList, Image } from 'react-native';
@@ -7,11 +7,11 @@ import { useDispatch, useSelector } from 'react-redux';
 import useTheme from '../../theme/hooks/useTheme';
 import useThemedStyles from '../../theme/hooks/useThemeStyles';
 import { ThemeModel } from '../../theme/models/ThemeModel';
-import { ExerciseItemModel } from "../utils/ExerciseItemModel";
+import { ExerciseModel } from "../utils/ExerciseModel";
 import { removeExercise } from '../redux/CreatorReducer';
 import OwnButton from '../../shared/components/OwnButton';
 
-const ExercisesLook = ({currentMuscle}) => {
+const ExercisesPopupView = ({currentMuscle}) => {
 
   /**
    * motyw
@@ -43,10 +43,10 @@ const ExercisesLook = ({currentMuscle}) => {
         {currentMuscle}
       </Text>
 
-      {stateExercises.filter((e: ExerciseItemModel) => {return e.muscleName === currentMuscle}).length > 0
+      {stateExercises.filter((e: ExerciseModel) => {return e.muscleName === currentMuscle}).length > 0
         ?
           <FlatList
-            data={stateExercises.filter((e: ExerciseItemModel) => {return e.muscleName === currentMuscle})}
+            data={stateExercises.filter((e: ExerciseModel) => {return e.muscleName === currentMuscle})}
             renderItem={(itemData) => {
               return (
                 <View style={style.innerContainer}>
@@ -76,7 +76,7 @@ const ExercisesLook = ({currentMuscle}) => {
   );
 };
 
-export default ExercisesLook;
+export default ExercisesPopupView;
 
 const styles = (theme: ThemeModel) =>
   StyleSheet.create({

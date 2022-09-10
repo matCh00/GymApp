@@ -19,17 +19,20 @@ import { MaterialCommunityIcons } from '@expo/vector-icons';
 import OwnPopup from '../../shared/components/OwnPopup';
 import DropDownPicker from 'react-native-dropdown-picker';
 import { useEffect, useState } from 'react';
-import { ExerciseItemModel } from '../utils/ExerciseItemModel';
+import { ExerciseModel } from '../utils/ExerciseModel';
 import MusclesEnum from '../utils/MusclesEnum';
-import SubmitView from '../components/SubmitView';
+import SubmitPopupView from '../components/SubmitPopupView';
 
 const CreatorScreen = () => {
 
   const [filterModalOpened, setFilterModalOpened] = useState(false);
   const [submitModalOpend, setSubmitModalOpend] = useState(false);
 
-  const [filteredItems, setFilteredItems] = useState<ExerciseItemModel[]>([]);
+  const [filteredItems, setFilteredItems] = useState<ExerciseModel[]>([]);
 
+  /**
+   * props dla DropDownPicker
+   */
   const [filterOpen, setFilterOpen] = useState(false);
   const [filterValue, setFilterValue] = useState(null);
   const filterItems: {label: string, value: string}[] = [];
@@ -57,7 +60,12 @@ const CreatorScreen = () => {
   /**
    * przefiltrowane ćwiczenia
    */
-  const [stateExercisesFiltered, setStateExercisesFiltered] = useState<ExerciseItemModel[]>(stateExercises);
+  const [stateExercisesFiltered, setStateExercisesFiltered] = useState<ExerciseModel[]>(stateExercises);
+
+  /**
+   * nawigacja
+   */
+  const navigation = useNavigation<NativeStackNavigationProp<CreatorStackParams>>();
 
   /**
    * odświezanie listy
@@ -65,11 +73,6 @@ const CreatorScreen = () => {
   useEffect(() => {
     setStateExercisesFiltered(stateExercises)
   }, [stateExercises])
-
-  /**
-   * nawigacja
-   */
-  const navigation = useNavigation<NativeStackNavigationProp<CreatorStackParams>>();
 
   /**
    * reset filtrów
@@ -83,8 +86,8 @@ const CreatorScreen = () => {
    * zastosowanie filtrów
    */
   const handleFilter = () => {
-    let filtered: ExerciseItemModel[] = [];
-    filtered = stateExercises.filter((e: ExerciseItemModel) => {return e.muscleName === filterValue});
+    let filtered: ExerciseModel[] = [];
+    filtered = stateExercises.filter((e: ExerciseModel) => {return e.muscleName === filterValue});
     setStateExercisesFiltered(filtered);
     setFilteredItems(filtered)
     setFilterModalOpened(false);
@@ -176,7 +179,7 @@ const CreatorScreen = () => {
         visible={submitModalOpend} 
         setVisible={setSubmitModalOpend} 
         children={
-          <SubmitView setSubmitModalOpend={setSubmitModalOpend} />
+          <SubmitPopupView setSubmitModalOpend={setSubmitModalOpend} />
         } 
       />
  

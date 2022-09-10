@@ -33,7 +33,7 @@ const PlansScreen = () => {
   const dispatch = useDispatch();
 
   /**
-   * stan exercises z reducera
+   * stan plans z reducera
    */
   const statePlans = useSelector((state: any) => state.savedPlans.plans);
 

@@ -1,5 +1,5 @@
 /**
- * Baza danych
+ * Łączność z bazą danych
  */
 
 import { addDoc, collection, deleteDoc, doc, getDocs, query, updateDoc, setDoc, where, getDoc } from "firebase/firestore";

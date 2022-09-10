@@ -1,8 +1,8 @@
 /**
- * Model własnego itemu listy
+ * Model ćwiczenia
  */
 
-export interface ExerciseItemModel {
+export interface ExerciseModel {
   pathName: string;
   muscleName: string;
   exerciseName: string;

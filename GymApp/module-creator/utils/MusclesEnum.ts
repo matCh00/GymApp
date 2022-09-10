@@ -1,3 +1,7 @@
+/**
+ * Partie mięśniowe
+ */
+
 enum MusclesEnum {
   biceps = "biceps",
   triceps = "triceps",
