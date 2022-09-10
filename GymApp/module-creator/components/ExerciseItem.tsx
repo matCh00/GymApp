@@ -2,7 +2,7 @@
  * Element listy ćwiczeń na wybraną partię mięśniową 
  */
 
-import { StyleSheet, Text, View, Image, ActivityIndicator } from 'react-native';
+import { StyleSheet, Text, View, ActivityIndicator } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import OwnButton from '../../shared/components/OwnButton';
 import useTheme from '../../theme/hooks/useTheme';
@@ -15,14 +15,28 @@ import { ref, getDownloadURL } from 'firebase/storage';
 import { storage } from '../../firebase/Init';
 import { useRoute } from '@react-navigation/native';
 import CachedImage from 'expo-cached-image';
+import { GlobalStyles } from '../../theme/utils/GlobalStyles';
+import CountItem from './ExerciseSetting';
 
+/**
+ * rozszerzenie props
+ */
+interface ExerciseModel extends ExerciseItemModel {
+  refreshSignal?: () => void;
+}
 
-const ExerciseItem = (props: ExerciseItemModel) => {
+const ExerciseItem = (props: ExerciseModel) => {
+
+  const [setsCount, setSetsCount] = useState(0);
+  const [repsCount, setRepsCount] = useState(0);
+  const [weightCount, setWeightCount] = useState(0);
+  const [settingsOpened, setSettingsOpened] = useState(false);
 
   /**
    * props
    */
-  const {pathName, muscleName, exerciseName, exerciseKey, signal} = props;
+  const {pathName, muscleName, exerciseName, exerciseKey, 
+    sets, reps, weight, refreshSignal} = props;
 
   /**
    * aktualna ścieżka
@@ -53,6 +67,15 @@ const ExerciseItem = (props: ExerciseItemModel) => {
   }, []);
 
   /**
+   * załadowanie serii, powtórzeń, obciążenia
+   */
+   useEffect(() => {
+    sets ? setSetsCount(sets) : null; 
+    reps ? setRepsCount(reps) : null; 
+    weight ? setWeightCount(weight) : null; 
+  }, [])
+
+  /**
    * dispatch z reducera
    */
   const dispatch = useDispatch();
@@ -60,7 +83,7 @@ const ExerciseItem = (props: ExerciseItemModel) => {
   /**
    * stan exercises z reducera
    */
-  const exercises = useSelector((state: any) => state.selectedExercises.exercises);
+  const stateExercises = useSelector((state: any) => state.selectedExercises.exercises);
 
   /**
    * motyw
@@ -72,7 +95,15 @@ const ExerciseItem = (props: ExerciseItemModel) => {
    * dodanie ćwiczenia do listy
    */
   const handleAdd = () => {
-    dispatch(addExercise({exercise: props}));    
+    dispatch(addExercise({exercise: {
+      pathName: pathName, 
+      muscleName: muscleName, 
+      exerciseName: exerciseName, 
+      exerciseKey: exerciseKey,
+      sets: setsCount,
+      reps: repsCount,
+      weight: weightCount
+    }}));    
   }
 
   /**
@@ -80,7 +111,7 @@ const ExerciseItem = (props: ExerciseItemModel) => {
    */
   const handleRemove = () => {
     dispatch(removeExercise({exerciseKey: exerciseKey}));  
-    signal();
+    refreshSignal ? refreshSignal() : null;
   }
 
   return (
@@ -93,19 +124,38 @@ const ExerciseItem = (props: ExerciseItemModel) => {
         : <ActivityIndicator color={theme.colors.STEP_0} size={40} />
       }
 
-      <View style={{flexDirection: 'row'}}>
+      {route.name !== "Creator"
+        ? <>
+            {stateExercises.filter((e: ExerciseItemModel) => {return e.exerciseKey === exerciseKey}).length > 0
+              ?
+                <View style={{flexDirection: 'row'}}>
+                  <OwnButton icon='minus-box-multiple-outline' onPress={handleRemove} numberInRow={1} />
+                </View>
+              :
+                <>
+                  <View style={{flexDirection: 'row'}}>
+                    <OwnButton icon='plus-box-multiple-outline' onPress={handleAdd} numberInRow={2} />
+                    <OwnButton icon='dumbbell' onPress={() => setSettingsOpened(o => !o)} numberInRow={2} />
+                  </View>
 
-        {route.name !== "Creator"
-          ? <>
-              <OwnButton icon='plus-box-multiple-outline' onPress={handleAdd} numberInRow={2} />
-              <OwnButton icon='minus-box-multiple-outline' onPress={handleRemove} numberInRow={2} />
-            </>
-          : <>
-              <OwnButton icon='minus-box-multiple-outline' onPress={handleRemove} numberInRow={1} />
-            </>
-        }
+                  {settingsOpened
+                  ?
+                    <>
+                      <CountItem name={'Sets'} count={setsCount} setCount={setSetsCount} />
+                      <CountItem name={'Reps'} count={repsCount} setCount={setRepsCount} />
+                      <CountItem type={'weight'} name={'Weight'} count={weightCount} setCount={setWeightCount} />
+                    </>
+                  : null
+                  }
+                  
+                </>
+            }
+          </>
+        : <>
+            <OwnButton icon='minus-box-multiple-outline' onPress={handleRemove} numberInRow={1} />
+          </>
+      }
 
-      </View>
     </View>
   );
 };

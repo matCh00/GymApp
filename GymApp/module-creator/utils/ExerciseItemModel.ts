@@ -7,5 +7,7 @@ export interface ExerciseItemModel {
   muscleName: string;
   exerciseName: string;
   exerciseKey: string;
-  signal?: () => void;
+  sets?: number;
+  reps?: number;
+  weight?: number;
 }

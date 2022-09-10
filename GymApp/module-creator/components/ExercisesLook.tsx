@@ -7,10 +7,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import useTheme from '../../theme/hooks/useTheme';
 import useThemedStyles from '../../theme/hooks/useThemeStyles';
 import { ThemeModel } from '../../theme/models/ThemeModel';
+import { ExerciseItemModel } from "../utils/ExerciseItemModel";
 import { removeExercise } from '../redux/CreatorReducer';
 import OwnButton from '../../shared/components/OwnButton';
-import MusclesEnum from '../utils/MusclesEnum';
-import { ExerciseItemModel } from "../utils/ExerciseItemModel";
 
 const ExercisesLook = ({currentMuscle}) => {
 
@@ -62,13 +61,13 @@ const ExercisesLook = ({currentMuscle}) => {
                     size={5} 
                     marginTop={6}
                   />
-
+                
                 </View>
               );
             }}
             keyExtractor={(item, index) => { return index.toString() + 'inner'; }} 
 
-            numColumns={2}
+            numColumns={1}
           />
         :  
           <Text style={style.textEmpty}>No exercises!</Text>          
@@ -88,19 +87,12 @@ const styles = (theme: ThemeModel) =>
       marginTop: 20,
     },
     innerContainer: {
-      minWidth: '45%',
+      minWidth: '90%',
       alignItems: 'center',
       backgroundColor: theme.colors.STEP_999,
       borderRadius: 30,
       padding: 6,
       margin: 6,
-    },
-    textMuscle: {
-      textAlign: 'center',
-      color: theme.colors.STEP_99,
-      fontWeight: '800',
-      fontSize: theme.typography.size.L,
-      marginBottom: 20,
     },
     text: {
       minWidth: '45%',
@@ -109,11 +101,18 @@ const styles = (theme: ThemeModel) =>
       fontWeight: '600',
       fontSize: theme.typography.size.S,
     },
+    textMuscle: {
+      textAlign: 'center',
+      color: theme.colors.STEP_99,
+      fontWeight: '800',
+      fontSize: theme.typography.size.L,
+      marginBottom: 20,
+    },
     textEmpty: {
       textAlign: 'center',
       marginTop: '50%',
       color: theme.colors.STEP_99,
       fontWeight: '600',
       fontSize: theme.typography.size.L,
-    }
+    },
   });

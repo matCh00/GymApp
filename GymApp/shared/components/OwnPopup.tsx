@@ -21,13 +21,20 @@ const OwnPopup = (props: OwnPopupModel) => {
   const theme = useTheme();
   const style = useThemedStyles(styles);
 
+  /**
+   * zamknięcie popupa
+   */
+  const handleOnRequestClose = () => {
+    setVisible(false);
+  }
+
   return (
     <Modal 
       animationType="fade" 
       transparent={true} 
       visible={visible}
       statusBarTranslucent={false}
-      onRequestClose={() => setVisible(false)}
+      onRequestClose={handleOnRequestClose}
     >
       <View
         style={style.container}

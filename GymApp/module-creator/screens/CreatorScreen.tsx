@@ -90,8 +90,15 @@ const CreatorScreen = () => {
   /**
    * sygnał usunięcia elementu listy
    */
-  const handleSignal = () => {
+  const handleRefreshSignal = () => {
     setStateExercisesFiltered(filteredItems)
+  }
+
+  /**
+   * zapisanie sets, reps, wieght w reducerze
+   */
+  const handleSaveSignal = () => {
+
   }
   
   return (
@@ -117,7 +124,7 @@ const CreatorScreen = () => {
                   muscleName={itemData.item.muscleName}
                   exerciseName={itemData.item.exerciseName}
                   exerciseKey={itemData.item.exerciseKey}
-                  signal={handleSignal}
+                  refreshSignal={handleRefreshSignal}
                 />
               </View>
             );
