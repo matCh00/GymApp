@@ -21,10 +21,13 @@ import DropDownPicker from 'react-native-dropdown-picker';
 import { useEffect, useState } from 'react';
 import { ExerciseItemModel } from '../utils/ExerciseItemModel';
 import MusclesEnum from '../utils/MusclesEnum';
+import SubmitView from '../components/SubmitView';
 
 const CreatorScreen = () => {
 
-  const [modalOpend, setModalOpened] = useState(false);
+  const [filterModalOpened, setFilterModalOpened] = useState(false);
+  const [submitModalOpend, setSubmitModalOpend] = useState(false);
+
   const [filteredItems, setFilteredItems] = useState<ExerciseItemModel[]>([]);
 
   const [filterOpen, setFilterOpen] = useState(false);
@@ -73,7 +76,7 @@ const CreatorScreen = () => {
    */
   const handleReset = () => {
     setStateExercisesFiltered(stateExercises);
-    setModalOpened(false);
+    setFilterModalOpened(false);
   }
 
   /**
@@ -84,7 +87,7 @@ const CreatorScreen = () => {
     filtered = stateExercises.filter((e: ExerciseItemModel) => {return e.muscleName === filterValue});
     setStateExercisesFiltered(filtered);
     setFilteredItems(filtered)
-    setModalOpened(false);
+    setFilterModalOpened(false);
   }
 
   /**
@@ -95,10 +98,10 @@ const CreatorScreen = () => {
   }
 
   /**
-   * zapisanie sets, reps, wieght w reducerze
+   * zapisanie planu treningowego
    */
-  const handleSaveSignal = () => {
-
+  const handleSubmit = () => {
+    setSubmitModalOpend(true);
   }
   
   return (
@@ -108,7 +111,7 @@ const CreatorScreen = () => {
         <View style={{flexDirection: 'row-reverse'}}>
 
           <OwnButton title="Add exercise" numberInRow={2} onPress={() => {navigation.push("Modes")}} />
-          <OwnButton title="Submit plan" numberInRow={2} onPress={() => {}} />
+          <OwnButton title="Submit plan" numberInRow={2} onPress={handleSubmit} />
 
         </View>
 
@@ -139,13 +142,13 @@ const CreatorScreen = () => {
         floatingIcon={<MaterialCommunityIcons name="filter-outline" color={theme.colors.STEP_99} size={24} />}
         showBackground={false}
         onPressMain={() => {
-          setModalOpened(true);
+          setFilterModalOpened(true);
         }}
       />
 
       <OwnPopup 
-        visible={modalOpend} 
-        setVisible={setModalOpened} 
+        visible={filterModalOpened} 
+        setVisible={setFilterModalOpened} 
         children={
           <View style={style.container}>
             <DropDownPicker
@@ -166,6 +169,14 @@ const CreatorScreen = () => {
              
             </View>
           </View>
+        } 
+      />
+
+      <OwnPopup 
+        visible={submitModalOpend} 
+        setVisible={setSubmitModalOpend} 
+        children={
+          <SubmitView setSubmitModalOpend={setSubmitModalOpend} />
         } 
       />
  

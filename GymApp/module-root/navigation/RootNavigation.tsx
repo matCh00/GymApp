@@ -12,7 +12,7 @@ import useTheme from "../../theme/hooks/useTheme";
 import { useContext, useLayoutEffect } from "react";
 import { AuthModel } from "../../shared/models/AuthModel";
 import { AuthContext } from "../../shared/state/AuthContext";
-import { getTheme } from "../../firebase/Database";
+import { getThemeDB } from "../../firebase/Database";
 
 /** 
  * parametry 
@@ -47,7 +47,7 @@ const RootNavigation = () => {
    * załadowanie motywu użytkownika
    */
   useLayoutEffect(() => {
-    getTheme(email)
+    getThemeDB(email)
       .then(
         (userTheme: string) => {
           theme.setCurrentTheme(userTheme);

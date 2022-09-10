@@ -15,7 +15,7 @@ import { useNavigation } from '@react-navigation/native';
 import { useContext, useState } from 'react';
 import { AuthModel } from '../../shared/models/AuthModel';
 import { AuthContext } from '../../shared/state/AuthContext';
-import { addTheme } from '../../firebase/Database';
+import { addThemeDB } from '../../firebase/Database';
 
 const ThemeScreen = () => {
 
@@ -41,7 +41,7 @@ const ThemeScreen = () => {
    * zapisanie motywu
    */
   const handleSave = () => {
-    addTheme(email, chosenTheme).then(
+    addThemeDB(email, chosenTheme).then(
       () => {
         navigation.navigate("Profile")
       }

@@ -2,7 +2,8 @@
  * Baza danych
  */
 
-import { addDoc, collection, deleteDoc, doc, getDocs, query, setDoc, updateDoc, where } from "firebase/firestore";
+import { addDoc, collection, deleteDoc, doc, getDocs, query, updateDoc, setDoc, where, getDoc } from "firebase/firestore";
+import { PlanModel } from "../module-plans/utils/PlanModel";
 import { firestore } from "./Init";
 
 
@@ -13,56 +14,46 @@ const usersRef = collection(firestore, 'users');
 
 
 /**
- * pobierz użytkowników z bazy
+ * pobierz użytkowników
  */
-export const getUsers = async () => {
+export const getUsersDB = async () => {
 
   let users = [];
 
-  getDocs(usersRef).then((snapshot: any) => {
+  const usersSnapshot = await getDocs(usersRef);
   
-    snapshot.docs.forEach((doc: any) => {
-      users.push({ ...doc.data() });
-    });
-    console.log(users);
-    return users;
-  })
-  .catch((error: any) => {
-    console.log(error.message);
-    return null;
-  })
+  usersSnapshot.forEach((doc: any) => {
+    users.push({ ...doc.data() });
+  });
+  
+  return users;
 };
 
 
 /**
- * dodaj użytkownika do bazy
+ * dodaj użytkownika
  */
-export const addUser = async (email: string) => {
+export const addUserDB = async (email: string) => {
   
-  addDoc(usersRef, {email: email})
+  await addDoc(usersRef, {email: email})
 }
 
 
 /**
- * usuń użytkownika z bazy
+ * usuń użytkownika
  */
-export const deleteUser = async (email: string) => {
+export const deleteUserDB = async (email: string) => {
 
   const docRef = doc(firestore, 'users', email);
 
-  deleteDoc(docRef).then((res: any) => {
-    console.log(res);
-  })
-  .catch((error: any) => {
-    console.log(error);
-  })
+  await deleteDoc(docRef);
 }
 
 
 /**
- * aktualizuj motyw użytkownika, dodaj gdy nie ma
+ * aktualizuj motyw, dodaj gdy nie ma
  */
-export const addTheme = async (email: string, theme: string) => {
+export const addThemeDB = async (email: string, theme: string) => {
   
   const q = query(usersRef, where("email", '==', email));
 
@@ -75,13 +66,51 @@ export const addTheme = async (email: string, theme: string) => {
 
 
 /**
- * dodaj zapisany motyw użytkownikowi
+ * pobierz motyw
  */
-export const getTheme = async (email: string) => {
+export const getThemeDB = async (email: string) => {
   
   const q = query(usersRef, where("email", '==', email));
 
   const querySnapshot = await getDocs(q);  
 
   return querySnapshot.docs[0].get("theme");
+}
+
+
+/**
+ * dodaj nowy plan treningowy
+ */
+export const addPlanDB = async (email: string, plan: PlanModel) => {
+  
+  const q = query(usersRef, where("email", '==', email));
+
+  const querySnapshot = await getDocs(q);
+
+  const docRef = doc(usersRef, querySnapshot.docs[0].id, 'plans', plan.name);
+
+  await setDoc(docRef, {plan: plan});
+}
+
+
+/**
+ * pobierz plany treningowy
+ */
+export const getPlansDB = async (email: string) => {
+  
+  const q = query(usersRef, where("email", '==', email));
+
+  const querySnapshot = await getDocs(q);
+
+  const colRef = collection(usersRef, querySnapshot.docs[0].id, 'plans');
+  
+  const plansSnapshot = await getDocs(colRef);
+  
+  let plans = [];
+
+  plansSnapshot.forEach((doc: any) => {
+    plans.push({ ...doc.data() });
+  });
+  
+  return plans;
 }

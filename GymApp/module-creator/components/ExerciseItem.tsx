@@ -103,7 +103,8 @@ const ExerciseItem = (props: ExerciseModel) => {
       sets: setsCount,
       reps: repsCount,
       weight: weightCount
-    }}));    
+    }}));   
+    setSettingsOpened(o => !o); 
   }
 
   /**
@@ -139,15 +140,14 @@ const ExerciseItem = (props: ExerciseModel) => {
                   </View>
 
                   {settingsOpened
-                  ?
-                    <>
-                      <CountItem name={'Sets'} count={setsCount} setCount={setSetsCount} />
-                      <CountItem name={'Reps'} count={repsCount} setCount={setRepsCount} />
-                      <CountItem type={'weight'} name={'Weight'} count={weightCount} setCount={setWeightCount} />
-                    </>
-                  : null
+                    ?
+                      <>
+                        <CountItem name={'Sets'} count={setsCount} setCount={setSetsCount} />
+                        <CountItem name={'Reps'} count={repsCount} setCount={setRepsCount} />
+                        <CountItem type={'weight'} name={'Weight'} count={weightCount} setCount={setWeightCount} />
+                      </>
+                    : null
                   }
-                  
                 </>
             }
           </>
