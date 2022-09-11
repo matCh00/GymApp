@@ -49,8 +49,9 @@ const SubmitPopupView = ({setSubmitModalOpend}) => {
     if (planName.length > 0) {
       dispatch(addPlan({
         exercises: stateExercises, 
-        name: planName, 
-        key: planName,
+        planName: planName, 
+        planKey: planName + '_' + Date.now(),
+        created: Date.now(),
         email: email
       }));
 

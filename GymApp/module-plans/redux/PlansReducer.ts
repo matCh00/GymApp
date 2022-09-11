@@ -22,15 +22,16 @@ const plansReducer = createSlice({
     addPlan: (state, action) => {
       let plan: PlanModel = {
         exercises: action.payload.exercises, 
-        name: action.payload.name, 
-        key: action.payload.key
+        planName: action.payload.planName, 
+        planKey: action.payload.planKey,
+        created: action.payload.created
       }
       addPlanDB(action.payload.email, plan);
       state.plans.push(plan);      
     },
 
     removePlan: (state, action) => {
-      state.plans = state.plans.filter(plan => {return (plan.key !== action.payload.planKey)});
+      state.plans = state.plans.filter(plan => {return (plan.planKey !== action.payload.planKey)});
     },
     
     clearPlans: (state, action) => {

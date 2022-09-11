@@ -5,8 +5,9 @@
 import { ExerciseModel } from '../../module-creator/utils/ExerciseModel';
 
 export interface PlanModel {
-  name: string;
-  key: string;
+  planName: string;
+  planKey: string;
   exercises: ExerciseModel[];
+  created: Date;
 }
   

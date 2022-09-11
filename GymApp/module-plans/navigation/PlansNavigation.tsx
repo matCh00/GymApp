@@ -13,7 +13,9 @@ import WorkoutScreen from "../screens/WorkoutScreen";
  */
 export type PlansStackParams = {
   Plans: undefined;
-  Plan: undefined;
+  Plan: {
+    planKey: string;
+  }
   Workout: undefined;
 };
 

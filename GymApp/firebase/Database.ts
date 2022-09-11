@@ -87,7 +87,7 @@ export const addPlanDB = async (email: string, plan: PlanModel) => {
 
   const querySnapshot = await getDocs(q);
 
-  const docRef = doc(usersRef, querySnapshot.docs[0].id, 'plans', plan.name);
+  const docRef = doc(usersRef, querySnapshot.docs[0].id, 'plans', plan.planName);
 
   await setDoc(docRef, {plan: plan});
 }
@@ -109,8 +109,8 @@ export const getPlansDB = async (email: string) => {
   let plans = [];
 
   plansSnapshot.forEach((doc: any) => {
-    plans.push({ ...doc.data() });
+    plans.push({ ...doc.data().plan });
   });
-  
+ 
   return plans;
 }

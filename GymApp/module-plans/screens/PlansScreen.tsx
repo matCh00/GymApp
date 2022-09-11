@@ -4,20 +4,20 @@
 
 import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
-import { StyleSheet, Text, View, Pressable } from 'react-native';
+import { StyleSheet, Text, View, FlatList } from 'react-native';
 import useTheme from '../../theme/hooks/useTheme';
 import useThemedStyles from '../../theme/hooks/useThemeStyles';
 import { ThemeModel } from '../../theme/models/ThemeModel';
 import { PlansStackParams } from '../navigation/PlansNavigation';
 import BackgroundTemplate from '../../shared/components/BackgroundTemplate';
 import { GlobalStyles } from '../../theme/utils/GlobalStyles';
-import OwnButton from '../../shared/components/OwnButton';
 import { useContext, useLayoutEffect } from 'react';
 import { AuthModel } from '../../shared/models/AuthModel';
 import { AuthContext } from '../../shared/state/AuthContext';
 import { getPlansDB } from '../../firebase/Database';
 import { useDispatch, useSelector } from 'react-redux';
 import { loadPlans } from '../redux/PlansReducer';
+import PlansListItem from '../components/PlansListItem';
 
 const PlansScreen = () => {
 
@@ -53,7 +53,7 @@ const PlansScreen = () => {
   useLayoutEffect(() => {
     getPlansDB(email).then(
       (data) => {
-        dispatch(loadPlans({plans: data}))
+        dispatch(loadPlans({plans: data}));
       }
     )
   }, [])
@@ -61,9 +61,27 @@ const PlansScreen = () => {
   return (
     <BackgroundTemplate>
       <View style={GlobalStyles.container}>
-        <Text>Plans</Text>
 
-        <OwnButton title="Plan" onPress={() => {navigation.push("Plan"); console.log(statePlans)}} />
+        <Text style={style.text}>Plans</Text>
+
+        <FlatList
+          data={statePlans}
+          renderItem={(itemData) => {
+            return (
+              <View style={style.listContainer}>
+                <PlansListItem 
+                  planName={itemData.item.planName} 
+                  planKey={itemData.item.planKey}
+                  exercises={itemData.item.exercises}
+                  created={itemData.item.created}
+                />
+              </View>
+            );
+          }}
+          keyExtractor={(item, index) => { return index.toString() + item.toString(); }} 
+
+          numColumns={1}
+        />
 
       </View>
     </BackgroundTemplate>
@@ -73,4 +91,17 @@ const PlansScreen = () => {
 export default PlansScreen;
 
 const styles = (theme: ThemeModel) =>
-  StyleSheet.create({});
+  StyleSheet.create({
+    listContainer: {
+      minWidth: '100%',
+      alignItems: 'center',
+    },
+    text: {
+      textAlign: 'center',
+      color: theme.colors.STEP_999,
+      fontWeight: '600',
+      fontSize: theme.typography.size.L,
+      marginBottom: 10,
+      marginTop: 20,
+    },
+  });
