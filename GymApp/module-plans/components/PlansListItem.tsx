@@ -11,6 +11,8 @@
  import { PlansStackParams } from '../navigation/PlansNavigation';
  import OwnButton from '../../shared/components/OwnButton';
 import { PlanModel } from '../utils/PlanModel';
+import { useDispatch } from 'react-redux';
+import { selectPlan } from '../redux/WorkoutReducer';
 
 const PlansListItem = (props: PlanModel) => {
 
@@ -31,12 +33,25 @@ const PlansListItem = (props: PlanModel) => {
   const navigation = useNavigation<NativeStackNavigationProp<PlansStackParams>>();
 
   /**
+   * dispatch z reducera
+   */
+  const dispatch = useDispatch();
+
+  /**
    * transformacja daty
    */
   const getDate = () => {
     const date = new Date(created);
     const out = date.toLocaleString('en-GB');    
     return out;
+  }
+
+  /**
+   * wyranie treningu
+   */
+  const handleStartWorkout = () => {
+    dispatch(selectPlan({plan: props}));
+    navigation.push("Plan", {planKey: planKey});
   }
 
   return (
@@ -46,7 +61,7 @@ const PlansListItem = (props: PlanModel) => {
 
       <Text style={style.text}>{getDate()}</Text>
 
-      <OwnButton title="Show" onPress={() => {navigation.push("Plan", {planKey: planKey})}} />
+      <OwnButton title="Show" onPress={handleStartWorkout} />
 
     </View>
   );

@@ -1,5 +1,5 @@
 /**
- * Element listy ćwiczeń w planie treningowym na wybraną partię mięśniową 
+ * Element listy ćwiczeń uruchomionego treningu
  */
 
 import { StyleSheet, Text, View, ActivityIndicator } from 'react-native';
@@ -12,39 +12,38 @@ import { ref, getDownloadURL } from 'firebase/storage';
 import { storage } from '../../firebase/Init';
 import CachedImage from 'expo-cached-image';
 import { ExerciseModel } from '../../module-creator/utils/ExerciseModel';
-
-const ExerciseItem = (props: ExerciseModel) => {
-
+ 
+const WorkoutItem = (props: ExerciseModel) => {
+ 
   /**
    * props
    */
-  const {pathName, muscleName, exerciseName, exerciseKey, 
-    sets, reps, weight} = props;
-
+  const {pathName, muscleName, exerciseName, exerciseKey, sets, reps, weight} = props;
+ 
   /**
    * motyw
    */
   const theme = useTheme();
   const style = useThemedStyles(styles);
-
+ 
   /**
    * linki do obrazków przechowywanych w Storage
    */
   const [url, setUrl] = useState(null);
   const [urlLoaded, setUrlLoaded] = useState(false);
-
+ 
   /**
    * dispatch z reducera
    */
   const dispatch = useDispatch();
-
+ 
   /**
    * stan exercises z reducera
    */
   const stateExercises = useSelector((state: any) => state.selectedExercises.exercises);
-
+ 
   /**
-   * załadowanie obrazka ze Storage w Firebase
+   * przeładowanie obrazka
    */
   useEffect(() => {
     const load = async () => {
@@ -57,19 +56,19 @@ const ExerciseItem = (props: ExerciseModel) => {
         setUrlLoaded(true);
       })
     }
-    if (url === null) load();
-  }, []);
+    if (url !== pathName) load();
+  }, [props]);
 
   return (
     <View style={style.itemContainer}>
-
+ 
       <Text style={style.text}>{exerciseName}</Text>
-
+ 
       {urlLoaded
         ? <CachedImage source={{uri: url}} cacheKey={exerciseKey} style={style.image} />
         : <ActivityIndicator color={theme.colors.STEP_0} size={40} />
       }
-
+ 
       <Text style={style.metadataText}>Sets: {sets}</Text>
       <Text style={style.metadataText}>Reps: {reps}</Text>
       <Text style={style.metadataText}>Weight: {weight} kg</Text>
@@ -77,9 +76,9 @@ const ExerciseItem = (props: ExerciseModel) => {
     </View>
   );
 };
-
-export default ExerciseItem;
-
+ 
+export default WorkoutItem;
+ 
 const styles = (theme: ThemeModel) =>
   StyleSheet.create({
     itemContainer: {

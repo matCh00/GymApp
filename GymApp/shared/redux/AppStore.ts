@@ -7,11 +7,13 @@ import { configureStore } from '@reduxjs/toolkit';
 import muscleReducer from '../../module-creator/redux/MusclesReducer';
 import creatorReducer from '../../module-creator/redux/CreatorReducer';
 import plansReducer from '../../module-plans/redux/PlansReducer';
+import workoutReducer from '../../module-plans/redux/WorkoutReducer';
 
 export const store = configureStore({
   reducer: {
     selectedMuscle: muscleReducer,
     selectedExercises: creatorReducer,
     savedPlans: plansReducer,
+    selectedPlan: workoutReducer,
   }
 });

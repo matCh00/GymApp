@@ -11,7 +11,7 @@ import { PlansStackParams } from '../navigation/PlansNavigation';
 import BackgroundTemplate from '../../shared/components/BackgroundTemplate';
 import { GlobalStyles } from '../../theme/utils/GlobalStyles';
 import OwnButton from '../../shared/components/OwnButton';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import ExerciseItem from '../components/ExerciseItem';
 import { PlanModel } from '../utils/PlanModel';
 import { useLayoutEffect, useState } from 'react';
@@ -35,9 +35,19 @@ const PlanScreen = ({route, navigation}: Props) => {
   const style = useThemedStyles(styles);
 
   /**
+   * dispatch z reducera
+   */
+  const dispatch = useDispatch();
+
+  /**
    * stan plans z reducera
    */
   const statePlans = useSelector((state: any) => state.savedPlans.plans);
+
+  /**
+   * stan plan z reducera
+   */
+  const statePlan = useSelector((state: any) => state.selectedPlan.plan);
 
   /**
    * załadowanie ćwiczeń dla konkretnego planu
@@ -49,11 +59,18 @@ const PlanScreen = ({route, navigation}: Props) => {
     setExercises(plan[0].exercises);
   }, [])
 
+  /**
+   * rozpoczęcie treningu
+   */
+  const handleStartWorkout = () => {
+    navigation.push("Workout");
+  }
+
   return (
     <BackgroundTemplate>
       <View style={GlobalStyles.container}>
 
-        <OwnButton title="Start workout!" onPress={() => {navigation.push("Workout")}} marginTop={20} />
+        <OwnButton title="Start workout!" onPress={handleStartWorkout} marginTop={20} />
 
         <FlatList
           data={exercises}
