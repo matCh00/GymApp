@@ -2,13 +2,16 @@
  * Komponent zegara
  */
 
-import { DeviceEventEmitter, StyleSheet, Text, View } from 'react-native';
+import { useEffect, useState } from 'react';
+import { StyleSheet, Text, View } from 'react-native';
 import { useDispatch } from 'react-redux';
 import { useStopwatch } from 'react-timer-hook';
 import useTheme from '../../theme/hooks/useTheme';
 import useThemedStyles from '../../theme/hooks/useThemeStyles';
 import { ThemeModel } from '../../theme/models/ThemeModel';
-import { addResult } from '../redux/WorkoutReducer';
+import { timerService } from '../services/TimerService';
+import { ResultModel } from '../utils/ResultModel';
+import { TimerActionsEnum } from '../utils/TimerActionsEnum';
 
 const Timer = () => {
 
@@ -16,15 +19,25 @@ const Timer = () => {
    * timer
    */
   const {
-    seconds,
-    minutes,
-    hours,
-    days,
+    seconds, 
+    minutes, 
+    hours, 
+    days, 
     isRunning,
-    start,
-    pause,
-    reset,
+    start, 
+    pause, 
+    reset, 
   } = useStopwatch({ autoStart: true });
+  
+  let counter= 0;
+  useEffect(() => {
+    const interval = setInterval(() => {
+      counter = counter + 1;
+      console.log(counter);
+      
+    }, 1000);
+    return () => clearInterval(interval);
+  });
 
   /**
    * motyw
@@ -40,21 +53,43 @@ const Timer = () => {
   /**
    * nasłuchiwanie zdarzeń
    */
-  DeviceEventEmitter.addListener('workout.NEXT', (event: any) => {
-    dispatch(addResult({result: {seconds: seconds, minutes: minutes, hours: hours}}));
-    reset();
-  });
-  DeviceEventEmitter.addListener('workout.RESUME', (event: any) => {
-    start();
-  });
-  DeviceEventEmitter.addListener('workout.PAUSE', (event: any) => {
-    pause();
-  });
-  DeviceEventEmitter.addListener('workout.FINISH', (event: any) => {
-    pause();
-    reset();
-  });
-  
+  useEffect(() => {
+    const subscription = timerService.getSignal().subscribe(
+      (signal: TimerActionsEnum) => {
+        handleSignal(signal);
+      }
+    );
+    return () => subscription.unsubscribe();
+  }, []);
+
+  /**
+   * przechwycenie sygnału
+   */
+  const handleSignal = (signal: TimerActionsEnum) => {
+    switch (signal) {
+      case TimerActionsEnum['NEXT']:
+        timerService.sendResult({seconds: seconds, minutes: minutes, hours: hours});                
+        reset();
+        break;
+
+      case TimerActionsEnum['RESUME']:
+        start();
+        break;
+
+      case TimerActionsEnum['PAUSE']:
+        pause();
+        break;
+
+      case TimerActionsEnum['FINISH']:
+        pause();
+        reset();
+        break;
+    
+      default:
+        break;
+    }
+  }
+
   return (
     <View style={{flexDirection: 'row'}}>
       <Text style={style.text}>

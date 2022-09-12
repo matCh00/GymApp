@@ -15,6 +15,7 @@
     "@react-navigation/material-top-tabs": "^6.2.2",
     "@react-navigation/native": "^6.0.11",
     "@react-navigation/native-stack": "^6.7.0",
+    "@reactivex/rxjs": "^6.6.7",
     "@reduxjs/toolkit": "^1.8.5",
     "expo": "~46.0.8",
     "expo-cached-image": "^46.0.1",
@@ -36,7 +37,8 @@
     "react-native-svg": "12.3.0",
     "react-native-tab-view": "^3.1.1",
     "react-redux": "^8.0.2",
-    "react-timer-hook": "^3.0.5"
+    "react-timer-hook": "^3.0.5",
+    "rxjs": "^7.5.6"
   },
   "devDependencies": {
     "@babel/core": "^7.18.6",

@@ -2,25 +2,28 @@
  * Ekran ćwiczeń
  */
 
-import { DeviceEventEmitter, StyleSheet, Text, View, ActivityIndicator, FlatList } from 'react-native';
+import { StyleSheet, Text, View, ActivityIndicator, FlatList } from 'react-native';
 import useTheme from '../../theme/hooks/useTheme';
 import useThemedStyles from '../../theme/hooks/useThemeStyles';
 import { ThemeModel } from '../../theme/models/ThemeModel';
 import BackgroundTemplate from '../../shared/components/BackgroundTemplate';
 import { GlobalStyles } from '../../theme/utils/GlobalStyles';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { PlansStackParams } from '../navigation/PlansNavigation';
 import WorkoutItem from '../components/WorkoutItem';
 import OwnButton from '../../shared/components/OwnButton';
 import { useNavigation } from '@react-navigation/native';
 import Timer from '../components/Timer';
-import { clearResults } from '../redux/WorkoutReducer';
+import { timerService } from '../services/TimerService';
+import { TimerActionsEnum } from '../utils/TimerActionsEnum';
+import { ResultModel } from '../utils/ResultModel';
 
 const WorkoutScreen = () => {
   
   const [currentIndex, setCurrentIndex] = useState(0);
+  let results: ResultModel[] = [];
 
   /**
    * motyw
@@ -44,17 +47,12 @@ const WorkoutScreen = () => {
   const statePlan = useSelector((state: any) => state.selectedPlan.plan);
 
   /**
-   * stan results z reducera
-   */
-  const stateResults = useSelector((state: any) => state.selectedPlan.results);
-
-  /**
    * następne ćwiczenie
    */
   const nextExercise = () => {
     if (currentIndex < statePlan.exercises.length) {
-      setCurrentIndex(index => index + 1)
-      DeviceEventEmitter.emit('workout.NEXT');
+      setCurrentIndex(index => index + 1);
+      timerService.sendSignal('NEXT' as TimerActionsEnum);
     }
   }
 
@@ -62,10 +60,27 @@ const WorkoutScreen = () => {
    * zakończenie treningu
    */
   const handleFinish = () => {
-    DeviceEventEmitter.emit('workout.FINISH');
-    dispatch(clearResults({}));
+    timerService.sendSignal('FINISH' as TimerActionsEnum);
     navigation.push("Plans");
   }
+
+  /**
+   * nasłuchiwanie rezultatów
+   */
+  useEffect(() => {
+    const subscription = timerService.getResult().subscribe(
+      (data: ResultModel) => {
+        if (data) {
+          console.log(data);        
+          results.push(data);
+        }
+        else {
+          console.log('error');
+        }
+      }
+    );
+    return () => subscription.unsubscribe();
+  }, []);
   
   return (
     <BackgroundTemplate>
@@ -89,8 +104,8 @@ const WorkoutScreen = () => {
               <OwnButton title="Next exercise" onPress={nextExercise} marginTop={20} />
 
               <View style={{flexDirection: 'row'}}>
-                <OwnButton title="Resume" onPress={() => {DeviceEventEmitter.emit('workout.RESUME')}} />
-                <OwnButton title="Pause" onPress={() => {DeviceEventEmitter.emit('workout.PAUSE')}} />
+                <OwnButton title="Resume" onPress={() => {timerService.sendSignal('RESUME' as TimerActionsEnum)}} />
+                <OwnButton title="Pause" onPress={() => {timerService.sendSignal('PAUSE' as TimerActionsEnum)}} />
               </View>
             </>
             
@@ -98,34 +113,29 @@ const WorkoutScreen = () => {
             <>
               <OwnButton title="Finish" onPress={handleFinish} marginTop={20} />
 
-              {stateResults 
-                ?
-                  <FlatList
-                    data={stateResults}
-                    renderItem={(itemData) => {
-                      return (
-                        <View>
-                          <View style={{flexDirection: 'row'}}>
-                            <Text style={style.text}>
-                              {itemData.item.hours > 9 ? itemData.item.hours : '0' + itemData.item.hours + ':'}
-                            </Text>
-                            <Text style={style.text}>
-                              {itemData.item.minutes > 9 ? itemData.item.minutes : '0' + itemData.item.minutes + ':'}
-                            </Text>
-                            <Text style={style.text}>
-                              {itemData.item.seconds > 9 ? itemData.item.seconds : '0' + itemData.item.seconds}
-                            </Text>
-                          </View>
+                <FlatList
+                  data={results}
+                  renderItem={(itemData) => {
+                    return (
+                      <View>
+                        <View style={{flexDirection: 'row'}}>
+                          <Text style={style.text}>
+                            {itemData.item.hours > 9 ? itemData.item.hours : '0' + itemData.item.hours + ':'}
+                          </Text>
+                          <Text style={style.text}>
+                            {itemData.item.minutes > 9 ? itemData.item.minutes : '0' + itemData.item.minutes + ':'}
+                          </Text>
+                          <Text style={style.text}>
+                            {itemData.item.seconds > 9 ? itemData.item.seconds : '0' + itemData.item.seconds}
+                          </Text>
                         </View>
-                      );
-                    }}
-                    keyExtractor={(item, index) => { return index.toString() + 'inner'; }} 
-        
-                    numColumns={1}
-                  />
-                :
-                  <ActivityIndicator color={theme.colors.STEP_0} size={30} />
-              }
+                      </View>
+                    );
+                  }}
+                  keyExtractor={(item, index) => { return index.toString() + 'inner'; }} 
+      
+                  numColumns={1}
+                />
             </>
         }
 
