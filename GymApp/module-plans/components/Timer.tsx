@@ -2,7 +2,7 @@
  * Komponent zegara
  */
 
-import { useEffect, useState } from 'react';
+import { forwardRef, useEffect, useImperativeHandle } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { useDispatch } from 'react-redux';
 import { useStopwatch } from 'react-timer-hook';
@@ -13,37 +13,31 @@ import { timerService } from '../services/TimerService';
 import { ResultModel } from '../utils/ResultModel';
 import { TimerActionsEnum } from '../utils/TimerActionsEnum';
 
-const Timer = () => {
+const Timer = forwardRef((props, ref) => {
 
   /**
    * timer
    */
   const {
-    seconds, 
-    minutes, 
-    hours, 
-    days, 
-    isRunning,
-    start, 
-    pause, 
-    reset, 
+    seconds, minutes, hours, days, isRunning,
+    start, pause, reset,
   } = useStopwatch({ autoStart: true });
-  
-  let counter= 0;
-  useEffect(() => {
-    const interval = setInterval(() => {
-      counter = counter + 1;
-      console.log(counter);
-      
-    }, 1000);
-    return () => clearInterval(interval);
-  });
 
   /**
    * motyw
    */
   const theme = useTheme();
   const style = useThemedStyles(styles);
+
+  /**
+   * wysłanie rezultatu
+   * przekazanie wartości instancji komponentowi nadrzędnemu
+   */
+  useImperativeHandle(ref, () => ({
+    signalResult() {
+      return ({seconds: seconds, minutes: minutes, hours: hours, name: ''} as ResultModel);
+    },
+  }));
 
   /**
    * dispatch z reducera
@@ -68,7 +62,6 @@ const Timer = () => {
   const handleSignal = (signal: TimerActionsEnum) => {
     switch (signal) {
       case TimerActionsEnum['NEXT']:
-        timerService.sendResult({seconds: seconds, minutes: minutes, hours: hours}); //https://stackoverflow.com/questions/43953791/calling-functions-from-other-components-in-react-native               
         reset();
         break;
 
@@ -103,7 +96,7 @@ const Timer = () => {
       </Text>
     </View>
   );
-};
+});
 
 export default Timer;
 

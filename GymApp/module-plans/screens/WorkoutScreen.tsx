@@ -2,14 +2,14 @@
  * Ekran ćwiczeń
  */
 
-import { StyleSheet, Text, View, ActivityIndicator, FlatList } from 'react-native';
+import { StyleSheet, Text, View, FlatList } from 'react-native';
 import useTheme from '../../theme/hooks/useTheme';
 import useThemedStyles from '../../theme/hooks/useThemeStyles';
 import { ThemeModel } from '../../theme/models/ThemeModel';
 import BackgroundTemplate from '../../shared/components/BackgroundTemplate';
 import { GlobalStyles } from '../../theme/utils/GlobalStyles';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
-import { useEffect, useState } from 'react';
+import { useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { PlansStackParams } from '../navigation/PlansNavigation';
 import WorkoutItem from '../components/WorkoutItem';
@@ -23,7 +23,12 @@ import { ResultModel } from '../utils/ResultModel';
 const WorkoutScreen = () => {
   
   const [currentIndex, setCurrentIndex] = useState(0);
-  let results: ResultModel[] = [];
+  const [results, setResults] = useState<ResultModel[]>([]);
+
+  /**
+   * referencja do komponentu
+   */
+  const timerRef = useRef(null);
 
   /**
    * motyw
@@ -51,8 +56,11 @@ const WorkoutScreen = () => {
    */
   const nextExercise = () => {
     if (currentIndex < statePlan.exercises.length) {
-      setCurrentIndex(index => index + 1);
-      timerService.sendSignal('NEXT' as TimerActionsEnum);
+      let res = timerRef.current.signalResult();
+      res.name = statePlan.exercises[currentIndex].exerciseName;
+      setResults([...results, res]);
+      timerService.sendSignal('NEXT' as TimerActionsEnum);  
+      setCurrentIndex(index => index + 1);    
     }
   }
 
@@ -63,24 +71,6 @@ const WorkoutScreen = () => {
     timerService.sendSignal('FINISH' as TimerActionsEnum);
     navigation.push("Plans");
   }
-
-  /**
-   * nasłuchiwanie rezultatów
-   */
-  useEffect(() => {
-    const subscription = timerService.getResult().subscribe(
-      (data: ResultModel) => {
-        if (data) {
-          console.log(data);        
-          results.push(data);
-        }
-        else {
-          console.log('error');
-        }
-      }
-    );
-    return () => subscription.unsubscribe();
-  }, []);
   
   return (
     <BackgroundTemplate>
@@ -89,7 +79,7 @@ const WorkoutScreen = () => {
         {currentIndex < statePlan.exercises.length
           ?
             <> 
-              <Timer />
+              <Timer ref={timerRef} />
 
               <WorkoutItem 
                 pathName={statePlan.exercises[currentIndex].pathName} 
@@ -101,23 +91,31 @@ const WorkoutScreen = () => {
                 weight={statePlan.exercises[currentIndex].weight}
               />
 
-              <OwnButton title="Next exercise" onPress={nextExercise} marginTop={20} />
+              <OwnButton 
+                title={currentIndex < statePlan.exercises.length - 1 ? "Next exercise" : "Finish"} 
+                onPress={nextExercise} 
+                marginTop={20} 
+              />
 
               <View style={{flexDirection: 'row'}}>
-                <OwnButton title="Resume" onPress={() => {timerService.sendSignal('RESUME' as TimerActionsEnum)}} />
+                <OwnButton title="Start" onPress={() => {timerService.sendSignal('RESUME' as TimerActionsEnum)}} />
                 <OwnButton title="Pause" onPress={() => {timerService.sendSignal('PAUSE' as TimerActionsEnum)}} />
               </View>
             </>
             
           :
             <>
-              <OwnButton title="Finish" onPress={handleFinish} marginTop={20} />
+              <OwnButton title="Save" onPress={handleFinish} marginTop={20} marginBottom={20} />
 
                 <FlatList
                   data={results}
                   renderItem={(itemData) => {
                     return (
                       <View>
+                        <Text style={style.headerText}>
+                          {itemData.item.name}
+                        </Text>
+
                         <View style={{flexDirection: 'row'}}>
                           <Text style={style.text}>
                             {itemData.item.hours > 9 ? itemData.item.hours : '0' + itemData.item.hours + ':'}
@@ -149,10 +147,18 @@ export default WorkoutScreen;
 const styles = (theme: ThemeModel) =>
   StyleSheet.create({
     text: {
-      textAlign: 'center',
+      textAlign: 'right',
       color: theme.colors.STEP_999,
       fontWeight: '600',
       fontSize: theme.typography.size.L,
       marginBottom: 20,
     },
+    headerText: {
+      textAlign: 'left',
+      color: theme.colors.STEP_99,
+      fontWeight: '600',
+      fontSize: theme.typography.size.L,
+      marginTop: 20,
+      marginBottom: 10,
+    }
   });

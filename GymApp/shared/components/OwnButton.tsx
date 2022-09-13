@@ -14,7 +14,7 @@ const OwnButton = (props: OwnButtonModel) => {
   /**
    * props
    */
-  const {title, onPress, icon, size, marginTop, numberInRow} = props;
+  const {title, onPress, icon, size, marginTop, marginBottom, numberInRow} = props;
 
   /**
    * motyw
@@ -26,6 +26,7 @@ const OwnButton = (props: OwnButtonModel) => {
     <View style={[
         style.buttonContainer, 
         marginTop ? {marginTop: marginTop} : {marginTop: 40},
+        marginBottom ? {marginBottom: marginBottom} : {marginBottom: 0},
         numberInRow ? {width: (100 / numberInRow).toString() + '%'} : {width: '50%'}
       ]}>
 

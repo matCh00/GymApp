@@ -8,6 +8,7 @@ export interface OwnButtonModel {
   icon?: string,
   size?: number
   marginTop?: number,
+  marginBottom?: number,
   numberInRow?: number,
 }
   
