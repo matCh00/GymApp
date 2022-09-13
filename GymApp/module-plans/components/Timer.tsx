@@ -68,7 +68,7 @@ const Timer = () => {
   const handleSignal = (signal: TimerActionsEnum) => {
     switch (signal) {
       case TimerActionsEnum['NEXT']:
-        timerService.sendResult({seconds: seconds, minutes: minutes, hours: hours});                
+        timerService.sendResult({seconds: seconds, minutes: minutes, hours: hours}); //https://stackoverflow.com/questions/43953791/calling-functions-from-other-components-in-react-native               
         reset();
         break;
 
