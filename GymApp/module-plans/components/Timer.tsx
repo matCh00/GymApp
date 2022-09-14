@@ -35,7 +35,7 @@ const Timer = forwardRef((props, ref) => {
    */
   useImperativeHandle(ref, () => ({
     signalResult() {
-      return ({seconds: seconds, minutes: minutes, hours: hours, name: ''} as ResultModel);
+      return ({seconds: seconds, minutes: minutes, hours: hours} as ResultModel);
     },
   }));
 

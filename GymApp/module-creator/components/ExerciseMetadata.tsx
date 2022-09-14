@@ -47,7 +47,7 @@ const ExerciseMetadata = (props: ExerciseMetadataModel) => {
 
       <OwnButton 
         icon='minus' 
-        onPress={() => {count > 0 ? setCount(count - step) : {}}} 
+        onPress={() => {count > 1 ? setCount(count - step) : {}}} 
         size={5} 
         marginTop={6}
       />

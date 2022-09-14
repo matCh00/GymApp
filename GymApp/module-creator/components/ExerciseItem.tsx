@@ -26,9 +26,9 @@ interface ExerciseModelExtended extends ExerciseModel {
 
 const ExerciseItem = (props: ExerciseModelExtended) => {
 
-  const [setsCount, setSetsCount] = useState(0);
-  const [repsCount, setRepsCount] = useState(0);
-  const [weightCount, setWeightCount] = useState(0);
+  const [setsCount, setSetsCount] = useState(1);
+  const [repsCount, setRepsCount] = useState(1);
+  const [weightCount, setWeightCount] = useState(1);
   const [settingsOpened, setSettingsOpened] = useState(false);
 
   /**

@@ -19,11 +19,14 @@ import Timer from '../components/Timer';
 import { timerService } from '../services/TimerService';
 import { TimerActionsEnum } from '../utils/TimerActionsEnum';
 import { ResultModel } from '../utils/ResultModel';
+import { ResultsModel } from '../utils/ResultsModel';
 
 const WorkoutScreen = () => {
   
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const [results, setResults] = useState<ResultModel[]>([]);
+  const [exerciseIndex, setExerciseIndex] = useState(0);
+  const [results, setResults] = useState<ResultsModel[]>([]);
+  const [setIndex, setSetIndex] = useState(0);
+  const [resultArr, setResultArr] = useState<ResultModel[]>([]);
 
   /**
    * referencja do komponentu
@@ -55,12 +58,22 @@ const WorkoutScreen = () => {
    * następne ćwiczenie
    */
   const nextExercise = () => {
-    if (currentIndex < statePlan.exercises.length) {
-      let res = timerRef.current.signalResult();
-      res.name = statePlan.exercises[currentIndex].exerciseName;
-      setResults([...results, res]);
+    if (exerciseIndex < statePlan.exercises.length) {
+
+      let res: ResultModel = timerRef.current.signalResult();
       timerService.sendSignal('NEXT' as TimerActionsEnum);  
-      setCurrentIndex(index => index + 1);    
+
+      setResultArr([...resultArr, res]);
+
+      if (setIndex < statePlan.exercises[exerciseIndex].sets - 1) {
+        setSetIndex(i => i + 1);
+      }
+      else {
+        setResults([...results, {exerciseName: statePlan.exercises[exerciseIndex].exerciseName, results: resultArr}]);
+        setResultArr([]);
+        setSetIndex(0);
+        setExerciseIndex(index => index + 1); 
+      }
     }
   }
 
@@ -76,23 +89,23 @@ const WorkoutScreen = () => {
     <BackgroundTemplate>
       <View style={GlobalStyles.container}>
 
-        {currentIndex < statePlan.exercises.length
+        {exerciseIndex < statePlan.exercises.length
           ?
             <> 
               <Timer ref={timerRef} />
 
               <WorkoutItem 
-                pathName={statePlan.exercises[currentIndex].pathName} 
-                muscleName={statePlan.exercises[currentIndex].muscleName}
-                exerciseName={statePlan.exercises[currentIndex].exerciseName}
-                exerciseKey={statePlan.exercises[currentIndex].exerciseKey}
-                sets={statePlan.exercises[currentIndex].sets}
-                reps={statePlan.exercises[currentIndex].reps}
-                weight={statePlan.exercises[currentIndex].weight}
+                pathName={statePlan.exercises[exerciseIndex].pathName} 
+                muscleName={statePlan.exercises[exerciseIndex].muscleName}
+                exerciseName={statePlan.exercises[exerciseIndex].exerciseName}
+                exerciseKey={statePlan.exercises[exerciseIndex].exerciseKey}
+                sets={statePlan.exercises[exerciseIndex].sets}
+                reps={statePlan.exercises[exerciseIndex].reps}
+                weight={statePlan.exercises[exerciseIndex].weight}
               />
 
               <OwnButton 
-                title={currentIndex < statePlan.exercises.length - 1 ? "Next exercise" : "Finish"} 
+                title={exerciseIndex < statePlan.exercises.length - 1 ? "Next exercise" : "Finish"} 
                 onPress={nextExercise} 
                 marginTop={20} 
               />
@@ -113,24 +126,35 @@ const WorkoutScreen = () => {
                     return (
                       <View>
                         <Text style={style.headerText}>
-                          {itemData.item.name}
+                          {itemData.item.exerciseName}
                         </Text>
 
-                        <View style={{flexDirection: 'row'}}>
-                          <Text style={style.text}>
-                            {itemData.item.hours > 9 ? itemData.item.hours : '0' + itemData.item.hours + ':'}
-                          </Text>
-                          <Text style={style.text}>
-                            {itemData.item.minutes > 9 ? itemData.item.minutes : '0' + itemData.item.minutes + ':'}
-                          </Text>
-                          <Text style={style.text}>
-                            {itemData.item.seconds > 9 ? itemData.item.seconds : '0' + itemData.item.seconds}
-                          </Text>
-                        </View>
+                        <FlatList
+                          data={itemData.item.results}
+                          renderItem={(itemData2) => {
+                            return (
+                              <View style={{flexDirection: 'row'}}>
+                                <Text style={style.text}>
+                                  {itemData2.item.hours > 9 ? itemData2.item.hours : '0' + itemData2.item.hours + ':'}
+                                </Text>
+                                <Text style={style.text}>
+                                  {itemData2.item.minutes > 9 ? itemData2.item.minutes : '0' + itemData2.item.minutes + ':'}
+                                </Text>
+                                <Text style={style.text}>
+                                  {itemData2.item.seconds > 9 ? itemData2.item.seconds : '0' + itemData2.item.seconds}
+                                </Text>
+                              </View>
+                            );
+                          }}
+                          keyExtractor={(item, index) => { return index.toString() + 'inner'; }} 
+
+                          numColumns={1}
+                        />
+
                       </View>
                     );
                   }}
-                  keyExtractor={(item, index) => { return index.toString() + 'inner'; }} 
+                  keyExtractor={(item, index) => { return index.toString() + 'outer'; }} 
       
                   numColumns={1}
                 />
