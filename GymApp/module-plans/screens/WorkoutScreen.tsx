@@ -9,7 +9,7 @@ import { ThemeModel } from '../../theme/models/ThemeModel';
 import BackgroundTemplate from '../../shared/components/BackgroundTemplate';
 import { GlobalStyles } from '../../theme/utils/GlobalStyles';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
-import { useRef, useState } from 'react';
+import { useContext, useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { PlansStackParams } from '../navigation/PlansNavigation';
 import WorkoutItem from '../components/WorkoutItem';
@@ -20,6 +20,10 @@ import { timerService } from '../services/TimerService';
 import { TimerActionsEnum } from '../utils/TimerActionsEnum';
 import { ResultModel } from '../utils/ResultModel';
 import { ResultsModel } from '../utils/ResultsModel';
+import { TrainingSummaryModel } from '../utils/TrainingSummaryModel';
+import { addSummaryDB } from '../../firebase/Database';
+import { AuthModel } from '../../shared/models/AuthModel';
+import { AuthContext } from '../../shared/state/AuthContext';
 
 const WorkoutScreen = () => {
   
@@ -38,6 +42,11 @@ const WorkoutScreen = () => {
    */
   const theme = useTheme();
   const style = useThemedStyles(styles);
+
+  /**
+   * context uwierzytelniania
+   */
+  const {email} = useContext<AuthModel>(AuthContext);
 
   /**
    * nawigacja
@@ -63,17 +72,17 @@ const WorkoutScreen = () => {
       let res: ResultModel = timerRef.current.signalResult();
       timerService.sendSignal('NEXT' as TimerActionsEnum);  
 
-      setResultArr([...resultArr, res]);
+      setResultArr([...resultArr, res])
 
       if (setIndex < statePlan.exercises[exerciseIndex].sets - 1) {
         setSetIndex(i => i + 1);
       }
       else {
-        setResults([...results, {exerciseName: statePlan.exercises[exerciseIndex].exerciseName, results: resultArr}]);
+        setResults([...results, {exerciseName: statePlan.exercises[exerciseIndex].exerciseName, results: [...resultArr, res]}]);
         setResultArr([]);
         setSetIndex(0);
         setExerciseIndex(index => index + 1); 
-      }
+      }  
     }
   }
 
@@ -82,7 +91,16 @@ const WorkoutScreen = () => {
    */
   const handleFinish = () => {
     timerService.sendSignal('FINISH' as TimerActionsEnum);
-    navigation.push("Plans");
+
+    let date = new Date();
+    let summary = {
+      date: new Date(date.getTime() - (date.getTimezoneOffset() * 60000)).toJSON(),
+      summary: results
+    } as TrainingSummaryModel;
+
+    addSummaryDB(email, summary);
+
+    navigation.replace("Plans");
   }
   
   return (
@@ -105,7 +123,11 @@ const WorkoutScreen = () => {
               />
 
               <OwnButton 
-                title={exerciseIndex < statePlan.exercises.length - 1 ? "Next exercise" : "Finish"} 
+                title={
+                  exerciseIndex < statePlan.exercises.length - 1 || 
+                  setIndex < statePlan.exercises[exerciseIndex].sets - 1 
+                  ? "Next exercise" : "Finish"
+                } 
                 onPress={nextExercise} 
                 marginTop={20} 
               />

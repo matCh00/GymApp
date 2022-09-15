@@ -1,5 +1,5 @@
 /**
- * Model końcowego rezultatu treningu
+ * Model rezultatu serii danego ćwiczenia
  */
 
 import { ResultModel } from "./ResultModel";

@@ -4,6 +4,7 @@
 
 import { addDoc, collection, deleteDoc, doc, getDocs, query, updateDoc, setDoc, where, getDoc } from "firebase/firestore";
 import { PlanModel } from "../module-plans/utils/PlanModel";
+import { TrainingSummaryModel } from "../module-plans/utils/TrainingSummaryModel";
 import { firestore } from "./Init";
 
 
@@ -113,4 +114,19 @@ export const getPlansDB = async (email: string) => {
   });
  
   return plans;
+}
+
+
+/**
+ * dodaj podsumowanie treningu
+ */
+ export const addSummaryDB = async (email: string, summary: TrainingSummaryModel) => {
+  
+  const q = query(usersRef, where("email", '==', email));
+
+  const querySnapshot = await getDocs(q);
+
+  const docRef = doc(usersRef, querySnapshot.docs[0].id, 'summary', summary.date);
+
+  await setDoc(docRef, {summary: summary});
 }

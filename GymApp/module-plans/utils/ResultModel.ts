@@ -1,5 +1,5 @@
 /**
- * Model rezultatu treningu
+ * Model rezultatu ćwiczenia
  */
 
 export interface ResultModel {
