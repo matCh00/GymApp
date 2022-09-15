@@ -78,7 +78,17 @@ const WorkoutScreen = () => {
         setSetIndex(i => i + 1);
       }
       else {
-        setResults([...results, {exerciseName: statePlan.exercises[exerciseIndex].exerciseName, results: [...resultArr, res]}]);
+        setResults([
+          ...results, 
+          {
+            exerciseName: statePlan.exercises[exerciseIndex].exerciseName, 
+            muscleName: statePlan.exercises[exerciseIndex].muscleName,
+            sets: statePlan.exercises[exerciseIndex].sets,
+            reps: statePlan.exercises[exerciseIndex].reps,
+            weight: statePlan.exercises[exerciseIndex].weight,
+            results: [...resultArr, res]
+          }
+        ]);
         setResultArr([]);
         setSetIndex(0);
         setExerciseIndex(index => index + 1); 
@@ -151,6 +161,10 @@ const WorkoutScreen = () => {
                           {itemData.item.exerciseName}
                         </Text>
 
+                        <Text style={style.descriptionText}>
+                          sets: {itemData.item.sets}, reps: {itemData.item.reps}, weight: {itemData.item.weight}
+                        </Text>
+
                         <FlatList
                           data={itemData.item.results}
                           renderItem={(itemData2) => {
@@ -205,6 +219,13 @@ const styles = (theme: ThemeModel) =>
       fontWeight: '600',
       fontSize: theme.typography.size.L,
       marginTop: 20,
+    },
+    descriptionText: {
+      textAlign: 'left',
+      color: theme.colors.STEP_99,
+      fontWeight: '600',
+      fontSize: theme.typography.size.M,
+      marginTop: 5,
       marginBottom: 10,
     }
   });
