@@ -7,6 +7,10 @@ import { PlanModel } from "../module-plans/utils/PlanModel";
 import { TrainingSummaryModel } from "../module-plans/utils/TrainingSummaryModel";
 import { firestore } from "./Init";
 
+/**
+ * strefa czasowa
+ */
+const TIMEZONE = 2;
 
 /**
  * referencja do kolekcji 'users'
@@ -120,7 +124,7 @@ export const getPlansDB = async (email: string) => {
 /**
  * dodaj podsumowanie treningu
  */
- export const addSummaryDB = async (email: string, summary: TrainingSummaryModel) => {
+export const addSummaryDB = async (email: string, summary: TrainingSummaryModel) => {
   
   const q = query(usersRef, where("email", '==', email));
 
@@ -129,4 +133,61 @@ export const getPlansDB = async (email: string) => {
   const docRef = doc(usersRef, querySnapshot.docs[0].id, 'summary', summary.date);
 
   await setDoc(docRef, {summary: summary});
+}
+
+
+/**
+ * pobierz wszystkie podsumowania treningów
+ */
+export const getAllSummariesDB = async (email: string) => {
+  
+  const q = query(usersRef, where("email", '==', email));
+
+  const querySnapshot = await getDocs(q);
+
+  const colRef = collection(usersRef, querySnapshot.docs[0].id, 'summary');
+  
+  const summariesSnapshot = await getDocs(colRef);
+  
+  let summaries = [];
+
+  summariesSnapshot.forEach((doc: any) => {
+    summaries.push({ ...doc.data().summary });
+  });
+ 
+  return summaries;
+}
+
+
+/**
+ * pobierz podsumowania treningów z konkretnego tygodnia
+ * 0 - bieżący tydzień, 1 - zeszły tydzień, 2 - dwa tygodnie temu itd...
+ */
+export const getSummariesDB = async (email: string, week: number) => {
+  
+  const q = query(usersRef, where("email", '==', email));
+
+  const querySnapshot = await getDocs(q);
+
+  const colRef = collection(usersRef, querySnapshot.docs[0].id, 'summary');
+  
+  const summariesSnapshot = await getDocs(colRef);
+  
+  let summaries = [];
+
+  const now = new Date();
+  const getWeek = {
+    start: new Date(now.getFullYear(), now.getMonth(), now.getDate() - 7 - (week * 7), now.getHours() + TIMEZONE),
+    end: new Date(now.getFullYear(), now.getMonth(), now.getDate() - (week * 7), now.getHours() + TIMEZONE),
+  };
+
+  summariesSnapshot.forEach((doc: any) => {
+    let summary = doc.data().summary
+
+    if (new Date(summary.date) >= new Date(getWeek.start) && new Date(summary.date) <= new Date(getWeek.end)) {
+      summaries.push({ ...doc.data().summary });
+    }
+  });
+ 
+  return summaries;
 }
