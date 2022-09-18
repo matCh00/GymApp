@@ -2,7 +2,7 @@
  * Łączność z bazą danych
  */
 
-import { addDoc, collection, deleteDoc, doc, getDocs, query, updateDoc, setDoc, where, getDoc } from "firebase/firestore";
+import { addDoc, collection, deleteDoc, doc, getDocs, query, updateDoc, setDoc, where, getDoc, startAfter } from "firebase/firestore";
 import { PlanModel } from "../module-plans/utils/PlanModel";
 import { TrainingSummaryModel } from "../module-plans/utils/TrainingSummaryModel";
 import { firestore } from "./Init";
@@ -163,7 +163,7 @@ export const getAllSummariesDB = async (email: string) => {
  * pobierz podsumowania treningów z konkretnego tygodnia
  * 0 - bieżący tydzień, 1 - zeszły tydzień, 2 - dwa tygodnie temu itd...
  */
-export const getSummariesDB = async (email: string, week: number) => {
+export const getSummariesWeekDB = async (email: string, week: number) => {
   
   const q = query(usersRef, where("email", '==', email));
 
@@ -185,6 +185,41 @@ export const getSummariesDB = async (email: string, week: number) => {
     let summary = doc.data().summary
 
     if (new Date(summary.date) >= new Date(getWeek.start) && new Date(summary.date) <= new Date(getWeek.end)) {
+      summaries.push({ ...doc.data().summary });
+    }
+  });
+ 
+  return summaries;
+}
+
+
+/**
+ * pobierz podsumowania treningów z konkretnego miesiąca
+ * 0 - bieżący miesiąc, 1 - zeszły miesiąc, 2 - dwa miesiąc temu itd...
+ */
+export const getSummariesMonthDB = async (email: string, month: number) => {
+  
+  const q = query(usersRef, where("email", '==', email));
+
+  const querySnapshot = await getDocs(q);
+
+  const colRef = collection(usersRef, querySnapshot.docs[0].id, 'summary');
+  
+  const summariesSnapshot = await getDocs(colRef);
+  
+  let summaries = [];
+
+  const now = new Date();
+  let mth = new Date(now.getFullYear(), now.getMonth() - month + 1);
+  const getMonth = {
+    start: new Date(mth.getFullYear(), mth.getMonth() - 1, mth.getDate(), mth.getHours() + TIMEZONE, mth.getMinutes(), mth.getSeconds() + 1),
+    end: new Date(mth.getFullYear(), mth.getMonth(), mth.getDate(), mth.getHours() + TIMEZONE, mth.getMinutes(), mth.getSeconds() - 1),
+  };
+
+  summariesSnapshot.forEach((doc: any) => {
+    let summary = doc.data().summary
+
+    if (new Date(summary.date) >= new Date(getMonth.start) && new Date(summary.date) <= new Date(getMonth.end)) {
       summaries.push({ ...doc.data().summary });
     }
   });
