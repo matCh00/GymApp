@@ -26,7 +26,7 @@ const WorkoutsChartWeek = () => {
   const [carriage, setCarriage] = useState(0);
 
   /**
-   * zwrócenie dnia tydzień temu oraz dzisiejszego dnia
+   * zwrócenie dnia tygodnia dzisiaj oraz 7 dni temu
    */
    const weekBoundaries = (week: number) => {
     const now = new Date();

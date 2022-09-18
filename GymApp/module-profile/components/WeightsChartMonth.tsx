@@ -1,5 +1,5 @@
 /**
- * Wykres zrealizowanych treningów na przestrzeni miesiąca
+ * Wykres używanego obciążenia podczas treningów na przestrzeni miesiąca
  */
 
 import { StyleSheet, ActivityIndicator, View, Dimensions, Text } from 'react-native';
@@ -11,13 +11,14 @@ import { TrainingSummaryModel } from '../../module-plans/utils/TrainingSummaryMo
 import { getSummariesMonthDB } from '../../firebase/Database';
 import { AuthModel } from '../../shared/models/AuthModel';
 import { AuthContext } from '../../shared/state/AuthContext';
-import { VictoryBar, VictoryChart, VictoryTheme, VictoryAxis } from "victory-native";
-import { WorkoutsChartModel } from '../utils/WorkoutsChartModel';
+import { VictoryArea, VictoryChart, VictoryTheme, VictoryAxis, VictoryLabel } from "victory-native";
 import OwnButton from '../../shared/components/OwnButton';
+import { WeightsChartModel } from '../utils/WeightsChartModel';
+import { ResultsModel } from '../../module-plans/utils/ResultsModel';
 
-const WorkoutsChartMonth = () => {
+const WeightsChartMonth = () => {
 
-  const [chartData, setChartData] = useState<WorkoutsChartModel[]>([]);
+  const [chartData, setChartData] = useState<WeightsChartModel[]>([]);
   const [loadingFinished, setLoadingFinished] = useState(false);
   const [dayStart, setDayStart] = useState(0);
   const [dayEnd, setDayEnd] = useState(0);
@@ -57,27 +58,22 @@ const WorkoutsChartMonth = () => {
    * załadowanie podsumowań treningów
    */
   useEffect(() => {
-    let tempData: WorkoutsChartModel[] = [];
+    let tempData: WeightsChartModel[] = [];
 
     getSummariesMonthDB(email, month).then(
       (data: TrainingSummaryModel[]) => {
 
         data.forEach((training: TrainingSummaryModel) => {  
-          let date = new Date(training.date).getDate();  
-          tempData.push({day: date, trainings: 1});
+          
+          training.summary.forEach((results: ResultsModel, index) => {
+
+            if (results.exerciseName === 'press down') {
+              tempData.push({weight: results.weight, iterator: tempData.length});
+            }
+          })
         })
-
-        /**
-         * połączenie tych samych elementów
-         */
-        const map = new Map();
-        for(const {day, trainings} of tempData) {
-          const currTraining = map.get(day) || 0;
-          map.set(day, currTraining + trainings);
-        }
-        const reducedArray = Array.from(map, ([day, trainings]) => ({day, trainings}));
-
-        setChartData(reducedArray);
+        
+        setChartData(tempData);
         setLoadingFinished(true);
       }
     );
@@ -116,13 +112,12 @@ const WorkoutsChartMonth = () => {
         ?
           <VictoryChart 
             theme={VictoryTheme.material} 
-            domain={{x: [dayStart - 0.5, dayEnd]}} 
             padding={{top: 20, bottom: 65, right: 20, left: 40}} 
             height={Dimensions.get('window').height / 2}
           >
             <VictoryAxis
               label={monthName}
-              tickFormat={(t) => (Number.isInteger(t) ? t : null)}
+              tickFormat={() => null}
               // tickValues={[1, 2, 3]}
               style={{
                 grid: {stroke: theme.colors.STEP_1, strokeDasharray: "8 12", strokeWidth: 1},
@@ -147,17 +142,16 @@ const WorkoutsChartMonth = () => {
               }}
             />
 
-            <VictoryBar 
+            <VictoryArea 
               data={chartData} 
-              x="day" 
-              y="trainings" 
-              alignment='middle'
+              y="weight" 
+              interpolation="basis"
               style={{ 
                 data: {fill: theme.colors.STEP_99, fillOpacity: 0.95, width: 5}
               }}
               animate={{
-                duration: 1500,
-                easing: "linear",
+                duration: 2000,
+                easing: "bounce",
                 animationWhitelist: ["style", "data", "size"],
                 onExit: {
                   duration: 300,
@@ -182,7 +176,7 @@ const WorkoutsChartMonth = () => {
   );
 };
 
-export default WorkoutsChartMonth;
+export default WeightsChartMonth;
 
 const styles = (theme: ThemeModel) =>
   StyleSheet.create({});
