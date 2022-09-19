@@ -160,6 +160,7 @@ const CreatorScreen = () => {
               items={filterItems}
               setOpen={setFilterOpen}
               setValue={setFilterValue}
+              placeholder={'Select muscle'}
               style={{
                 backgroundColor: theme.colors.STEP_9999
               }}

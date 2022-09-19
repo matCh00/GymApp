@@ -16,7 +16,7 @@ import OwnButton from '../../shared/components/OwnButton';
 import { WeightsChartModel } from '../utils/WeightsChartModel';
 import { ResultsModel } from '../../module-plans/utils/ResultsModel';
 
-const WeightsChartMonth = () => {
+const WeightsChartMonth = ({exerciseName}) => {
 
   const [chartData, setChartData] = useState<WeightsChartModel[]>([]);
   const [loadingFinished, setLoadingFinished] = useState(false);
@@ -67,7 +67,7 @@ const WeightsChartMonth = () => {
           
           training.summary.forEach((results: ResultsModel, index) => {
 
-            if (results.exerciseName === 'press down') {
+            if (results.exerciseName === exerciseName) {
               tempData.push({weight: results.weight, iterator: tempData.length});
             }
           })
@@ -81,7 +81,7 @@ const WeightsChartMonth = () => {
     setDayStart(monthBoundaries(month).start);
     setDayEnd(monthBoundaries(month).last);
     setMonthName(monthBoundaries(month).name);
-  }, [month])
+  }, [month, exerciseName])
 
   /**
    * następny miesiąc

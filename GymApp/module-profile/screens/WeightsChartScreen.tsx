@@ -8,13 +8,14 @@ import useThemedStyles from '../../theme/hooks/useThemeStyles';
 import { ThemeModel } from '../../theme/models/ThemeModel';
 import BackgroundTemplate from '../../shared/components/BackgroundTemplate';
 import { GlobalStyles } from '../../theme/utils/GlobalStyles';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import OwnButton from '../../shared/components/OwnButton';
 import WeightsChartMonth from '../components/WeightsChartMonth';
+import DropDownPicker from 'react-native-dropdown-picker';
+import MusclesEnum from '../../module-creator/utils/MusclesEnum';
+import { Exercises } from '../../module-creator/utils/Exercises';
 
 const WeightsChartScreen = () => {
-
-  const [mode, setMode] = useState(true);
 
   /**
    * motyw
@@ -23,27 +24,74 @@ const WeightsChartScreen = () => {
   const style = useThemedStyles(styles);
 
   /**
-   * zmiana wykresu
+   * props dla DropDownPicker
    */
-  const handleSwitchMode = () => {
-    setMode(m => !m);
-  }
+  const [muscleOpen, setMuscleOpen] = useState(false);
+  const [muscleValue, setMuscleValue] = useState(null);
+  const muscleItems: {label: string, value: string}[] = [];
+  const [exerciseOpen, setExerciseOpen] = useState(false);
+  const [exerciseValue, setExerciseValue] = useState(null);
+  const [exerciseItems, setExerciseItems] = useState<{label: string, value: string}[]>([]);
+
+  Object.values(MusclesEnum).forEach((e: string) => {
+    muscleItems.push({label: e, value: e});
+  });
+
+  /**
+   * selekcja ćwiczeń na podstawie partii mieśniowej
+   */
+  useEffect(() => {
+    if (muscleValue && Exercises[muscleValue]) {      
+
+      Exercises[muscleValue].forEach((val: any) => {        
+        setExerciseItems(e => [...e, {label: val.name, value: val.name}]);
+      })
+    }
+    else {
+      setExerciseItems([]);
+    }
+  }, [muscleValue]);
 
   return (
     <BackgroundTemplate>
       <View style={GlobalStyles.container}>
         
-      <View style={{flexDirection: 'row', marginBottom: -80}}>
+        <View style={{flexDirection: 'row', justifyContent: 'space-around', marginTop: -120, marginBottom: 40}}>
 
-        <Text style={style.text}>{mode ? 'Month' : 'Year'}</Text>
-        <OwnButton icon='swap-horizontal' onPress={handleSwitchMode} numberInRow={4} marginTop={-250} />
+          <View style={{width: '45%'}}>
+            <DropDownPicker
+              open={muscleOpen}
+              value={muscleValue}
+              items={muscleItems}
+              setOpen={setMuscleOpen}
+              setValue={setMuscleValue}
+              placeholder={'Select muscle'}
+              style={{
+                backgroundColor: theme.colors.STEP_9999,
+              }}
+            />
+          </View>
+
+          <View style={{width: '45%'}}>
+            <DropDownPicker
+              open={exerciseOpen}
+              value={exerciseValue}
+              items={exerciseItems}
+              setOpen={setExerciseOpen}
+              setValue={setExerciseValue}
+              placeholder={'Select exercise'}
+              bottomOffset={100}
+              style={{
+                backgroundColor: theme.colors.STEP_9999,
+              }}
+            />
+          </View>
 
         </View>
 
-        {mode
-        ? <WeightsChartMonth />
-        : null    
-        }
+        <Text style={style.text}>{exerciseValue}</Text>
+
+        <WeightsChartMonth exerciseName={exerciseValue} />
 
       </View>
     </BackgroundTemplate>
@@ -58,8 +106,8 @@ const styles = (theme: ThemeModel) =>
       textAlign: 'center',
       color: theme.colors.STEP_999,
       fontWeight: '600',
-      fontSize: theme.typography.size.L,
+      fontSize: theme.typography.size.M,
       marginBottom: 20,
-      marginTop: -150,
+      marginTop: -15,
     },
   });
