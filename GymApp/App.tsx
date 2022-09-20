@@ -10,6 +10,7 @@ import { AuthProvider } from './shared/state/AuthContext';
 import ThemeProvider from './theme/utils/ThemeProvider';
 import { Provider } from 'react-redux';
 import { store } from './shared/redux/AppStore';
+import { QualityProvider } from './shared/state/QualityContext';
 
 const statusBarInsideHeader = false;
 
@@ -36,11 +37,13 @@ export default function App() {
         {statusBarInsideHeader ? <StatusBar style="light" /> : null}
         
         <AuthProvider>
-          <Provider store={store}>
+          <QualityProvider>
+            <Provider store={store}>
 
-            <AppNavigation />
+              <AppNavigation />
 
-          </Provider>
+            </Provider>
+          </QualityProvider>
         </AuthProvider>
         
       </View>
