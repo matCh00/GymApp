@@ -38,7 +38,7 @@ const WeightsChartMonth = ({exerciseName}) => {
 
     let mth = new Date(now.getFullYear(), now.getMonth() - month + 1);
     let last = new Date(mth.getFullYear(), mth.getMonth(), mth.getDate() - 1, mth.getHours() + 2);
-    let name = monthNames[last.getMonth()];
+    let name = monthNames[last.getMonth()] + " " + last.getFullYear(); 
 
     return {start: 1, last: last.getDate(), name: name}
   };

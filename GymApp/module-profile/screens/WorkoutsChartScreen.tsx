@@ -15,6 +15,7 @@ import { useState } from 'react';
 
 const WorkoutsChartScreen = () => {
 
+  const [selectedMonth, setSelectedMonth] = useState(new Date);
   const [mode, setMode] = useState(true);
 
   /**
@@ -37,13 +38,13 @@ const WorkoutsChartScreen = () => {
         <View style={{flexDirection: 'row', marginBottom: -80}}>
 
           <Text style={style.text}>{mode ? 'Month' : 'Week'}</Text>
-          <OwnButton icon='swap-horizontal' onPress={handleSwitchMode} numberInRow={4} marginTop={-250} />
+          <OwnButton icon={mode ? 'calendar-week-begin' : 'calendar-weekend'} onPress={handleSwitchMode} numberInRow={4} marginTop={-250} />
           
         </View>
 
         {mode
-          ? <WorkoutsChartMonth />
-          : <WorkoutsChartWeek />      
+          ? <WorkoutsChartMonth setSelectedMonth={(m: Date) => {setSelectedMonth(m)}} />
+          : <WorkoutsChartWeek selectedMonth={selectedMonth} />      
         }
 
       </View>

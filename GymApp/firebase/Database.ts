@@ -226,3 +226,35 @@ export const getSummariesMonthDB = async (email: string, month: number) => {
  
   return summaries;
 }
+
+
+/**
+ * pobierz podsumowania treningów z podanego zakresu czasu
+ * podajemy pełne daty (00:00:00)
+ * dateFrom: 01.01 dateTo: 05.01 -> <01.01 00:00:00, 05.01 23:59:59>
+ */
+export const getSummariesBoundariesDB = async (email: string, dateFrom: Date, dateTo: Date) => {
+  
+  const q = query(usersRef, where("email", '==', email));
+
+  const querySnapshot = await getDocs(q);
+
+  const colRef = collection(usersRef, querySnapshot.docs[0].id, 'summary');
+  
+  const summariesSnapshot = await getDocs(colRef);
+  
+  let summaries = [];
+
+  let dateToNext = dateTo;
+  dateToNext.setDate(dateTo.getDate() + 1);
+
+  summariesSnapshot.forEach((doc: any) => {
+    let summary = doc.data().summary
+
+    if (new Date(summary.date) >= new Date(dateFrom) && new Date(summary.date) < new Date(dateToNext)) {
+      summaries.push({ ...doc.data().summary });
+    }
+  });
+
+  return summaries;
+}

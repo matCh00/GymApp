@@ -8,14 +8,15 @@ import useThemedStyles from '../../theme/hooks/useThemeStyles';
 import { ThemeModel } from '../../theme/models/ThemeModel';
 import { useContext, useEffect, useState } from 'react';
 import { TrainingSummaryModel } from '../../module-plans/utils/TrainingSummaryModel';
-import { getSummariesWeekDB } from '../../firebase/Database';
+import { getSummariesBoundariesDB, getSummariesWeekDB } from '../../firebase/Database';
 import { AuthModel } from '../../shared/models/AuthModel';
 import { AuthContext } from '../../shared/state/AuthContext';
 import { VictoryBar, VictoryChart, VictoryTheme, VictoryAxis } from "victory-native";
 import { WorkoutsChartModel } from '../utils/WorkoutsChartModel';
 import OwnButton from '../../shared/components/OwnButton';
+import { createDateAsUTC } from '../../shared/utils/DateFunctions';
 
-const WorkoutsChartWeek = () => {
+const WorkoutsChartWeek = ({selectedMonth}) => {
 
   const [chartData, setChartData] = useState<WorkoutsChartModel[]>([]);
   const [loadingFinished, setLoadingFinished] = useState(false);
@@ -24,29 +25,8 @@ const WorkoutsChartWeek = () => {
   const [week, setWeek] = useState(0);
   const [monthName, setMonthName] = useState('');
   const [carriage, setCarriage] = useState(0);
-
-  /**
-   * zwrócenie dnia tygodnia dzisiaj oraz 7 dni temu
-   */
-   const weekBoundaries = (week: number) => {
-    const now = new Date();
-    const monthNames = ["January", "February", "March", "April", "May", "June",
-      "July", "August", "September", "October", "November", "December"
-    ];
-
-    let start = new Date(now.getFullYear(), now.getMonth(), now.getDate() + carriage + 1 - 7 - (week * 7), now.getHours() + 2);
-    let end = new Date(now.getFullYear(), now.getMonth(), now.getDate() + carriage - (week * 7), now.getHours() + 2); 
-    let name = monthNames[end.getMonth()];    
-    
-    if (start.getDate() < end.getDate()) {
-      setCarriage(0);
-    }
-    else {
-      setCarriage(7 - end.getDate());
-    }
-
-    return {start: start.getDate() < end.getDate() ? start.getDate() : 1, end: end.getDate(), name: name}
-  };
+  const [start, setStart] = useState(new Date());
+  const [end, setEnd] = useState(new Date());
 
   /**
    * motyw
@@ -60,12 +40,56 @@ const WorkoutsChartWeek = () => {
   const {email} = useContext<AuthModel>(AuthContext);
 
   /**
+   * zwrócenie daty od i do na podstawie tygodnia wstecz
+   */
+  const weekBoundaries = (week: number) => {
+
+    const monthNames = ["January", "February", "March", "April", "May", "June",
+      "July", "August", "September", "October", "November", "December"
+    ];
+
+    let time = createDateAsUTC(new Date());
+    time.setFullYear(selectedMonth.getFullYear());
+    time.setMonth(selectedMonth.getMonth());
+    
+    let start: Date;
+    let end: Date;
+
+    if (new Date().getFullYear() === time.getFullYear() && new Date().getMonth() === time.getMonth()) {
+      start = createDateAsUTC(new Date(time.getFullYear(), time.getMonth(), time.getDate() - 1 - 7 - (week * 7)));
+      end = createDateAsUTC(new Date(time.getFullYear(), time.getMonth(), time.getDate() - 1 - (week * 7)));
+    }
+    else {
+      let startTemp = new Date(time.getFullYear(), time.getMonth())
+      start = createDateAsUTC(new Date(startTemp.getFullYear(), startTemp.getMonth() + 1, startTemp.getDate() - 7 - (week * 7)));
+      end = createDateAsUTC(new Date(startTemp.getFullYear(), startTemp.getMonth() + 1, startTemp.getDate() - 1 - (week * 7)));
+    }        
+    
+    let name = monthNames[start.getMonth()] + " " + end.getFullYear();   
+
+    return {name: name, start: start, end: end}
+  };
+
+  /**
+   * ustawienie wartości po wyborze tygodnia
+   */
+  useEffect(() => {    
+    const data: any = weekBoundaries(week);
+    
+    setDayStart(data.start.getDate() < data.end.getDate() ? data.start.getDate() : 1);
+    setDayEnd(data.end.getDate() + 0.5);
+    setMonthName(data.name);
+    setStart(data.start);
+    setEnd(data.end);
+  }, [week])
+
+  /**
    * załadowanie podsumowań treningów
    */
   useEffect(() => {
     let tempData: WorkoutsChartModel[] = [];
 
-    getSummariesWeekDB(email, week).then(
+    getSummariesBoundariesDB(email, start, end).then(
       (data: TrainingSummaryModel[]) => {
 
         data.forEach((training: TrainingSummaryModel) => {  
@@ -87,18 +111,14 @@ const WorkoutsChartWeek = () => {
         setLoadingFinished(true);
       }
     );    
-    
-    setDayStart(weekBoundaries(week).start);
-    setDayEnd(weekBoundaries(week).end);
-    setMonthName(weekBoundaries(week).name);
-  }, [week])
+  }, [start])
 
   /**
    * następny tydzień
    */
   const handleNextWeek = () => {
     if (week === 0) 
-      return
+      return;
     setWeek(w => w - 1);
   }
 
@@ -106,6 +126,8 @@ const WorkoutsChartWeek = () => {
    * poprzedni tydzień
    */
   const handlePreviousWeek = () => {
+    if (dayStart <= 1)
+      return;
     setWeek(w => w + 1);
   }
 
@@ -122,7 +144,7 @@ const WorkoutsChartWeek = () => {
         ?
           <VictoryChart 
             theme={VictoryTheme.material} 
-            domain={{x: [dayStart - 0.5, dayEnd]}} 
+            domain={{x: [dayStart, dayEnd]}} 
             padding={{top: 20, bottom: 65, right: 20, left: 40}} 
             height={Dimensions.get('window').height / 2}
           >
@@ -158,10 +180,10 @@ const WorkoutsChartWeek = () => {
               y="trainings" 
               alignment='middle'
               style={{ 
-                data: {fill: theme.colors.STEP_99, fillOpacity: 0.95, width: 5}
+                data: {fill: theme.colors.STEP_99, fillOpacity: 0.95, width: 15}
               }}
               animate={{
-                duration: 1500,
+                duration: 1000,
                 easing: "linear",
                 animationWhitelist: ["style", "data", "size"],
                 onExit: {

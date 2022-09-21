@@ -15,7 +15,7 @@ import { VictoryBar, VictoryChart, VictoryTheme, VictoryAxis } from "victory-nat
 import { WorkoutsChartModel } from '../utils/WorkoutsChartModel';
 import OwnButton from '../../shared/components/OwnButton';
 
-const WorkoutsChartMonth = () => {
+const WorkoutsChartMonth = ({setSelectedMonth}) => {
 
   const [chartData, setChartData] = useState<WorkoutsChartModel[]>([]);
   const [loadingFinished, setLoadingFinished] = useState(false);
@@ -26,20 +26,22 @@ const WorkoutsChartMonth = () => {
 
   /**
    * zwrócenie pierwszego i ostatniego dnia miesiąca
-   * month = 0 => aktualny miesiąc
-   * month = 1 => moesiąc poprzedni
+   * monthIndex = 0 => aktualny miesiąc
+   * monthIndex = 1 => moesiąc poprzedni
    */
-  const monthBoundaries = (month: number) => {
+  const monthBoundaries = (monthIndex: number) => {
     const now = new Date();
     const monthNames = ["January", "February", "March", "April", "May", "June",
       "July", "August", "September", "October", "November", "December"
     ];
 
-    let mth = new Date(now.getFullYear(), now.getMonth() - month + 1);
-    let last = new Date(mth.getFullYear(), mth.getMonth(), mth.getDate() - 1, mth.getHours() + 2);
-    let name = monthNames[last.getMonth()];
+    let month = new Date(now.getFullYear(), now.getMonth() - monthIndex + 1);
+    let lastDay = new Date(month.getFullYear(), month.getMonth(), month.getDate() - 1, month.getHours() + 2);
+    let name = monthNames[lastDay.getMonth()] + " " + lastDay.getFullYear();
 
-    return {start: 1, last: last.getDate(), name: name}
+    setSelectedMonth(lastDay);
+
+    return {start: 1, last: lastDay.getDate(), name: name}
   };
 
   /**
