@@ -10,6 +10,7 @@ import { ThemeModel } from '../../theme/models/ThemeModel';
 import { ExerciseModel } from "../utils/ExerciseModel";
 import { removeExercise } from '../redux/CreatorReducer';
 import OwnButton from '../../shared/components/OwnButton';
+import { GlobalStyles } from '../../theme/utils/GlobalStyles';
 
 const ExercisesPopupView = ({currentMuscle}) => {
 
@@ -39,7 +40,7 @@ const ExercisesPopupView = ({currentMuscle}) => {
   return (
     <View style={style.outerContainer}>
 
-      <Text style={style.textMuscle}>
+      <Text style={[GlobalStyles.text, style.textMuscle]}>
         {currentMuscle}
       </Text>
 
@@ -51,7 +52,7 @@ const ExercisesPopupView = ({currentMuscle}) => {
               return (
                 <View style={style.innerContainer}>
 
-                  <Text style={style.text}>
+                  <Text style={[GlobalStyles.text, style.text]}>
                     {itemData.item.exerciseName}
                   </Text>
 
@@ -70,7 +71,7 @@ const ExercisesPopupView = ({currentMuscle}) => {
             numColumns={1}
           />
         :  
-          <Text style={style.textEmpty}>No exercises!</Text>          
+          <Text style={[GlobalStyles.text, style.textEmpty]}>No exercises!</Text>          
       }
     </View>
   );
@@ -95,24 +96,19 @@ const styles = (theme: ThemeModel) =>
       margin: 6,
     },
     text: {
-      minWidth: '45%',
-      textAlign: 'center',
       color: theme.colors.STEP_000,
-      fontWeight: '600',
       fontSize: theme.typography.size.S,
+      minWidth: '45%',
     },
     textMuscle: {
-      textAlign: 'center',
       color: theme.colors.STEP_99,
       fontWeight: '800',
       fontSize: theme.typography.size.L,
       marginBottom: 20,
     },
     textEmpty: {
-      textAlign: 'center',
-      marginTop: '50%',
       color: theme.colors.STEP_99,
-      fontWeight: '600',
       fontSize: theme.typography.size.L,
+      marginTop: '50%',
     },
   });

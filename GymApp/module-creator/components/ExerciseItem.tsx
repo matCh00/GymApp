@@ -16,6 +16,7 @@ import { storage } from '../../firebase/Init';
 import { useRoute } from '@react-navigation/native';
 import CachedImage from 'expo-cached-image';
 import ExerciseMetadata from './ExerciseMetadata';
+import { GlobalStyles } from '../../theme/utils/GlobalStyles';
 
 /**
  * rozszerzenie props
@@ -106,12 +107,12 @@ const ExerciseItem = (props: ExerciseModelExtended) => {
   }
 
   return (
-    <View style={style.itemContainer}>
+    <View style={[GlobalStyles.itemContainer, style.itemContainer]}>
 
-      <Text style={style.text}>{exerciseName}</Text>
+      <Text style={[GlobalStyles.text, style.text]}>{exerciseName}</Text>
 
       {urlLoaded
-        ? <CachedImage source={{uri: url}} cacheKey={exerciseKey} style={style.image} />
+        ? <CachedImage source={{uri: url}} cacheKey={exerciseKey} style={[GlobalStyles.image, style.image]} />
         : <ActivityIndicator color={theme.colors.STEP_0} size={40} />
       }
 
@@ -155,25 +156,14 @@ export default ExerciseItem;
 const styles = (theme: ThemeModel) =>
   StyleSheet.create({
     itemContainer: {
-      minWidth: '90%',
-      alignItems: 'center',
       backgroundColor: theme.colors.STEP_99,
-      paddingVertical: 10,
-      borderRadius: 40,
-      margin: 16,
-      elevation: 20
     },
     text: {
-      textAlign: 'center',
       color: theme.colors.STEP_000,
-      fontWeight: '600',
       fontSize: theme.typography.size.M,
       marginBottom: 10,
     },
     image: {
-      minWidth: "90%", 
-      height: 160, 
-      resizeMode: 'contain',
       marginBottom: -30,
     }
   });

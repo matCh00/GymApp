@@ -76,7 +76,7 @@ const PlanScreen = ({route, navigation}: Props) => {
           data={exercises}
           renderItem={(itemData) => {
             return (
-              <View style={style.listContainer}>
+              <View style={GlobalStyles.listContainer}>
 
                 <ExerciseItem 
                   pathName={itemData.item.pathName} 
@@ -104,9 +104,4 @@ const PlanScreen = ({route, navigation}: Props) => {
 export default PlanScreen;
 
 const styles = (theme: ThemeModel) =>
-  StyleSheet.create({
-    listContainer: {
-      minWidth: '100%',
-      alignItems: 'center',
-    },
-  });
+  StyleSheet.create({});

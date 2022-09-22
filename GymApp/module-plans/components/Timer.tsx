@@ -9,6 +9,7 @@ import { useStopwatch } from 'react-timer-hook';
 import useTheme from '../../theme/hooks/useTheme';
 import useThemedStyles from '../../theme/hooks/useThemeStyles';
 import { ThemeModel } from '../../theme/models/ThemeModel';
+import { GlobalStyles } from '../../theme/utils/GlobalStyles';
 import { timerService } from '../services/TimerService';
 import { ResultModel } from '../utils/ResultModel';
 import { TimerActionsEnum } from '../utils/TimerActionsEnum';
@@ -85,7 +86,7 @@ const Timer = forwardRef((props, ref) => {
 
   return (
     <View style={{flexDirection: 'row'}}>
-      <Text style={style.text}>
+      <Text style={[GlobalStyles.text, style.text]}>
         {hours > 9 ? hours : '0' + hours + ':'}
       </Text>
       <Text style={style.text}>
@@ -103,9 +104,7 @@ export default Timer;
 const styles = (theme: ThemeModel) =>
   StyleSheet.create({
     text: {
-      textAlign: 'center',
       color: theme.colors.STEP_999,
-      fontWeight: '600',
       fontSize: theme.typography.size.L,
       marginBottom: 20,
     },

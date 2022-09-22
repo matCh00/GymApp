@@ -12,6 +12,7 @@ import { ref, getDownloadURL } from 'firebase/storage';
 import { storage } from '../../firebase/Init';
 import CachedImage from 'expo-cached-image';
 import { ExerciseModel } from '../../module-creator/utils/ExerciseModel';
+import { GlobalStyles } from '../../theme/utils/GlobalStyles';
 
 const ExerciseItem = (props: ExerciseModel) => {
 
@@ -61,18 +62,18 @@ const ExerciseItem = (props: ExerciseModel) => {
   }, []);
 
   return (
-    <View style={style.itemContainer}>
+    <View style={[GlobalStyles.itemContainer, style.itemContainer]}>
 
-      <Text style={style.text}>{exerciseName}</Text>
+      <Text style={[GlobalStyles.text, style.text]}>{exerciseName}</Text>
 
       {urlLoaded
-        ? <CachedImage source={{uri: url}} cacheKey={exerciseKey} style={style.image} />
+        ? <CachedImage source={{uri: url}} cacheKey={exerciseKey} style={GlobalStyles.image} />
         : <ActivityIndicator color={theme.colors.STEP_0} size={40} />
       }
 
-      <Text style={style.metadataText}>Sets: {sets}</Text>
-      <Text style={style.metadataText}>Reps: {reps}</Text>
-      <Text style={style.metadataText}>Weight: {weight} kg</Text>
+      <Text style={[GlobalStyles.text, style.metadataText]}>Sets: {sets}</Text>
+      <Text style={[GlobalStyles.text, style.metadataText]}>Reps: {reps}</Text>
+      <Text style={[GlobalStyles.text, style.metadataText]}>Weight: {weight} kg</Text>
 
     </View>
   );
@@ -83,30 +84,15 @@ export default ExerciseItem;
 const styles = (theme: ThemeModel) =>
   StyleSheet.create({
     itemContainer: {
-      minWidth: '90%',
-      alignItems: 'center',
       backgroundColor: theme.colors.STEP_99,
-      paddingVertical: 10,
-      borderRadius: 40,
-      margin: 16,
-      elevation: 20
     },
     text: {
-      textAlign: 'center',
       color: theme.colors.STEP_000,
-      fontWeight: '600',
       fontSize: theme.typography.size.M,
       marginBottom: 10,
     },
-    image: {
-      minWidth: "90%", 
-      height: 160, 
-      resizeMode: 'contain',
-    },
     metadataText: {
-      textAlign: 'center',
       color: theme.colors.STEP_000,
-      fontWeight: '600',
       fontSize: theme.typography.size.M,
     },
   });

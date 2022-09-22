@@ -62,13 +62,13 @@ const PlansScreen = () => {
     <BackgroundTemplate>
       <View style={GlobalStyles.container}>
 
-        <Text style={style.text}>Plans</Text>
+        <Text style={[GlobalStyles.text, style.text]}>Plans</Text>
 
         <FlatList
           data={statePlans}
           renderItem={(itemData) => {
             return (
-              <View style={style.listContainer}>
+              <View style={GlobalStyles.listContainer}>
                 <PlansListItem 
                   planName={itemData.item.planName} 
                   planKey={itemData.item.planKey}
@@ -92,14 +92,8 @@ export default PlansScreen;
 
 const styles = (theme: ThemeModel) =>
   StyleSheet.create({
-    listContainer: {
-      minWidth: '100%',
-      alignItems: 'center',
-    },
     text: {
-      textAlign: 'center',
       color: theme.colors.STEP_999,
-      fontWeight: '600',
       fontSize: theme.typography.size.L,
       marginBottom: 10,
       marginTop: 20,

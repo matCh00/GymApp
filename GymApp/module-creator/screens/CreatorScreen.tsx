@@ -118,13 +118,13 @@ const CreatorScreen = () => {
 
         </View>
 
-        <Text style={style.text}>Exercises</Text>
+        <Text style={[GlobalStyles.text, style.text]}>Exercises</Text>
 
         <FlatList
           data={stateExercisesFiltered}
           renderItem={(itemData) => {
             return (
-              <View style={style.listContainer}>
+              <View style={GlobalStyles.listContainer}>
                 <ExerciseItem 
                   pathName={itemData.item.pathName} 
                   muscleName={itemData.item.muscleName}
@@ -193,14 +193,8 @@ export default CreatorScreen;
 
 const styles = (theme: ThemeModel) =>
   StyleSheet.create({
-    listContainer: {
-      minWidth: '100%',
-      alignItems: 'center',
-    },
     text: {
-      textAlign: 'center',
       color: theme.colors.STEP_999,
-      fontWeight: '600',
       fontSize: theme.typography.size.L,
       marginBottom: 10,
       marginTop: 20,

@@ -16,6 +16,7 @@ import { Exercises } from '../utils/Exercises';
 import OwnPopup from '../../shared/components/OwnPopup';
 import { useState } from 'react';
 import ExercisesPopupView from '../components/ExercisesPopupView';
+import { GlobalStyles } from '../../theme/utils/GlobalStyles';
 
 type Props = NativeStackScreenProps<CreatorStackParams, 'Exercises'>;
 
@@ -42,13 +43,13 @@ const ExercisesScreen = ({route, navigation}: Props) => {
   return (
     <BackgroundTemplate>
 
-      <Text style={style.text}>{muscle}</Text>
+      <Text style={[GlobalStyles.text, style.text]}>{muscle}</Text>
 
       <FlatList
         data={hardcodedExercises}
         renderItem={(itemData) => {
           return (
-            <View style={style.listContainer}>
+            <View style={GlobalStyles.listContainer}>
               <ExerciseItem 
                 pathName={itemData.item.pathName} 
                 muscleName={itemData.item.muscle}
@@ -87,14 +88,8 @@ export default ExercisesScreen;
 
 const styles = (theme: ThemeModel) =>
   StyleSheet.create({
-    listContainer: {
-      width: '100%',
-      alignItems: 'center',
-    },
     text: {
-      textAlign: 'center',
       color: theme.colors.STEP_999,
-      fontWeight: '600',
       fontSize: theme.typography.size.L,
       marginBottom: 20,
       marginTop: 20,

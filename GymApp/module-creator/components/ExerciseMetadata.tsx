@@ -8,6 +8,7 @@ import useThemedStyles from '../../theme/hooks/useThemeStyles';
 import { ThemeModel } from '../../theme/models/ThemeModel';
 import OwnButton from '../../shared/components/OwnButton';
 import { ExerciseMetadataModel } from '../utils/ExerciseMetadataModel';
+import { GlobalStyles } from '../../theme/utils/GlobalStyles';
 
 const ExerciseMetadata = (props: ExerciseMetadataModel) => {
 
@@ -27,7 +28,7 @@ const ExerciseMetadata = (props: ExerciseMetadataModel) => {
   return (
     <View style={{flexDirection: 'row', marginLeft: '-10%', width: '50%'}}>
 
-      <Text style={style.infoText}>
+      <Text style={[GlobalStyles.text, style.text]}>
         {name}
       </Text>
 
@@ -60,11 +61,10 @@ export default ExerciseMetadata;
 
 const styles = (theme: ThemeModel) =>
   StyleSheet.create({
-    infoText: {
-      marginTop: 10,
+    text: {
       color: theme.colors.STEP_5,
-      fontWeight: '600',
       fontSize: theme.typography.size.S,
+      marginTop: 10,
     },
     input: {
       marginLeft: 7,

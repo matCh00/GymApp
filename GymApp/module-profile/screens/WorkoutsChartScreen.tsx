@@ -37,7 +37,7 @@ const WorkoutsChartScreen = () => {
 
         <View style={{flexDirection: 'row', marginBottom: -80}}>
 
-          <Text style={style.text}>{mode ? 'Month' : 'Week'}</Text>
+          <Text style={[GlobalStyles.text, style.text]}>{mode ? 'Month' : 'Week'}</Text>
           <OwnButton icon={mode ? 'calendar-week-begin' : 'calendar-weekend'} onPress={handleSwitchMode} numberInRow={4} marginTop={-250} />
           
         </View>
@@ -57,9 +57,7 @@ export default WorkoutsChartScreen;
 const styles = (theme: ThemeModel) =>
   StyleSheet.create({
     text: {
-      textAlign: 'center',
       color: theme.colors.STEP_999,
-      fontWeight: '600',
       fontSize: theme.typography.size.L,
       marginBottom: 20,
       marginTop: -150,

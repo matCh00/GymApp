@@ -15,6 +15,7 @@ import { CreatorStackParams } from '../navigation/CreatorNavigation';
 import { useEffect, useState } from 'react';
 import { ref, getDownloadURL } from 'firebase/storage';
 import { storage } from '../../firebase/Init';
+import { GlobalStyles } from '../../theme/utils/GlobalStyles';
 
 const MuscleItem = (props: MuscleModel) => {
 
@@ -67,11 +68,11 @@ const MuscleItem = (props: MuscleModel) => {
 
   return (
     <TouchableOpacity 
-      style={style.itemContainer}
+      style={[GlobalStyles.itemContainer, style.itemContainer]}
       onPress={goToExercise}
       activeOpacity={.7}
     >
-      <Text style={style.text}> 
+      <Text style={[GlobalStyles.text, style.text]}> 
         {MusclesEnum[muscleKey]} 
       </Text>
 
@@ -89,18 +90,10 @@ export default MuscleItem;
 const styles = (theme: ThemeModel) =>
   StyleSheet.create({
     itemContainer: {
-      width: '80%', 
-      alignItems: 'center',
       backgroundColor: theme.colors.STEP_99,
-      paddingVertical: 10,
-      borderRadius: 16,
-      margin: 16,
-      elevation: 20
     },
     text: {
-      textAlign: 'center',
       color: theme.colors.STEP_000,
-      fontWeight: '600',
       fontSize: theme.typography.size.M,
       marginBottom: 10,
     },

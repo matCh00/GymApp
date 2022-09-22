@@ -89,7 +89,7 @@ const WeightsChartScreen = () => {
 
         </View>
 
-        <Text style={style.text}>{exerciseValue}</Text>
+        <Text style={[GlobalStyles.text, style.text]}>{exerciseValue}</Text>
 
         <WeightsChartMonth exerciseName={exerciseValue} />
 
@@ -103,9 +103,7 @@ export default WeightsChartScreen;
 const styles = (theme: ThemeModel) =>
   StyleSheet.create({
     text: {
-      textAlign: 'center',
       color: theme.colors.STEP_999,
-      fontWeight: '600',
       fontSize: theme.typography.size.M,
       marginBottom: 20,
       marginTop: -15,

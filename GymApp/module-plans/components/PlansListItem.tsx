@@ -13,6 +13,7 @@
 import { PlanModel } from '../utils/PlanModel';
 import { useDispatch } from 'react-redux';
 import { selectPlan } from '../redux/WorkoutReducer';
+import { GlobalStyles } from '../../theme/utils/GlobalStyles';
 
 const PlansListItem = (props: PlanModel) => {
 
@@ -55,11 +56,11 @@ const PlansListItem = (props: PlanModel) => {
   }
 
   return (
-    <View style={style.itemContainer}>
+    <View style={[GlobalStyles.itemContainer, style.itemContainer]}>
 
-      <Text style={style.text}>{planName}</Text>
+      <Text style={[GlobalStyles.text, style.text]}>{planName}</Text>
 
-      <Text style={style.text}>{getDate()}</Text>
+      <Text style={[GlobalStyles.text, style.text]}>{getDate()}</Text>
 
       <OwnButton title="Show" onPress={handleStartWorkout} />
 
@@ -72,20 +73,12 @@ export default PlansListItem;
 const styles = (theme: ThemeModel) =>
   StyleSheet.create({
     itemContainer: {
-      minWidth: '85%',
-      alignItems: 'center',
       backgroundColor: theme.colors.STEP_99,
-      paddingVertical: 10,
-      borderRadius: 40,
-      margin: 16,
-      elevation: 10,
       borderWidth: 1,
       borderColor: theme.colors.STEP_999,
     },
     text: {
-      textAlign: 'center',
       color: theme.colors.STEP_000,
-      fontWeight: '600',
       fontSize: theme.typography.size.M,
       marginBottom: 10,
     },
