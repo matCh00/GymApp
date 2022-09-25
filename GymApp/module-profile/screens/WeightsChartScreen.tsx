@@ -67,8 +67,9 @@ const WeightsChartScreen = () => {
               setValue={setMuscleValue}
               placeholder={'Select muscle'}
               style={{
-                backgroundColor: theme.colors.STEP_9999,
+                backgroundColor: theme.colors.STEP_999,
               }}
+              dropDownContainerStyle={{backgroundColor: theme.colors.STEP_9999}}
             />
           </View>
 
@@ -82,8 +83,9 @@ const WeightsChartScreen = () => {
               placeholder={'Select exercise'}
               bottomOffset={100}
               style={{
-                backgroundColor: theme.colors.STEP_9999,
+                backgroundColor: theme.colors.STEP_999,
               }}
+              dropDownContainerStyle={{backgroundColor: theme.colors.STEP_9999}}
             />
           </View>
 

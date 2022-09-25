@@ -27,7 +27,7 @@ const green_black = {
   STEP_9: '#20a805',
   STEP_99: '#7ec667',
   STEP_999: '#c1e3b2',
-  STEP_9999: '#ffffff',
+  STEP_9999: '#e1f1da',
 }
 
 const vine_red = {

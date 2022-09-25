@@ -158,7 +158,7 @@ const ProfileNavigation = () => {
         }}
       />
 
-      <ProfileStack.Screen 
+      {/* <ProfileStack.Screen 
         name="Settings" 
         component={SettingsScreen} 
         options={{
@@ -170,7 +170,7 @@ const ProfileNavigation = () => {
             <MaterialCommunityIcons name="tools" color={color} size={size} />
           ),
         }}
-      />
+      /> */}
 
     </ProfileStack.Navigator>
   );

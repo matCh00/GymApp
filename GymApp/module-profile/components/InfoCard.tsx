@@ -8,6 +8,7 @@ import useThemedStyles from '../../theme/hooks/useThemeStyles';
 import { ThemeModel } from '../../theme/models/ThemeModel';
 import { GlobalStyles } from '../../theme/utils/GlobalStyles';
 import { InfoCardModel } from '../utils/InfoCardModel';
+import CardTemplate from '../../shared/components/CardTemplate';
 
 const InfoCard = (props: InfoCardModel) => {
 
@@ -23,12 +24,12 @@ const InfoCard = (props: InfoCardModel) => {
   const style = useThemedStyles(styles);
 
   return (
-    <View style={[GlobalStyles.itemContainerSharp, style.itemContainer]}>
+    <CardTemplate radius={10}>
 
       <Text style={[GlobalStyles.text, style.textHeader]}>{header}</Text>
       <Text style={[GlobalStyles.text, style.textContent]}>{content}</Text>
 
-    </View>
+    </CardTemplate>
   );
 };
 
@@ -36,9 +37,6 @@ export default InfoCard;
 
 const styles = (theme: ThemeModel) =>
   StyleSheet.create({
-    itemContainer: {
-      backgroundColor: theme.colors.STEP_99,
-    },
     textHeader: {
       color: theme.colors.STEP_5,
       fontSize: theme.typography.size.L,

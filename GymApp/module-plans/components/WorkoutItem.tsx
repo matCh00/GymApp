@@ -13,6 +13,7 @@ import { storage } from '../../firebase/Init';
 import CachedImage from 'expo-cached-image';
 import { ExerciseModel } from '../../module-creator/utils/ExerciseModel';
 import { GlobalStyles } from '../../theme/utils/GlobalStyles';
+import CardTemplate from '../../shared/components/CardTemplate';
  
 const WorkoutItem = (props: ExerciseModel) => {
  
@@ -61,7 +62,7 @@ const WorkoutItem = (props: ExerciseModel) => {
   }, [props]);
 
   return (
-    <View style={[GlobalStyles.itemContainerRound, style.itemContainer]}>
+    <CardTemplate>
  
       <Text style={[GlobalStyles.text, style.text]}>{exerciseName}</Text>
  
@@ -74,7 +75,7 @@ const WorkoutItem = (props: ExerciseModel) => {
       <Text style={[GlobalStyles.text, style.metadataText]}>Reps: {reps}</Text>
       <Text style={[GlobalStyles.text, style.metadataText]}>Weight: {weight} kg</Text>
 
-    </View>
+    </CardTemplate>
   );
 };
  
@@ -82,9 +83,6 @@ export default WorkoutItem;
  
 const styles = (theme: ThemeModel) =>
   StyleSheet.create({
-    itemContainer: {
-      backgroundColor: theme.colors.STEP_99,
-    },
     text: {
       color: theme.colors.STEP_000,
       fontSize: theme.typography.size.M,

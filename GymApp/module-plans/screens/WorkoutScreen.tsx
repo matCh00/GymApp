@@ -24,6 +24,7 @@ import { TrainingSummaryModel } from '../utils/TrainingSummaryModel';
 import { addSummaryDB } from '../../firebase/Database';
 import { AuthModel } from '../../shared/models/AuthModel';
 import { AuthContext } from '../../shared/state/AuthContext';
+import { ExerciseModel } from '../../module-creator/utils/ExerciseModel';
 
 const WorkoutScreen = () => {
   
@@ -31,6 +32,8 @@ const WorkoutScreen = () => {
   const [results, setResults] = useState<ResultsModel[]>([]);
   const [setIndex, setSetIndex] = useState(0);
   const [resultArr, setResultArr] = useState<ResultModel[]>([]);
+  const [totalSets, setTotalSets] = useState(0);
+  const [setDone, setSetDone] = useState(0);
 
   /**
    * referencja do komponentu
@@ -67,6 +70,8 @@ const WorkoutScreen = () => {
    * następne ćwiczenie
    */
   const nextExercise = () => {
+    setSetDone(s => s + 1);
+
     if (exerciseIndex < statePlan.exercises.length) {
 
       let res: ResultModel = timerRef.current.signalResult();
@@ -112,6 +117,18 @@ const WorkoutScreen = () => {
 
     navigation.replace("Plans");
   }
+
+  /**
+   * zliczenie wszystkich serii
+   */
+  useEffect(() => {
+    let sum = 0;
+    statePlan.exercises.forEach((e: ExerciseModel) => {
+      sum += e.sets;
+    })
+    setTotalSets(sum);
+  }, [])
+  
   
   return (
     <BackgroundTemplate>
@@ -120,6 +137,10 @@ const WorkoutScreen = () => {
         {exerciseIndex < statePlan.exercises.length
           ?
             <> 
+              <Text style={style.textProgress}>
+                {Math.floor((setDone / totalSets) * 100)}% -&gt; {Math.floor(((setDone + 1) / totalSets) * 100)}%
+              </Text>
+
               <Timer ref={timerRef} />
 
               <WorkoutItem 
@@ -143,7 +164,7 @@ const WorkoutScreen = () => {
               />
 
               <View style={{flexDirection: 'row'}}>
-                <OwnButton title="Start" onPress={() => {timerService.sendSignal('RESUME' as TimerActionsEnum)}} />
+                <OwnButton title="Reset" onPress={() => {timerService.sendSignal('RESUME' as TimerActionsEnum)}} />
                 <OwnButton title="Pause" onPress={() => {timerService.sendSignal('PAUSE' as TimerActionsEnum)}} />
               </View>
             </>
@@ -207,25 +228,28 @@ export default WorkoutScreen;
 const styles = (theme: ThemeModel) =>
   StyleSheet.create({
     text: {
-      textAlign: 'right',
       color: theme.colors.STEP_999,
       fontWeight: '600',
       fontSize: theme.typography.size.L,
       marginBottom: 20,
     },
     headerText: {
-      textAlign: 'left',
       color: theme.colors.STEP_99,
       fontWeight: '600',
       fontSize: theme.typography.size.L,
       marginTop: 20,
     },
     descriptionText: {
-      textAlign: 'left',
       color: theme.colors.STEP_99,
       fontWeight: '600',
       fontSize: theme.typography.size.M,
       marginTop: 5,
+      marginBottom: 10,
+    },
+    textProgress: {
+      color: theme.colors.STEP_9,
+      fontWeight: '600',
+      fontSize: theme.typography.size.L,
       marginBottom: 10,
     }
   });

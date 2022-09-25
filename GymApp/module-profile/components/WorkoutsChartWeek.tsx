@@ -56,8 +56,8 @@ const WorkoutsChartWeek = ({selectedMonth}) => {
     let end: Date;
 
     if (new Date().getFullYear() === time.getFullYear() && new Date().getMonth() === time.getMonth()) {
-      start = createDateAsUTC(new Date(time.getFullYear(), time.getMonth(), time.getDate() - 1 - 7 - (week * 7)));
-      end = createDateAsUTC(new Date(time.getFullYear(), time.getMonth(), time.getDate() - 1 - (week * 7)));
+      start = createDateAsUTC(new Date(time.getFullYear(), time.getMonth(), time.getDate() - 6 - (week * 7)));
+      end = createDateAsUTC(new Date(time.getFullYear(), time.getMonth(), time.getDate() - (week * 7)));
     }
     else {
       let startTemp = new Date(time.getFullYear(), time.getMonth())
@@ -77,7 +77,7 @@ const WorkoutsChartWeek = ({selectedMonth}) => {
     const data: any = weekBoundaries(week);
     
     setDayStart(data.start.getDate() < data.end.getDate() ? data.start.getDate() : 1);
-    setDayEnd(data.end.getDate() + 0.5);
+    setDayEnd(data.end.getDate());
     setMonthName(data.name);
     setStart(data.start);
     setEnd(data.end);
@@ -144,7 +144,7 @@ const WorkoutsChartWeek = ({selectedMonth}) => {
         ?
           <VictoryChart 
             theme={VictoryTheme.material} 
-            domain={{x: [dayStart, dayEnd]}} 
+            domain={{x: [dayStart-0.4, dayEnd+0.4]}} 
             padding={{top: 20, bottom: 65, right: 20, left: 40}} 
             height={Dimensions.get('window').height / 2}
           >

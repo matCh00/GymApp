@@ -17,6 +17,7 @@ import { useRoute } from '@react-navigation/native';
 import CachedImage from 'expo-cached-image';
 import ExerciseMetadata from './ExerciseMetadata';
 import { GlobalStyles } from '../../theme/utils/GlobalStyles';
+import CardTemplate from '../../shared/components/CardTemplate';
 
 /**
  * rozszerzenie props
@@ -27,9 +28,9 @@ interface ExerciseModelExtended extends ExerciseModel {
 
 const ExerciseItem = (props: ExerciseModelExtended) => {
 
-  const [setsCount, setSetsCount] = useState(1);
-  const [repsCount, setRepsCount] = useState(1);
-  const [weightCount, setWeightCount] = useState(1);
+  const [setsCount, setSetsCount] = useState(4);
+  const [repsCount, setRepsCount] = useState(10);
+  const [weightCount, setWeightCount] = useState(15);
   const [settingsOpened, setSettingsOpened] = useState(false);
 
   /**
@@ -107,7 +108,7 @@ const ExerciseItem = (props: ExerciseModelExtended) => {
   }
 
   return (
-    <View style={[GlobalStyles.itemContainerRound, style.itemContainer]}>
+    <CardTemplate>
 
       <Text style={[GlobalStyles.text, style.text]}>{exerciseName}</Text>
 
@@ -147,7 +148,7 @@ const ExerciseItem = (props: ExerciseModelExtended) => {
           </>
       }
 
-    </View>
+    </CardTemplate>
   );
 };
 
@@ -155,9 +156,6 @@ export default ExerciseItem;
 
 const styles = (theme: ThemeModel) =>
   StyleSheet.create({
-    itemContainer: {
-      backgroundColor: theme.colors.STEP_99,
-    },
     text: {
       color: theme.colors.STEP_000,
       fontSize: theme.typography.size.M,

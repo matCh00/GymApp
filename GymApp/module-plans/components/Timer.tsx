@@ -89,10 +89,10 @@ const Timer = forwardRef((props, ref) => {
       <Text style={[GlobalStyles.text, style.text]}>
         {hours > 9 ? hours : '0' + hours + ':'}
       </Text>
-      <Text style={style.text}>
+      <Text style={[GlobalStyles.text, style.text]}>
         {minutes > 9 ? minutes : '0' + minutes + ':'}
       </Text>
-      <Text style={style.text}>
+      <Text style={[GlobalStyles.text, style.text]}>
         {seconds > 9 ? seconds : '0' + seconds}
       </Text>
     </View>

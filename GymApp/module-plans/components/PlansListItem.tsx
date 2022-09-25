@@ -2,18 +2,19 @@
  * Element listy planów treningowych
  */
 
- import { useNavigation } from '@react-navigation/native';
- import { NativeStackNavigationProp } from '@react-navigation/native-stack';
- import { StyleSheet, View, Text } from 'react-native';
- import useTheme from '../../theme/hooks/useTheme';
- import useThemedStyles from '../../theme/hooks/useThemeStyles';
- import { ThemeModel } from '../../theme/models/ThemeModel';
- import { PlansStackParams } from '../navigation/PlansNavigation';
- import OwnButton from '../../shared/components/OwnButton';
+import { useNavigation } from '@react-navigation/native';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import { StyleSheet, View, Text } from 'react-native';
+import useTheme from '../../theme/hooks/useTheme';
+import useThemedStyles from '../../theme/hooks/useThemeStyles';
+import { ThemeModel } from '../../theme/models/ThemeModel';
+import { PlansStackParams } from '../navigation/PlansNavigation';
+import OwnButton from '../../shared/components/OwnButton';
 import { PlanModel } from '../utils/PlanModel';
 import { useDispatch } from 'react-redux';
 import { selectPlan } from '../redux/WorkoutReducer';
 import { GlobalStyles } from '../../theme/utils/GlobalStyles';
+import CardTemplate from '../../shared/components/CardTemplate';
 
 const PlansListItem = (props: PlanModel) => {
 
@@ -56,7 +57,7 @@ const PlansListItem = (props: PlanModel) => {
   }
 
   return (
-    <View style={[GlobalStyles.itemContainerRound, style.itemContainer]}>
+    <CardTemplate>
 
       <Text style={[GlobalStyles.text, style.text]}>{planName}</Text>
 
@@ -64,7 +65,7 @@ const PlansListItem = (props: PlanModel) => {
 
       <OwnButton title="Show" onPress={handleStartWorkout} />
 
-    </View>
+    </CardTemplate>
   );
 };
 
@@ -72,11 +73,6 @@ export default PlansListItem;
 
 const styles = (theme: ThemeModel) =>
   StyleSheet.create({
-    itemContainer: {
-      backgroundColor: theme.colors.STEP_99,
-      borderWidth: 1,
-      borderColor: theme.colors.STEP_999,
-    },
     text: {
       color: theme.colors.STEP_000,
       fontSize: theme.typography.size.M,
