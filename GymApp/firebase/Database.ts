@@ -37,10 +37,14 @@ export const getUsersDB = async () => {
 
 /**
  * dodaj użytkownika
+ * oraz datę założenia konta
  */
 export const addUserDB = async (email: string) => {
   
-  await addDoc(usersRef, {email: email})
+  await addDoc(usersRef, {
+    email: email,
+    created: new Date(),
+  })
 }
 
 
@@ -84,6 +88,19 @@ export const getThemeDB = async (email: string) => {
 
 
 /**
+ * pobierz datę utworzenia konta
+ */
+export const getCreatedDB = async (email: string) => {
+  
+  const q = query(usersRef, where("email", '==', email));
+
+  const querySnapshot = await getDocs(q);  
+
+  return querySnapshot.docs[0].get("created");
+}
+
+
+/**
  * dodaj nowy plan treningowy
  */
 export const addPlanDB = async (email: string, plan: PlanModel) => {
@@ -99,7 +116,7 @@ export const addPlanDB = async (email: string, plan: PlanModel) => {
 
 
 /**
- * pobierz plany treningowy
+ * pobierz plany treningowe
  */
 export const getPlansDB = async (email: string) => {
   

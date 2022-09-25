@@ -10,13 +10,21 @@ export const GlobalStyles = StyleSheet.create({
     minWidth: '100%',
     alignItems: 'center',
   },
-  itemContainer: {
+  itemContainerRound: {
     alignItems: 'center',
     minWidth: '90%',
     paddingVertical: 10,
     borderRadius: 40,
     margin: 16,
     elevation: 20  
+  },
+  itemContainerSharp: {
+    alignItems: 'center',
+    minWidth: '90%',
+    paddingVertical: 10,
+    borderRadius: 10,
+    margin: 16,
+    elevation: 20,
   },
   text: {
     textAlign: 'center',

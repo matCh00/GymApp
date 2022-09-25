@@ -68,7 +68,7 @@ const MuscleItem = (props: MuscleModel) => {
 
   return (
     <TouchableOpacity 
-      style={[GlobalStyles.itemContainer, style.itemContainer]}
+      style={[GlobalStyles.itemContainerRound, style.itemContainer]}
       onPress={goToExercise}
       activeOpacity={.7}
     >

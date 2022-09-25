@@ -62,7 +62,7 @@ const ExerciseItem = (props: ExerciseModel) => {
   }, []);
 
   return (
-    <View style={[GlobalStyles.itemContainer, style.itemContainer]}>
+    <View style={[GlobalStyles.itemContainerRound, style.itemContainer]}>
 
       <Text style={[GlobalStyles.text, style.text]}>{exerciseName}</Text>
 
