@@ -67,5 +67,6 @@ const styles = (theme: ThemeModel) =>
       color: theme.colors.STEP_999,
       fontWeight: '700',
       fontSize: theme.typography.size.S,
+      textAlign: 'center'
     }
   });

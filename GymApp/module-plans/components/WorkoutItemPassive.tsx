@@ -14,13 +14,24 @@ import CachedImage from 'expo-cached-image';
 import { ExerciseModel } from '../../module-creator/utils/ExerciseModel';
 import { GlobalStyles } from '../../theme/utils/GlobalStyles';
 import CardTemplate from '../../shared/components/CardTemplate';
+import OwnButton from '../../shared/components/OwnButton';
+import { ResultsModel } from '../utils/ResultsModel';
  
-const WorkoutItem = (props: ExerciseModel) => {
+/**
+ * rozszerzenie props
+ */
+interface ExerciseModelExtended extends ExerciseModel {
+  doneSignal?: (exercise: ResultsModel) => void;
+}
+
+const WorkoutItemPassive = (props: ExerciseModelExtended) => {
+
+  const [done, setDone] = useState(0);
  
   /**
    * props
    */
-  const {pathName, muscleName, exerciseName, exerciseKey, sets, reps, weight} = props;
+  const {pathName, muscleName, exerciseName, exerciseKey, sets, reps, weight, doneSignal} = props;
  
   /**
    * motyw
@@ -61,6 +72,19 @@ const WorkoutItem = (props: ExerciseModel) => {
     if (url !== pathName) load();
   }, [props]);
 
+  /**
+   * zakończenie ćwiczenia
+   */
+  const handleDoneSignal = () => {
+    doneSignal({
+      exerciseName: exerciseName,
+      muscleName: muscleName,
+      reps: reps,
+      weight: weight
+    } as ResultsModel);
+    setDone(d => d + 1);
+  }
+
   return (
     <CardTemplate>
  
@@ -71,15 +95,25 @@ const WorkoutItem = (props: ExerciseModel) => {
         : <ActivityIndicator color={theme.colors.STEP_0} size={40} />
       }
  
-      <Text style={[GlobalStyles.text, style.metadataText]}>Sets: {sets}</Text>
-      <Text style={[GlobalStyles.text, style.metadataText]}>Reps: {reps}</Text>
-      <Text style={[GlobalStyles.text, style.metadataText]}>Weight: {weight} kg</Text>
+      <View style={{flexDirection: 'row'}}>
 
+        <View style={{flexDirection: 'column'}}>
+          <Text style={[GlobalStyles.text, style.metadataText]}>Sets: {sets}</Text>
+          <Text style={[GlobalStyles.text, style.metadataText]}>Reps: {reps}</Text>
+          <Text style={[GlobalStyles.text, style.metadataText]}>Weight: {weight} kg</Text>
+        </View>
+
+        {done < sets
+          ? <OwnButton icon='check' onPress={handleDoneSignal} numberInRow={2} marginTop={-1} />
+          : null
+        }
+
+      </View>
     </CardTemplate>
   );
 };
  
-export default WorkoutItem;
+export default WorkoutItemPassive;
  
 const styles = (theme: ThemeModel) =>
   StyleSheet.create({

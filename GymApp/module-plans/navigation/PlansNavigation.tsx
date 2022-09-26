@@ -6,7 +6,8 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import useTheme from "../../theme/hooks/useTheme";
 import PlanScreen from "../screens/PlanScreen";
 import PlansScreen from '../screens/PlansScreen';
-import WorkoutScreen from "../screens/WorkoutScreen";
+import WorkoutScreenActive from "../screens/WorkoutScreenActive";
+import WorkoutScreenPassive from "../screens/WorkoutScreenPassive";
 
 /** 
  * parametry 
@@ -16,7 +17,8 @@ export type PlansStackParams = {
   Plan: {
     planKey: string;
   }
-  Workout: undefined;
+  ActiveWorkout: undefined;
+  PassiveWorkout: undefined;
 };
 
 /** 
@@ -43,7 +45,9 @@ const PlansNavigation = () => {
 
       <PlansStack.Screen name="Plan" component={PlanScreen} />
 
-      <PlansStack.Screen name="Workout" component={WorkoutScreen} />
+      <PlansStack.Screen name="ActiveWorkout" component={WorkoutScreenActive} options={{title: "Active Workout"}} />
+
+      <PlansStack.Screen name="PassiveWorkout" component={WorkoutScreenPassive} options={{title: "Passive Workout"}} />
 
     </PlansStack.Navigator>
   );

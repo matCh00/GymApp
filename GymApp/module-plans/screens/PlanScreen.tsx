@@ -60,17 +60,27 @@ const PlanScreen = ({route, navigation}: Props) => {
   }, [])
 
   /**
-   * rozpoczęcie treningu
+   * rozpoczęcie aktywnego treningu
    */
-  const handleStartWorkout = () => {
-    navigation.push("Workout");
+  const handleStartActiveWorkout = () => {
+    navigation.push("ActiveWorkout");
+  }
+
+  /**
+   * rozpoczęcie aktywnego treningu
+   */
+   const handleStartPassiveWorkout = () => {
+    navigation.push("PassiveWorkout");
   }
 
   return (
     <BackgroundTemplate>
       <View style={GlobalStyles.container}>
 
-        <OwnButton title="Start workout!" onPress={handleStartWorkout} marginTop={20} />
+        <View style={{flexDirection: 'row', marginBottom: 10}}>
+          <OwnButton title="Start active workout!" onPress={handleStartActiveWorkout} marginTop={20} numberInRow={2} />
+          <OwnButton title="Start passive workout!" onPress={handleStartPassiveWorkout} marginTop={20} numberInRow={2} />
+        </View>
 
         <FlatList
           data={exercises}

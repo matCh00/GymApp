@@ -12,7 +12,7 @@ import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { useContext, useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { PlansStackParams } from '../navigation/PlansNavigation';
-import WorkoutItem from '../components/WorkoutItem';
+import WorkoutItemActive from '../components/WorkoutItemActive';
 import OwnButton from '../../shared/components/OwnButton';
 import { useNavigation } from '@react-navigation/native';
 import Timer from '../components/Timer';
@@ -26,7 +26,7 @@ import { AuthModel } from '../../shared/models/AuthModel';
 import { AuthContext } from '../../shared/state/AuthContext';
 import { ExerciseModel } from '../../module-creator/utils/ExerciseModel';
 
-const WorkoutScreen = () => {
+const WorkoutScreenActive = () => {
   
   const [exerciseIndex, setExerciseIndex] = useState(0);
   const [results, setResults] = useState<ResultsModel[]>([]);
@@ -104,7 +104,7 @@ const WorkoutScreen = () => {
   /**
    * zakończenie treningu
    */
-  const handleFinish = () => {
+  const handleSave = () => {
     timerService.sendSignal('FINISH' as TimerActionsEnum);
 
     let date = new Date();
@@ -114,7 +114,6 @@ const WorkoutScreen = () => {
     } as TrainingSummaryModel;
 
     addSummaryDB(email, summary);
-
     navigation.replace("Plans");
   }
 
@@ -143,7 +142,7 @@ const WorkoutScreen = () => {
 
               <Timer ref={timerRef} />
 
-              <WorkoutItem 
+              <WorkoutItemActive 
                 pathName={statePlan.exercises[exerciseIndex].pathName} 
                 muscleName={statePlan.exercises[exerciseIndex].muscleName}
                 exerciseName={statePlan.exercises[exerciseIndex].exerciseName}
@@ -171,7 +170,7 @@ const WorkoutScreen = () => {
             
           :
             <>
-              <OwnButton title="Save" onPress={handleFinish} marginTop={20} marginBottom={20} />
+              <OwnButton title="Save" onPress={handleSave} marginTop={20} marginBottom={20} />
 
                 <FlatList
                   data={results}
@@ -223,7 +222,7 @@ const WorkoutScreen = () => {
   );
 };
 
-export default WorkoutScreen;
+export default WorkoutScreenActive;
 
 const styles = (theme: ThemeModel) =>
   StyleSheet.create({
