@@ -4,7 +4,7 @@
 
 import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
-import { StyleSheet, Text, View, FlatList } from 'react-native';
+import { StyleSheet, Text, View, FlatList, Alert } from 'react-native';
 import useTheme from '../../theme/hooks/useTheme';
 import useThemedStyles from '../../theme/hooks/useThemeStyles';
 import { ThemeModel } from '../../theme/models/ThemeModel';
@@ -104,7 +104,14 @@ const CreatorScreen = () => {
    * zapisanie planu treningowego
    */
   const handleSubmit = () => {
-    setSubmitModalOpend(true);
+    if (stateExercises.length > 0) {
+      setSubmitModalOpend(true);
+    }
+    else {
+      Alert.alert("Empty", "Select some exercises!", [
+        { text: "OK", onPress: () => null },
+      ]);
+    }
   }
   
   return (
@@ -164,6 +171,7 @@ const CreatorScreen = () => {
               style={{
                 backgroundColor: theme.colors.STEP_9999
               }}
+              dropDownContainerStyle={{backgroundColor: theme.colors.STEP_9999}}
             />
 
             <View style={{flexDirection: 'row'}}>

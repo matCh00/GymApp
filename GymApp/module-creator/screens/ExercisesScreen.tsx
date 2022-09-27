@@ -13,16 +13,11 @@ import ExerciseItem from '../components/ExerciseItem';
 import { FloatingAction } from "react-native-floating-action";
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { Exercises } from '../utils/Exercises';
-import OwnPopup from '../../shared/components/OwnPopup';
-import { useState } from 'react';
-import ExercisesPopupView from '../components/ExercisesPopupView';
 import { GlobalStyles } from '../../theme/utils/GlobalStyles';
 
 type Props = NativeStackScreenProps<CreatorStackParams, 'Exercises'>;
 
 const ExercisesScreen = ({route, navigation}: Props) => {
-
-  const [modalOpend, setModalOpened] = useState(false);
   
   /**
    * wybrana partia mięśniowa
@@ -65,19 +60,11 @@ const ExercisesScreen = ({route, navigation}: Props) => {
 
       <FloatingAction
         color={theme.colors.STEP_0}
-        floatingIcon={<MaterialCommunityIcons name="checkbox-multiple-blank-outline" color={theme.colors.STEP_99} size={24} />}
+        floatingIcon={<MaterialCommunityIcons name="pin" color={theme.colors.STEP_99} size={24} />}
         showBackground={false}
         onPressMain={() => {
-          setModalOpened(true);
+          navigation.navigate("Creator");
         }}
-      />
-
-      <OwnPopup 
-        visible={modalOpend} 
-        setVisible={setModalOpened} 
-        children={
-          <ExercisesPopupView currentMuscle={muscle} />
-        } 
       />
 
     </BackgroundTemplate>

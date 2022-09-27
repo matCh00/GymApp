@@ -68,8 +68,11 @@ const SubmitPopupView = ({setSubmitModalOpend}) => {
         <OwnInput placeholder='plan name' value={planName} onChangeText={setPlanName} />
       </View>
 
-      <OwnButton title='Save plan' onPress={handleSavePlan} />
-
+      <View style={{flexDirection: 'row'}}>
+        <OwnButton title='Save plan' onPress={handleSavePlan} numberInRow={2} />
+        <OwnButton title='Go back' onPress={() => {setSubmitModalOpend(false);}} numberInRow={2} />
+      </View>
+      
     </View>
   );
 };

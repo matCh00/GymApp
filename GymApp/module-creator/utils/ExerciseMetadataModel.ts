@@ -7,4 +7,5 @@ export interface ExerciseMetadataModel {
   count: number;
   setCount(value: number): void | Promise<void>;
   type?: string;
+  textMarginRight?: number;
 }

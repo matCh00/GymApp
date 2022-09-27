@@ -16,22 +16,27 @@ import { GlobalStyles } from '../../theme/utils/GlobalStyles';
 import CardTemplate from '../../shared/components/CardTemplate';
 import OwnButton from '../../shared/components/OwnButton';
 import { ResultsModel } from '../utils/ResultsModel';
+import ExerciseMetadata from '../../module-creator/components/ExerciseMetadata';
  
 /**
  * rozszerzenie props
  */
 interface ExerciseModelExtended extends ExerciseModel {
-  doneSignal?: (exercise: ResultsModel) => void;
+  setDoneSignal?: (exercise: ResultsModel) => void;
+  exerciseDoneSignal?: () => void;
 }
 
 const WorkoutItemPassive = (props: ExerciseModelExtended) => {
 
-  const [done, setDone] = useState(0);
+  const [setsCount, setSetsCount] = useState(4);
+  const [repsCount, setRepsCount] = useState(10);
+  const [weightCount, setWeightCount] = useState(15);
+  const [doneSets, setDoneSets] = useState(0);
  
   /**
    * props
    */
-  const {pathName, muscleName, exerciseName, exerciseKey, sets, reps, weight, doneSignal} = props;
+  const {pathName, muscleName, exerciseName, exerciseKey, sets, reps, weight, setDoneSignal, exerciseDoneSignal} = props;
  
   /**
    * motyw
@@ -56,6 +61,15 @@ const WorkoutItemPassive = (props: ExerciseModelExtended) => {
   const stateExercises = useSelector((state: any) => state.selectedExercises.exercises);
  
   /**
+   * przypisanie wartości z props
+   */
+  useEffect(() => {
+    setSetsCount(sets);
+    setRepsCount(reps);
+    setWeightCount(weight);
+  }, [])
+
+  /**
    * przeładowanie obrazka
    */
   useEffect(() => {
@@ -75,19 +89,23 @@ const WorkoutItemPassive = (props: ExerciseModelExtended) => {
   /**
    * zakończenie ćwiczenia
    */
-  const handleDoneSignal = () => {
-    doneSignal({
+  const handleDoneSetsSignal = () => {
+    if (doneSets + 1 >= setsCount) {
+      exerciseDoneSignal();
+    }
+    setDoneSignal({
       exerciseName: exerciseName,
       muscleName: muscleName,
-      reps: reps,
-      weight: weight
+      sets: setsCount,
+      reps: repsCount,
+      weight: weightCount
     } as ResultsModel);
-    setDone(d => d + 1);
+    setDoneSets(d => d + 1);
   }
 
   return (
     <CardTemplate>
- 
+
       <Text style={[GlobalStyles.text, style.text]}>{exerciseName}</Text>
  
       {urlLoaded
@@ -98,13 +116,13 @@ const WorkoutItemPassive = (props: ExerciseModelExtended) => {
       <View style={{flexDirection: 'row'}}>
 
         <View style={{flexDirection: 'column'}}>
-          <Text style={[GlobalStyles.text, style.metadataText]}>Sets: {sets}</Text>
-          <Text style={[GlobalStyles.text, style.metadataText]}>Reps: {reps}</Text>
-          <Text style={[GlobalStyles.text, style.metadataText]}>Weight: {weight} kg</Text>
+          <ExerciseMetadata name={'Sets'} count={setsCount} setCount={setSetsCount} textMarginRight={14} />
+          <ExerciseMetadata name={'Reps'} count={repsCount} setCount={setRepsCount} textMarginRight={11} />
+          <ExerciseMetadata name={'Weight'} type={'weight'} count={weightCount} setCount={setWeightCount} />
         </View>
 
-        {done < sets
-          ? <OwnButton icon='check' onPress={handleDoneSignal} numberInRow={2} marginTop={-1} />
+        {doneSets < setsCount
+          ? <OwnButton icon='check' onPress={handleDoneSetsSignal} numberInRow={6} marginTop={-1} />
           : null
         }
 

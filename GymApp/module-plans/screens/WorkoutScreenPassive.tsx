@@ -2,7 +2,7 @@
  * Ekran ćwiczeń
  */
 
-import { StyleSheet, Text, View, FlatList,Alert } from 'react-native';
+import { StyleSheet, Text, View, FlatList } from 'react-native';
 import useTheme from '../../theme/hooks/useTheme';
 import useThemedStyles from '../../theme/hooks/useThemeStyles';
 import { ThemeModel } from '../../theme/models/ThemeModel';
@@ -14,7 +14,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { PlansStackParams } from '../navigation/PlansNavigation';
 import OwnButton from '../../shared/components/OwnButton';
 import { useNavigation } from '@react-navigation/native';
-import { ResultModel } from '../utils/ResultModel';
 import { ResultsModel } from '../utils/ResultsModel';
 import { TrainingSummaryModel } from '../utils/TrainingSummaryModel';
 import { addSummaryDB } from '../../firebase/Database';
@@ -25,13 +24,10 @@ import WorkoutItemPassive from '../components/WorkoutItemPassive';
 
 const WorkoutScreen = () => {
   
-  const [exerciseIndex, setExerciseIndex] = useState(0);
   const [results, setResults] = useState<ResultsModel[]>([]);
-  const [setIndex, setSetIndex] = useState(0);
-  const [resultArr, setResultArr] = useState<ResultModel[]>([]);
-  const [totalSets, setTotalSets] = useState(0);
-  const [setsDone, setSetsDone] = useState(0);
-  const [finished, setFinished] = useState(false);
+  const [totalExercises, setTotalExercises] = useState(0);
+  const [trainingFinished, setTrainingFinished] = useState(false);
+  const [finishedExercises, setFinishedExercises] = useState(0);
 
   /**
    * motyw
@@ -63,14 +59,7 @@ const WorkoutScreen = () => {
    * zakończenie treningu
    */
   const handleFinish = () => {
-    if (setsDone < totalSets) {
-      Alert.alert("Not finished", "There are still unfinished exercises!", [
-        { text: "OK", onPress: () => null },
-      ]);
-    }
-    else {
-      setFinished(true);
-    }
+    setTrainingFinished(true);
   }
 
   /**
@@ -88,36 +77,41 @@ const WorkoutScreen = () => {
   }
 
   /**
-   * zliczenie wszystkich serii
+   * zliczenie wszystkich ćwiczeń
    */
   useEffect(() => {
     let sum = 0;
     statePlan.exercises.forEach((e: ExerciseModel) => {
-      sum += e.sets;
+      sum += 1;
     })
-    setTotalSets(sum);
+    setTotalExercises(sum);
   }, [])
 
   /**
    * sygnał zakończenia jednego ćwiczenia
    */
-  const handleDoneSignal = (exercise: ResultsModel) => {
-    setSetsDone(s => s + 1);
-
+  const handleSetDoneSignal = (exercise: ResultsModel) => {
     setResults([...results, exercise]);
-  }  
+  }
+
+  /**
+   * sygnał zakończenia całego ćwiczenia
+   */
+  const handleExerciseDoneSignal = () => {
+    setFinishedExercises(f => f + 1);
+  }
   
   return (
     <BackgroundTemplate>
       <View style={GlobalStyles.container}>
 
-        {!finished
+        {!trainingFinished
           ?
             <> 
-              {setsDone < totalSets
+              {finishedExercises < totalExercises
                 ?
                   <Text style={style.textProgress}>
-                    {Math.floor((setsDone / totalSets) * 100)}% -&gt; {Math.floor(((setsDone + 1) / totalSets) * 100)}%
+                    {Math.floor((finishedExercises / totalExercises) * 100)}% -&gt; {Math.floor(((finishedExercises + 1) / totalExercises) * 100)}%
                   </Text>
                 : 
                   <Text style={style.textProgress}>100%</Text>
@@ -137,7 +131,8 @@ const WorkoutScreen = () => {
                         sets={itemData.item.sets}
                         reps={itemData.item.reps}
                         weight={itemData.item.weight}
-                        doneSignal={handleDoneSignal}
+                        setDoneSignal={handleSetDoneSignal}
+                        exerciseDoneSignal={handleExerciseDoneSignal}
                       />
                     </View>
                   );
@@ -185,12 +180,6 @@ export default WorkoutScreen;
 
 const styles = (theme: ThemeModel) =>
   StyleSheet.create({
-    text: {
-      color: theme.colors.STEP_999,
-      fontWeight: '600',
-      fontSize: theme.typography.size.L,
-      marginBottom: 20,
-    },
     headerText: {
       color: theme.colors.STEP_99,
       fontWeight: '600',
@@ -198,7 +187,7 @@ const styles = (theme: ThemeModel) =>
       marginTop: 20,
     },
     descriptionText: {
-      color: theme.colors.STEP_99,
+      color: theme.colors.STEP_999,
       fontWeight: '600',
       fontSize: theme.typography.size.M,
       marginTop: 5,

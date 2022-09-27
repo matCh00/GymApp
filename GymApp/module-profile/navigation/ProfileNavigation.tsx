@@ -11,7 +11,7 @@ import {
 import ProfileScreen from '../screens/ProfileScreen';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import WorkoutsChartScreen from '../screens/WorkoutsChartScreen';
-import WeightsChartScreen from '../screens/WeightsChartScreen';
+import EffortChartScreen from '../screens/EffortChartScreen';
 import { useContext } from 'react';
 import { AuthModel } from '../../shared/models/AuthModel';
 import { AuthContext } from '../../shared/state/AuthContext';
@@ -27,7 +27,7 @@ import { logout } from '../../firebase/Auth';
 export type ProfileStackParams = {
   Profile: undefined;
   Workouts: undefined;
-  Weights: undefined;
+  Effort: undefined;
   Theme: undefined;
   Settings: undefined;
 };
@@ -132,10 +132,10 @@ const ProfileNavigation = () => {
       />
 
       <ProfileStack.Screen 
-        name="Weights" 
-        component={WeightsChartScreen} 
+        name="Effort" 
+        component={EffortChartScreen} 
         options={{
-          title: 'Weights',
+          title: 'Effort',
           headerStyle: {backgroundColor: theme.colors.STEP_0},
           headerTintColor: theme.colors.STEP_999,
           drawerIcon: ({ color, size }) => (

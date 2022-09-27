@@ -1,5 +1,5 @@
 /**
- * Wykres używanego obciążenia podczas treningów na przestrzeni miesiąca
+ * Wykres starań podczas treningów na przestrzeni miesiąca
  */
 
 import { StyleSheet, ActivityIndicator, View, Dimensions, Text } from 'react-native';
@@ -13,12 +13,12 @@ import { AuthModel } from '../../shared/models/AuthModel';
 import { AuthContext } from '../../shared/state/AuthContext';
 import { VictoryArea, VictoryChart, VictoryTheme, VictoryAxis, VictoryLabel } from "victory-native";
 import OwnButton from '../../shared/components/OwnButton';
-import { WeightsChartModel } from '../utils/WeightsChartModel';
+import { EffortChartModel } from '../utils/EffortChartModel';
 import { ResultsModel } from '../../module-plans/utils/ResultsModel';
 
-const WeightsChartMonth = ({exerciseName}) => {
+const EffortChartMonth = ({exerciseName, type}) => {
 
-  const [chartData, setChartData] = useState<WeightsChartModel[]>([]);
+  const [chartData, setChartData] = useState<EffortChartModel[]>([]);
   const [loadingFinished, setLoadingFinished] = useState(false);
   const [dayStart, setDayStart] = useState(0);
   const [dayEnd, setDayEnd] = useState(0);
@@ -56,22 +56,42 @@ const WeightsChartMonth = ({exerciseName}) => {
 
   /**
    * załadowanie podsumowań treningów
+   * wyciągnięcie z nich wszystkich elementów danego typu 
+   * w kolejności od najmłodszego na przestrzeni wybranego miesiąca
    */
   useEffect(() => {
-    let tempData: WeightsChartModel[] = [];
+    let tempData: EffortChartModel[] = [];
 
     getSummariesMonthDB(email, month).then(
       (data: TrainingSummaryModel[]) => {
 
         data.forEach((training: TrainingSummaryModel) => {  
           
-          training.summary.forEach((results: ResultsModel, index) => {
+          let selectedResults: ResultsModel[] = [];
+
+          training.summary.forEach((results: ResultsModel) => {
 
             if (results.exerciseName === exerciseName) {
-              tempData.push({weight: results.weight, iterator: tempData.length});
+              selectedResults.push(results);
+
+              /* dodajemy obciążenie z każdej serii danego treningu */
+              if (type === 'weight' && results.weight) {
+                tempData.push({data: results.weight, iterator: tempData.length});
+              }
+
+              /* dodajemy liczbę powtórzeń z każdej serii danego treningu */
+              else if (type === 'reps' && results.reps) {
+                tempData.push({data: results.reps, iterator: tempData.length});
+              }
             }
           })
+
+          /* dodajemy liczbę serii z danego treningu */
+          if (type === 'sets') {
+            tempData.push({data: selectedResults.length, iterator: tempData.length});
+          }
         })
+        console.log(tempData);
         
         setChartData(tempData);
         setLoadingFinished(true);
@@ -81,7 +101,7 @@ const WeightsChartMonth = ({exerciseName}) => {
     setDayStart(monthBoundaries(month).start);
     setDayEnd(monthBoundaries(month).last);
     setMonthName(monthBoundaries(month).name);
-  }, [month, exerciseName])
+  }, [month, exerciseName, type])
 
   /**
    * następny miesiąc
@@ -144,7 +164,7 @@ const WeightsChartMonth = ({exerciseName}) => {
 
             <VictoryArea 
               data={chartData} 
-              y="weight" 
+              y="data" 
               interpolation="basis"
               style={{ 
                 data: {fill: theme.colors.STEP_99, fillOpacity: 0.95, width: 5}
@@ -176,7 +196,7 @@ const WeightsChartMonth = ({exerciseName}) => {
   );
 };
 
-export default WeightsChartMonth;
+export default EffortChartMonth;
 
 const styles = (theme: ThemeModel) =>
   StyleSheet.create({});

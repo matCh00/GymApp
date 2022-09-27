@@ -11,7 +11,7 @@ import useThemedStyles from '../../theme/hooks/useThemeStyles';
 import { ThemeModel } from '../../theme/models/ThemeModel';
 import { GlobalStyles } from '../../theme/utils/GlobalStyles';
 import { timerService } from '../services/TimerService';
-import { ResultModel } from '../utils/ResultModel';
+import { ResultTimeModel } from '../utils/ResultTimeModel';
 import { TimerActionsEnum } from '../utils/TimerActionsEnum';
 
 const Timer = forwardRef((props, ref) => {
@@ -36,7 +36,7 @@ const Timer = forwardRef((props, ref) => {
    */
   useImperativeHandle(ref, () => ({
     signalResult() {
-      return ({seconds: seconds, minutes: minutes, hours: hours} as ResultModel);
+      return ({seconds: seconds, minutes: minutes, hours: hours} as ResultTimeModel);
     },
   }));
 

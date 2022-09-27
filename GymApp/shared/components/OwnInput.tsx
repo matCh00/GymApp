@@ -40,6 +40,8 @@ const styles = (theme: ThemeModel) =>
   StyleSheet.create({
     inputContainer: {
       width: '80%',
+      minWidth: '50%',
+      minHeight: '10%',
     },
     input: {
       backgroundColor: theme.colors.STEP_999,

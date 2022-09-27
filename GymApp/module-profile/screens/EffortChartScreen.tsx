@@ -1,5 +1,5 @@
 /**
- * Ekran wykresu używanego obciążenia podczas ćwiczeń
+ * Ekran wykresu starań podczas ćwiczeń
  */
 
 import { StyleSheet, Text, View } from 'react-native';
@@ -10,12 +10,12 @@ import BackgroundTemplate from '../../shared/components/BackgroundTemplate';
 import { GlobalStyles } from '../../theme/utils/GlobalStyles';
 import { useEffect, useState } from 'react';
 import OwnButton from '../../shared/components/OwnButton';
-import WeightsChartMonth from '../components/WeightsChartMonth';
+import EffortChartMonth from '../components/EffortChartMonth';
 import DropDownPicker from 'react-native-dropdown-picker';
 import MusclesEnum from '../../module-creator/utils/MusclesEnum';
 import { Exercises } from '../../module-creator/utils/Exercises';
 
-const WeightsChartScreen = () => {
+const EffortChartScreen = () => {
 
   /**
    * motyw
@@ -32,10 +32,19 @@ const WeightsChartScreen = () => {
   const [exerciseOpen, setExerciseOpen] = useState(false);
   const [exerciseValue, setExerciseValue] = useState(null);
   const [exerciseItems, setExerciseItems] = useState<{label: string, value: string}[]>([]);
+  const [effortOpen, setEffortOpen] = useState(false);
+  const [effortValue, setEffortValue] = useState('weight');
+  let effortItems: {label: string, value: string}[] = [];
 
   Object.values(MusclesEnum).forEach((e: string) => {
     muscleItems.push({label: e, value: e});
   });
+
+  effortItems = [
+    {label: 'sets', value: 'sets'},
+    {label: 'reps', value: 'reps'},
+    {label: 'weight', value: 'weight'}
+  ]
 
   /**
    * selekcja ćwiczeń na podstawie partii mieśniowej
@@ -58,7 +67,7 @@ const WeightsChartScreen = () => {
         
         <View style={{flexDirection: 'row', justifyContent: 'space-around', marginTop: -120, marginBottom: 40}}>
 
-          <View style={{width: '45%'}}>
+          <View style={{width: '30%'}}>
             <DropDownPicker
               open={muscleOpen}
               value={muscleValue}
@@ -73,7 +82,7 @@ const WeightsChartScreen = () => {
             />
           </View>
 
-          <View style={{width: '45%'}}>
+          <View style={{width: '30%'}}>
             <DropDownPicker
               open={exerciseOpen}
               value={exerciseValue}
@@ -89,18 +98,33 @@ const WeightsChartScreen = () => {
             />
           </View>
 
+          <View style={{width: '30%'}}>
+            <DropDownPicker
+              open={effortOpen}
+              value={effortValue}
+              items={effortItems}
+              setOpen={setEffortOpen}
+              setValue={setEffortValue}
+              placeholder={'Select type'}
+              style={{
+                backgroundColor: theme.colors.STEP_999,
+              }}
+              dropDownContainerStyle={{backgroundColor: theme.colors.STEP_9999}}
+            />
+          </View>
+
         </View>
 
         <Text style={[GlobalStyles.text, style.text]}>{exerciseValue}</Text>
 
-        <WeightsChartMonth exerciseName={exerciseValue} />
+        <EffortChartMonth exerciseName={exerciseValue} type={effortValue} />
 
       </View>
     </BackgroundTemplate>
   );
 };
 
-export default WeightsChartScreen;
+export default EffortChartScreen;
 
 const styles = (theme: ThemeModel) =>
   StyleSheet.create({

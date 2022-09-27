@@ -18,7 +18,7 @@ import { useNavigation } from '@react-navigation/native';
 import Timer from '../components/Timer';
 import { timerService } from '../services/TimerService';
 import { TimerActionsEnum } from '../utils/TimerActionsEnum';
-import { ResultModel } from '../utils/ResultModel';
+import { ResultTimeModel } from '../utils/ResultTimeModel';
 import { ResultsModel } from '../utils/ResultsModel';
 import { TrainingSummaryModel } from '../utils/TrainingSummaryModel';
 import { addSummaryDB } from '../../firebase/Database';
@@ -30,8 +30,7 @@ const WorkoutScreenActive = () => {
   
   const [exerciseIndex, setExerciseIndex] = useState(0);
   const [results, setResults] = useState<ResultsModel[]>([]);
-  const [setIndex, setSetIndex] = useState(0);
-  const [resultArr, setResultArr] = useState<ResultModel[]>([]);
+  const [setsIndex, setSetsIndex] = useState(0);
   const [totalSets, setTotalSets] = useState(0);
   const [setDone, setSetDone] = useState(0);
 
@@ -74,30 +73,28 @@ const WorkoutScreenActive = () => {
 
     if (exerciseIndex < statePlan.exercises.length) {
 
-      let res: ResultModel = timerRef.current.signalResult();
+      let res: ResultTimeModel = timerRef.current.signalResult();
       timerService.sendSignal('NEXT' as TimerActionsEnum);  
 
-      setResultArr([...resultArr, res])
-
-      if (setIndex < statePlan.exercises[exerciseIndex].sets - 1) {
-        setSetIndex(i => i + 1);
+      if (setsIndex < statePlan.exercises[exerciseIndex].sets - 1) {
+        setSetsIndex(i => i + 1);
       }
       else {
-        setResults([
-          ...results, 
-          {
-            exerciseName: statePlan.exercises[exerciseIndex].exerciseName, 
-            muscleName: statePlan.exercises[exerciseIndex].muscleName,
-            sets: statePlan.exercises[exerciseIndex].sets,
-            reps: statePlan.exercises[exerciseIndex].reps,
-            weight: statePlan.exercises[exerciseIndex].weight,
-            results: [...resultArr, res]
-          }
-        ]);
-        setResultArr([]);
-        setSetIndex(0);
-        setExerciseIndex(index => index + 1); 
-      }  
+        setSetsIndex(0);
+        setExerciseIndex(index => index + 1);
+      } 
+
+      setResults([
+        ...results, 
+        {
+          exerciseName: statePlan.exercises[exerciseIndex].exerciseName, 
+          muscleName: statePlan.exercises[exerciseIndex].muscleName,
+          sets: statePlan.exercises[exerciseIndex].sets,
+          reps: statePlan.exercises[exerciseIndex].reps,
+          weight: statePlan.exercises[exerciseIndex].weight,
+          time: res
+        }
+      ]);
     }
   }
 
@@ -155,7 +152,7 @@ const WorkoutScreenActive = () => {
               <OwnButton 
                 title={
                   exerciseIndex < statePlan.exercises.length - 1 || 
-                  setIndex < statePlan.exercises[exerciseIndex].sets - 1 
+                  setsIndex < statePlan.exercises[exerciseIndex].sets - 1 
                   ? "Next exercise" : "Finish"
                 } 
                 onPress={nextExercise} 
@@ -182,30 +179,20 @@ const WorkoutScreenActive = () => {
                         </Text>
 
                         <Text style={style.descriptionText}>
-                          sets: {itemData.item.sets}, reps: {itemData.item.reps}, weight: {itemData.item.weight}
+                          reps: {itemData.item.reps}, weight: {itemData.item.weight}
                         </Text>
 
-                        <FlatList
-                          data={itemData.item.results}
-                          renderItem={(itemData2) => {
-                            return (
-                              <View style={{flexDirection: 'row'}}>
-                                <Text style={style.text}>
-                                  {itemData2.item.hours > 9 ? itemData2.item.hours : '0' + itemData2.item.hours + ':'}
-                                </Text>
-                                <Text style={style.text}>
-                                  {itemData2.item.minutes > 9 ? itemData2.item.minutes : '0' + itemData2.item.minutes + ':'}
-                                </Text>
-                                <Text style={style.text}>
-                                  {itemData2.item.seconds > 9 ? itemData2.item.seconds : '0' + itemData2.item.seconds}
-                                </Text>
-                              </View>
-                            );
-                          }}
-                          keyExtractor={(item, index) => { return index.toString() + 'inner'; }} 
-
-                          numColumns={1}
-                        />
+                        <View style={{flexDirection: 'row'}}>
+                          <Text style={style.text}>
+                            {itemData.item.time.hours > 9 ? itemData.item.time.hours : '0' + itemData.item.time.hours + ':'}
+                          </Text>
+                          <Text style={style.text}>
+                            {itemData.item.time.minutes > 9 ? itemData.item.time.minutes : '0' + itemData.item.time.minutes + ':'}
+                          </Text>
+                          <Text style={style.text}>
+                            {itemData.item.time.seconds > 9 ? itemData.item.time.seconds : '0' + itemData.item.time.seconds}
+                          </Text>
+                        </View>
 
                       </View>
                     );

@@ -1,4 +1,3 @@
-import { ResultModel } from './../utils/ResultModel';
 /**
  * Slice to zbiór logiki reducera dla danej funkcji
  * Reducer dla logiki powiązanej wybranym planem treningowym

@@ -2,7 +2,7 @@
  * Model rezultatu serii danego ćwiczenia
  */
 
-import { ResultModel } from "./ResultModel";
+import { ResultTimeModel } from "./ResultTimeModel";
 
 export interface ResultsModel {
   exerciseName: string;
@@ -10,6 +10,6 @@ export interface ResultsModel {
   sets?: number;
   reps?: number;
   weight?: number;
-  results?: ResultModel[];
+  time?: ResultTimeModel;
 }
    

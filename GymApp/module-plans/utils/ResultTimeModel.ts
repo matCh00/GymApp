@@ -2,7 +2,7 @@
  * Model rezultatu ćwiczenia
  */
 
-export interface ResultModel {
+export interface ResultTimeModel {
   seconds: number; 
   minutes: number; 
   hours: number;

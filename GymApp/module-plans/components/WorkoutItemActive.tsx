@@ -71,9 +71,9 @@ const WorkoutItemActive = (props: ExerciseModel) => {
         : <ActivityIndicator color={theme.colors.STEP_0} size={40} />
       }
  
-      <Text style={[GlobalStyles.text, style.metadataText]}>Sets: {sets}</Text>
-      <Text style={[GlobalStyles.text, style.metadataText]}>Reps: {reps}</Text>
-      <Text style={[GlobalStyles.text, style.metadataText]}>Weight: {weight} kg</Text>
+      <Text style={[GlobalStyles.text, style.metadataText]}>Sets:      {sets}</Text>
+      <Text style={[GlobalStyles.text, style.metadataText]}>Reps:     {reps}</Text>
+      <Text style={[GlobalStyles.text, style.metadataText]}>Weight:  {weight}</Text>
 
     </CardTemplate>
   );

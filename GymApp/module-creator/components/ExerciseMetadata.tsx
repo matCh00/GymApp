@@ -17,7 +17,7 @@ const ExerciseMetadata = (props: ExerciseMetadataModel) => {
   /**
    * props
    */
-  const {name, count, setCount, type} = props;
+  const {name, count, setCount, type, textMarginRight} = props;
 
   /**
    * motyw
@@ -26,9 +26,14 @@ const ExerciseMetadata = (props: ExerciseMetadataModel) => {
   const style = useThemedStyles(styles);
   
   return (
-    <View style={{flexDirection: 'row', marginLeft: '-10%', width: '50%'}}>
+    <View style={{flexDirection: 'row', width: '50%', marginLeft: '-10%'}}>
 
-      <Text style={[GlobalStyles.text, style.text]}>
+      <Text style={[
+        GlobalStyles.text, 
+        style.text, 
+        textMarginRight ? {marginRight: textMarginRight/2, marginLeft: textMarginRight/2} : null
+        ]}>
+
         {name}
       </Text>
 
