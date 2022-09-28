@@ -102,6 +102,7 @@ export const getCreatedDB = async (email: string) => {
 
 /**
  * dodaj nowy plan treningowy
+ * edytuj istniejący plan treningowy
  */
 export const addPlanDB = async (email: string, plan: PlanModel) => {
   

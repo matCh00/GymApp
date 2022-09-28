@@ -1,3 +1,4 @@
+import { PlanModel } from './../../module-plans/utils/PlanModel';
 /**
  * Slice to zbiór logiki reducera dla danej funkcji
  * Reducer dla logiki powiązanej z wyborem ćwiczeń
@@ -11,6 +12,7 @@ const creatorReducer = createSlice({
 
   initialState: {
     exercises: [] as ExerciseModel[],
+    editedPlan: null as PlanModel,
   },
 
   reducers: {
@@ -25,6 +27,7 @@ const creatorReducer = createSlice({
 
     clearExercises: (state, action) => {
       state.exercises = [];
+      state.editedPlan = null;
     },
     
     swapExercises: (state, action) => {
@@ -38,6 +41,11 @@ const creatorReducer = createSlice({
         [state.exercises[index], state.exercises[index + 1]] = [state.exercises[index + 1], state.exercises[index]];
       }
     },
+
+    loadExercises: (state, action) => {
+      state.exercises = action.payload.exercises;
+      state.editedPlan = action.payload.plan;
+    },
   },
 });
 
@@ -45,4 +53,5 @@ export const addExercise = creatorReducer.actions.addExercise;
 export const removeExercise = creatorReducer.actions.removeExercise;
 export const clearExercises = creatorReducer.actions.clearExercises;
 export const swapExercises = creatorReducer.actions.swapExercises;
+export const loadExercises = creatorReducer.actions.loadExercises;
 export default creatorReducer.reducer;

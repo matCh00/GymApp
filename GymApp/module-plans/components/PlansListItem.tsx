@@ -15,6 +15,8 @@ import { useDispatch } from 'react-redux';
 import { selectPlan } from '../redux/WorkoutReducer';
 import { GlobalStyles } from '../../theme/utils/GlobalStyles';
 import CardTemplate from '../../shared/components/CardTemplate';
+import { RootStackParams } from '../../module-root/navigation/RootNavigation';
+import { loadExercises } from '../../module-creator/redux/CreatorReducer';
 
 const PlansListItem = (props: PlanModel) => {
 
@@ -33,6 +35,7 @@ const PlansListItem = (props: PlanModel) => {
    * nawigacja
    */
   const navigation = useNavigation<NativeStackNavigationProp<PlansStackParams>>();
+  const rootNavigation = useNavigation<NativeStackNavigationProp<RootStackParams>>();
 
   /**
    * dispatch z reducera
@@ -56,6 +59,14 @@ const PlansListItem = (props: PlanModel) => {
     navigation.push("Plan", {planKey: planKey});
   }
 
+  /**
+   * edycja planu treningowego
+   */
+  const handleEditPlan = () => {    
+    dispatch(loadExercises({exercises: exercises, plan: props}));
+    rootNavigation.navigate('CreatorModule');
+  }
+
   return (
     <CardTemplate>
 
@@ -63,8 +74,11 @@ const PlansListItem = (props: PlanModel) => {
 
       <Text style={[GlobalStyles.text, style.text]}>{getDate()}</Text>
 
-      <OwnButton title="Show" onPress={handleStartWorkout} />
-
+      <View style={{flexDirection: 'row'}}>
+        <OwnButton title="Show" onPress={handleStartWorkout} numberInRow={3} />
+        <OwnButton title="Edit" onPress={handleEditPlan} numberInRow={3} />
+      </View>
+      
     </CardTemplate>
   );
 };

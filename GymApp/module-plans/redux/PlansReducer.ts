@@ -30,6 +30,19 @@ const plansReducer = createSlice({
       state.plans.push(plan);      
     },
 
+    updatePlan: (state, action) => {
+      let plan: PlanModel = {
+        exercises: action.payload.exercises, 
+        planName: action.payload.planName, 
+        planKey: action.payload.planKey,
+        created: action.payload.created
+      }
+      addPlanDB(action.payload.email, plan);
+
+      let index = state.plans.findIndex(p => p.created === plan.created);
+      state.plans[index] = plan;
+    },
+
     removePlan: (state, action) => {
       state.plans = state.plans.filter(plan => {return (plan.planKey !== action.payload.planKey)});
     },
@@ -42,6 +55,7 @@ const plansReducer = createSlice({
  
 export const loadPlans = plansReducer.actions.loadPlans;
 export const addPlan = plansReducer.actions.addPlan;
+export const updatePlan = plansReducer.actions.updatePlan;
 export const removePlan = plansReducer.actions.removePlan;
 export const clearPlans = plansReducer.actions.clearPlans;
 export default plansReducer.reducer;

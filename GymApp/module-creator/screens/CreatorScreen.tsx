@@ -18,12 +18,20 @@ import { FloatingAction } from "react-native-floating-action";
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import OwnPopup from '../../shared/components/OwnPopup';
 import DropDownPicker from 'react-native-dropdown-picker';
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { ExerciseModel } from '../utils/ExerciseModel';
 import MusclesEnum from '../utils/MusclesEnum';
 import SubmitPopupView from '../components/SubmitPopupView';
+import { clearExercises } from '../redux/CreatorReducer';
+import { loadPlans, updatePlan } from '../../module-plans/redux/PlansReducer';
+import { AuthModel } from '../../shared/models/AuthModel';
+import { AuthContext } from '../../shared/state/AuthContext';
+import { getPlansDB } from '../../firebase/Database';
+import { PlanModel } from '../../module-plans/utils/PlanModel';
 
 const CreatorScreen = () => {
+
+  const [editedPlan, setEditedPlan] = useState<PlanModel>(null);
 
   const [filterModalOpened, setFilterModalOpened] = useState(false);
   const [submitModalOpend, setSubmitModalOpend] = useState(false);
@@ -48,14 +56,20 @@ const CreatorScreen = () => {
   const style = useThemedStyles(styles);
 
   /**
+   * context uwierzytelniania
+   */
+  const {email} = useContext<AuthModel>(AuthContext);
+
+  /**
    * dispatch z reducera
    */
   const dispatch = useDispatch();
 
   /**
-   * stan exercises z reducera
+   * stan exercises i isEdit z reducera
    */
   const stateExercises = useSelector((state: any) => state.selectedExercises.exercises);
+  const stateEditedPlan = useSelector((state: any) => state.selectedExercises.editedPlan);
 
   /**
    * przefiltrowane ćwiczenia
@@ -71,8 +85,15 @@ const CreatorScreen = () => {
    * odświezanie listy
    */
   useEffect(() => {
-    setStateExercisesFiltered(stateExercises)
+    setStateExercisesFiltered(stateExercises);
   }, [stateExercises])
+
+  /**
+   * sprawdzenie czy edytujemy plan
+   */
+  useEffect(() => {
+    setEditedPlan(stateEditedPlan);
+  }, [stateEditedPlan])
 
   /**
    * reset filtrów
@@ -104,14 +125,50 @@ const CreatorScreen = () => {
    * zapisanie planu treningowego
    */
   const handleSubmit = () => {
-    if (stateExercises.length > 0) {
-      setSubmitModalOpend(true);
-    }
-    else {
+
+    if (stateExercises.length === 0) {
       Alert.alert("Empty", "Select some exercises!", [
         { text: "OK", onPress: () => null },
       ]);
+      return;
     }
+
+    /* dodanie nowego planu */
+    if (!editedPlan) {
+      setSubmitModalOpend(true);
+    }
+
+    /* zaktualizowanie planu */
+    else {
+      Alert.alert("Update plan", "Are you sure you want to update selected plan?", [
+        { text: "No", onPress: () => null },
+        { text: "Yes", onPress: () => {
+          dispatch(updatePlan({
+            email: email,
+            exercises: stateExercises, 
+            planName: editedPlan.planName, 
+            planKey: editedPlan.planKey,
+            created: editedPlan.created
+          }));
+
+          dispatch(clearExercises({}));
+
+          /* odświeżenie planów */
+          getPlansDB(email).then(
+            (data) => {
+              dispatch(loadPlans({plans: data}));
+            }
+          )
+        }}
+      ]);
+    }
+  }
+
+  /**
+   * anulowanie edycji planu
+   */
+  const handleCancelUpdating = () => {
+    dispatch(clearExercises({}));
   }
   
   return (
@@ -120,8 +177,22 @@ const CreatorScreen = () => {
 
         <View style={{flexDirection: 'row-reverse'}}>
 
-          <OwnButton title="Add exercise" numberInRow={2} onPress={() => {navigation.push("Modes")}} />
-          <OwnButton title="Submit plan" numberInRow={2} onPress={handleSubmit} />
+          <OwnButton 
+            title="Add exercise" 
+            numberInRow={editedPlan ? 3 : 2} 
+            onPress={() => {navigation.push("Modes")}} 
+            />
+
+          <OwnButton 
+            title={editedPlan ? "Update plan" : "Submit plan"} 
+            numberInRow={editedPlan ? 3 : 2} 
+            onPress={handleSubmit} 
+            />
+
+          {editedPlan 
+            ? <OwnButton title="Cancel updating" numberInRow={3} onPress={handleCancelUpdating} /> 
+            : null
+          }
 
         </View>
 
