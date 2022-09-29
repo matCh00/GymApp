@@ -2,7 +2,7 @@
  * Widok zapisywania planu treningowego
  */
 
-import { StyleSheet, Text, View } from 'react-native';
+import { Alert, StyleSheet, Text, View } from 'react-native';
 import useTheme from '../../theme/hooks/useTheme';
 import useThemedStyles from '../../theme/hooks/useThemeStyles';
 import { ThemeModel } from '../../theme/models/ThemeModel';
@@ -15,6 +15,7 @@ import OwnButton from '../../shared/components/OwnButton';
 import { GlobalStyles } from '../../theme/utils/GlobalStyles';
 import { AuthModel } from '../../shared/models/AuthModel';
 import { AuthContext } from '../../shared/state/AuthContext';
+import { getPlanNamesDB } from '../../firebase/Database';
 
 const SubmitPopupView = ({setSubmitModalOpend}) => {
 
@@ -47,17 +48,39 @@ const SubmitPopupView = ({setSubmitModalOpend}) => {
   const handleSavePlan = () => {
 
     if (planName.length > 0) {
-      dispatch(addPlan({
-        exercises: stateExercises, 
-        planName: planName, 
-        planKey: planName + '_' + Date.now(),
-        created: Date.now(),
-        email: email
-      }));
-
-      dispatch(clearExercises({}));
-
-      setSubmitModalOpend(false);
+      getPlanNamesDB(email).then(
+        (names: string[]) => {
+          
+          if (names.includes(planName)) {
+            Alert.alert("Name exists", "Do you want to override existing plan?", [
+              { text: "No!", onPress: () => null },
+              { text: "Yes", onPress: () => {
+                  dispatch(addPlan({
+                    exercises: stateExercises, 
+                    planName: planName, 
+                    planKey: planName + '_' + Date.now(),
+                    created: Date.now(),
+                    email: email
+                  }));
+                  dispatch(clearExercises({}));
+                  setSubmitModalOpend(false); 
+                } 
+              }
+            ]);
+          }
+          else {
+            dispatch(addPlan({
+              exercises: stateExercises, 
+              planName: planName, 
+              planKey: planName + '_' + Date.now(),
+              created: Date.now(),
+              email: email
+            }));
+            dispatch(clearExercises({}));
+            setSubmitModalOpend(false);   
+          }
+        }
+      )
     }
   }
 

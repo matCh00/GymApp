@@ -2,7 +2,7 @@
  * Ekran główny profilu
  */
 
-import { useContext, useLayoutEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { StyleSheet, ScrollView, SafeAreaView } from 'react-native';
 import { AuthModel } from '../../shared/models/AuthModel';
 import { AuthContext } from '../../shared/state/AuthContext';
@@ -15,7 +15,7 @@ import { getAllSummariesDB, getCreatedDB, getPlansDB } from '../../firebase/Data
 import InfoCard from '../components/InfoCard';
 import { DateFormat } from '../utils/DateFormat';
 
-const ProfileScreen = () => {
+const ProfileScreen = ({navigation}) => {
 
   const [created, setCreated] = useState('');
   const [totalPlans, setTotalPlans] = useState(0);
@@ -34,28 +34,33 @@ const ProfileScreen = () => {
 
   /**
    * załadowanie informacji z bazy
+   * za każdym razem gdy otwieramy stronę
    */
-  useLayoutEffect(() => {
-    getCreatedDB(email)
-      .then(
-        (timestamp: any) => {
-          let time = new Date(timestamp.seconds*1000);
-          setCreated(DateFormat(time));
-        }
-      )
-    getPlansDB(email)
-      .then(
-        (plans: any) => {
-          setTotalPlans(plans?.length);
-        }
-      )
-    getAllSummariesDB(email)
-      .then(
-        (summaries: any) => {
-          setTotalSummaries(summaries?.length);
-        }
-      )
-  }, [])
+  useEffect(() => {
+    const unsubscribe = navigation.addListener('focus', () => {
+      getCreatedDB(email)
+        .then(
+          (timestamp: any) => {
+            let time = new Date(timestamp.seconds*1000);
+            setCreated(DateFormat(time));
+          }
+        )
+      getPlansDB(email)
+        .then(
+          (plans: any) => {
+            setTotalPlans(plans?.length);
+          }
+        )
+      getAllSummariesDB(email)
+        .then(
+          (summaries: any) => {
+            setTotalSummaries(summaries?.length);
+          }
+        )
+      });
+
+    return unsubscribe;
+  }, [navigation]);
   
   return (
     <BackgroundTemplate>

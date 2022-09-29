@@ -5,7 +5,7 @@
 
 import { createSlice } from "@reduxjs/toolkit";
 import { PlanModel } from "../utils/PlanModel";
-import { addPlanDB } from "../../firebase/Database";
+import { addPlanDB, deletePlanDB } from "../../firebase/Database";
  
 const plansReducer = createSlice({
   name: "savedPlans",
@@ -44,7 +44,8 @@ const plansReducer = createSlice({
     },
 
     removePlan: (state, action) => {
-      state.plans = state.plans.filter(plan => {return (plan.planKey !== action.payload.planKey)});
+      deletePlanDB(action.payload.email, action.payload.planName);
+      state.plans = state.plans.filter(plan => {return (plan.planName !== action.payload.planName)});
     },
     
     clearPlans: (state, action) => {

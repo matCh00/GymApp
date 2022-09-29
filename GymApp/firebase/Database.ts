@@ -117,6 +117,44 @@ export const addPlanDB = async (email: string, plan: PlanModel) => {
 
 
 /**
+ * usuń plan treningowy
+ */
+export const deletePlanDB = async (email: string, planName: string) => {
+  
+  const q = query(usersRef, where("email", '==', email));
+
+  const querySnapshot = await getDocs(q);
+
+  const docRef = doc(usersRef, querySnapshot.docs[0].id, 'plans', planName);
+
+  await deleteDoc(docRef);
+}
+
+
+/**
+ * pobierz nazwy planów treningowych
+ */
+export const getPlanNamesDB = async (email: string) => {
+
+  const q = query(usersRef, where("email", '==', email));
+
+  const querySnapshot = await getDocs(q);
+
+  const colRef = collection(usersRef, querySnapshot.docs[0].id, 'plans');
+  
+  const plansSnapshot = await getDocs(colRef);
+
+  let names: string[] = [];
+
+  plansSnapshot.forEach((doc: any) => {
+    names.push(doc.data().plan.planName);
+  });
+  
+  return names;
+}
+
+
+/**
  * pobierz plany treningowe
  */
 export const getPlansDB = async (email: string) => {
