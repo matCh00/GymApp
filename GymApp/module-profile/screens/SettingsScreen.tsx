@@ -4,11 +4,11 @@
 
 import { StyleSheet, View } from 'react-native';
 import OwnButton from '../../shared/components/OwnButton';
-import useTheme from '../../theme/hooks/useTheme';
-import useThemedStyles from '../../theme/hooks/useThemeStyles';
-import { ThemeModel } from '../../theme/models/ThemeModel';
+import useTheme from '../../module-root/theme/hooks/useTheme';
+import useThemedStyles from '../../module-root/theme/hooks/useThemeStyles';
+import { ThemeModel } from '../../module-root/theme/models/ThemeModel';
 import BackgroundTemplate from '../../shared/components/BackgroundTemplate';
-import { GlobalStyles } from '../../theme/utils/GlobalStyles';
+import { GlobalStyles } from '../../module-root/theme/utils/GlobalStyles';
 import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { ProfileStackParams } from '../navigation/ProfileNavigation';

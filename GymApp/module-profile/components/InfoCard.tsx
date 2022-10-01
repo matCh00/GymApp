@@ -3,10 +3,10 @@
  */
 
 import { StyleSheet, Text, View } from 'react-native';
-import useTheme from '../../theme/hooks/useTheme';
-import useThemedStyles from '../../theme/hooks/useThemeStyles';
-import { ThemeModel } from '../../theme/models/ThemeModel';
-import { GlobalStyles } from '../../theme/utils/GlobalStyles';
+import useTheme from '../../module-root/theme/hooks/useTheme';
+import useThemedStyles from '../../module-root/theme/hooks/useThemeStyles';
+import { ThemeModel } from '../../module-root/theme/models/ThemeModel';
+import { GlobalStyles } from '../../module-root/theme/utils/GlobalStyles';
 import { InfoCardModel } from '../utils/InfoCardModel';
 import CardTemplate from '../../shared/components/CardTemplate';
 

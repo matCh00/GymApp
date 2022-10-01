@@ -3,11 +3,11 @@
  */
 
 import { StyleSheet, View } from 'react-native'
-import useTheme from '../../theme/hooks/useTheme';
-import useThemedStyles from '../../theme/hooks/useThemeStyles';
-import { ThemeModel } from '../../theme/models/ThemeModel';
+import useTheme from '../../module-root/theme/hooks/useTheme';
+import useThemedStyles from '../../module-root/theme/hooks/useThemeStyles';
+import { ThemeModel } from '../../module-root/theme/models/ThemeModel';
 import BackgroundTemplate from '../../shared/components/BackgroundTemplate';
-import { GlobalStyles } from '../../theme/utils/GlobalStyles';
+import { GlobalStyles } from '../../module-root/theme/utils/GlobalStyles';
 import BodyPartsBack from '../components/BodyPartsBack';
 import BodyPartsFront from '../components/BodyPartsFront';
 import { useState } from 'react';
@@ -77,11 +77,11 @@ const ImageModeScreen = () => {
 
       </View>
 
-      <View style={{marginBottom: 10, marginTop: -30, flexDirection: 'row'}}>
+      <View style={{marginBottom: 10, marginTop: -30, flexDirection: 'row', justifyContent: 'center'}}>
 
-        <OwnButton title="Swap" onPress={swapSides} />
+        <OwnButton title="Swap" onPress={swapSides} width='40%' />
 
-        <OwnButton title="Choose" onPress={goToExercise} />
+        <OwnButton title="Choose" onPress={goToExercise} width='40%' />
 
       </View>
 

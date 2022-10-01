@@ -5,12 +5,12 @@
 import { StyleSheet, ActivityIndicator } from "react-native";
 import Svg, { Image, Path } from "react-native-svg";
 import { useDispatch } from "react-redux";
-import { ThemeModel } from "../../theme/models/ThemeModel";
+import { ThemeModel } from "../../module-root/theme/models/ThemeModel";
 import { changeMuscle } from "../redux/MusclesReducer";
 import { useEffect, useState } from 'react';
 import { ref, getDownloadURL } from 'firebase/storage';
 import { storage } from '../../firebase/Init';
-import useTheme from "../../theme/hooks/useTheme";
+import useTheme from "../../module-root/theme/hooks/useTheme";
 
 const BodyPartsFront = (props: any) => {
   

@@ -1,21 +1,21 @@
 /**
- * Element listy ćwiczeń w planie treningowym na wybraną partię mięśniową 
+ * Element listy ćwiczeń na wybraną partię mięśniową (w planie treningowym)  
  */
 
 import { StyleSheet, Text, View, ActivityIndicator } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
-import useTheme from '../../theme/hooks/useTheme';
-import useThemedStyles from '../../theme/hooks/useThemeStyles';
-import { ThemeModel } from '../../theme/models/ThemeModel';
+import useTheme from '../../module-root/theme/hooks/useTheme';
+import useThemedStyles from '../../module-root/theme/hooks/useThemeStyles';
+import { ThemeModel } from '../../module-root/theme/models/ThemeModel';
 import { useEffect, useState } from 'react';
 import { ref, getDownloadURL } from 'firebase/storage';
 import { storage } from '../../firebase/Init';
 import CachedImage from 'expo-cached-image';
 import { ExerciseModel } from '../../module-creator/utils/ExerciseModel';
-import { GlobalStyles } from '../../theme/utils/GlobalStyles';
+import { GlobalStyles } from '../../module-root/theme/utils/GlobalStyles';
 import CardTemplate from '../../shared/components/CardTemplate';
 
-const ExerciseItem = (props: ExerciseModel) => {
+const ExerciseItemPlans = (props: ExerciseModel) => {
 
   /**
    * props
@@ -72,15 +72,26 @@ const ExerciseItem = (props: ExerciseModel) => {
         : <ActivityIndicator color={theme.colors.STEP_0} size={40} />
       }
 
-      <Text style={[GlobalStyles.text, style.metadataText]}>Sets: {sets}</Text>
-      <Text style={[GlobalStyles.text, style.metadataText]}>Reps: {reps}</Text>
-      <Text style={[GlobalStyles.text, style.metadataText]}>Weight: {weight} kg</Text>
+      <View style={{flexDirection: 'row'}}>
+        <Text style={[GlobalStyles.text, style.metadataText]}>Sets: </Text>
+        <Text style={[GlobalStyles.text, style.metadataValue]}>{sets}</Text>
+      </View>
+
+      <View style={{flexDirection: 'row'}}>
+        <Text style={[GlobalStyles.text, style.metadataText]}>Reps: </Text>
+        <Text style={[GlobalStyles.text, style.metadataValue]}>{reps}</Text>
+      </View>
+
+      <View style={{flexDirection: 'row'}}>
+        <Text style={[GlobalStyles.text, style.metadataText]}>Weight: </Text>
+        <Text style={[GlobalStyles.text, style.metadataValue]}>{weight} kg</Text>
+      </View>
 
     </CardTemplate>
   );
 };
 
-export default ExerciseItem;
+export default ExerciseItemPlans;
 
 const styles = (theme: ThemeModel) =>
   StyleSheet.create({
@@ -90,6 +101,10 @@ const styles = (theme: ThemeModel) =>
       marginBottom: 10,
     },
     metadataText: {
+      color: theme.colors.STEP_3,
+      fontSize: theme.typography.size.M,
+    },
+    metadataValue: {
       color: theme.colors.STEP_000,
       fontSize: theme.typography.size.M,
     },

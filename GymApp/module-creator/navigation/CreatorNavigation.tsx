@@ -3,7 +3,7 @@
  */
 
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import useTheme from "../../theme/hooks/useTheme";
+import useTheme from "../../module-root/theme/hooks/useTheme";
 import CreatorScreen from '../screens/CreatorScreen';
 import ExercisesScreen from "../screens/ExercisesScreen";
 import ModesNavigation from "./ModesNavigation";

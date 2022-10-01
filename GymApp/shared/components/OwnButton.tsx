@@ -3,9 +3,9 @@
  */
 
 import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
-import useTheme from "../../theme/hooks/useTheme";
-import useThemedStyles from "../../theme/hooks/useThemeStyles";
-import { ThemeModel } from "../../theme/models/ThemeModel";
+import useTheme from "../../module-root/theme/hooks/useTheme";
+import useThemedStyles from "../../module-root/theme/hooks/useThemeStyles";
+import { ThemeModel } from "../../module-root/theme/models/ThemeModel";
 import { OwnButtonModel } from "../models/OwnButtonModel";
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { LinearGradient } from 'expo-linear-gradient';
@@ -15,7 +15,7 @@ const OwnButton = (props: OwnButtonModel) => {
   /**
    * props
    */
-  const {title, onPress, icon, size, marginTop, marginBottom, numberInRow} = props;
+  const {title, onPress, icon, size, marginTop, marginBottom, width, marginLeft, marginRight} = props;
 
   /**
    * motyw
@@ -27,8 +27,10 @@ const OwnButton = (props: OwnButtonModel) => {
     <View style={[
         style.buttonContainer, 
         marginTop ? {marginTop: marginTop} : {marginTop: 40},
-        marginBottom ? {marginBottom: marginBottom} : {marginBottom: 0},
-        numberInRow ? {width: (100 / numberInRow).toString() + '%'} : {width: '50%'}
+        marginBottom ? {marginBottom: marginBottom} : null,
+        marginLeft ? {marginLeft: marginLeft} : null,
+        marginRight ? {marginRight: marginRight} : null,
+        width ? {width: width} : {width: '100%'},
       ]}>
 
       <LinearGradient
@@ -44,7 +46,8 @@ const OwnButton = (props: OwnButtonModel) => {
         <TouchableOpacity 
           onPress={onPress} 
           style={[
-            style.button, icon ? {alignSelf: 'center'} : {width: '80%'}, 
+            style.button, 
+            icon ? {alignSelf: 'center'} : {width: '100%'}, 
             size ? {padding: size} : {padding: 15}
           ]}
           activeOpacity={.7}
@@ -79,6 +82,6 @@ const styles = (theme: ThemeModel) =>
       color: theme.colors.STEP_999,
       fontWeight: '700',
       fontSize: theme.typography.size.S,
-      textAlign: 'center'
+      textAlign: 'center',
     }
   });

@@ -8,7 +8,7 @@ import PlansNavigation from "../../module-plans/navigation/PlansNavigation";
 import CreatorNavigation from "../../module-creator/navigation/CreatorNavigation";
 import ProfileNavigation from "../../module-profile/navigation/ProfileNavigation";
 import { Text } from "react-native";
-import useTheme from "../../theme/hooks/useTheme";
+import useTheme from "../theme/hooks/useTheme";
 import { useContext, useLayoutEffect } from "react";
 import { AuthModel } from "../../shared/models/AuthModel";
 import { AuthContext } from "../../shared/state/AuthContext";

@@ -6,7 +6,7 @@ import { createMaterialTopTabNavigator } from '@react-navigation/material-top-ta
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import ImageModeScreen from '../screens/ImageModeScreen';
 import ListModeScreen from '../screens/ListModeScreen';
-import useTheme from '../../theme/hooks/useTheme';
+import useTheme from '../../module-root/theme/hooks/useTheme';
 
 /** 
  * parametry 

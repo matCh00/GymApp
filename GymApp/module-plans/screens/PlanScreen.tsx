@@ -3,16 +3,16 @@
  */
 
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
-import { StyleSheet, Text, View, FlatList } from 'react-native';
-import useTheme from '../../theme/hooks/useTheme';
-import useThemedStyles from '../../theme/hooks/useThemeStyles';
-import { ThemeModel } from '../../theme/models/ThemeModel';
+import { StyleSheet, View, FlatList } from 'react-native';
+import useTheme from '../../module-root/theme/hooks/useTheme';
+import useThemedStyles from '../../module-root/theme/hooks/useThemeStyles';
+import { ThemeModel } from '../../module-root/theme/models/ThemeModel';
 import { PlansStackParams } from '../navigation/PlansNavigation';
 import BackgroundTemplate from '../../shared/components/BackgroundTemplate';
-import { GlobalStyles } from '../../theme/utils/GlobalStyles';
+import { GlobalStyles } from '../../module-root/theme/utils/GlobalStyles';
 import OwnButton from '../../shared/components/OwnButton';
 import { useDispatch, useSelector } from 'react-redux';
-import ExerciseItem from '../components/ExerciseItem';
+import ExerciseItemPlans from '../components/ExerciseItemPlans';
 import { PlanModel } from '../utils/PlanModel';
 import { useLayoutEffect, useState } from 'react';
 import { ExerciseModel } from '../../module-creator/utils/ExerciseModel';
@@ -78,8 +78,8 @@ const PlanScreen = ({route, navigation}: Props) => {
       <View style={GlobalStyles.container}>
 
         <View style={{flexDirection: 'row', marginBottom: 10}}>
-          <OwnButton title="Start active workout!" onPress={handleStartActiveWorkout} marginTop={20} numberInRow={2} />
-          <OwnButton title="Start passive workout!" onPress={handleStartPassiveWorkout} marginTop={20} numberInRow={2} />
+          <OwnButton title="Start active workout!" onPress={handleStartActiveWorkout} marginTop={20} width='40%' />
+          <OwnButton title="Start passive workout!" onPress={handleStartPassiveWorkout} marginTop={20} width='40%' />
         </View>
 
         <FlatList
@@ -88,7 +88,7 @@ const PlanScreen = ({route, navigation}: Props) => {
             return (
               <View style={GlobalStyles.listContainer}>
 
-                <ExerciseItem 
+                <ExerciseItemPlans 
                   pathName={itemData.item.pathName} 
                   muscleName={itemData.item.muscleName}
                   exerciseName={itemData.item.exerciseName}

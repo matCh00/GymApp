@@ -4,15 +4,15 @@
 
 import { StyleSheet, Text, View, ActivityIndicator } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
-import useTheme from '../../theme/hooks/useTheme';
-import useThemedStyles from '../../theme/hooks/useThemeStyles';
-import { ThemeModel } from '../../theme/models/ThemeModel';
+import useTheme from '../../module-root/theme/hooks/useTheme';
+import useThemedStyles from '../../module-root/theme/hooks/useThemeStyles';
+import { ThemeModel } from '../../module-root/theme/models/ThemeModel';
 import { useEffect, useState } from 'react';
 import { ref, getDownloadURL } from 'firebase/storage';
 import { storage } from '../../firebase/Init';
 import CachedImage from 'expo-cached-image';
 import { ExerciseModel } from '../../module-creator/utils/ExerciseModel';
-import { GlobalStyles } from '../../theme/utils/GlobalStyles';
+import { GlobalStyles } from '../../module-root/theme/utils/GlobalStyles';
 import CardTemplate from '../../shared/components/CardTemplate';
  
 const WorkoutItemActive = (props: ExerciseModel) => {
@@ -71,9 +71,9 @@ const WorkoutItemActive = (props: ExerciseModel) => {
         : <ActivityIndicator color={theme.colors.STEP_0} size={40} />
       }
  
-      <Text style={[GlobalStyles.text, style.metadataText]}>Sets:      {sets}</Text>
-      <Text style={[GlobalStyles.text, style.metadataText]}>Reps:     {reps}</Text>
-      <Text style={[GlobalStyles.text, style.metadataText]}>Weight:  {weight}</Text>
+      <Text style={[GlobalStyles.text, style.metadataText]}>Sets:  {sets}</Text>
+      <Text style={[GlobalStyles.text, style.metadataText]}>Reps:  {reps}</Text>
+      <Text style={[GlobalStyles.text, style.metadataText]}>Weight: {weight} kg</Text>
 
     </CardTemplate>
   );

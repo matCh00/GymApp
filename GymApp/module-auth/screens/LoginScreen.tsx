@@ -5,17 +5,17 @@
 import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { useContext, useState } from 'react';
-import { StyleSheet, Text, Pressable, KeyboardAvoidingView, Switch } from 'react-native';
+import { StyleSheet, KeyboardAvoidingView } from 'react-native';
 import { logInWithEmailAndPassword } from '../../firebase/Auth';
 import BackgroundTemplate from '../../shared/components/BackgroundTemplate';
 import OwnButton from '../../shared/components/OwnButton';
 import OwnInput from '../../shared/components/OwnInput';
 import { AuthModel } from '../../shared/models/AuthModel';
 import { AuthContext } from '../../shared/state/AuthContext';
-import useTheme from '../../theme/hooks/useTheme';
-import useThemedStyles from '../../theme/hooks/useThemeStyles';
-import { ThemeModel } from '../../theme/models/ThemeModel';
-import { GlobalStyles } from '../../theme/utils/GlobalStyles';
+import useTheme from '../../module-root/theme/hooks/useTheme';
+import useThemedStyles from '../../module-root/theme/hooks/useThemeStyles';
+import { ThemeModel } from '../../module-root/theme/models/ThemeModel';
+import { GlobalStyles } from '../../module-root/theme/utils/GlobalStyles';
 import { AuthStackParams } from '../navigation/AuthNavigation';
 
 const LoginScreen = () => {
@@ -63,7 +63,7 @@ const LoginScreen = () => {
 
         <OwnButton title='Login' onPress={handleLogin} />
 
-        <OwnButton title="go to Register" onPress={() => {navigation.replace("Register")}} />
+        <OwnButton title="Create Account" onPress={() => {navigation.replace("Register")}} />
       
       </KeyboardAvoidingView>
     </BackgroundTemplate>

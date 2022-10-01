@@ -5,15 +5,15 @@
 import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { StyleSheet, View, Text } from 'react-native';
-import useTheme from '../../theme/hooks/useTheme';
-import useThemedStyles from '../../theme/hooks/useThemeStyles';
-import { ThemeModel } from '../../theme/models/ThemeModel';
+import useTheme from '../../module-root/theme/hooks/useTheme';
+import useThemedStyles from '../../module-root/theme/hooks/useThemeStyles';
+import { ThemeModel } from '../../module-root/theme/models/ThemeModel';
 import { PlansStackParams } from '../navigation/PlansNavigation';
 import OwnButton from '../../shared/components/OwnButton';
 import { PlanModel } from '../utils/PlanModel';
 import { useDispatch } from 'react-redux';
 import { selectPlan } from '../redux/WorkoutReducer';
-import { GlobalStyles } from '../../theme/utils/GlobalStyles';
+import { GlobalStyles } from '../../module-root/theme/utils/GlobalStyles';
 import CardTemplate from '../../shared/components/CardTemplate';
 import { RootStackParams } from '../../module-root/navigation/RootNavigation';
 import { loadExercises } from '../../module-creator/redux/CreatorReducer';
@@ -95,9 +95,9 @@ const PlansListItem = (props: PlanModel) => {
       <Text style={[GlobalStyles.text, style.text]}>{getDate()}</Text>
 
       <View style={{flexDirection: 'row'}}>
-        <OwnButton title="Delete" onPress={() => {setAlertOpened(true)}} numberInRow={3} />
-        <OwnButton title="Edit" onPress={handleEditPlan} numberInRow={3} />
-        <OwnButton title="Show" onPress={handleStartWorkout} numberInRow={3} />
+        <OwnButton title="Delete" onPress={() => {setAlertOpened(true)}} width='30%' />
+        <OwnButton title="Edit" onPress={handleEditPlan} width='30%' />
+        <OwnButton title="Show" onPress={handleStartWorkout} width='30%' />
       </View>
 
       <OwnAlert 

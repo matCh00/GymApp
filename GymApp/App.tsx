@@ -7,7 +7,7 @@ import { useEffect, useState } from 'react';
 import { BackHandler, StyleSheet, View } from 'react-native';
 import AppNavigation from './AppNavigation';
 import { AuthProvider } from './shared/state/AuthContext';
-import ThemeProvider from './theme/utils/ThemeProvider';
+import ThemeProvider from './module-root/theme/utils/ThemeProvider';
 import { Provider } from 'react-redux';
 import { store } from './shared/redux/AppStore';
 import { QualityProvider } from './shared/state/QualityContext';

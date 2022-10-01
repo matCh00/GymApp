@@ -16,7 +16,7 @@ import { useContext, useState } from 'react';
 import { AuthModel } from '../../shared/models/AuthModel';
 import { AuthContext } from '../../shared/state/AuthContext';
 import { Text, View } from 'react-native';
-import useTheme from '../../theme/hooks/useTheme';
+import useTheme from '../../module-root/theme/hooks/useTheme';
 import SettingsScreen from '../screens/SettingsScreen';
 import ThemeScreen from '../screens/ThemeScreen';
 import { logout } from '../../firebase/Auth';

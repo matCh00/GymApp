@@ -3,9 +3,9 @@
  */
 
 import { StyleSheet, Modal, View } from "react-native";
-import useTheme from "../../theme/hooks/useTheme";
-import useThemedStyles from "../../theme/hooks/useThemeStyles";
-import { ThemeModel } from "../../theme/models/ThemeModel";
+import useTheme from "../../module-root/theme/hooks/useTheme";
+import useThemedStyles from "../../module-root/theme/hooks/useThemeStyles";
+import { ThemeModel } from "../../module-root/theme/models/ThemeModel";
 import { OwnPopupModel } from "../models/OwnPopupModel";
 
 const OwnPopup = (props: OwnPopupModel) => {

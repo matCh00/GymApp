@@ -5,15 +5,15 @@
 import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { StyleSheet, Text, View, FlatList } from 'react-native';
-import useTheme from '../../theme/hooks/useTheme';
-import useThemedStyles from '../../theme/hooks/useThemeStyles';
-import { ThemeModel } from '../../theme/models/ThemeModel';
+import useTheme from '../../module-root/theme/hooks/useTheme';
+import useThemedStyles from '../../module-root/theme/hooks/useThemeStyles';
+import { ThemeModel } from '../../module-root/theme/models/ThemeModel';
 import { CreatorStackParams } from '../navigation/CreatorNavigation';
 import BackgroundTemplate from '../../shared/components/BackgroundTemplate';
-import { GlobalStyles } from '../../theme/utils/GlobalStyles';
+import { GlobalStyles } from '../../module-root/theme/utils/GlobalStyles';
 import OwnButton from '../../shared/components/OwnButton';
 import { useDispatch, useSelector } from 'react-redux';
-import ExerciseItem from '../components/ExerciseItem';
+import ExerciseItemCreator from '../components/ExerciseItemCreator';
 import { FloatingAction } from "react-native-floating-action";
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import OwnPopup from '../../shared/components/OwnPopup';
@@ -183,20 +183,20 @@ const CreatorScreen = () => {
 
         <View style={{flexDirection: 'row-reverse'}}>
 
-          <OwnButton 
-            title="Add exercise" 
-            numberInRow={editedPlan ? 3 : 2} 
+          <OwnButton
+            title="Exercises" 
+            width={editedPlan ? '30%' : '50%'} 
             onPress={() => {navigation.push("Modes")}} 
             />
 
           <OwnButton 
-            title={editedPlan ? "Update plan" : "Submit plan"} 
-            numberInRow={editedPlan ? 3 : 2} 
+            title={editedPlan ? "Update" : "Submit"} 
+            width={editedPlan ? '30%' : '50%'} 
             onPress={handleSubmit} 
             />
 
           {editedPlan 
-            ? <OwnButton title="Cancel updating" numberInRow={3} onPress={handleCancelUpdating} /> 
+            ? <OwnButton title="Cancel" width='30%' onPress={handleCancelUpdating} /> 
             : null
           }
 
@@ -209,7 +209,7 @@ const CreatorScreen = () => {
           renderItem={(itemData) => {
             return (
               <View style={GlobalStyles.listContainer}>
-                <ExerciseItem 
+                <ExerciseItemCreator 
                   pathName={itemData.item.pathName} 
                   muscleName={itemData.item.muscleName}
                   exerciseName={itemData.item.exerciseName}
@@ -259,8 +259,8 @@ const CreatorScreen = () => {
 
               <View style={{flexDirection: 'row'}}>
 
-                <OwnButton title='Reset' onPress={handleReset} numberInRow={2} />
-                <OwnButton title='Filter' onPress={handleFilter} numberInRow={2} />
+                <OwnButton title='Reset' onPress={handleReset} width='40%' />
+                <OwnButton title='Filter' onPress={handleFilter} width='40%' />
               
               </View>
             </CardTemplate>

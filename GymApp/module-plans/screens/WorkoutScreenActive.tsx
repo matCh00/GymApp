@@ -3,11 +3,11 @@
  */
 
 import { StyleSheet, Text, View, FlatList } from 'react-native';
-import useTheme from '../../theme/hooks/useTheme';
-import useThemedStyles from '../../theme/hooks/useThemeStyles';
-import { ThemeModel } from '../../theme/models/ThemeModel';
+import useTheme from '../../module-root/theme/hooks/useTheme';
+import useThemedStyles from '../../module-root/theme/hooks/useThemeStyles';
+import { ThemeModel } from '../../module-root/theme/models/ThemeModel';
 import BackgroundTemplate from '../../shared/components/BackgroundTemplate';
-import { GlobalStyles } from '../../theme/utils/GlobalStyles';
+import { GlobalStyles } from '../../module-root/theme/utils/GlobalStyles';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { useContext, useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -160,8 +160,8 @@ const WorkoutScreenActive = () => {
               />
 
               <View style={{flexDirection: 'row'}}>
-                <OwnButton title="Reset" onPress={() => {timerService.sendSignal('RESUME' as TimerActionsEnum)}} />
-                <OwnButton title="Pause" onPress={() => {timerService.sendSignal('PAUSE' as TimerActionsEnum)}} />
+                <OwnButton title="Reset" onPress={() => {timerService.sendSignal('RESUME' as TimerActionsEnum)}} width='40%' />
+                <OwnButton title="Pause" onPress={() => {timerService.sendSignal('PAUSE' as TimerActionsEnum)}} width='40%' />
               </View>
             </>
             
@@ -173,7 +173,7 @@ const WorkoutScreenActive = () => {
                   data={results}
                   renderItem={(itemData) => {
                     return (
-                      <View>
+                      <View style={{width: '100%', paddingHorizontal: '20%'}}>
                         <Text style={style.headerText}>
                           {itemData.item.exerciseName}
                         </Text>

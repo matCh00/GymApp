@@ -4,11 +4,11 @@
 
  import { StyleSheet, View, Text } from 'react-native';
  import OwnButton from '../../shared/components/OwnButton';
- import useTheme from '../../theme/hooks/useTheme';
- import useThemedStyles from '../../theme/hooks/useThemeStyles';
- import { ThemeModel } from '../../theme/models/ThemeModel';
+ import useTheme from '../../module-root/theme/hooks/useTheme';
+ import useThemedStyles from '../../module-root/theme/hooks/useThemeStyles';
+ import { ThemeModel } from '../../module-root/theme/models/ThemeModel';
  import BackgroundTemplate from '../../shared/components/BackgroundTemplate';
- import { GlobalStyles } from '../../theme/utils/GlobalStyles';
+ import { GlobalStyles } from '../../module-root/theme/utils/GlobalStyles';
 import { ProfileStackParams } from '../navigation/ProfileNavigation';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { useNavigation } from '@react-navigation/native';
@@ -58,14 +58,14 @@ const ThemeScreen = () => {
       <View style={GlobalStyles.container}>
         
         <View style={style.innerContainer}>
-          <OwnButton title='green' onPress={() => {chooseTheme('green_black')}} />
-          <OwnButton title='vine' onPress={() => {chooseTheme('vine_red')}} />
-          <OwnButton title='blue' onPress={() => {chooseTheme('blue_black')}} />
-          <OwnButton title='golden' onPress={() => {chooseTheme('gold_black')}} />
-          <OwnButton title='purple' onPress={() => {chooseTheme('white_purple')}} />
-          <OwnButton title='water' onPress={() => {chooseTheme('blue_sea')}} />
-          <OwnButton title='gray' onPress={() => {chooseTheme('gray_shades')}} />
-          <OwnButton title='coffee' onPress={() => {chooseTheme('milk_coffee')}} />
+          <OwnButton title='green' onPress={() => {chooseTheme('green_black')}} width='50%' />
+          <OwnButton title='vine' onPress={() => {chooseTheme('vine_red')}} width='50%' />
+          <OwnButton title='blue' onPress={() => {chooseTheme('blue_black')}} width='50%' />
+          <OwnButton title='golden' onPress={() => {chooseTheme('gold_black')}} width='50%' />
+          <OwnButton title='purple' onPress={() => {chooseTheme('white_purple')}} width='50%' />
+          <OwnButton title='water' onPress={() => {chooseTheme('blue_sea')}} width='50%' />
+          <OwnButton title='gray' onPress={() => {chooseTheme('gray_shades')}} width='50%' />
+          <OwnButton title='coffee' onPress={() => {chooseTheme('milk_coffee')}} width='50%' />
         </View>
 
         <OwnButton title='Save' onPress={handleSave} />

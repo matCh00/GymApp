@@ -4,15 +4,15 @@
 
 import { StyleSheet, Text, View, ActivityIndicator } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
-import useTheme from '../../theme/hooks/useTheme';
-import useThemedStyles from '../../theme/hooks/useThemeStyles';
-import { ThemeModel } from '../../theme/models/ThemeModel';
+import useTheme from '../../module-root/theme/hooks/useTheme';
+import useThemedStyles from '../../module-root/theme/hooks/useThemeStyles';
+import { ThemeModel } from '../../module-root/theme/models/ThemeModel';
 import { useEffect, useState } from 'react';
 import { ref, getDownloadURL } from 'firebase/storage';
 import { storage } from '../../firebase/Init';
 import CachedImage from 'expo-cached-image';
 import { ExerciseModel } from '../../module-creator/utils/ExerciseModel';
-import { GlobalStyles } from '../../theme/utils/GlobalStyles';
+import { GlobalStyles } from '../../module-root/theme/utils/GlobalStyles';
 import CardTemplate from '../../shared/components/CardTemplate';
 import OwnButton from '../../shared/components/OwnButton';
 import { ResultsModel } from '../utils/ResultsModel';
@@ -113,17 +113,17 @@ const WorkoutItemPassive = (props: ExerciseModelExtended) => {
         : <ActivityIndicator color={theme.colors.STEP_0} size={40} />
       }
  
-      <View style={{flexDirection: 'row'}}>
+      <View style={{flexDirection: 'row', justifyContent: 'center'}}>
 
-        <View style={{flexDirection: 'column'}}>
-          <ExerciseMetadata name={'Sets'} count={setsCount} setCount={setSetsCount} textMarginRight={14} />
-          <ExerciseMetadata name={'Reps'} count={repsCount} setCount={setRepsCount} textMarginRight={11} />
+        <View style={{width: '20%', marginLeft: '20%'}}>
+          <ExerciseMetadata name={'Sets'} count={setsCount} setCount={setSetsCount} />
+          <ExerciseMetadata name={'Reps'} count={repsCount} setCount={setRepsCount} />
           <ExerciseMetadata name={'Weight'} type={'weight'} count={weightCount} setCount={setWeightCount} />
         </View>
 
         {doneSets < setsCount
-          ? <OwnButton icon='check' onPress={handleDoneSetsSignal} numberInRow={6} marginTop={-1} />
-          : null
+          ? <OwnButton icon='check' onPress={handleDoneSetsSignal} width='20%' marginTop={-1} marginRight='-25%' marginLeft='5%' />
+          : <Text style={[GlobalStyles.text, style.doneText]}>Done</Text>
         }
 
       </View>
@@ -144,4 +144,11 @@ const styles = (theme: ThemeModel) =>
       color: theme.colors.STEP_000,
       fontSize: theme.typography.size.M,
     },
+    doneText: {
+      color: theme.colors.STEP_999,
+      fontSize: theme.typography.size.M,
+      marginTop: '15%',
+      marginRight: '-25%',
+      marginLeft: '5%',
+    }
   });

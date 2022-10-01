@@ -2,10 +2,10 @@
  * Szablon kafelka z okrągłymi rogami
  */
 
- import { StyleSheet, View } from 'react-native';
-import useTheme from '../../theme/hooks/useTheme';
-import { ThemeModel } from '../../theme/models/ThemeModel';
-import useThemedStyles from '../../theme/hooks/useThemeStyles';
+import { StyleSheet, View } from 'react-native';
+import useTheme from '../../module-root/theme/hooks/useTheme';
+import { ThemeModel } from '../../module-root/theme/models/ThemeModel';
+import useThemedStyles from '../../module-root/theme/hooks/useThemeStyles';
 import { CardTemplateModel } from '../models/CardTemplateModel';
 import { LinearGradient } from 'expo-linear-gradient';
 

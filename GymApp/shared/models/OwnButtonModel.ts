@@ -9,6 +9,8 @@ export interface OwnButtonModel {
   size?: number
   marginTop?: number,
   marginBottom?: number,
-  numberInRow?: number,
+  marginLeft?: string,
+  marginRight?: string,
+  width?: string,
 }
   

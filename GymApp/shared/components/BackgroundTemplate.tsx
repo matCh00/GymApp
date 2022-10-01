@@ -2,7 +2,7 @@
  * Szablon tła w widokach
  */
 
-import useTheme from '../../theme/hooks/useTheme';
+import useTheme from '../../module-root/theme/hooks/useTheme';
 import { LinearGradient } from 'expo-linear-gradient';
 import { ImageBackground } from 'react-native';
 

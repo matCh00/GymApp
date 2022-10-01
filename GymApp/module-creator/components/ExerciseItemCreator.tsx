@@ -1,13 +1,13 @@
 /**
- * Element listy ćwiczeń na wybraną partię mięśniową 
+ * Element listy ćwiczeń na wybraną partię mięśniową (w kreatorze)
  */
 
 import { StyleSheet, Text, View, ActivityIndicator } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import OwnButton from '../../shared/components/OwnButton';
-import useTheme from '../../theme/hooks/useTheme';
-import useThemedStyles from '../../theme/hooks/useThemeStyles';
-import { ThemeModel } from '../../theme/models/ThemeModel';
+import useTheme from '../../module-root/theme/hooks/useTheme';
+import useThemedStyles from '../../module-root/theme/hooks/useThemeStyles';
+import { ThemeModel } from '../../module-root/theme/models/ThemeModel';
 import { ExerciseModel } from '../utils/ExerciseModel';
 import { addExercise, removeExercise } from '../redux/CreatorReducer';
 import { useEffect, useState } from 'react';
@@ -16,7 +16,7 @@ import { storage } from '../../firebase/Init';
 import { useRoute } from '@react-navigation/native';
 import CachedImage from 'expo-cached-image';
 import ExerciseMetadata from './ExerciseMetadata';
-import { GlobalStyles } from '../../theme/utils/GlobalStyles';
+import { GlobalStyles } from '../../module-root/theme/utils/GlobalStyles';
 import CardTemplate from '../../shared/components/CardTemplate';
 
 /**
@@ -26,7 +26,7 @@ interface ExerciseModelExtended extends ExerciseModel {
   refreshSignal?: () => void;
 }
 
-const ExerciseItem = (props: ExerciseModelExtended) => {
+const ExerciseItemCreator = (props: ExerciseModelExtended) => {
 
   const [setsCount, setSetsCount] = useState(4);
   const [repsCount, setRepsCount] = useState(10);
@@ -122,29 +122,29 @@ const ExerciseItem = (props: ExerciseModelExtended) => {
             {stateExercises.filter((e: ExerciseModel) => {return e.exerciseKey === exerciseKey}).length > 0
               ?
                 <View style={{flexDirection: 'row'}}>
-                  <OwnButton icon='minus-box-multiple-outline' onPress={handleRemove} numberInRow={1} />
+                  <OwnButton icon='minus-box-multiple-outline' onPress={handleRemove} />
                 </View>
               :
                 <>
                   <View style={{flexDirection: 'row'}}>
-                    <OwnButton icon='plus-box-multiple-outline' onPress={handleAdd} numberInRow={2} />
-                    <OwnButton icon='dumbbell' onPress={() => setSettingsOpened(o => !o)} numberInRow={2} />
+                    <OwnButton icon='plus-box-multiple-outline' onPress={handleAdd} width='40%' />
+                    <OwnButton icon='dumbbell' onPress={() => setSettingsOpened(o => !o)} width='40%' />
                   </View>
 
                   {settingsOpened
                     ?
-                      <>
+                      <View style={{width: '20%', marginLeft: '30%'}}>
                         <ExerciseMetadata name={'Sets'} count={setsCount} setCount={setSetsCount} />
                         <ExerciseMetadata name={'Reps'} count={repsCount} setCount={setRepsCount} />
                         <ExerciseMetadata type={'weight'} name={'Weight'} count={weightCount} setCount={setWeightCount} />
-                      </>
+                      </View>
                     : null
                   }
                 </>
             }
           </>
         : <>
-            <OwnButton icon='minus-box-multiple-outline' onPress={handleRemove} numberInRow={1} />
+            <OwnButton icon='minus-box-multiple-outline' onPress={handleRemove} />
           </>
       }
 
@@ -152,7 +152,7 @@ const ExerciseItem = (props: ExerciseModelExtended) => {
   );
 };
 
-export default ExerciseItem;
+export default ExerciseItemCreator;
 
 const styles = (theme: ThemeModel) =>
   StyleSheet.create({

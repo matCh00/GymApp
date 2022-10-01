@@ -3,10 +3,11 @@
  */
 
 import { StyleSheet, View, TextInput } from 'react-native';
-import useTheme from '../../theme/hooks/useTheme';
-import useThemedStyles from '../../theme/hooks/useThemeStyles';
-import { ThemeModel } from '../../theme/models/ThemeModel';
+import useTheme from '../../module-root/theme/hooks/useTheme';
+import useThemedStyles from '../../module-root/theme/hooks/useThemeStyles';
+import { ThemeModel } from '../../module-root/theme/models/ThemeModel';
 import { OwnInputModel } from '../models/OwnInputModel';
+import { LinearGradient } from 'expo-linear-gradient';
 
 const OwnInput = (props: OwnInputModel) => {
 
@@ -23,13 +24,25 @@ const OwnInput = (props: OwnInputModel) => {
 
   return (
     <View style={style.inputContainer} >
-      <TextInput 
-        placeholder={placeholder} 
-        value={value} 
-        onChangeText={text => onChangeText(text)} 
-        secureTextEntry={secureTextEntry} 
-        style={style.input} 
-      />
+
+      <LinearGradient
+        colors={[
+          theme.colors.STEP_999,
+          theme.colors.STEP_99,
+        ]}
+        style={style.gradientContainer}
+        start={{ x: 0, y: 0 }}
+        end={{ x: 1, y: 1 }}
+      >
+        <TextInput 
+          placeholder={placeholder} 
+          value={value} 
+          onChangeText={text => onChangeText(text)} 
+          secureTextEntry={secureTextEntry} 
+          style={style.input} 
+        />
+ 
+      </LinearGradient>
     </View>
   );
 };
@@ -42,14 +55,16 @@ const styles = (theme: ThemeModel) =>
       width: '80%',
       minWidth: '50%',
       minHeight: '10%',
+      marginTop: 10
+    },
+    gradientContainer: {
+      borderRadius: 15,
     },
     input: {
-      backgroundColor: theme.colors.STEP_999,
       color: theme.colors.STEP_000,
       paddingHorizontal: 15,
       paddingVertical: 10,
-      borderRadius: 10,
-      marginTop: 5,
+      borderRadius: 15,
       fontWeight: '600',
       fontSize: theme.typography.size.S,
     },

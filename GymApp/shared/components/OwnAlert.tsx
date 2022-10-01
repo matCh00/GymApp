@@ -3,13 +3,13 @@
  */
 
 import { StyleSheet, Text, View } from "react-native";
-import useTheme from "../../theme/hooks/useTheme";
-import useThemedStyles from "../../theme/hooks/useThemeStyles";
-import { ThemeModel } from "../../theme/models/ThemeModel";
+import useTheme from "../../module-root/theme/hooks/useTheme";
+import useThemedStyles from "../../module-root/theme/hooks/useThemeStyles";
+import { ThemeModel } from "../../module-root/theme/models/ThemeModel";
 import { OwnAlertModel } from "../models/OwnAlertModel";
 import OwnPopup from "./OwnPopup";
 import OwnButton from "./OwnButton";
-import { GlobalStyles } from "../../theme/utils/GlobalStyles";
+import { GlobalStyles } from "../../module-root/theme/utils/GlobalStyles";
 
 const OwnAlert = (props: OwnAlertModel) => {
 
@@ -52,11 +52,11 @@ const OwnAlert = (props: OwnAlertModel) => {
           {variant == "YES_NO" 
           ?
             <View style={{flexDirection: 'row'}}>
-              <OwnButton title='No' onPress={handleReject} numberInRow={3} />
-              <OwnButton title='Yes' onPress={handleResolve} numberInRow={3} />
+              <OwnButton title='No' onPress={handleReject} width='30%' />
+              <OwnButton title='Yes' onPress={handleResolve} width='30%' />
             </View>
           :
-            <OwnButton title='Ok' onPress={handleReject} numberInRow={3} />
+            <OwnButton title='Ok' onPress={handleReject} width='30%' />
           }
 
         </View>

@@ -3,9 +3,9 @@
  */
 
 import { StyleSheet, ActivityIndicator, View, Dimensions, Text } from 'react-native';
-import useTheme from '../../theme/hooks/useTheme';
-import useThemedStyles from '../../theme/hooks/useThemeStyles';
-import { ThemeModel } from '../../theme/models/ThemeModel';
+import useTheme from '../../module-root/theme/hooks/useTheme';
+import useThemedStyles from '../../module-root/theme/hooks/useThemeStyles';
+import { ThemeModel } from '../../module-root/theme/models/ThemeModel';
 import { useContext, useEffect, useState } from 'react';
 import { TrainingSummaryModel } from '../../module-plans/utils/TrainingSummaryModel';
 import { getSummariesBoundariesDB, getSummariesWeekDB } from '../../firebase/Database';
@@ -200,9 +200,9 @@ const WorkoutsChartWeek = ({selectedMonth}) => {
       }
 
       <View style={{flexDirection: 'row', marginBottom: -120}}>
-        <OwnButton icon='calendar-arrow-left' onPress={handlePreviousWeek} numberInRow={3} />
-        <OwnButton icon='calendar-arrow-right' onPress={handleNextWeek} numberInRow={3} />
-        <OwnButton icon='calendar' onPress={handleCurrentWeek} numberInRow={3} />
+        <OwnButton icon='calendar-arrow-left' onPress={handlePreviousWeek} width='30%' />
+        <OwnButton icon='calendar-arrow-right' onPress={handleNextWeek} width='30%' />
+        <OwnButton icon='calendar' onPress={handleCurrentWeek} width='30%' />
       </View>
 
     </>

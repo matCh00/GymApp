@@ -3,9 +3,9 @@
  */
 
 import { StyleSheet, Text, ActivityIndicator, TouchableOpacity } from 'react-native';
-import useTheme from '../../theme/hooks/useTheme';
-import useThemedStyles from '../../theme/hooks/useThemeStyles';
-import { ThemeModel } from '../../theme/models/ThemeModel';
+import useTheme from '../../module-root/theme/hooks/useTheme';
+import useThemedStyles from '../../module-root/theme/hooks/useThemeStyles';
+import { ThemeModel } from '../../module-root/theme/models/ThemeModel';
 import { MuscleModel } from '../utils/MuscleModel';
 import MusclesEnum from '../utils/MusclesEnum';
 import { Image } from "react-native";
@@ -15,7 +15,7 @@ import { CreatorStackParams } from '../navigation/CreatorNavigation';
 import { useEffect, useState } from 'react';
 import { ref, getDownloadURL } from 'firebase/storage';
 import { storage } from '../../firebase/Init';
-import { GlobalStyles } from '../../theme/utils/GlobalStyles';
+import { GlobalStyles } from '../../module-root/theme/utils/GlobalStyles';
 import CardTemplate from '../../shared/components/CardTemplate';
 
 const MuscleItem = (props: MuscleModel) => {

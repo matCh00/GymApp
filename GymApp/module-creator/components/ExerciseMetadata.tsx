@@ -3,12 +3,12 @@
  */
 
 import { StyleSheet, Text, View, TextInput } from 'react-native';
-import useTheme from '../../theme/hooks/useTheme';
-import useThemedStyles from '../../theme/hooks/useThemeStyles';
-import { ThemeModel } from '../../theme/models/ThemeModel';
+import useTheme from '../../module-root/theme/hooks/useTheme';
+import useThemedStyles from '../../module-root/theme/hooks/useThemeStyles';
+import { ThemeModel } from '../../module-root/theme/models/ThemeModel';
 import OwnButton from '../../shared/components/OwnButton';
 import { ExerciseMetadataModel } from '../utils/ExerciseMetadataModel';
-import { GlobalStyles } from '../../theme/utils/GlobalStyles';
+import { GlobalStyles } from '../../module-root/theme/utils/GlobalStyles';
 
 const ExerciseMetadata = (props: ExerciseMetadataModel) => {
 
@@ -26,7 +26,7 @@ const ExerciseMetadata = (props: ExerciseMetadataModel) => {
   const style = useThemedStyles(styles);
   
   return (
-    <View style={{flexDirection: 'row', width: '50%', marginLeft: '-10%'}}>
+    <View style={{flexDirection: 'row', width: '100%', justifyContent: 'flex-end'}}>
 
       <Text style={[
         GlobalStyles.text, 

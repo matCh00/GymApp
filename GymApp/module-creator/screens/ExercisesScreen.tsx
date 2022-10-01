@@ -4,16 +4,16 @@
 
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { StyleSheet, Text, View, FlatList } from 'react-native';
-import useTheme from '../../theme/hooks/useTheme';
-import useThemedStyles from '../../theme/hooks/useThemeStyles';
-import { ThemeModel } from '../../theme/models/ThemeModel';
+import useTheme from '../../module-root/theme/hooks/useTheme';
+import useThemedStyles from '../../module-root/theme/hooks/useThemeStyles';
+import { ThemeModel } from '../../module-root/theme/models/ThemeModel';
 import { CreatorStackParams } from '../navigation/CreatorNavigation';
 import BackgroundTemplate from '../../shared/components/BackgroundTemplate';
-import ExerciseItem from '../components/ExerciseItem';
+import ExerciseItemCreator from '../components/ExerciseItemCreator';
 import { FloatingAction } from "react-native-floating-action";
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { Exercises } from '../utils/Exercises';
-import { GlobalStyles } from '../../theme/utils/GlobalStyles';
+import { GlobalStyles } from '../../module-root/theme/utils/GlobalStyles';
 
 type Props = NativeStackScreenProps<CreatorStackParams, 'Exercises'>;
 
@@ -45,7 +45,7 @@ const ExercisesScreen = ({route, navigation}: Props) => {
         renderItem={(itemData) => {
           return (
             <View style={GlobalStyles.listContainer}>
-              <ExerciseItem 
+              <ExerciseItemCreator 
                 pathName={itemData.item.pathName} 
                 muscleName={itemData.item.muscle}
                 exerciseName={itemData.item.name}
