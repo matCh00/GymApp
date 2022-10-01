@@ -30,6 +30,7 @@ import { getPlansDB } from '../../firebase/Database';
 import { PlanModel } from '../../module-plans/utils/PlanModel';
 import OwnAlert from '../../shared/components/OwnAlert';
 import { OwnAlertVariantsEnum } from '../../shared/models/OwnAlertModel';
+import CardTemplate from '../../shared/components/CardTemplate';
 
 const CreatorScreen = () => {
 
@@ -236,7 +237,7 @@ const CreatorScreen = () => {
           visible={filterModalOpened} 
           setVisible={setFilterModalOpened} 
           children={
-            <View style={style.container}>
+            <CardTemplate>
               <DropDownPicker
                 open={filterOpen}
                 value={filterValue}
@@ -245,9 +246,15 @@ const CreatorScreen = () => {
                 setValue={setFilterValue}
                 placeholder={'Select muscle'}
                 style={{
-                  backgroundColor: theme.colors.STEP_9999
+                  width: '80%',
+                  backgroundColor: theme.colors.STEP_9999,
+                  marginTop: 20,
+                  marginBottom: -10,
                 }}
-                dropDownContainerStyle={{backgroundColor: theme.colors.STEP_9999}}
+                dropDownContainerStyle={{
+                  width: '80%',
+                  backgroundColor: theme.colors.STEP_9999, 
+                }}
               />
 
               <View style={{flexDirection: 'row'}}>
@@ -256,7 +263,7 @@ const CreatorScreen = () => {
                 <OwnButton title='Filter' onPress={handleFilter} numberInRow={2} />
               
               </View>
-            </View>
+            </CardTemplate>
           } 
         />
 

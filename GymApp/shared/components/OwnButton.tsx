@@ -8,6 +8,7 @@ import useThemedStyles from "../../theme/hooks/useThemeStyles";
 import { ThemeModel } from "../../theme/models/ThemeModel";
 import { OwnButtonModel } from "../models/OwnButtonModel";
 import { MaterialCommunityIcons } from '@expo/vector-icons';
+import { LinearGradient } from 'expo-linear-gradient';
 
 const OwnButton = (props: OwnButtonModel) => {
 
@@ -30,20 +31,32 @@ const OwnButton = (props: OwnButtonModel) => {
         numberInRow ? {width: (100 / numberInRow).toString() + '%'} : {width: '50%'}
       ]}>
 
-      <TouchableOpacity 
-        onPress={onPress} 
-        style={[
-          style.button, icon ? {alignSelf: 'center'} : {width: '80%'}, 
-          size ? {padding: size} : {padding: 15}
+      <LinearGradient
+        colors={[
+          theme.colors.STEP_1,
+          theme.colors.STEP_2,
         ]}
-        activeOpacity={.7}
+        style={style.button}
+        start={{ x: 0, y: 0 }}
+        end={{ x: 1, y: 1 }}
       >
-        {icon?.length > 0
-          ? <MaterialCommunityIcons name={icon as undefined} color={theme.colors.STEP_99} size={24} />
-          : <Text style={[style.buttonText]}> {title} </Text>
-        }
-        
-      </TouchableOpacity>
+
+        <TouchableOpacity 
+          onPress={onPress} 
+          style={[
+            style.button, icon ? {alignSelf: 'center'} : {width: '80%'}, 
+            size ? {padding: size} : {padding: 15}
+          ]}
+          activeOpacity={.7}
+        >
+          {icon?.length > 0
+            ? <MaterialCommunityIcons name={icon as undefined} color={theme.colors.STEP_99} size={24} />
+            : <Text style={[style.buttonText]}> {title} </Text>
+          }
+          
+        </TouchableOpacity>
+
+      </LinearGradient>
 
     </View>
   );
@@ -60,7 +73,6 @@ const styles = (theme: ThemeModel) =>
     },
     button: {
       alignItems: 'center',
-      backgroundColor: theme.colors.STEP_1,
       borderRadius: 50,
     },
     buttonText: {

@@ -76,7 +76,7 @@ const styles = (theme: ThemeModel) =>
       justifyContent: "center",
     },
     header: {
-      color: theme.colors.STEP_9,
+      color: theme.colors.STEP_99,
       fontSize: theme.typography.size.L,
     },
     question: {
