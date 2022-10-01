@@ -2,13 +2,13 @@
  * Widok zapisywania planu treningowego
  */
 
-import { Alert, StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import useTheme from '../../theme/hooks/useTheme';
 import useThemedStyles from '../../theme/hooks/useThemeStyles';
 import { ThemeModel } from '../../theme/models/ThemeModel';
 import { useDispatch, useSelector } from 'react-redux';
 import { useContext, useState } from 'react';
-import { addPlan } from '../../module-plans/redux/PlansReducer';
+import { addPlan, updatePlan } from '../../module-plans/redux/PlansReducer';
 import { clearExercises } from '../redux/CreatorReducer';
 import OwnInput from '../../shared/components/OwnInput';
 import OwnButton from '../../shared/components/OwnButton';
@@ -16,10 +16,13 @@ import { GlobalStyles } from '../../theme/utils/GlobalStyles';
 import { AuthModel } from '../../shared/models/AuthModel';
 import { AuthContext } from '../../shared/state/AuthContext';
 import { getPlanNamesDB } from '../../firebase/Database';
+import OwnAlert from '../../shared/components/OwnAlert';
+import { OwnAlertVariantsEnum } from '../../shared/models/OwnAlertModel';
 
 const SubmitPopupView = ({setSubmitModalOpend}) => {
 
   const [planName, setPlanName] = useState('');
+  const [alertOpened, setAlertOpened] = useState(false);
 
   /**
    * motyw
@@ -43,7 +46,7 @@ const SubmitPopupView = ({setSubmitModalOpend}) => {
   const stateExercises = useSelector((state: any) => state.selectedExercises.exercises);
 
   /**
-   * zapisanie planu treningowego
+   * próba zapisania planu treningowego
    */
   const handleSavePlan = () => {
 
@@ -52,37 +55,45 @@ const SubmitPopupView = ({setSubmitModalOpend}) => {
         (names: string[]) => {
           
           if (names.includes(planName)) {
-            Alert.alert("Name exists", "Do you want to override existing plan?", [
-              { text: "No!", onPress: () => null },
-              { text: "Yes", onPress: () => {
-                  dispatch(addPlan({
-                    exercises: stateExercises, 
-                    planName: planName, 
-                    planKey: planName + '_' + Date.now(),
-                    created: Date.now(),
-                    email: email
-                  }));
-                  dispatch(clearExercises({}));
-                  setSubmitModalOpend(false); 
-                } 
-              }
-            ]);
+            setAlertOpened(true);
           }
           else {
-            dispatch(addPlan({
-              exercises: stateExercises, 
-              planName: planName, 
-              planKey: planName + '_' + Date.now(),
-              created: Date.now(),
-              email: email
-            }));
-            dispatch(clearExercises({}));
-            setSubmitModalOpend(false);   
+            savePlan();
           }
         }
       )
     }
   }
+
+  /**
+   * dodanie planu treningowego
+   */
+  const savePlan = () => {
+    dispatch(addPlan({
+      exercises: stateExercises, 
+      planName: planName, 
+      planKey: planName + '_' + Date.now(),
+      created: Date.now(),
+      email: email
+    }));
+    dispatch(clearExercises({}));
+    setSubmitModalOpend(false); 
+   }
+
+  /**
+   * aktualizacja planu treningowego
+   */
+  const saveExistingPlan = () => {
+    dispatch(updatePlan({
+      exercises: stateExercises, 
+      planName: planName, 
+      planKey: planName + '_' + Date.now(),
+      created: Date.now(),
+      email: email
+    }));
+    dispatch(clearExercises({}));
+    setSubmitModalOpend(false); 
+   }
 
   return (
     <View style={GlobalStyles.container}>
@@ -95,6 +106,15 @@ const SubmitPopupView = ({setSubmitModalOpend}) => {
         <OwnButton title='Save plan' onPress={handleSavePlan} numberInRow={2} />
         <OwnButton title='Go back' onPress={() => {setSubmitModalOpend(false);}} numberInRow={2} />
       </View>
+
+      <OwnAlert 
+        visible={alertOpened}
+        setVisible={setAlertOpened}
+        header='Name already exists'
+        question='Do you want to override existing plan?'
+        func={saveExistingPlan}
+        variant={'YES_NO' as OwnAlertVariantsEnum}
+      />
       
     </View>
   );

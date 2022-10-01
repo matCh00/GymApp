@@ -54,6 +54,6 @@ const styles = (theme: ThemeModel) =>
       flex: 1,
       alignItems: "center",
       justifyContent: "center",
-      backgroundColor: "rgba(0,0,0,0.75)",
+      backgroundColor: "rgba(0,0,0,0.85)",
     }
   });

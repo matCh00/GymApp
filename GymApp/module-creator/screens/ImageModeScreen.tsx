@@ -2,7 +2,7 @@
  * Ekran kreatora planów treningowych - obrazek
  */
 
-import { StyleSheet, Text, View, TouchableOpacity, Alert } from 'react-native'
+import { StyleSheet, View } from 'react-native'
 import useTheme from '../../theme/hooks/useTheme';
 import useThemedStyles from '../../theme/hooks/useThemeStyles';
 import { ThemeModel } from '../../theme/models/ThemeModel';
@@ -11,16 +11,18 @@ import { GlobalStyles } from '../../theme/utils/GlobalStyles';
 import BodyPartsBack from '../components/BodyPartsBack';
 import BodyPartsFront from '../components/BodyPartsFront';
 import { useState } from 'react';
-import { MaterialCommunityIcons } from '@expo/vector-icons';
 import OwnButton from '../../shared/components/OwnButton';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { CreatorStackParams } from '../navigation/CreatorNavigation';
 import { changeMuscle } from '../redux/MusclesReducer';
+import OwnAlert from '../../shared/components/OwnAlert';
+import { OwnAlertVariantsEnum } from '../../shared/models/OwnAlertModel';
 
 const ImageModeScreen = () => {
 
+  const [alertOpened, setAlertOpened] = useState(false);
   const [isFront, setIsFront] = useState(true);
 
   /**
@@ -52,9 +54,7 @@ const ImageModeScreen = () => {
       navigation.push("Exercises", {muscle: muscle})
     }
     else {
-      Alert.alert("Exercise", "Select muscle first!", [
-        { text: "OK", onPress: () => null },
-      ]);
+      setAlertOpened(true);
     }
   }
 
@@ -84,6 +84,14 @@ const ImageModeScreen = () => {
         <OwnButton title="Choose" onPress={goToExercise} />
 
       </View>
+
+      <OwnAlert 
+        visible={alertOpened}
+        setVisible={setAlertOpened}
+        header='Exercise'
+        question='Select muscle first!'
+        variant={'OK' as OwnAlertVariantsEnum}
+      />
 
     </BackgroundTemplate>
   );

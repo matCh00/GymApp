@@ -4,7 +4,7 @@
 
 import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
-import { StyleSheet, Text, View, FlatList, Alert } from 'react-native';
+import { StyleSheet, Text, View, FlatList } from 'react-native';
 import useTheme from '../../theme/hooks/useTheme';
 import useThemedStyles from '../../theme/hooks/useThemeStyles';
 import { ThemeModel } from '../../theme/models/ThemeModel';
@@ -28,8 +28,13 @@ import { AuthModel } from '../../shared/models/AuthModel';
 import { AuthContext } from '../../shared/state/AuthContext';
 import { getPlansDB } from '../../firebase/Database';
 import { PlanModel } from '../../module-plans/utils/PlanModel';
+import OwnAlert from '../../shared/components/OwnAlert';
+import { OwnAlertVariantsEnum } from '../../shared/models/OwnAlertModel';
 
 const CreatorScreen = () => {
+
+  const [alertOpened1, setAlertOpened1] = useState(false);
+  const [alertOpened2, setAlertOpened2] = useState(false);
 
   const [editedPlan, setEditedPlan] = useState<PlanModel>(null);
 
@@ -127,9 +132,7 @@ const CreatorScreen = () => {
   const handleSubmit = () => {
 
     if (stateExercises.length === 0) {
-      Alert.alert("Empty", "Select some exercises!", [
-        { text: "OK", onPress: () => null },
-      ]);
+      setAlertOpened1(true);
       return;
     }
 
@@ -140,28 +143,30 @@ const CreatorScreen = () => {
 
     /* zaktualizowanie planu */
     else {
-      Alert.alert("Update plan", "Are you sure you want to update selected plan?", [
-        { text: "No", onPress: () => null },
-        { text: "Yes", onPress: () => {
-          dispatch(updatePlan({
-            email: email,
-            exercises: stateExercises, 
-            planName: editedPlan.planName, 
-            planKey: editedPlan.planKey,
-            created: editedPlan.created
-          }));
-
-          dispatch(clearExercises({}));
-
-          /* odświeżenie planów */
-          getPlansDB(email).then(
-            (data) => {
-              dispatch(loadPlans({plans: data}));
-            }
-          )
-        }}
-      ]);
+      setAlertOpened2(true);
     }
+  }
+
+  /**
+   * aktualizacja planu treningowego
+   */
+  const saveExisitingPlan = () => {
+    dispatch(updatePlan({
+      email: email,
+      exercises: stateExercises, 
+      planName: editedPlan.planName, 
+      planKey: editedPlan.planKey,
+      created: editedPlan.created
+    }));
+
+    dispatch(clearExercises({}));
+
+    /* odświeżenie planów */
+    getPlansDB(email).then(
+      (data) => {
+        dispatch(loadPlans({plans: data}));
+      }
+    )
   }
 
   /**
@@ -218,50 +223,67 @@ const CreatorScreen = () => {
           numColumns={1}
         />
 
-      <FloatingAction
-        color={theme.colors.STEP_0}
-        floatingIcon={<MaterialCommunityIcons name="filter-outline" color={theme.colors.STEP_99} size={24} />}
-        showBackground={false}
-        onPressMain={() => {
-          setFilterModalOpened(true);
-        }}
-      />
+        <FloatingAction
+          color={theme.colors.STEP_0}
+          floatingIcon={<MaterialCommunityIcons name="filter-outline" color={theme.colors.STEP_99} size={24} />}
+          showBackground={false}
+          onPressMain={() => {
+            setFilterModalOpened(true);
+          }}
+        />
 
-      <OwnPopup 
-        visible={filterModalOpened} 
-        setVisible={setFilterModalOpened} 
-        children={
-          <View style={style.container}>
-            <DropDownPicker
-              open={filterOpen}
-              value={filterValue}
-              items={filterItems}
-              setOpen={setFilterOpen}
-              setValue={setFilterValue}
-              placeholder={'Select muscle'}
-              style={{
-                backgroundColor: theme.colors.STEP_9999
-              }}
-              dropDownContainerStyle={{backgroundColor: theme.colors.STEP_9999}}
-            />
+        <OwnPopup 
+          visible={filterModalOpened} 
+          setVisible={setFilterModalOpened} 
+          children={
+            <View style={style.container}>
+              <DropDownPicker
+                open={filterOpen}
+                value={filterValue}
+                items={filterItems}
+                setOpen={setFilterOpen}
+                setValue={setFilterValue}
+                placeholder={'Select muscle'}
+                style={{
+                  backgroundColor: theme.colors.STEP_9999
+                }}
+                dropDownContainerStyle={{backgroundColor: theme.colors.STEP_9999}}
+              />
 
-            <View style={{flexDirection: 'row'}}>
+              <View style={{flexDirection: 'row'}}>
 
-              <OwnButton title='Reset' onPress={handleReset} numberInRow={2} />
-              <OwnButton title='Filter' onPress={handleFilter} numberInRow={2} />
-             
+                <OwnButton title='Reset' onPress={handleReset} numberInRow={2} />
+                <OwnButton title='Filter' onPress={handleFilter} numberInRow={2} />
+              
+              </View>
             </View>
-          </View>
-        } 
-      />
+          } 
+        />
 
-      <OwnPopup 
-        visible={submitModalOpend} 
-        setVisible={setSubmitModalOpend} 
-        children={
-          <SubmitPopupView setSubmitModalOpend={setSubmitModalOpend} />
-        } 
-      />
+        <OwnPopup 
+          visible={submitModalOpend} 
+          setVisible={setSubmitModalOpend} 
+          children={
+            <SubmitPopupView setSubmitModalOpend={setSubmitModalOpend} />
+          } 
+        />
+
+        <OwnAlert 
+          visible={alertOpened1}
+          setVisible={setAlertOpened1}
+          header='Empty list'
+          question='Select some exercises!'
+          variant={'OK' as OwnAlertVariantsEnum}
+        />
+
+        <OwnAlert 
+          visible={alertOpened2}
+          setVisible={setAlertOpened2}
+          header='Update plan'
+          question='Are you sure you want to update selected plan?'
+          func={saveExisitingPlan}
+          variant={'YES_NO' as OwnAlertVariantsEnum}
+        />
  
       </View>
     </BackgroundTemplate>

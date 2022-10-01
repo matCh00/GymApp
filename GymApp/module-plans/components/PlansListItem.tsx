@@ -4,7 +4,7 @@
 
 import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
-import { StyleSheet, View, Text, Alert } from 'react-native';
+import { StyleSheet, View, Text } from 'react-native';
 import useTheme from '../../theme/hooks/useTheme';
 import useThemedStyles from '../../theme/hooks/useThemeStyles';
 import { ThemeModel } from '../../theme/models/ThemeModel';
@@ -18,11 +18,15 @@ import CardTemplate from '../../shared/components/CardTemplate';
 import { RootStackParams } from '../../module-root/navigation/RootNavigation';
 import { loadExercises } from '../../module-creator/redux/CreatorReducer';
 import { removePlan } from '../redux/PlansReducer';
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import { AuthModel } from '../../shared/models/AuthModel';
 import { AuthContext } from '../../shared/state/AuthContext';
+import OwnAlert from '../../shared/components/OwnAlert';
+import { OwnAlertVariantsEnum } from '../../shared/models/OwnAlertModel';
 
 const PlansListItem = (props: PlanModel) => {
+
+  const [alertOpened, setAlertOpened] = useState(false);
 
   /**
    * props
@@ -80,10 +84,7 @@ const PlansListItem = (props: PlanModel) => {
    * usunięcie planu treningowego
    */
   const handleDeletePlan = () => {
-    Alert.alert("Delete pla", "Do you want to delete plan?", [
-      { text: "No!", onPress: () => null },
-      { text: "Yes", onPress: () => {dispatch(removePlan({email: email, planName: planName}))}}
-    ]);  
+    dispatch(removePlan({email: email, planName: planName})) 
   }
 
   return (
@@ -94,10 +95,19 @@ const PlansListItem = (props: PlanModel) => {
       <Text style={[GlobalStyles.text, style.text]}>{getDate()}</Text>
 
       <View style={{flexDirection: 'row'}}>
-        <OwnButton title="Delete" onPress={handleDeletePlan} numberInRow={3} />
+        <OwnButton title="Delete" onPress={() => {setAlertOpened(true)}} numberInRow={3} />
         <OwnButton title="Edit" onPress={handleEditPlan} numberInRow={3} />
         <OwnButton title="Show" onPress={handleStartWorkout} numberInRow={3} />
       </View>
+
+      <OwnAlert 
+        visible={alertOpened}
+        setVisible={setAlertOpened}
+        header='Delete plan'
+        question='Do you want to delete plan?'
+        func={handleDeletePlan}
+        variant={'YES_NO' as OwnAlertVariantsEnum}
+      />
       
     </CardTemplate>
   );

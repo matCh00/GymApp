@@ -12,14 +12,16 @@ import ProfileScreen from '../screens/ProfileScreen';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import WorkoutsChartScreen from '../screens/WorkoutsChartScreen';
 import EffortChartScreen from '../screens/EffortChartScreen';
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import { AuthModel } from '../../shared/models/AuthModel';
 import { AuthContext } from '../../shared/state/AuthContext';
-import { Alert, Text, View } from 'react-native';
+import { Text, View } from 'react-native';
 import useTheme from '../../theme/hooks/useTheme';
 import SettingsScreen from '../screens/SettingsScreen';
 import ThemeScreen from '../screens/ThemeScreen';
 import { logout } from '../../firebase/Auth';
+import OwnAlert from '../../shared/components/OwnAlert';
+import { OwnAlertVariantsEnum } from '../../shared/models/OwnAlertModel';
 
 /** 
  * parametry 
@@ -42,6 +44,8 @@ const ProfileStack = createDrawerNavigator<ProfileStackParams>();
  */
 const CustomDrawerContent = (props: any) => {
 
+  const [alertOpened, setAlertOpened] = useState(false);
+
   /**
    * context uwierzytelniania
    */
@@ -51,14 +55,9 @@ const CustomDrawerContent = (props: any) => {
    * wylogowanie
    */
   const handleLogOut = () => {
-    Alert.alert("LogOut", "Are you sure you want to log out?", [
-      { text: "No", onPress: () => null },
-      { text: "Yes", onPress: () => {
-        logout().then(
-          () => setLoggedIn(false)
-        )
-      }}
-    ]);
+    logout().then(
+      () => setLoggedIn(false)
+    )
   }
   
   /**
@@ -76,9 +75,19 @@ const CustomDrawerContent = (props: any) => {
             Logout
           </Text>
         </View>}
-        onPress={handleLogOut}
+        onPress={() => setAlertOpened(true)}
         style={{backgroundColor: theme.colors.STEP_2}}
       />
+
+      <OwnAlert 
+        visible={alertOpened}
+        setVisible={setAlertOpened}
+        header='Log Out'
+        question='Are you sure you want to log out?'
+        func={handleLogOut}
+        variant={'YES_NO' as OwnAlertVariantsEnum}
+      />
+
     </DrawerContentScrollView>
   );
 }
