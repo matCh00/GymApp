@@ -303,7 +303,7 @@ const styles = (theme: ThemeModel) =>
   StyleSheet.create({
     text: {
       color: theme.colors.STEP_999,
-      fontSize: theme.typography.size.L,
+      fontSize: theme.typography.size.XL,
       marginBottom: 10,
       marginTop: 20,
     },

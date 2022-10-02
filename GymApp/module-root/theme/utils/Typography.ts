@@ -7,13 +7,9 @@ import { TypographyModel } from "../models/TypographyModel";
 const size = {
   S: 16,
   M: 20,
-  L: 30,
+  L: 24,
+  XL: 28,
+  XXL: 32,
 };
 
-const letterSpacing = {
-  S: 2,
-  M: 5,
-  L: 10,
-};
-
-export const typography: TypographyModel = { size, letterSpacing };
+export const typography: TypographyModel = { size };

@@ -90,9 +90,9 @@ const PlansListItem = (props: PlanModel) => {
   return (
     <CardTemplate>
 
-      <Text style={[GlobalStyles.text, style.text]}>{planName}</Text>
+      <Text style={[GlobalStyles.text, style.textExercise]}>{planName}</Text>
 
-      <Text style={[GlobalStyles.text, style.text]}>{getDate()}</Text>
+      <Text style={[GlobalStyles.text, style.textCreated]}>{getDate()}</Text>
 
       <View style={{flexDirection: 'row'}}>
         <OwnButton title="Delete" onPress={() => {setAlertOpened(true)}} width='30%' />
@@ -117,9 +117,14 @@ export default PlansListItem;
 
 const styles = (theme: ThemeModel) =>
   StyleSheet.create({
-    text: {
+    textExercise: {
       color: theme.colors.STEP_000,
-      fontSize: theme.typography.size.M,
+      fontSize: theme.typography.size.L,
       marginBottom: 10,
+    },
+    textCreated: {
+      color: theme.colors.STEP_2,
+      fontSize: theme.typography.size.M,
+      marginBottom: -20,
     },
   });

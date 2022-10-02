@@ -24,7 +24,7 @@ const InfoCard = (props: InfoCardModel) => {
   const style = useThemedStyles(styles);
 
   return (
-    <CardTemplate radius={10}>
+    <CardTemplate radius={20}>
 
       <Text style={[GlobalStyles.text, style.textHeader]}>{header}</Text>
       <Text style={[GlobalStyles.text, style.textContent]}>{content}</Text>
@@ -40,13 +40,13 @@ const styles = (theme: ThemeModel) =>
     textHeader: {
       color: theme.colors.STEP_5,
       fontSize: theme.typography.size.L,
-      marginBottom: 10,
+      marginBottom: 5,
       marginLeft: 10,
       alignSelf: 'flex-start'
     },
     textContent: {
-      color: theme.colors.STEP_000,
+      color: theme.colors.STEP_0000,
       fontSize: theme.typography.size.M,
-      marginBottom: 10,
+      marginBottom: 5,
     }
   });

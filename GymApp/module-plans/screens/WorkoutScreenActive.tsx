@@ -183,13 +183,13 @@ const WorkoutScreenActive = () => {
                         </Text>
 
                         <View style={{flexDirection: 'row'}}>
-                          <Text style={style.text}>
+                          <Text style={style.timeText}>
                             {itemData.item.time.hours > 9 ? itemData.item.time.hours : '0' + itemData.item.time.hours + ':'}
                           </Text>
-                          <Text style={style.text}>
+                          <Text style={style.timeText}>
                             {itemData.item.time.minutes > 9 ? itemData.item.time.minutes : '0' + itemData.item.time.minutes + ':'}
                           </Text>
-                          <Text style={style.text}>
+                          <Text style={style.timeText}>
                             {itemData.item.time.seconds > 9 ? itemData.item.time.seconds : '0' + itemData.item.time.seconds}
                           </Text>
                         </View>
@@ -213,8 +213,8 @@ export default WorkoutScreenActive;
 
 const styles = (theme: ThemeModel) =>
   StyleSheet.create({
-    text: {
-      color: theme.colors.STEP_999,
+    timeText: {
+      color: theme.colors.STEP_9999,
       fontWeight: '600',
       fontSize: theme.typography.size.L,
       marginBottom: 20,
@@ -226,7 +226,7 @@ const styles = (theme: ThemeModel) =>
       marginTop: 20,
     },
     descriptionText: {
-      color: theme.colors.STEP_99,
+      color: theme.colors.STEP_999,
       fontWeight: '600',
       fontSize: theme.typography.size.M,
       marginTop: 5,

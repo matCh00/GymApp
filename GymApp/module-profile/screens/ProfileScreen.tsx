@@ -81,10 +81,4 @@ const ProfileScreen = ({navigation}) => {
 export default ProfileScreen;
 
 const styles = (theme: ThemeModel) =>
-  StyleSheet.create({
-    text: {
-      color: theme.colors.STEP_999,
-      fontSize: theme.typography.size.M,
-      minWidth: '45%',
-    },
-  });
+  StyleSheet.create({});

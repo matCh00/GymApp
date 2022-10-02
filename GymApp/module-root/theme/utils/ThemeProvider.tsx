@@ -12,7 +12,7 @@ export const ThemeContext = createContext<ThemeModel>(
   {
     colors: {SUCCESS: '', WARNING: '', ERROR: '', STEP_0000: '', STEP_000: '', STEP_00: '', STEP_0: '', STEP_1: '', STEP_2: '', STEP_3: '', 
     STEP_4: '', STEP_5: '', STEP_6: '', STEP_7: '',  STEP_8: '', STEP_9: '', STEP_99: '', STEP_999: '', STEP_9999: ''},
-    typography: {size: {S: 9, M: 9, L: 9}, letterSpacing: {S: 9, M: 9, L: 9}}, 
+    typography: {size: {S: 16, M: 20, L: 24, XL: 28, XXL: 32}}, 
     setCurrentTheme: () => {}
   }
 );

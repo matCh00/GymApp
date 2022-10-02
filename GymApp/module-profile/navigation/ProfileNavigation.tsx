@@ -17,7 +17,7 @@ import { AuthModel } from '../../module-auth/models/AuthModel';
 import { AuthContext } from '../../module-auth/context/AuthContext';
 import { Text, View } from 'react-native';
 import useTheme from '../../module-root/theme/hooks/useTheme';
-import SettingsScreen from '../screens/SettingsScreen';
+import AboutScreen from '../screens/AboutScreen';
 import ThemeScreen from '../screens/ThemeScreen';
 import { logout } from '../../firebase/Auth';
 import OwnAlert from '../../shared/components/OwnAlert';
@@ -31,7 +31,7 @@ export type ProfileStackParams = {
   Workouts: undefined;
   Effort: undefined;
   Theme: undefined;
-  Settings: undefined;
+  About: undefined;
 };
 
 /** 
@@ -167,19 +167,19 @@ const ProfileNavigation = () => {
         }}
       />
 
-      {/* <ProfileStack.Screen 
-        name="Settings" 
-        component={SettingsScreen} 
+      <ProfileStack.Screen 
+        name="About" 
+        component={AboutScreen} 
         options={{
-          title: "Settings",
+          title: "About",
           headerStyle: {backgroundColor: theme.colors.STEP_0},
           headerTintColor: theme.colors.STEP_999,
           
           drawerIcon: ({ color, size }) => (
-            <MaterialCommunityIcons name="tools" color={color} size={size} />
+            <MaterialCommunityIcons name="information-variant" color={color} size={size} />
           ),
         }}
-      /> */}
+      />
 
     </ProfileStack.Navigator>
   );

@@ -77,7 +77,7 @@ const styles = (theme: ThemeModel) =>
     },
     header: {
       color: theme.colors.STEP_99,
-      fontSize: theme.typography.size.L,
+      fontSize: theme.typography.size.XL,
     },
     question: {
       color: theme.colors.STEP_999,

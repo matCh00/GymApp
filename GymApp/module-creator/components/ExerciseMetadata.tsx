@@ -67,7 +67,7 @@ export default ExerciseMetadata;
 const styles = (theme: ThemeModel) =>
   StyleSheet.create({
     text: {
-      color: theme.colors.STEP_5,
+      color: theme.colors.STEP_3,
       fontSize: theme.typography.size.S,
       marginTop: 10,
     },
