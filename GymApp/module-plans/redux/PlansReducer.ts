@@ -4,7 +4,7 @@
  */
 
 import { createSlice } from "@reduxjs/toolkit";
-import { PlanModel } from "../utils/PlanModel";
+import { PlanModel } from "../models/PlanModel";
 import { addPlanDB, deletePlanDB } from "../../firebase/Database";
  
 const plansReducer = createSlice({

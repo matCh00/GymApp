@@ -6,7 +6,7 @@ import { StyleSheet, Text, ActivityIndicator, TouchableOpacity } from 'react-nat
 import useTheme from '../../module-root/theme/hooks/useTheme';
 import useThemedStyles from '../../module-root/theme/hooks/useThemeStyles';
 import { ThemeModel } from '../../module-root/theme/models/ThemeModel';
-import { MuscleModel } from '../utils/MuscleModel';
+import { MuscleModel } from '../models/MuscleModel';
 import MusclesEnum from '../utils/MusclesEnum';
 import { Image } from "react-native";
 import { useNavigation } from '@react-navigation/native';

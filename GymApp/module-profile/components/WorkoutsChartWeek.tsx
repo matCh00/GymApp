@@ -7,14 +7,15 @@ import useTheme from '../../module-root/theme/hooks/useTheme';
 import useThemedStyles from '../../module-root/theme/hooks/useThemeStyles';
 import { ThemeModel } from '../../module-root/theme/models/ThemeModel';
 import { useContext, useEffect, useState } from 'react';
-import { TrainingSummaryModel } from '../../module-plans/utils/TrainingSummaryModel';
+import { TrainingSummaryModel } from '../../module-plans/models/TrainingSummaryModel';
 import { getSummariesBoundariesDB } from '../../firebase/Database';
-import { AuthModel } from '../../shared/models/AuthModel';
-import { AuthContext } from '../../shared/state/AuthContext';
+import { AuthModel } from '../../module-auth/models/AuthModel';
+import { AuthContext } from '../../module-auth/context/AuthContext';
 import { VictoryBar, VictoryChart, VictoryTheme, VictoryAxis } from "victory-native";
-import { WorkoutsChartModel } from '../utils/WorkoutsChartModel';
+import { WorkoutsChartModel } from '../models/WorkoutsChartModel';
 import OwnButton from '../../shared/components/OwnButton';
 import { createDateAsUTC } from '../../shared/utils/DateFunctions';
+import { useNavigation } from '@react-navigation/native';
 
 const WorkoutsChartWeek = ({selectedMonth}) => {
 
@@ -26,6 +27,7 @@ const WorkoutsChartWeek = ({selectedMonth}) => {
   const [monthName, setMonthName] = useState('');
   const [start, setStart] = useState(new Date());
   const [end, setEnd] = useState(new Date());
+  const [focusListener, setFocusListener] = useState(false);
 
   /**
    * motyw
@@ -37,6 +39,11 @@ const WorkoutsChartWeek = ({selectedMonth}) => {
    * context uwierzytelniania
    */
   const {email} = useContext<AuthModel>(AuthContext);
+
+  /**
+   * nawigacja
+   */
+  const navigation = useNavigation();
 
   /**
    * zwrócenie daty od i do na podstawie tygodnia wstecz
@@ -112,7 +119,17 @@ const WorkoutsChartWeek = ({selectedMonth}) => {
         setLoadingFinished(true);
       }
     );    
-  }, [start])
+  }, [start, focusListener])
+
+  /**
+   * focus listener
+   */
+  useEffect(() => {
+    const unsubscribe = navigation.addListener('focus', () => {
+      setFocusListener(f => !f)
+    });
+    return unsubscribe;
+  }, [navigation]);
 
   /**
    * następny tydzień

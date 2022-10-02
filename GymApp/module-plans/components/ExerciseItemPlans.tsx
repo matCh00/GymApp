@@ -11,7 +11,7 @@ import { useEffect, useState } from 'react';
 import { ref, getDownloadURL } from 'firebase/storage';
 import { storage } from '../../firebase/Init';
 import CachedImage from 'expo-cached-image';
-import { ExerciseModel } from '../../module-creator/utils/ExerciseModel';
+import { ExerciseModel } from '../../module-creator/models/ExerciseModel';
 import { GlobalStyles } from '../../module-root/theme/utils/GlobalStyles';
 import CardTemplate from '../../shared/components/CardTemplate';
 

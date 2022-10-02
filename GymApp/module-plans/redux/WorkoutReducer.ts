@@ -4,7 +4,7 @@
  */
 
 import { createSlice } from "@reduxjs/toolkit";
-import { PlanModel } from "../utils/PlanModel";
+import { PlanModel } from "../models/PlanModel";
  
 const workoutReducer = createSlice({
   name: "selectedPlan",

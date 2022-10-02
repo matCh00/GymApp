@@ -3,8 +3,8 @@
  */
 
 import { addDoc, collection, deleteDoc, doc, getDocs, query, updateDoc, setDoc, where, getDoc, startAfter } from "firebase/firestore";
-import { PlanModel } from "../module-plans/utils/PlanModel";
-import { TrainingSummaryModel } from "../module-plans/utils/TrainingSummaryModel";
+import { PlanModel } from "../module-plans/models/PlanModel";
+import { TrainingSummaryModel } from "../module-plans/models/TrainingSummaryModel";
 import { firestore } from "./Init";
 
 /**

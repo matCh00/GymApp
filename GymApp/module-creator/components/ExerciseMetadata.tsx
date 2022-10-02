@@ -7,7 +7,7 @@ import useTheme from '../../module-root/theme/hooks/useTheme';
 import useThemedStyles from '../../module-root/theme/hooks/useThemeStyles';
 import { ThemeModel } from '../../module-root/theme/models/ThemeModel';
 import OwnButton from '../../shared/components/OwnButton';
-import { ExerciseMetadataModel } from '../utils/ExerciseMetadataModel';
+import { ExerciseMetadataModel } from '../models/ExerciseMetadataModel';
 import { GlobalStyles } from '../../module-root/theme/utils/GlobalStyles';
 
 const ExerciseMetadata = (props: ExerciseMetadataModel) => {

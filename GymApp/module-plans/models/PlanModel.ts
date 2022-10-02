@@ -2,7 +2,7 @@
  * Model planu treningowego
  */
 
-import { ExerciseModel } from '../../module-creator/utils/ExerciseModel';
+import { ExerciseModel } from '../../module-creator/models/ExerciseModel';
 
 export interface PlanModel {
   planName: string;

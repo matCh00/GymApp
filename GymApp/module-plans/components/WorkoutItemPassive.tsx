@@ -11,11 +11,11 @@ import { useEffect, useState } from 'react';
 import { ref, getDownloadURL } from 'firebase/storage';
 import { storage } from '../../firebase/Init';
 import CachedImage from 'expo-cached-image';
-import { ExerciseModel } from '../../module-creator/utils/ExerciseModel';
+import { ExerciseModel } from '../../module-creator/models/ExerciseModel';
 import { GlobalStyles } from '../../module-root/theme/utils/GlobalStyles';
 import CardTemplate from '../../shared/components/CardTemplate';
 import OwnButton from '../../shared/components/OwnButton';
-import { ResultsModel } from '../utils/ResultsModel';
+import { ResultsModel } from '../models/ResultsModel';
 import ExerciseMetadata from '../../module-creator/components/ExerciseMetadata';
  
 /**
@@ -23,7 +23,6 @@ import ExerciseMetadata from '../../module-creator/components/ExerciseMetadata';
  */
 interface ExerciseModelExtended extends ExerciseModel {
   setDoneSignal?: (exercise: ResultsModel) => void;
-  exerciseDoneSignal?: () => void;
 }
 
 const WorkoutItemPassive = (props: ExerciseModelExtended) => {
@@ -36,7 +35,7 @@ const WorkoutItemPassive = (props: ExerciseModelExtended) => {
   /**
    * props
    */
-  const {pathName, muscleName, exerciseName, exerciseKey, sets, reps, weight, setDoneSignal, exerciseDoneSignal} = props;
+  const {pathName, muscleName, exerciseName, exerciseKey, sets, reps, weight, setDoneSignal} = props;
  
   /**
    * motyw
@@ -84,15 +83,12 @@ const WorkoutItemPassive = (props: ExerciseModelExtended) => {
       })
     }
     if (url !== pathName) load();
-  }, [props]);
+  }, [pathName]);
 
   /**
    * zakończenie ćwiczenia
    */
   const handleDoneSetsSignal = () => {
-    if (doneSets + 1 >= setsCount) {
-      exerciseDoneSignal();
-    }
     setDoneSignal({
       exerciseName: exerciseName,
       muscleName: muscleName,
@@ -106,7 +102,11 @@ const WorkoutItemPassive = (props: ExerciseModelExtended) => {
   return (
     <CardTemplate>
 
-      <Text style={[GlobalStyles.text, style.text]}>{exerciseName}</Text>
+      <Text style={[
+        GlobalStyles.text, 
+        style.text, 
+        doneSets >= setsCount ? {textDecorationLine: 'line-through', textDecorationStyle: 'solid'} : null]}
+      >{exerciseName}</Text>
  
       {urlLoaded
         ? <CachedImage source={{uri: url}} cacheKey={exerciseKey} style={GlobalStyles.image} />

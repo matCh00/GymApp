@@ -7,7 +7,7 @@ import useTheme from '../../module-root/theme/hooks/useTheme';
 import useThemedStyles from '../../module-root/theme/hooks/useThemeStyles';
 import { ThemeModel } from '../../module-root/theme/models/ThemeModel';
 import { GlobalStyles } from '../../module-root/theme/utils/GlobalStyles';
-import { InfoCardModel } from '../utils/InfoCardModel';
+import { InfoCardModel } from '../models/InfoCardModel';
 import CardTemplate from '../../shared/components/CardTemplate';
 
 const InfoCard = (props: InfoCardModel) => {

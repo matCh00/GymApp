@@ -1,11 +1,11 @@
-import { PlanModel } from './../../module-plans/utils/PlanModel';
+import { PlanModel } from '../../module-plans/models/PlanModel';
 /**
  * Slice to zbiór logiki reducera dla danej funkcji
  * Reducer dla logiki powiązanej z wyborem ćwiczeń
  */
 
 import { createSlice } from "@reduxjs/toolkit";
-import { ExerciseModel } from "../utils/ExerciseModel";
+import { ExerciseModel } from "../models/ExerciseModel";
 
 const creatorReducer = createSlice({
   name: "selectedExercises",

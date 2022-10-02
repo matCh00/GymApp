@@ -13,8 +13,8 @@ import { ProfileStackParams } from '../navigation/ProfileNavigation';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { useNavigation } from '@react-navigation/native';
 import { useContext, useState } from 'react';
-import { AuthModel } from '../../shared/models/AuthModel';
-import { AuthContext } from '../../shared/state/AuthContext';
+import { AuthModel } from '../../module-auth/models/AuthModel';
+import { AuthContext } from '../../module-auth/context/AuthContext';
 import { addThemeDB } from '../../firebase/Database';
 
 const ThemeScreen = () => {

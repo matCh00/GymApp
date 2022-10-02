@@ -7,13 +7,14 @@ import useTheme from '../../module-root/theme/hooks/useTheme';
 import useThemedStyles from '../../module-root/theme/hooks/useThemeStyles';
 import { ThemeModel } from '../../module-root/theme/models/ThemeModel';
 import { useContext, useEffect, useState } from 'react';
-import { TrainingSummaryModel } from '../../module-plans/utils/TrainingSummaryModel';
+import { TrainingSummaryModel } from '../../module-plans/models/TrainingSummaryModel';
 import { getSummariesMonthDB } from '../../firebase/Database';
-import { AuthModel } from '../../shared/models/AuthModel';
-import { AuthContext } from '../../shared/state/AuthContext';
+import { AuthModel } from '../../module-auth/models/AuthModel';
+import { AuthContext } from '../../module-auth/context/AuthContext';
 import { VictoryBar, VictoryChart, VictoryTheme, VictoryAxis } from "victory-native";
-import { WorkoutsChartModel } from '../utils/WorkoutsChartModel';
+import { WorkoutsChartModel } from '../models/WorkoutsChartModel';
 import OwnButton from '../../shared/components/OwnButton';
+import { useNavigation } from '@react-navigation/native';
 
 const WorkoutsChartMonth = ({setSelectedMonth}) => {
 
@@ -24,6 +25,7 @@ const WorkoutsChartMonth = ({setSelectedMonth}) => {
   const [month, setMonth] = useState(0);
   const [monthName, setMonthName] = useState('');
   const [ticks, setTicks] = useState([]);
+  const [focusListener, setFocusListener] = useState(false);
 
   /**
    * zwrócenie pierwszego i ostatniego dnia miesiąca
@@ -55,6 +57,11 @@ const WorkoutsChartMonth = ({setSelectedMonth}) => {
    * context uwierzytelniania
    */
   const {email} = useContext<AuthModel>(AuthContext);
+
+  /**
+   * nawigacja
+   */
+  const navigation = useNavigation();
 
   /**
    * załadowanie podsumowań treningów
@@ -94,7 +101,17 @@ const WorkoutsChartMonth = ({setSelectedMonth}) => {
     let tempTicks = [1, 5, 10, 15, 20, 25];
     tempTicks.push(monthBoundaries(month).last);
     setTicks(tempTicks);
-  }, [month])
+  }, [month, focusListener])
+
+  /**
+   * focus listener
+   */
+  useEffect(() => {
+    const unsubscribe = navigation.addListener('focus', () => {
+      setFocusListener(f => !f)
+    });
+    return unsubscribe;
+  }, [navigation]);
 
   /**
    * następny miesiąc

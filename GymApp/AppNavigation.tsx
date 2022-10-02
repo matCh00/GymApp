@@ -6,8 +6,8 @@ import { NavigationContainer } from "@react-navigation/native";
 import { useContext } from "react";
 import AuthNavigation from "./module-auth/navigation/AuthNavigation";
 import RootNavigation from "./module-root/navigation/RootNavigation";
-import { AuthModel } from "./shared/models/AuthModel";
-import { AuthContext } from "./shared/state/AuthContext";
+import { AuthModel } from "./module-auth/models/AuthModel";
+import { AuthContext } from "./module-auth/context/AuthContext";
 
 
 /** 

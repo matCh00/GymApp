@@ -11,7 +11,7 @@ import useThemedStyles from '../../module-root/theme/hooks/useThemeStyles';
 import { ThemeModel } from '../../module-root/theme/models/ThemeModel';
 import { GlobalStyles } from '../../module-root/theme/utils/GlobalStyles';
 import { timerService } from '../services/TimerService';
-import { ResultTimeModel } from '../utils/ResultTimeModel';
+import { ResultTimeModel } from '../models/ResultTimeModel';
 import { TimerActionsEnum } from '../utils/TimerActionsEnum';
 
 const Timer = forwardRef((props, ref) => {

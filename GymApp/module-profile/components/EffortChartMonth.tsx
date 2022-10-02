@@ -7,14 +7,15 @@ import useTheme from '../../module-root/theme/hooks/useTheme';
 import useThemedStyles from '../../module-root/theme/hooks/useThemeStyles';
 import { ThemeModel } from '../../module-root/theme/models/ThemeModel';
 import { useContext, useEffect, useState } from 'react';
-import { TrainingSummaryModel } from '../../module-plans/utils/TrainingSummaryModel';
+import { TrainingSummaryModel } from '../../module-plans/models/TrainingSummaryModel';
 import { getSummariesMonthDB } from '../../firebase/Database';
-import { AuthModel } from '../../shared/models/AuthModel';
-import { AuthContext } from '../../shared/state/AuthContext';
+import { AuthModel } from '../../module-auth/models/AuthModel';
+import { AuthContext } from '../../module-auth/context/AuthContext';
 import { VictoryArea, VictoryChart, VictoryTheme, VictoryAxis, VictoryLabel } from "victory-native";
 import OwnButton from '../../shared/components/OwnButton';
-import { EffortChartModel } from '../utils/EffortChartModel';
-import { ResultsModel } from '../../module-plans/utils/ResultsModel';
+import { EffortChartModel } from '../models/EffortChartModel';
+import { ResultsModel } from '../../module-plans/models/ResultsModel';
+import { useNavigation } from '@react-navigation/native';
 
 const EffortChartMonth = ({exerciseName, type}) => {
 
@@ -22,6 +23,8 @@ const EffortChartMonth = ({exerciseName, type}) => {
   const [loadingFinished, setLoadingFinished] = useState(false);
   const [month, setMonth] = useState(0);
   const [monthName, setMonthName] = useState('');
+  const [focusListener, setFocusListener] = useState(false);
+  
   const TIMEZONE = 2;
 
   /**
@@ -52,6 +55,11 @@ const EffortChartMonth = ({exerciseName, type}) => {
    * context uwierzytelniania
    */
   const {email} = useContext<AuthModel>(AuthContext);
+
+  /**
+   * nawigacja
+   */
+  const navigation = useNavigation();
 
   /**
    * załadowanie podsumowań treningów
@@ -97,7 +105,17 @@ const EffortChartMonth = ({exerciseName, type}) => {
     );
     
     setMonthName(monthBoundaries(month).name);
-  }, [month, exerciseName, type])
+  }, [month, exerciseName, type, focusListener])
+
+  /**
+   * focus listener
+   */
+  useEffect(() => {
+    const unsubscribe = navigation.addListener('focus', () => {
+      setFocusListener(f => !f)
+    });
+    return unsubscribe;
+  }, [navigation]);
 
   /**
    * następny miesiąc

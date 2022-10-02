@@ -14,20 +14,18 @@ import { useDispatch, useSelector } from 'react-redux';
 import { PlansStackParams } from '../navigation/PlansNavigation';
 import OwnButton from '../../shared/components/OwnButton';
 import { useNavigation } from '@react-navigation/native';
-import { ResultsModel } from '../utils/ResultsModel';
-import { TrainingSummaryModel } from '../utils/TrainingSummaryModel';
+import { ResultsModel } from '../models/ResultsModel';
+import { TrainingSummaryModel } from '../models/TrainingSummaryModel';
 import { addSummaryDB } from '../../firebase/Database';
-import { AuthModel } from '../../shared/models/AuthModel';
-import { AuthContext } from '../../shared/state/AuthContext';
-import { ExerciseModel } from '../../module-creator/utils/ExerciseModel';
+import { AuthModel } from '../../module-auth/models/AuthModel';
+import { AuthContext } from '../../module-auth/context/AuthContext';
+import { ExerciseModel } from '../../module-creator/models/ExerciseModel';
 import WorkoutItemPassive from '../components/WorkoutItemPassive';
 
 const WorkoutScreen = () => {
   
   const [results, setResults] = useState<ResultsModel[]>([]);
-  const [totalExercises, setTotalExercises] = useState(0);
   const [trainingFinished, setTrainingFinished] = useState(false);
-  const [finishedExercises, setFinishedExercises] = useState(0);
 
   /**
    * motyw
@@ -77,28 +75,10 @@ const WorkoutScreen = () => {
   }
 
   /**
-   * zliczenie wszystkich ćwiczeń
-   */
-  useEffect(() => {
-    let sum = 0;
-    statePlan.exercises.forEach((e: ExerciseModel) => {
-      sum += 1;
-    })
-    setTotalExercises(sum);
-  }, [])
-
-  /**
    * sygnał zakończenia jednego ćwiczenia
    */
   const handleSetDoneSignal = (exercise: ResultsModel) => {
     setResults([...results, exercise]);
-  }
-
-  /**
-   * sygnał zakończenia całego ćwiczenia
-   */
-  const handleExerciseDoneSignal = () => {
-    setFinishedExercises(f => f + 1);
   }
   
   return (
@@ -107,16 +87,7 @@ const WorkoutScreen = () => {
 
         {!trainingFinished
           ?
-            <> 
-              {finishedExercises < totalExercises
-                ?
-                  <Text style={style.textProgress}>
-                    {Math.floor((finishedExercises / totalExercises) * 100)}% -&gt; {Math.floor(((finishedExercises + 1) / totalExercises) * 100)}%
-                  </Text>
-                : 
-                  <Text style={style.textProgress}>100%</Text>
-              }
-              
+            <>               
               <FlatList
                 data={statePlan.exercises}
                 renderItem={(itemData) => {
@@ -132,7 +103,6 @@ const WorkoutScreen = () => {
                         reps={itemData.item.reps}
                         weight={itemData.item.weight}
                         setDoneSignal={handleSetDoneSignal}
-                        exerciseDoneSignal={handleExerciseDoneSignal}
                       />
                     </View>
                   );
@@ -152,7 +122,7 @@ const WorkoutScreen = () => {
                   data={results}
                   renderItem={(itemData) => {
                     return (
-                      <View>
+                      <View style={{width: '100%', paddingHorizontal: '20%'}}>
                         <Text style={style.headerText}>
                           {itemData.item.exerciseName}
                         </Text>
@@ -193,10 +163,4 @@ const styles = (theme: ThemeModel) =>
       marginTop: 5,
       marginBottom: 10,
     },
-    textProgress: {
-      color: theme.colors.STEP_9,
-      fontWeight: '600',
-      fontSize: theme.typography.size.L,
-      marginVertical: 10,
-    }
   });

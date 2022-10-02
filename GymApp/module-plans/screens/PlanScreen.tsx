@@ -13,9 +13,9 @@ import { GlobalStyles } from '../../module-root/theme/utils/GlobalStyles';
 import OwnButton from '../../shared/components/OwnButton';
 import { useDispatch, useSelector } from 'react-redux';
 import ExerciseItemPlans from '../components/ExerciseItemPlans';
-import { PlanModel } from '../utils/PlanModel';
+import { PlanModel } from '../models/PlanModel';
 import { useLayoutEffect, useState } from 'react';
-import { ExerciseModel } from '../../module-creator/utils/ExerciseModel';
+import { ExerciseModel } from '../../module-creator/models/ExerciseModel';
 
 type Props = NativeStackScreenProps<PlansStackParams, 'Plan'>;
 

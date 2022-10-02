@@ -18,13 +18,13 @@ import { useNavigation } from '@react-navigation/native';
 import Timer from '../components/Timer';
 import { timerService } from '../services/TimerService';
 import { TimerActionsEnum } from '../utils/TimerActionsEnum';
-import { ResultTimeModel } from '../utils/ResultTimeModel';
-import { ResultsModel } from '../utils/ResultsModel';
-import { TrainingSummaryModel } from '../utils/TrainingSummaryModel';
+import { ResultTimeModel } from '../models/ResultTimeModel';
+import { ResultsModel } from '../models/ResultsModel';
+import { TrainingSummaryModel } from '../models/TrainingSummaryModel';
 import { addSummaryDB } from '../../firebase/Database';
-import { AuthModel } from '../../shared/models/AuthModel';
-import { AuthContext } from '../../shared/state/AuthContext';
-import { ExerciseModel } from '../../module-creator/utils/ExerciseModel';
+import { AuthModel } from '../../module-auth/models/AuthModel';
+import { AuthContext } from '../../module-auth/context/AuthContext';
+import { ExerciseModel } from '../../module-creator/models/ExerciseModel';
 
 const WorkoutScreenActive = () => {
   

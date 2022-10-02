@@ -8,7 +8,7 @@ import OwnButton from '../../shared/components/OwnButton';
 import useTheme from '../../module-root/theme/hooks/useTheme';
 import useThemedStyles from '../../module-root/theme/hooks/useThemeStyles';
 import { ThemeModel } from '../../module-root/theme/models/ThemeModel';
-import { ExerciseModel } from '../utils/ExerciseModel';
+import { ExerciseModel } from '../models/ExerciseModel';
 import { addExercise, removeExercise } from '../redux/CreatorReducer';
 import { useEffect, useState } from 'react';
 import { ref, getDownloadURL } from 'firebase/storage';

@@ -10,8 +10,8 @@ import ProfileNavigation from "../../module-profile/navigation/ProfileNavigation
 import { Text } from "react-native";
 import useTheme from "../theme/hooks/useTheme";
 import { useContext, useLayoutEffect } from "react";
-import { AuthModel } from "../../shared/models/AuthModel";
-import { AuthContext } from "../../shared/state/AuthContext";
+import { AuthModel } from "../../module-auth/models/AuthModel";
+import { AuthContext } from "../../module-auth/context/AuthContext";
 import { getThemeDB } from "../../firebase/Database";
 
 /** 
