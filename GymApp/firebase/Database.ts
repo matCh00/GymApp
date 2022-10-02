@@ -232,7 +232,7 @@ export const getSummariesWeekDB = async (email: string, week: number) => {
   let summaries = [];
 
   const now = new Date();
-  const getWeek = {
+  const boundaries = {
     start: new Date(now.getFullYear(), now.getMonth(), now.getDate() - 7 - (week * 7), now.getHours() + TIMEZONE),
     end: new Date(now.getFullYear(), now.getMonth(), now.getDate() - (week * 7), now.getHours() + TIMEZONE),
   };
@@ -240,7 +240,7 @@ export const getSummariesWeekDB = async (email: string, week: number) => {
   summariesSnapshot.forEach((doc: any) => {
     let summary = doc.data().summary
 
-    if (new Date(summary.date) >= new Date(getWeek.start) && new Date(summary.date) <= new Date(getWeek.end)) {
+    if (new Date(summary.date) >= new Date(boundaries.start) && new Date(summary.date) <= new Date(boundaries.end)) {
       summaries.push({ ...doc.data().summary });
     }
   });
@@ -266,19 +266,19 @@ export const getSummariesMonthDB = async (email: string, month: number) => {
   let summaries = [];
 
   const now = new Date();
-  let mth = new Date(now.getFullYear(), now.getMonth() - month + 1);
-  const getMonth = {
-    start: new Date(mth.getFullYear(), mth.getMonth() - 1, mth.getDate(), mth.getHours() + TIMEZONE, mth.getMinutes(), mth.getSeconds() + 1),
-    end: new Date(mth.getFullYear(), mth.getMonth(), mth.getDate(), mth.getHours() + TIMEZONE, mth.getMinutes(), mth.getSeconds() - 1),
-  };
+  let mth = new Date(now.getFullYear(), now.getMonth() - month);
+  const boundaries = {
+    start: new Date(mth.getFullYear(), mth.getMonth(), mth.getDate(), mth.getHours() + TIMEZONE, mth.getMinutes(), mth.getSeconds()),
+    end: new Date(mth.getFullYear(), mth.getMonth() + 1, mth.getDate(), mth.getHours() + TIMEZONE, mth.getMinutes(), mth.getSeconds() - 1),
+  };  
 
   summariesSnapshot.forEach((doc: any) => {
     let summary = doc.data().summary
 
-    if (new Date(summary.date) >= new Date(getMonth.start) && new Date(summary.date) <= new Date(getMonth.end)) {
+    if (new Date(summary.date) >= new Date(boundaries.start) && new Date(summary.date) <= new Date(boundaries.end)) {
       summaries.push({ ...doc.data().summary });
     }
-  });
+  });  
  
   return summaries;
 }

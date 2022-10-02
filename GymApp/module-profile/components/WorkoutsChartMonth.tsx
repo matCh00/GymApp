@@ -23,6 +23,7 @@ const WorkoutsChartMonth = ({setSelectedMonth}) => {
   const [dayEnd, setDayEnd] = useState(0);
   const [month, setMonth] = useState(0);
   const [monthName, setMonthName] = useState('');
+  const [ticks, setTicks] = useState([]);
 
   /**
    * zwrócenie pierwszego i ostatniego dnia miesiąca
@@ -64,10 +65,12 @@ const WorkoutsChartMonth = ({setSelectedMonth}) => {
     getSummariesMonthDB(email, month).then(
       (data: TrainingSummaryModel[]) => {
 
-        data.forEach((training: TrainingSummaryModel) => {  
-          let date = new Date(training.date).getDate();  
+        data.forEach((training: TrainingSummaryModel) => { 
+         
+          /* pobranie oryginalnej daty bez dodawania TIMEZONE */
+          let date = new Date(training.date).getUTCDate();  
           tempData.push({day: date, trainings: 1});
-        })
+        })        
 
         /**
          * połączenie tych samych elementów
@@ -79,7 +82,7 @@ const WorkoutsChartMonth = ({setSelectedMonth}) => {
         }
         const reducedArray = Array.from(map, ([day, trainings]) => ({day, trainings}));
 
-        setChartData(reducedArray);
+        setChartData(reducedArray);     
         setLoadingFinished(true);
       }
     );
@@ -87,6 +90,10 @@ const WorkoutsChartMonth = ({setSelectedMonth}) => {
     setDayStart(monthBoundaries(month).start);
     setDayEnd(monthBoundaries(month).last);
     setMonthName(monthBoundaries(month).name);
+
+    let tempTicks = [1, 5, 10, 15, 20, 25];
+    tempTicks.push(monthBoundaries(month).last);
+    setTicks(tempTicks);
   }, [month])
 
   /**
@@ -118,14 +125,14 @@ const WorkoutsChartMonth = ({setSelectedMonth}) => {
         ?
           <VictoryChart 
             theme={VictoryTheme.material} 
-            domain={{x: [dayStart - 0.5, dayEnd]}} 
+            domain={{x: [dayStart-0.7, dayEnd+0.4]}} 
             padding={{top: 20, bottom: 65, right: 20, left: 40}} 
             height={Dimensions.get('window').height / 2}
           >
             <VictoryAxis
               label={monthName}
-              tickFormat={(t) => (Number.isInteger(t) ? t : null)}
-              // tickValues={[1, 2, 3]}
+              //tickFormat={(t) => (Number.isInteger(t) ? t : null)}
+              tickValues={ticks}
               style={{
                 grid: {stroke: theme.colors.STEP_1, strokeDasharray: "8 12", strokeWidth: 1},
                 tickLabels: { fontSize: 12, fill: theme.colors.STEP_999},

@@ -8,7 +8,7 @@ import useThemedStyles from '../../module-root/theme/hooks/useThemeStyles';
 import { ThemeModel } from '../../module-root/theme/models/ThemeModel';
 import { useContext, useEffect, useState } from 'react';
 import { TrainingSummaryModel } from '../../module-plans/utils/TrainingSummaryModel';
-import { getSummariesBoundariesDB, getSummariesWeekDB } from '../../firebase/Database';
+import { getSummariesBoundariesDB } from '../../firebase/Database';
 import { AuthModel } from '../../shared/models/AuthModel';
 import { AuthContext } from '../../shared/state/AuthContext';
 import { VictoryBar, VictoryChart, VictoryTheme, VictoryAxis } from "victory-native";
@@ -24,7 +24,6 @@ const WorkoutsChartWeek = ({selectedMonth}) => {
   const [dayEnd, setDayEnd] = useState(0);
   const [week, setWeek] = useState(0);
   const [monthName, setMonthName] = useState('');
-  const [carriage, setCarriage] = useState(0);
   const [start, setStart] = useState(new Date());
   const [end, setEnd] = useState(new Date());
 
@@ -93,7 +92,9 @@ const WorkoutsChartWeek = ({selectedMonth}) => {
       (data: TrainingSummaryModel[]) => {
 
         data.forEach((training: TrainingSummaryModel) => {  
-          let date = new Date(training.date).getDate();  
+
+          /* pobranie oryginalnej daty bez dodawania TIMEZONE */
+          let date = new Date(training.date).getUTCDate();  
           tempData.push({day: date, trainings: 1});
         })
 

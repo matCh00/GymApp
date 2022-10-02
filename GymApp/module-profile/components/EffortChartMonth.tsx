@@ -20,10 +20,9 @@ const EffortChartMonth = ({exerciseName, type}) => {
 
   const [chartData, setChartData] = useState<EffortChartModel[]>([]);
   const [loadingFinished, setLoadingFinished] = useState(false);
-  const [dayStart, setDayStart] = useState(0);
-  const [dayEnd, setDayEnd] = useState(0);
   const [month, setMonth] = useState(0);
   const [monthName, setMonthName] = useState('');
+  const TIMEZONE = 2;
 
   /**
    * zwrócenie pierwszego i ostatniego dnia miesiąca
@@ -37,10 +36,10 @@ const EffortChartMonth = ({exerciseName, type}) => {
     ];
 
     let mth = new Date(now.getFullYear(), now.getMonth() - month + 1);
-    let last = new Date(mth.getFullYear(), mth.getMonth(), mth.getDate() - 1, mth.getHours() + 2);
-    let name = monthNames[last.getMonth()] + " " + last.getFullYear(); 
+    let lastDay = new Date(mth.getFullYear(), mth.getMonth(), mth.getDate() - 1, mth.getHours() + TIMEZONE);
+    let name = monthNames[lastDay.getMonth()] + " " + lastDay.getFullYear(); 
 
-    return {start: 1, last: last.getDate(), name: name}
+    return {name: name}
   };
 
   /**
@@ -97,8 +96,6 @@ const EffortChartMonth = ({exerciseName, type}) => {
       }
     );
     
-    setDayStart(monthBoundaries(month).start);
-    setDayEnd(monthBoundaries(month).last);
     setMonthName(monthBoundaries(month).name);
   }, [month, exerciseName, type])
 
