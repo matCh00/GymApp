@@ -14,7 +14,7 @@ import { QualityProvider } from './shared/context/QualityContext';
 import OwnAlert from './shared/components/OwnAlert';
 import { OwnAlertVariantsEnum } from './shared/models/OwnAlertModel';
 
-const statusBarInsideHeader = false;
+const statusBarInsideHeader = true;
 
 export default function App() {
 
