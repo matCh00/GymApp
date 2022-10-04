@@ -2,27 +2,29 @@
  * Element listy ćwiczeń na wybraną partię mięśniową (w kreatorze)
  */
 
-import { StyleSheet, Text, View, ActivityIndicator } from 'react-native';
+import { StyleSheet, Text, View, ActivityIndicator, TouchableOpacity } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import OwnButton from '../../shared/components/OwnButton';
 import useTheme from '../../module-root/theme/hooks/useTheme';
 import useThemedStyles from '../../module-root/theme/hooks/useThemeStyles';
 import { ThemeModel } from '../../module-root/theme/models/ThemeModel';
-import { ExerciseModel } from '../models/ExerciseModel';
+import { ExerciseItemModel } from '../models/ExerciseItemModel';
 import { addExercise, removeExercise } from '../redux/CreatorReducer';
 import { useEffect, useState } from 'react';
 import { ref, getDownloadURL } from 'firebase/storage';
 import { storage } from '../../firebase/Init';
-import { useRoute } from '@react-navigation/native';
+import { useNavigation, useRoute } from '@react-navigation/native';
 import CachedImage from 'expo-cached-image';
 import ExerciseMetadata from './ExerciseMetadata';
 import { GlobalStyles } from '../../module-root/theme/utils/GlobalStyles';
 import CardTemplate from '../../shared/components/CardTemplate';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import { CreatorStackParams } from '../navigation/CreatorNavigation';
 
 /**
  * rozszerzenie props
  */
-interface ExerciseModelExtended extends ExerciseModel {
+interface ExerciseModelExtended extends ExerciseItemModel {
   refreshSignal?: () => void;
 }
 
@@ -46,6 +48,11 @@ const ExerciseItemCreator = (props: ExerciseModelExtended) => {
   const style = useThemedStyles(styles);
 
   /**
+   * nawigacja
+   */
+  const navigation = useNavigation<NativeStackNavigationProp<CreatorStackParams>>();
+
+  /**
    * linki do obrazków przechowywanych w Storage
    */
   const [url, setUrl] = useState(null);
@@ -65,6 +72,13 @@ const ExerciseItemCreator = (props: ExerciseModelExtended) => {
    * aktualna ścieżka
    */
   const route = useRoute();
+
+  /**
+   * przekierowanie na stronę właściwości ćwiczenia
+   */
+  const goToExercise = () => {
+    navigation.push("Exercise", {pathName: pathName, muscleName: muscleName, exerciseName: exerciseName});    
+  }
 
   /**
    * załadowanie obrazka ze Storage w Firebase
@@ -113,13 +127,15 @@ const ExerciseItemCreator = (props: ExerciseModelExtended) => {
       <Text style={[GlobalStyles.text, style.text]}>{exerciseName}</Text>
 
       {urlLoaded
-        ? <CachedImage source={{uri: url}} cacheKey={exerciseKey} style={[GlobalStyles.image, style.image]} />
+        ? <TouchableOpacity onPress={goToExercise}>
+            <CachedImage source={{uri: url}} cacheKey={exerciseKey} style={[GlobalStyles.image, style.image]} />
+          </TouchableOpacity>
         : <ActivityIndicator color={theme.colors.STEP_0} size={40} />
       }
 
       {route.name !== "Creator"
         ? <>
-            {stateExercises.filter((e: ExerciseModel) => {return e.exerciseKey === exerciseKey}).length > 0
+            {stateExercises.filter((e: ExerciseItemModel) => {return e.exerciseKey === exerciseKey}).length > 0
               ?
                 <View style={{flexDirection: 'row'}}>
                   <OwnButton icon='minus-box-multiple-outline' onPress={handleRemove} />

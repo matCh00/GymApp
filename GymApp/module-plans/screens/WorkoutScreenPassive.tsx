@@ -19,7 +19,6 @@ import { TrainingSummaryModel } from '../models/TrainingSummaryModel';
 import { addSummaryDB } from '../../firebase/Database';
 import { AuthModel } from '../../module-auth/models/AuthModel';
 import { AuthContext } from '../../module-auth/context/AuthContext';
-import { ExerciseModel } from '../../module-creator/models/ExerciseModel';
 import WorkoutItemPassive from '../components/WorkoutItemPassive';
 
 const WorkoutScreen = () => {

@@ -5,6 +5,7 @@
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import useTheme from "../../module-root/theme/hooks/useTheme";
 import CreatorScreen from '../screens/CreatorScreen';
+import ExerciseScreen from "../screens/ExerciseScreen";
 import ExercisesScreen from "../screens/ExercisesScreen";
 import ModesNavigation from "./ModesNavigation";
 
@@ -16,6 +17,11 @@ export type CreatorStackParams = {
   Modes: undefined;
   Exercises: {
     muscle: string;
+  }
+  Exercise: {
+    pathName: string;
+    muscleName: string;
+    exerciseName: string;
   }
 };
 
@@ -44,6 +50,8 @@ const CreatorNavigation = () => {
       <CreatorStack.Screen name="Modes" component={ModesNavigation} />
 
       <CreatorStack.Screen name="Exercises" component={ExercisesScreen} />
+
+      <CreatorStack.Screen name="Exercise" component={ExerciseScreen} />
 
     </CreatorStack.Navigator>
   );

@@ -11,7 +11,7 @@ import { useEffect, useState } from 'react';
 import { ref, getDownloadURL } from 'firebase/storage';
 import { storage } from '../../firebase/Init';
 import CachedImage from 'expo-cached-image';
-import { ExerciseModel } from '../../module-creator/models/ExerciseModel';
+import { ExerciseItemModel } from '../../module-creator/models/ExerciseItemModel';
 import { GlobalStyles } from '../../module-root/theme/utils/GlobalStyles';
 import CardTemplate from '../../shared/components/CardTemplate';
 import OwnButton from '../../shared/components/OwnButton';
@@ -21,7 +21,7 @@ import ExerciseMetadata from '../../module-creator/components/ExerciseMetadata';
 /**
  * rozszerzenie props
  */
-interface ExerciseModelExtended extends ExerciseModel {
+interface ExerciseModelExtended extends ExerciseItemModel {
   setDoneSignal?: (exercise: ResultsModel) => void;
 }
 

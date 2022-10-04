@@ -19,7 +19,7 @@ import { MaterialCommunityIcons } from '@expo/vector-icons';
 import OwnPopup from '../../shared/components/OwnPopup';
 import DropDownPicker from 'react-native-dropdown-picker';
 import { useContext, useEffect, useState } from 'react';
-import { ExerciseModel } from '../models/ExerciseModel';
+import { ExerciseItemModel } from '../models/ExerciseItemModel';
 import MusclesEnum from '../utils/MusclesEnum';
 import SubmitPopupView from '../components/SubmitPopupView';
 import { clearExercises } from '../redux/CreatorReducer';
@@ -42,7 +42,7 @@ const CreatorScreen = () => {
   const [filterModalOpened, setFilterModalOpened] = useState(false);
   const [submitModalOpend, setSubmitModalOpend] = useState(false);
 
-  const [filteredItems, setFilteredItems] = useState<ExerciseModel[]>([]);
+  const [filteredItems, setFilteredItems] = useState<ExerciseItemModel[]>([]);
 
   /**
    * props dla DropDownPicker
@@ -80,7 +80,7 @@ const CreatorScreen = () => {
   /**
    * przefiltrowane ćwiczenia
    */
-  const [stateExercisesFiltered, setStateExercisesFiltered] = useState<ExerciseModel[]>(stateExercises);
+  const [stateExercisesFiltered, setStateExercisesFiltered] = useState<ExerciseItemModel[]>(stateExercises);
 
   /**
    * nawigacja
@@ -113,8 +113,8 @@ const CreatorScreen = () => {
    * zastosowanie filtrów
    */
   const handleFilter = () => {
-    let filtered: ExerciseModel[] = [];
-    filtered = stateExercises.filter((e: ExerciseModel) => {return e.muscleName === filterValue});
+    let filtered: ExerciseItemModel[] = [];
+    filtered = stateExercises.filter((e: ExerciseItemModel) => {return e.muscleName === filterValue});
     setStateExercisesFiltered(filtered);
     setFilteredItems(filtered)
     setFilterModalOpened(false);

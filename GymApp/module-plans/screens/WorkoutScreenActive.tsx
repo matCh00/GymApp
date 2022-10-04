@@ -24,7 +24,7 @@ import { TrainingSummaryModel } from '../models/TrainingSummaryModel';
 import { addSummaryDB } from '../../firebase/Database';
 import { AuthModel } from '../../module-auth/models/AuthModel';
 import { AuthContext } from '../../module-auth/context/AuthContext';
-import { ExerciseModel } from '../../module-creator/models/ExerciseModel';
+import { ExerciseItemModel } from '../../module-creator/models/ExerciseItemModel';
 
 const WorkoutScreenActive = () => {
   
@@ -119,7 +119,7 @@ const WorkoutScreenActive = () => {
    */
   useEffect(() => {
     let sum = 0;
-    statePlan.exercises.forEach((e: ExerciseModel) => {
+    statePlan.exercises.forEach((e: ExerciseItemModel) => {
       sum += e.sets;
     })
     setTotalSets(sum);

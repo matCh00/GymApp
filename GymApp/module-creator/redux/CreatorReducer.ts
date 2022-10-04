@@ -5,13 +5,13 @@ import { PlanModel } from '../../module-plans/models/PlanModel';
  */
 
 import { createSlice } from "@reduxjs/toolkit";
-import { ExerciseModel } from "../models/ExerciseModel";
+import { ExerciseItemModel } from "../models/ExerciseItemModel";
 
 const creatorReducer = createSlice({
   name: "selectedExercises",
 
   initialState: {
-    exercises: [] as ExerciseModel[],
+    exercises: [] as ExerciseItemModel[],
     editedPlan: null as PlanModel,
   },
 

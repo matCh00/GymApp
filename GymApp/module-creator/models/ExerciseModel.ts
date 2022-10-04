@@ -3,11 +3,9 @@
  */
 
 export interface ExerciseModel {
+  muscle: string;
   pathName: string;
-  muscleName: string;
-  exerciseName: string;
-  exerciseKey: string;
-  sets?: number;
-  reps?: number;
-  weight?: number;
+  name: string;
+  sourceLink: string;
+  description: string;
 }

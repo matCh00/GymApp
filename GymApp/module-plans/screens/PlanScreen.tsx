@@ -15,13 +15,13 @@ import { useDispatch, useSelector } from 'react-redux';
 import ExerciseItemPlans from '../components/ExerciseItemPlans';
 import { PlanModel } from '../models/PlanModel';
 import { useLayoutEffect, useState } from 'react';
-import { ExerciseModel } from '../../module-creator/models/ExerciseModel';
+import { ExerciseItemModel } from '../../module-creator/models/ExerciseItemModel';
 
 type Props = NativeStackScreenProps<PlansStackParams, 'Plan'>;
 
 const PlanScreen = ({route, navigation}: Props) => {
 
-  const [exercises, setExercises] = useState<ExerciseModel[]>([]);
+  const [exercises, setExercises] = useState<ExerciseItemModel[]>([]);
 
   /**
    * przekazane ćwiczenia w planie treningowym

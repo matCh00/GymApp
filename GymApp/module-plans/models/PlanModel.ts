@@ -2,12 +2,12 @@
  * Model planu treningowego
  */
 
-import { ExerciseModel } from '../../module-creator/models/ExerciseModel';
+import { ExerciseItemModel } from '../../module-creator/models/ExerciseItemModel';
 
 export interface PlanModel {
   planName: string;
   planKey: string;
-  exercises: ExerciseModel[];
+  exercises: ExerciseItemModel[];
   created: Date;
 }
   
