@@ -33,6 +33,8 @@ const WorkoutScreenActive = () => {
   const [setsIndex, setSetsIndex] = useState(0);
   const [totalSets, setTotalSets] = useState(0);
   const [setDone, setSetDone] = useState(0);
+  const [startedTraining, setStartedTraining] = useState<Date>(new Date());  // czas: rozpoczęcie treningu
+  const [finishedTraining, setFinishedTraining] = useState<Date>(null);
 
   /**
    * referencja do komponentu
@@ -104,10 +106,16 @@ const WorkoutScreenActive = () => {
   const handleSave = () => {
     timerService.sendSignal('FINISH' as TimerActionsEnum);
 
+    const trainingTime = +finishedTraining - +startedTraining;
+    let seconds = Math.floor(trainingTime / 1000) % 60;
+    let minutes = Math.floor(seconds / 60) % 60;
+    let hours = Math.floor(minutes / 60) % 24;
+
     let date = new Date();
     let summary = {
       date: new Date(date.getTime() - (date.getTimezoneOffset() * 60000)).toJSON(),
-      summary: results
+      summary: results,
+      time: {seconds: seconds, minutes: minutes, hours: hours}
     } as TrainingSummaryModel;
 
     addSummaryDB(email, summary);
@@ -124,7 +132,15 @@ const WorkoutScreenActive = () => {
     })
     setTotalSets(sum);
   }, [])
-  
+
+  /**
+   * czas: zakończenie treningu
+   */
+  useEffect(() => {
+    if (exerciseIndex >= statePlan.exercises.length) {
+      setFinishedTraining(new Date());
+    }
+  }, [exerciseIndex])
   
   return (
     <BackgroundTemplate>

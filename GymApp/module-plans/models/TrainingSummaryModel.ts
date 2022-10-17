@@ -3,8 +3,10 @@
  */
 
 import { ResultsModel } from "./ResultsModel";
+import { SummaryTimeModel } from "./SummaryTimeModel";
 
 export interface TrainingSummaryModel {
   date: string;
-  summary: ResultsModel[];
+  summary?: ResultsModel[];
+  time?: SummaryTimeModel;
 }

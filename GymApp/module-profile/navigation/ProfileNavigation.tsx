@@ -22,6 +22,7 @@ import ThemeScreen from '../screens/ThemeScreen';
 import { logout } from '../../firebase/Auth';
 import OwnAlert from '../../shared/components/OwnAlert';
 import { OwnAlertVariantsEnum } from '../../shared/models/OwnAlertModel';
+import TimesChartScreen from '../screens/TimesChartScreen';
 
 /** 
  * parametry 
@@ -30,6 +31,7 @@ export type ProfileStackParams = {
   Profile: undefined;
   Workouts: undefined;
   Effort: undefined;
+  Times: undefined;
   Theme: undefined;
   About: undefined;
 };
@@ -149,6 +151,19 @@ const ProfileNavigation = () => {
           headerTintColor: theme.colors.STEP_999,
           drawerIcon: ({ color, size }) => (
             <MaterialCommunityIcons name="dumbbell" color={color} size={size} />
+          ),
+        }}
+      />
+
+      <ProfileStack.Screen 
+        name="Times" 
+        component={TimesChartScreen} 
+        options={{
+          title: 'Times',
+          headerStyle: {backgroundColor: theme.colors.STEP_0},
+          headerTintColor: theme.colors.STEP_999,
+          drawerIcon: ({ color, size }) => (
+            <MaterialCommunityIcons name="clock" color={color} size={size} />
           ),
         }}
       />
