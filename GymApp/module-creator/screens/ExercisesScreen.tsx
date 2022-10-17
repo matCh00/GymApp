@@ -14,6 +14,7 @@ import { FloatingAction } from "react-native-floating-action";
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { Exercises } from '../utils/Exercises';
 import { GlobalStyles } from '../../module-root/theme/utils/GlobalStyles';
+import MusclesEnum from '../utils/MusclesEnum';
 
 type Props = NativeStackScreenProps<CreatorStackParams, 'Exercises'>;
 
@@ -38,7 +39,7 @@ const ExercisesScreen = ({route, navigation}: Props) => {
   return (
     <BackgroundTemplate>
 
-      <Text style={[GlobalStyles.text, style.text]}>{muscle}</Text>
+      <Text style={[GlobalStyles.text, style.text]}>{MusclesEnum[muscle]}</Text>
 
       <FlatList
         data={hardcodedExercises}

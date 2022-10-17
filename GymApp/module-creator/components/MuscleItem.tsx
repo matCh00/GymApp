@@ -100,6 +100,7 @@ const styles = (theme: ThemeModel) =>
     image: {
       width: "80%", 
       height: 80, 
-      resizeMode: 'contain'
+      resizeMode: 'contain',
+      borderRadius: 10,
     }
   });

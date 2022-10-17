@@ -7,8 +7,8 @@ enum MusclesEnum {
   triceps = "triceps",
   upperAbs = "upper abs",
   lowerAbs = "lower abs",
-  pecs = "pecs",
   oblique = "oblique",
+  pecs = "pecs",
   traps = "traps",
   delts = "delts",
   back = "back",
@@ -19,6 +19,7 @@ enum MusclesEnum {
   hams = "hams",
   forearms = "forearms",
   lats = "lats",
+  core = "core",
 }
 
 export default MusclesEnum
