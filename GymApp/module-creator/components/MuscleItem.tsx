@@ -49,7 +49,7 @@ const MuscleItem = (props: MuscleModel) => {
     const load = async () => {
       setUrlLoaded(false)
 
-      const reference = ref(storage, '/images/' + muscleKey + '/cart_photo.png');
+      const reference = ref(storage, '/images/' + muscleKey + '.png');
 
       await getDownloadURL(reference).then((res) => {
         setUrl(res);
@@ -100,7 +100,7 @@ const styles = (theme: ThemeModel) =>
     image: {
       width: "80%", 
       height: 80, 
-      resizeMode: 'contain',
+      resizeMode: 'cover',
       borderRadius: 10,
     }
   });

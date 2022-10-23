@@ -285,25 +285,25 @@ export const Exercises = {
     },
     {
       muscle: 'oblique',
-      pathName: 'wood_chops_low_high.gif',
-      name: 'wood chops low to high',
-      sourceLink: 'https://www.youtube.com/watch?v=rOx4zOB-OZs',
-      description: ''
-    },
-    {
-      muscle: 'oblique',
-      pathName: 'wood_chops_high_low.gif',
-      name: 'wood chops high to low',
-      sourceLink: 'https://www.youtube.com/watch?v=rOx4zOB-OZs',
-    },
-    {
-      muscle: 'oblique',
       pathName: 'wood_chops_mid.gif',
       name: 'wood chops mid',
       sourceLink: 'https://www.youtube.com/watch?v=9HQsPQ1lPWw',
     },
   ],
   core: [
+    {
+      muscle: 'core',
+      pathName: 'wood_chops_low_high.gif',
+      name: 'wood chops low to high',
+      sourceLink: 'https://www.youtube.com/watch?v=rOx4zOB-OZs',
+      description: ''
+    },
+    {
+      muscle: 'core',
+      pathName: 'wood_chops_high_low.gif',
+      name: 'wood chops high to low',
+      sourceLink: 'https://www.youtube.com/watch?v=rOx4zOB-OZs',
+    },
     {
       muscle: 'core',
       pathName: 'landmine_rotational_punch.gif',
@@ -326,6 +326,352 @@ export const Exercises = {
       description: ''
     },
   ],
+  pecs: [
+    {
+      muscle: 'pecs',
+      pathName: 'dumbbell_bench_press.gif',
+      name: 'dumbbell bench press',
+      sourceLink: 'https://www.youtube.com/watch?v=ceuCAJDPPno',
+      description: ''
+    },
+    {
+      muscle: 'pecs',
+      pathName: 'bench_press.gif',
+      name: 'bench press',
+      sourceLink: 'https://www.youtube.com/watch?v=ceuCAJDPPno',
+      description: ''
+    },
+    {
+      muscle: 'pecs',
+      pathName: 'machine_pec_press.gif',
+      name: 'machine pec press',
+      sourceLink: 'https://www.youtube.com/watch?v=sUtksN1W0_g',
+      description: ''
+    },
+    {
+      muscle: 'pecs',
+      pathName: 'machine_fly.gif',
+      name: 'machine fly',
+      sourceLink: 'https://www.youtube.com/watch?v=ceuCAJDPPno',
+      description: ''
+    },
+    {
+      muscle: 'pecs',
+      pathName: 'incline_bench_press.gif',
+      name: 'incline bench press',
+      sourceLink: 'https://www.youtube.com/watch?v=O34G_d2VWdg',
+      description: ''
+    },
+    {
+      muscle: 'pecs',
+      pathName: 'chest_dip.gif',
+      name: 'chest dip',
+      sourceLink: 'https://www.youtube.com/watch?v=O34G_d2VWdg',
+      description: ''
+    },
+    {
+      muscle: 'pecs',
+      pathName: 'barbell_push.gif',
+      name: 'barbell push',
+      sourceLink: 'https://www.youtube.com/watch?v=O34G_d2VWdg',
+      description: ''
+    },
+    {
+      muscle: 'pecs',
+      pathName: 'cable_cross-over.gif',
+      name: 'cable cross-over',
+      sourceLink: 'https://www.youtube.com/watch?v=O34G_d2VWdg',
+      description: ''
+    },
+    {
+      muscle: 'pecs',
+      pathName: 'dumbbell_rotation_bench_press.gif',
+      name: 'dumbbell rotation bench press',
+      sourceLink: 'https://www.youtube.com/watch?v=l6OhnL7qtnM',
+      description: ''
+    },
+    {
+      muscle: 'pecs',
+      pathName: 'squeeze_press.gif',
+      name: 'squeeze press',
+      sourceLink: 'https://www.youtube.com/watch?v=l6OhnL7qtnM',
+      description: ''
+    },
+    {
+      muscle: 'pecs',
+      pathName: 'decline_dumbbell_press.gif',
+      name: 'decline dumbbell press',
+      sourceLink: 'https://www.youtube.com/watch?v=l6OhnL7qtnM',
+      description: ''
+    },
+    {
+      muscle: 'pecs',
+      pathName: 'bench_fly.gif',
+      name: 'bench fly',
+      sourceLink: 'https://www.youtube.com/watch?v=l6OhnL7qtnM',
+      description: ''
+    },
+    {
+      muscle: 'pecs',
+      pathName: 'dumbbell_pullover.gif',
+      name: 'dumbbell pullover',
+      sourceLink: 'https://www.youtube.com/watch?v=l6OhnL7qtnM',
+      description: ''
+    },
+    {
+      muscle: 'pecs',
+      pathName: 'push-up.gif',
+      name: 'push-up',
+      sourceLink: 'https://www.youtube.com/watch?v=GsopFpQ3xkM',
+      description: ''
+    },
+    {
+      muscle: 'pecs',
+      pathName: 'single_arm_incline_press.gif',
+      name: 'single arm incline press',
+      sourceLink: 'https://www.youtube.com/watch?v=tQsHHQvwsc4',
+      description: ''
+    },
+    {
+      muscle: 'pecs',
+      pathName: 'plate_squeeze.gif',
+      name: 'plate squeeze',
+      sourceLink: 'https://www.youtube.com/watch?v=0QMJwlbRLKg',
+      description: ''
+    },
+  ],
+  traps: [
+    {
+      muscle: 'traps',
+      pathName: 'shrugs.gif',
+      name: 'shrugs',
+      sourceLink: 'https://www.youtube.com/watch?v=xXV5znmUuGU',
+      description: ''
+    },
+    {
+      muscle: 'traps',
+      pathName: 'barbell_wide_upright_row.gif',
+      name: 'barbell wide upright row',
+      sourceLink: 'https://www.youtube.com/watch?v=xXV5znmUuGU',
+      description: ''
+    },
+  ],
+  delts: [
+    {
+      muscle: 'delts',
+      pathName: 'seated_lateral_raises.gif',
+      name: 'seated lateral raises',
+      sourceLink: 'https://www.youtube.com/watch?v=xXV5znmUuGU',
+      description: ''
+    },
+    {
+      muscle: 'delts',
+      pathName: 'dumbbell_press.gif',
+      name: 'dumbbell press',
+      sourceLink: 'https://www.youtube.com/watch?v=xXV5znmUuGU',
+      description: ''
+    },
+    {
+      muscle: 'delts',
+      pathName: 'cable_lateral_raises.gif',
+      name: 'cable lateral raises',
+      sourceLink: 'https://www.youtube.com/watch?v=ey4FJW1Q56s',
+      description: ''
+    },
+    {
+      muscle: 'delts',
+      pathName: 'reverse_pec_dec.gif',
+      name: 'reverse pec dec',
+      sourceLink: 'https://www.youtube.com/watch?v=ey4FJW1Q56s',
+      description: ''
+    },
+    {
+      muscle: 'delts',
+      pathName: 'cable_reverse_fly.gif',
+      name: 'cable reverse fly',
+      sourceLink: 'https://www.youtube.com/watch?v=xXV5znmUuGU',
+      description: ''
+    },
+    {
+      muscle: 'delts',
+      pathName: 'barbell_front_raise.gif',
+      name: 'barbell front raise',
+      sourceLink: 'https://www.youtube.com/watch?v=xXV5znmUuGU',
+      description: ''
+    },
+    {
+      muscle: 'delts',
+      pathName: 'barbell_wide_upright_row.gif',
+      name: 'barbell wide upright row',
+      sourceLink: 'https://www.youtube.com/watch?v=xXV5znmUuGU',
+      description: ''
+    },
+    {
+      muscle: 'delts',
+      pathName: 'smith_machine_shoulder_press.gif',
+      name: 'smith machine shoulder press',
+      sourceLink: 'https://www.youtube.com/watch?v=9E62GQruGdw',
+      description: ''
+    },
+    {
+      muscle: 'delts',
+      pathName: 'bench_cable_lateral_raises.gif',
+      name: 'bench cable lateral raises',
+      sourceLink: 'https://www.youtube.com/watch?v=jT2N95H53Ys',
+      description: ''
+    },
+    {
+      muscle: 'delts',
+      pathName: 'incline_facing_lateral_raises.gif',
+      name: 'incline facing lateral raises',
+      sourceLink: 'https://www.youtube.com/watch?v=ey4FJW1Q56s',
+      description: ''
+    },
+    {
+      muscle: 'delts',
+      pathName: 'machine_shoulder_press.gif',
+      name: 'machine shoulder press',
+      sourceLink: 'https://www.youtube.com/watch?v=UZ8aswcwNXc',
+      description: ''
+    },
+    {
+      muscle: 'delts',
+      pathName: 'machine_lateral_raises.gif',
+      name: 'machine lateral raises',
+      sourceLink: 'https://www.youtube.com/watch?v=UZ8aswcwNXc',
+      description: ''
+    },
+    {
+      muscle: 'delts',
+      pathName: 'cable_rope_face_pull.gif',
+      name: 'cable rope face pull',
+      sourceLink: 'https://www.youtube.com/watch?v=UZ8aswcwNXc',
+      description: ''
+    },
+  ],
+  back: [
+    {
+      muscle: 'back',
+      pathName: 'reverse_pec_dec.gif',
+      name: 'reverse pec dec',
+      sourceLink: 'https://www.youtube.com/watch?v=ey4FJW1Q56s',
+      description: ''
+    },
+    {
+      muscle: 'back',
+      pathName: 'barbell_bent-over.gif',
+      name: 'barbell bent-over',
+      sourceLink: 'https://www.youtube.com/watch?v=Ir_oQ5SMfT4',
+      description: ''
+    },
+    {
+      muscle: 'back',
+      pathName: 'barbell_one_arm_row.gif',
+      name: 'barbell one arm row',
+      sourceLink: 'https://www.youtube.com/watch?v=Ir_oQ5SMfT4',
+      description: ''
+    },
+    {
+      muscle: 'back',
+      pathName: 'cable_behind_head_pulldown.gif',
+      name: 'cable behind head pulldown',
+      sourceLink: 'https://www.youtube.com/watch?v=sUtksN1W0_g',
+      description: ''
+    },
+    {
+      muscle: 'back',
+      pathName: 'cable_elevated_row.gif',
+      name: 'cable elevated row',
+      sourceLink: 'https://www.youtube.com/watch?v=sUtksN1W0_g',
+      description: ''
+    },
+    {
+      muscle: 'back',
+      pathName: 'straight_arm_pullover.gif',
+      name: 'straight arm pullover',
+      sourceLink: 'https://www.youtube.com/watch?v=u_miK17snOI',
+      description: ''
+    },
+    {
+      muscle: 'back',
+      pathName: 'dumbbell_one_arm_row.gif',
+      name: 'dumbbell one arm row',
+      sourceLink: 'https://www.youtube.com/watch?v=p-u2jnyn_fI',
+      description: ''
+    },
+    {
+      muscle: 'back',
+      pathName: 'chin-up.gif',
+      name: 'chin-up',
+      sourceLink: 'https://www.youtube.com/watch?v=Qsy9en0TXkQ',
+      description: ''
+    },
+    {
+      muscle: 'back',
+      pathName: 'hammer_grip_pull-up.gif',
+      name: 'hammer grip pull-up',
+      sourceLink: 'https://www.youtube.com/watch?v=Ir_oQ5SMfT4',
+      description: ''
+    },
+    {
+      muscle: 'back',
+      pathName: 'machine_row.gif',
+      name: 'machine row',
+      sourceLink: 'https://www.youtube.com/watch?v=Qsy9en0TXkQ',
+      description: ''
+    },
+    {
+      muscle: 'back',
+      pathName: 'dumbbell_rear_row.gif',
+      name: 'dumbbell rear row',
+      sourceLink: 'https://www.youtube.com/watch?v=Qsy9en0TXkQ',
+      description: ''
+    },
+    {
+      muscle: 'back',
+      pathName: 'straight_arm_rope_pulldown.gif',
+      name: 'straight arm rope pulldown',
+      sourceLink: 'https://www.youtube.com/watch?v=Qsy9en0TXkQ',
+      description: ''
+    },
+    {
+      muscle: 'back',
+      pathName: 'machine_iso_row.gif',
+      name: 'machine iso row',
+      sourceLink: 'https://www.youtube.com/watch?v=KWtjq-fpuk8',
+      description: ''
+    },
+  ],
+  lats: [
+    {
+      muscle: 'lats',
+      pathName: 'cable_underhand_pulldown.gif',
+      name: 'cable underhand pulldown',
+      sourceLink: 'https://www.youtube.com/watch?v=Ir_oQ5SMfT4',
+      description: ''
+    },
+    {
+      muscle: 'lats',
+      pathName: 'wide_grip_lats_pulldown.gif',
+      name: 'wide grip lats pulldown',
+      sourceLink: 'https://www.youtube.com/watch?v=KWtjq-fpuk8',
+      description: ''
+    },
+    {
+      muscle: 'lats',
+      pathName: 'cable_lat_pulldown.gif',
+      name: 'cable lat pulldown',
+      sourceLink: 'https://www.youtube.com/watch?v=Ir_oQ5SMfT4',
+      description: ''
+    },
+    {
+      muscle: 'lats',
+      pathName: 'cable_v_bar_pullover.gif',
+      name: 'cable v-bar pullover',
+      sourceLink: 'https://www.youtube.com/watch?v=u_miK17snOI',
+      description: ''
+    },
+  ],
   lowerBack: [
     {
       muscle: 'lowerBack',
@@ -334,5 +680,177 @@ export const Exercises = {
       sourceLink: 'https://www.youtube.com/watch?v=oaD6j_iPNc0',
       description: ''
     },
+    {
+      muscle: 'lowerBack',
+      pathName: 'rack_pull.gif',
+      name: 'rack pull',
+      sourceLink: 'https://www.youtube.com/watch?v=gpCbQN9Lru4',
+      description: ''
+    },
   ],
+  
+  forearms: [
+    {
+      muscle: 'forearms',
+      pathName: 'reverse_preacher_curl.gif',
+      name: 'reverse preacher curl',
+      sourceLink: 'https://www.youtube.com/watch?v=P-Fi7mAU1C8',
+      description: ''
+    },
+    {
+      muscle: 'forearms',
+      pathName: 'barbell_reverse_curl.gif',
+      name: 'barbell reverse curl',
+      sourceLink: 'https://www.youtube.com/watch?v=CeAoD8dZ4wk',
+      description: ''
+    },
+  ],
+  quads: [
+    {
+      muscle: 'quads',
+      pathName: 'wide_leg_press.gif',
+      name: 'wide leg press',
+      sourceLink: 'https://www.youtube.com/watch?v=RanDIj6_5kc',
+      description: ''
+    },
+    {
+      muscle: 'quads',
+      pathName: 'neutral_leg_press.gif',
+      name: 'neutral leg press',
+      sourceLink: 'https://www.youtube.com/watch?v=RanDIj6_5kc',
+      description: ''
+    },
+    {
+      muscle: 'quads',
+      pathName: 'smith_machine_squat.gif',
+      name: 'smith machine squat',
+      sourceLink: 'https://www.youtube.com/watch?v=RanDIj6_5kc',
+      description: ''
+    },
+    {
+      muscle: 'quads',
+      pathName: 'kettlebell_squats.gif',
+      name: 'kettlebell squats',
+      sourceLink: 'https://www.youtube.com/watch?v=RanDIj6_5kc',
+      description: ''
+    },
+    {
+      muscle: 'quads',
+      pathName: 'sissy_squats.gif',
+      name: 'sissy squats',
+      sourceLink: 'https://www.youtube.com/watch?v=RanDIj6_5kc',
+      description: ''
+    },
+    {
+      muscle: 'quads',
+      pathName: 'leg_extension.gif',
+      name: 'leg extension',
+      sourceLink: 'https://www.youtube.com/watch?v=RanDIj6_5kc',
+      description: ''
+    },
+    {
+      muscle: 'quads',
+      pathName: 'horizontal_leg_press.gif',
+      name: 'horizontal leg press',
+      sourceLink: 'https://www.youtube.com/watch?v=8q1SeIfEJoo',
+      description: ''
+    },
+  ],
+  glutes: [
+    {
+      muscle: 'glutes',
+      pathName: 'smith_machine_squat.gif',
+      name: 'smith machine squat',
+      sourceLink: 'https://www.youtube.com/watch?v=RanDIj6_5kc',
+      description: ''
+    },
+    {
+      muscle: 'glutes',
+      pathName: 'kettlebell_squats.gif',
+      name: 'kettlebell squats',
+      sourceLink: 'https://www.youtube.com/watch?v=RanDIj6_5kc',
+      description: ''
+    },
+    {
+      muscle: 'glutes',
+      pathName: 'barbell_squat.gif',
+      name: 'barbell squat',
+      sourceLink: 'https://www.youtube.com/watch?v=8q1SeIfEJoo',
+      description: ''
+    },
+    {
+      muscle: 'glutes',
+      pathName: 'adduction.gif',
+      name: 'adduction',
+      sourceLink: 'https://www.youtube.com/watch?v=5MeVK-FA5cM',
+      description: ''
+    },
+    {
+      muscle: 'glutes',
+      pathName: 'hip_raise.gif',
+      name: 'hip raise',
+      sourceLink: 'https://www.youtube.com/watch?v=_jmZAK1E0x8',
+      description: ''
+    },
+  ],
+  calves: [
+    {
+      muscle: 'calves',
+      pathName: 'seated_calf_raise.gif',
+      name: 'seated calf raise',
+      sourceLink: 'https://www.youtube.com/watch?v=RanDIj6_5kc',
+      description: ''
+    },
+    {
+      muscle: 'calves',
+      pathName: 'standing_calf_raise.gif',
+      name: 'standing calf raise',
+      sourceLink: 'https://www.youtube.com/watch?v=5MeVK-FA5cM',
+      description: ''
+    },
+    {
+      muscle: 'calves',
+      pathName: 'barbell_standing_calf_raise.gif',
+      name: 'barbell standing calf raise',
+      sourceLink: 'https://www.youtube.com/watch?v=Mf4AuumqdXU',
+      description: ''
+    },
+  ],
+  hams: [
+    {
+      muscle: 'hams',
+      pathName: 'kettlebell_squats.gif',
+      name: 'kettlebell squats',
+      sourceLink: 'https://www.youtube.com/watch?v=RanDIj6_5kc',
+      description: ''
+    },
+    {
+      muscle: 'hams',
+      pathName: 'barbell_squat.gif',
+      name: 'barbell squat',
+      sourceLink: 'https://www.youtube.com/watch?v=8q1SeIfEJoo',
+      description: ''
+    },
+    {
+      muscle: 'hams',
+      pathName: 'hamstring_raise.gif',
+      name: 'hamstring raise',
+      sourceLink: 'https://www.youtube.com/watch?v=5MeVK-FA5cM',
+      description: ''
+    },
+    {
+      muscle: 'hams',
+      pathName: 'standing_leg_curl.gif',
+      name: 'standing leg curl',
+      sourceLink: 'https://www.youtube.com/watch?v=5MeVK-FA5cM',
+      description: ''
+    },
+    {
+      muscle: 'hams',
+      pathName: 'lying_leg_curl.gif',
+      name: 'lying leg curl',
+      sourceLink: 'https://www.youtube.com/watch?v=I6nHPF6BUco',
+      description: ''
+    },
+  ]
 }
