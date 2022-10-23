@@ -15,7 +15,7 @@ const CardTemplate = (props: CardTemplateModel) => {
   /**
    * props
    */
-  const {children, width, radius, color, padding, paddingBottom, paddingVertical, margin} = props;
+  const {children, width, maxWidth, radius, color, padding, paddingBottom, paddingVertical, margin} = props;
 
   /**
    * motyw
@@ -36,6 +36,7 @@ const CardTemplate = (props: CardTemplateModel) => {
         style={[
           style.itemContainer,
           width ? {minWidth: width} : {minWidth: '90%'},
+          maxWidth ? {maxWidth: maxWidth} : {maxWidth: null},
           radius ? {borderRadius: radius} : {borderRadius: 40},
           paddingBottom ? {paddingBottom: paddingBottom} : {paddingBottom: 10},
           paddingVertical ? {paddingVertical: paddingVertical} : {paddingVertical: 10},

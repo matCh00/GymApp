@@ -236,7 +236,7 @@ const CreatorScreen = () => {
         visible={filterModalOpened} 
         setVisible={setFilterModalOpened} 
         children={
-          <CardTemplate>
+          <CardTemplate maxWidth='90%'>
             <DropDownPicker
               open={filterOpen}
               value={filterValue}

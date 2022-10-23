@@ -5,8 +5,9 @@
 import { ReactNode } from "react";
 
 export interface CardTemplateModel {
-  children: ReactNode;
+  children: ReactNode,
   width?: string,
+  maxWidth?: string,
   radius?: number,
   color?: string,
   padding?: number,
