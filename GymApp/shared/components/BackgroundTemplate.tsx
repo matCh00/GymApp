@@ -1,10 +1,12 @@
 /**
- * Szablon tła w widokach
+ * Szablon kontenera tła w widokach
  */
 
 import useTheme from '../../module-root/theme/hooks/useTheme';
 import { LinearGradient } from 'expo-linear-gradient';
 import { ImageBackground } from 'react-native';
+import { GlobalStyles } from '../../module-root/theme/utils/GlobalStyles';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 const BackgroundTemplate = ({children}) => {
 
@@ -25,14 +27,19 @@ const BackgroundTemplate = ({children}) => {
         theme.colors.STEP_3, 
       ]}
       style={{flex: 1}}
-    >
+      >
+
       <ImageBackground
         source={require('../../assets/images/wall.png')}
         resizeMode="cover"
         style={{flex: 1}}
         imageStyle={{opacity: 0.15}}
       >
-        {children}
+        <SafeAreaView style={GlobalStyles.container}> 
+
+          {children}
+
+        </SafeAreaView>
 
       </ImageBackground>
 

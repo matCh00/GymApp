@@ -179,120 +179,118 @@ const CreatorScreen = () => {
   
   return (
     <BackgroundTemplate>
-      <View style={GlobalStyles.container}>
 
-        <View style={{flexDirection: 'row-reverse'}}>
+      <View style={{flexDirection: 'row-reverse', marginTop: 30}}>
 
-          <OwnButton
-            title="Exercises" 
-            width={editedPlan ? '30%' : '50%'} 
-            onPress={() => {navigation.push("Modes")}} 
-            />
+        <OwnButton
+          title="Exercises" 
+          width={editedPlan ? '30%' : '50%'} 
+          onPress={() => {navigation.push("Modes")}} 
+          />
 
-          <OwnButton 
-            title={editedPlan ? "Update" : "Submit"} 
-            width={editedPlan ? '30%' : '50%'} 
-            onPress={handleSubmit} 
-            />
+        <OwnButton 
+          title={editedPlan ? "Update" : "Submit"} 
+          width={editedPlan ? '30%' : '50%'} 
+          onPress={handleSubmit} 
+          />
 
-          {editedPlan 
-            ? <OwnButton title="Cancel" width='30%' onPress={handleCancelUpdating} /> 
-            : null
-          }
+        {editedPlan 
+          ? <OwnButton title="Cancel" width='30%' onPress={handleCancelUpdating} /> 
+          : null
+        }
 
-        </View>
-
-        <Text style={[GlobalStyles.text, style.text]}>Exercises</Text>
-
-        <FlatList
-          data={stateExercisesFiltered}
-          renderItem={(itemData) => {
-            return (
-              <View style={GlobalStyles.listContainer}>
-                <ExerciseItemCreator 
-                  pathName={itemData.item.pathName} 
-                  muscleName={itemData.item.muscleName}
-                  exerciseName={itemData.item.exerciseName}
-                  exerciseKey={itemData.item.exerciseKey}
-                  refreshSignal={handleRefreshSignal}
-                />
-              </View>
-            );
-          }}
-          keyExtractor={(item, index) => { return index.toString(); }} 
-
-          numColumns={1}
-        />
-
-        <FloatingAction
-          color={theme.colors.STEP_0}
-          floatingIcon={<MaterialCommunityIcons name="filter-outline" color={theme.colors.STEP_99} size={24} />}
-          showBackground={false}
-          onPressMain={() => {
-            setFilterModalOpened(true);
-          }}
-        />
-
-        <OwnPopup 
-          visible={filterModalOpened} 
-          setVisible={setFilterModalOpened} 
-          children={
-            <CardTemplate>
-              <DropDownPicker
-                open={filterOpen}
-                value={filterValue}
-                items={filterItems}
-                setOpen={setFilterOpen}
-                setValue={setFilterValue}
-                placeholder={'Select muscle'}
-                style={{
-                  width: '80%',
-                  backgroundColor: theme.colors.STEP_9999,
-                  marginTop: 20,
-                  marginBottom: -10,
-                }}
-                dropDownContainerStyle={{
-                  width: '80%',
-                  backgroundColor: theme.colors.STEP_9999, 
-                }}
-              />
-
-              <View style={{flexDirection: 'row'}}>
-
-                <OwnButton title='Reset' onPress={handleReset} width='40%' />
-                <OwnButton title='Filter' onPress={handleFilter} width='40%' />
-              
-              </View>
-            </CardTemplate>
-          } 
-        />
-
-        <OwnPopup 
-          visible={submitModalOpend} 
-          setVisible={setSubmitModalOpend} 
-          children={
-            <SubmitPopupView setSubmitModalOpend={setSubmitModalOpend} />
-          } 
-        />
-
-        <OwnAlert 
-          visible={alertOpened1}
-          setVisible={setAlertOpened1}
-          header='Empty list'
-          question='Select some exercises!'
-          variant={'OK' as OwnAlertVariantsEnum}
-        />
-
-        <OwnAlert 
-          visible={alertOpened2}
-          setVisible={setAlertOpened2}
-          header='Update plan'
-          question='Are you sure you want to update selected plan?'
-          func={saveExisitingPlan}
-          variant={'YES_NO' as OwnAlertVariantsEnum}
-        />
- 
       </View>
+
+      <Text style={[GlobalStyles.text, style.text]}>Exercises</Text>
+
+      <FlatList
+        data={stateExercisesFiltered}
+        renderItem={(itemData) => {
+          return (
+            <View style={GlobalStyles.listItem}>
+              <ExerciseItemCreator 
+                pathName={itemData.item.pathName} 
+                muscleName={itemData.item.muscleName}
+                exerciseName={itemData.item.exerciseName}
+                exerciseKey={itemData.item.exerciseKey}
+                refreshSignal={handleRefreshSignal}
+              />
+            </View>
+          );
+        }}
+        keyExtractor={(item, index) => { return index.toString(); }} 
+
+        numColumns={1}
+      />
+
+      <FloatingAction
+        color={theme.colors.STEP_0}
+        floatingIcon={<MaterialCommunityIcons name="filter-outline" color={theme.colors.STEP_99} size={24} />}
+        showBackground={false}
+        onPressMain={() => {
+          setFilterModalOpened(true);
+        }}
+      />
+
+      <OwnPopup 
+        visible={filterModalOpened} 
+        setVisible={setFilterModalOpened} 
+        children={
+          <CardTemplate>
+            <DropDownPicker
+              open={filterOpen}
+              value={filterValue}
+              items={filterItems}
+              setOpen={setFilterOpen}
+              setValue={setFilterValue}
+              placeholder={'Select muscle'}
+              style={{
+                width: '80%',
+                backgroundColor: theme.colors.STEP_9999,
+                marginTop: 20,
+                marginBottom: -10,
+              }}
+              dropDownContainerStyle={{
+                width: '80%',
+                backgroundColor: theme.colors.STEP_9999, 
+              }}
+            />
+
+            <View style={{flexDirection: 'row'}}>
+
+              <OwnButton title='Reset' onPress={handleReset} width='40%' />
+              <OwnButton title='Filter' onPress={handleFilter} width='40%' />
+            
+            </View>
+          </CardTemplate>
+        } 
+      />
+
+      <OwnPopup 
+        visible={submitModalOpend} 
+        setVisible={setSubmitModalOpend} 
+        children={
+          <SubmitPopupView setSubmitModalOpend={setSubmitModalOpend} />
+        } 
+      />
+
+      <OwnAlert 
+        visible={alertOpened1}
+        setVisible={setAlertOpened1}
+        header='Empty list'
+        question='Select some exercises!'
+        variant={'OK' as OwnAlertVariantsEnum}
+      />
+
+      <OwnAlert 
+        visible={alertOpened2}
+        setVisible={setAlertOpened2}
+        header='Update plan'
+        question='Are you sure you want to update selected plan?'
+        func={saveExisitingPlan}
+        variant={'YES_NO' as OwnAlertVariantsEnum}
+      />
+ 
     </BackgroundTemplate>
   );
 };
@@ -304,16 +302,7 @@ const styles = (theme: ThemeModel) =>
     text: {
       color: theme.colors.STEP_999,
       fontSize: theme.typography.size.XL,
-      marginBottom: 10,
-      marginTop: 20,
+      marginBottom: 15,
+      marginTop: 5,
     },
-    container: {
-      width: '80%',
-      alignItems: 'center',
-      backgroundColor: theme.colors.STEP_99,
-      borderRadius: 30,
-      paddingHorizontal: 10,
-      paddingVertical: 20,
-      margin: 6,
-    }
   });

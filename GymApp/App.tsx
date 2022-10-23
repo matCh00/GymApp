@@ -13,6 +13,7 @@ import { store } from './shared/redux/AppStore';
 import { QualityProvider } from './shared/context/QualityContext';
 import OwnAlert from './shared/components/OwnAlert';
 import { OwnAlertVariantsEnum } from './shared/models/OwnAlertModel';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 const statusBarInsideHeader = true;
 
@@ -50,7 +51,9 @@ export default function App() {
           <QualityProvider>
             <Provider store={store}>
 
-              <AppNavigation />
+              <SafeAreaProvider>
+                <AppNavigation />
+              </SafeAreaProvider>
 
             </Provider>
           </QualityProvider>

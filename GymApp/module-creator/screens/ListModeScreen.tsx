@@ -2,12 +2,11 @@
  * Ekran kreatora planów treningowych - lista
  */
 
-import { StyleSheet, Text, View, FlatList } from 'react-native'
+import { StyleSheet, View, FlatList } from 'react-native'
 import useTheme from '../../module-root/theme/hooks/useTheme';
 import useThemedStyles from '../../module-root/theme/hooks/useThemeStyles';
 import { ThemeModel } from '../../module-root/theme/models/ThemeModel';
 import BackgroundTemplate from '../../shared/components/BackgroundTemplate';
-import { GlobalStyles } from '../../module-root/theme/utils/GlobalStyles';
 import MusclesEnum from '../utils/MusclesEnum';
 import MuscleItem from '../components/MuscleItem';
 
@@ -26,22 +25,20 @@ const ListModeScreen = () => {
 
   return (
     <BackgroundTemplate>
-      <View style={[GlobalStyles.container, {padding: 16}]}>
         
-        <FlatList
-          data={musclesArray}
-          renderItem={(itemData) => {
-            return (
-              <View style={style.listContainer}>
-                <MuscleItem muscleKey={itemData.item} />
-              </View>
-            );
-          }}
-          keyExtractor={(item, index) => { return item.toString(); }} 
-          numColumns={2} 
-        />
+      <FlatList
+        data={musclesArray}
+        renderItem={(itemData) => {
+          return (
+            <View style={style.listItem}>
+              <MuscleItem muscleKey={itemData.item} />
+            </View>
+          );
+        }}
+        keyExtractor={(item, index) => { return item.toString(); }} 
+        numColumns={2} 
+      />
 
-      </View>
     </BackgroundTemplate>
   );
 };
@@ -50,8 +47,9 @@ export default ListModeScreen;
 
 const styles = (theme: ThemeModel) =>
   StyleSheet.create({
-    listContainer: {
+    listItem: {
       width: '50%',
       alignItems: 'center',
+      marginTop: 20,
     }
   });

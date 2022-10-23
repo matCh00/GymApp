@@ -6,9 +6,9 @@ export const GlobalStyles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
   },
-  listContainer: {
-    minWidth: '100%',
+  listItem: {
     alignItems: 'center',
+    marginBottom: 20,
   },
   text: {
     textAlign: 'center',

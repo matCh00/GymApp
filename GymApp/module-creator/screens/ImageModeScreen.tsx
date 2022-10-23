@@ -19,6 +19,7 @@ import { CreatorStackParams } from '../navigation/CreatorNavigation';
 import { changeMuscle } from '../redux/MusclesReducer';
 import OwnAlert from '../../shared/components/OwnAlert';
 import { OwnAlertVariantsEnum } from '../../shared/models/OwnAlertModel';
+import MusclesEnum from '../utils/MusclesEnum';
 
 const ImageModeScreen = () => {
 
@@ -68,20 +69,17 @@ const ImageModeScreen = () => {
 
   return (
     <BackgroundTemplate>
-      <View style={GlobalStyles.container}>
 
-        {isFront
-        ? <BodyPartsFront />
-        : <BodyPartsBack />
-        }
+      {isFront
+      ? <BodyPartsFront />
+      : <BodyPartsBack />
+      }
 
-      </View>
-
-      <View style={{marginBottom: 10, marginTop: -30, flexDirection: 'row', justifyContent: 'center'}}>
+      <View style={{marginBottom: 80, marginTop: -80, flexDirection: 'row', justifyContent: 'center'}}>
 
         <OwnButton title="Swap" onPress={swapSides} width='40%' />
 
-        <OwnButton title="Choose" onPress={goToExercise} width='40%' />
+        <OwnButton title={muscle ? MusclesEnum[muscle] : "Choose"} onPress={goToExercise} width='40%' />
 
       </View>
 

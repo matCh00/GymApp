@@ -20,11 +20,9 @@ const TimesChartScreen = () => {
 
   return (
     <BackgroundTemplate>
-      <View style={GlobalStyles.container}>
 
-        <TimesChartMonth />    
+      <TimesChartMonth />    
 
-      </View>
     </BackgroundTemplate>
   );
 };

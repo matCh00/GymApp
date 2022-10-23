@@ -88,7 +88,7 @@ const PlansListItem = (props: PlanModel) => {
   }
 
   return (
-    <CardTemplate>
+    <CardTemplate width='95%'>
 
       <Text style={[GlobalStyles.text, style.textExercise]}>{planName}</Text>
 

@@ -144,83 +144,81 @@ const WorkoutScreenActive = () => {
   
   return (
     <BackgroundTemplate>
-      <View style={GlobalStyles.container}>
 
-        {exerciseIndex < statePlan.exercises.length
-          ?
-            <> 
-              <Text style={style.textProgress}>
-                {Math.floor((setDone / totalSets) * 100)}% -&gt; {Math.floor(((setDone + 1) / totalSets) * 100)}%
-              </Text>
+      {exerciseIndex < statePlan.exercises.length
+        ?
+          <> 
+            <Text style={style.textProgress}>
+              {Math.floor((setDone / totalSets) * 100)}% -&gt; {Math.floor(((setDone + 1) / totalSets) * 100)}%
+            </Text>
 
-              <Timer ref={timerRef} />
+            <Timer ref={timerRef} />
 
-              <WorkoutItemActive 
-                pathName={statePlan.exercises[exerciseIndex].pathName} 
-                muscleName={statePlan.exercises[exerciseIndex].muscleName}
-                exerciseName={statePlan.exercises[exerciseIndex].exerciseName}
-                exerciseKey={statePlan.exercises[exerciseIndex].exerciseKey}
-                sets={statePlan.exercises[exerciseIndex].sets}
-                reps={statePlan.exercises[exerciseIndex].reps}
-                weight={statePlan.exercises[exerciseIndex].weight}
-              />
+            <WorkoutItemActive 
+              pathName={statePlan.exercises[exerciseIndex].pathName} 
+              muscleName={statePlan.exercises[exerciseIndex].muscleName}
+              exerciseName={statePlan.exercises[exerciseIndex].exerciseName}
+              exerciseKey={statePlan.exercises[exerciseIndex].exerciseKey}
+              sets={statePlan.exercises[exerciseIndex].sets}
+              reps={statePlan.exercises[exerciseIndex].reps}
+              weight={statePlan.exercises[exerciseIndex].weight}
+            />
 
-              <OwnButton 
-                title={
-                  exerciseIndex < statePlan.exercises.length - 1 || 
-                  setsIndex < statePlan.exercises[exerciseIndex].sets - 1 
-                  ? "Next exercise" : "Finish"
-                } 
-                onPress={nextExercise} 
-                marginTop={20} 
-              />
+            <OwnButton 
+              title={
+                exerciseIndex < statePlan.exercises.length - 1 || 
+                setsIndex < statePlan.exercises[exerciseIndex].sets - 1 
+                ? "Next exercise" : "Finish"
+              } 
+              onPress={nextExercise} 
+              marginTop={20} 
+            />
 
-              <View style={{flexDirection: 'row'}}>
-                <OwnButton title="Reset" onPress={() => {timerService.sendSignal('RESUME' as TimerActionsEnum)}} width='40%' />
-                <OwnButton title="Pause" onPress={() => {timerService.sendSignal('PAUSE' as TimerActionsEnum)}} width='40%' />
-              </View>
-            </>
-            
-          :
-            <>
-              <OwnButton title="Save" onPress={handleSave} marginTop={20} marginBottom={20} />
+            <View style={{flexDirection: 'row'}}>
+              <OwnButton title="Reset" onPress={() => {timerService.sendSignal('RESUME' as TimerActionsEnum)}} width='40%' />
+              <OwnButton title="Pause" onPress={() => {timerService.sendSignal('PAUSE' as TimerActionsEnum)}} width='40%' />
+            </View>
+          </>
+          
+        :
+          <View style={{marginTop: 70, alignItems: 'center'}}>
+            <OwnButton title="Save" onPress={handleSave} marginTop={5} />
 
-                <FlatList
-                  data={results}
-                  renderItem={(itemData) => {
-                    return (
-                      <View style={{width: '100%', paddingHorizontal: '20%'}}>
-                        <Text style={style.headerText}>
-                          {itemData.item.exerciseName}
+              <FlatList
+                data={results}
+                renderItem={(itemData) => {
+                  return (
+                    <View style={{width: '100%', paddingHorizontal: '20%'}}>
+                      <Text style={style.headerText}>
+                        {itemData.item.exerciseName}
+                      </Text>
+
+                      <Text style={style.descriptionText}>
+                        reps: {itemData.item.reps}, weight: {itemData.item.weight}
+                      </Text>
+
+                      <View style={{flexDirection: 'row'}}>
+                        <Text style={style.timeText}>
+                          {itemData.item.time.hours > 9 ? itemData.item.time.hours : '0' + itemData.item.time.hours + ':'}
                         </Text>
-
-                        <Text style={style.descriptionText}>
-                          reps: {itemData.item.reps}, weight: {itemData.item.weight}
+                        <Text style={style.timeText}>
+                          {itemData.item.time.minutes > 9 ? itemData.item.time.minutes : '0' + itemData.item.time.minutes + ':'}
                         </Text>
-
-                        <View style={{flexDirection: 'row'}}>
-                          <Text style={style.timeText}>
-                            {itemData.item.time.hours > 9 ? itemData.item.time.hours : '0' + itemData.item.time.hours + ':'}
-                          </Text>
-                          <Text style={style.timeText}>
-                            {itemData.item.time.minutes > 9 ? itemData.item.time.minutes : '0' + itemData.item.time.minutes + ':'}
-                          </Text>
-                          <Text style={style.timeText}>
-                            {itemData.item.time.seconds > 9 ? itemData.item.time.seconds : '0' + itemData.item.time.seconds}
-                          </Text>
-                        </View>
-
+                        <Text style={style.timeText}>
+                          {itemData.item.time.seconds > 9 ? itemData.item.time.seconds : '0' + itemData.item.time.seconds}
+                        </Text>
                       </View>
-                    );
-                  }}
-                  keyExtractor={(item, index) => { return index.toString() + 'outer'; }} 
-      
-                  numColumns={1}
-                />
-            </>
-        }
 
-      </View>
+                    </View>
+                  );
+                }}
+                keyExtractor={(item, index) => { return index.toString() + 'outer'; }} 
+    
+                numColumns={1}
+              />
+          </View>
+      }
+
     </BackgroundTemplate>
   );
 };

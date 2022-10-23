@@ -2,7 +2,7 @@
  * Element listy ćwiczeń uruchomionego treningu
  */
 
-import { StyleSheet, Text, View, ActivityIndicator } from 'react-native';
+import { StyleSheet, Text, View, ActivityIndicator, ToastAndroid } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import useTheme from '../../module-root/theme/hooks/useTheme';
 import useThemedStyles from '../../module-root/theme/hooks/useThemeStyles';
@@ -89,6 +89,7 @@ const WorkoutItemPassive = (props: ExerciseModelExtended) => {
    * zakończenie ćwiczenia
    */
   const handleDoneSetsSignal = () => {
+    showToast(); 
     setDoneSignal({
       exerciseName: exerciseName,
       muscleName: muscleName,
@@ -99,8 +100,15 @@ const WorkoutItemPassive = (props: ExerciseModelExtended) => {
     setDoneSets(d => d + 1);
   }
 
+  /**
+   * Toast
+   */
+  const showToast = () => {
+    ToastAndroid.show('Exercise done!', ToastAndroid.SHORT);
+  }
+
   return (
-    <CardTemplate>
+    <CardTemplate width='95%'>
 
       <Text style={[
         GlobalStyles.text, 

@@ -688,7 +688,6 @@ export const Exercises = {
       description: ''
     },
   ],
-  
   forearms: [
     {
       muscle: 'forearms',

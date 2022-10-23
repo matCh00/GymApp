@@ -63,7 +63,7 @@ const ExerciseItemPlans = (props: ExerciseItemModel) => {
   }, []);
 
   return (
-    <CardTemplate>
+    <CardTemplate width='95%'>
 
       <Text style={[GlobalStyles.text, style.text]}>{exerciseName}</Text>
 

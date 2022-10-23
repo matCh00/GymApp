@@ -20,6 +20,7 @@
     "expo-cached-image": "^46.0.1",
     "expo-dev-client": "~1.2.1",
     "expo-linear-gradient": "~11.4.0",
+    "expo-splash-screen": "~0.16.2",
     "expo-status-bar": "~1.4.0",
     "expo-updates": "~0.14.6",
     "firebase": "^9.9.3",
@@ -35,12 +36,11 @@
     "react-native-screens": "~3.15.0",
     "react-native-svg": "12.3.0",
     "react-native-tab-view": "^3.1.1",
+    "react-native-web": "~0.18.7",
     "react-redux": "^8.0.2",
     "react-timer-hook": "^3.0.5",
     "rxjs": "^7.5.6",
-    "victory-native": "^36.6.7",
-    "expo-splash-screen": "~0.16.2",
-    "react-native-web": "~0.18.7"
+    "victory-native": "^36.6.7"
   },
   "devDependencies": {
     "@babel/core": "^7.18.6",

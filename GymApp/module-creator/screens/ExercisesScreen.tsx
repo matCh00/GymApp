@@ -39,13 +39,13 @@ const ExercisesScreen = ({route, navigation}: Props) => {
   return (
     <BackgroundTemplate>
 
-      <Text style={[GlobalStyles.text, style.text]}>{MusclesEnum[muscle]}</Text>
+      <Text style={[GlobalStyles.text, style.text]}> {MusclesEnum[muscle]} </Text>
 
       <FlatList
         data={hardcodedExercises}
         renderItem={(itemData) => {
           return (
-            <View style={GlobalStyles.listContainer}>
+            <View style={GlobalStyles.listItem}>
               <ExerciseItemCreator 
                 pathName={itemData.item.pathName} 
                 muscleName={itemData.item.muscle}
@@ -79,7 +79,7 @@ const styles = (theme: ThemeModel) =>
     text: {
       color: theme.colors.STEP_999,
       fontSize: theme.typography.size.XL,
-      marginBottom: 20,
-      marginTop: 20,
+      marginTop: 65,
+      marginBottom:10,
     },
   });

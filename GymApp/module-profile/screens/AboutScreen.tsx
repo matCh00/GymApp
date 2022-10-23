@@ -28,34 +28,32 @@ const AboutScreen = () => {
 
   return (
     <BackgroundTemplate>
-      <View style={[GlobalStyles.container, {flex: 1}]}>
 
-        <Text style={[GlobalStyles.text, style.textTopic]}>Mobile application for workouts management and monitoring</Text>
+      <Text style={[GlobalStyles.text, style.textTopic]}>Mobile application for workouts management and monitoring</Text>
 
-        <Text 
-          style={[GlobalStyles.text, style.textAuthor, {marginBottom: '30%'}]}
-          onPress={() => {
-            Linking.openURL('https://github.com/matCh00');
-          }}
-        >Mateusz Chalik</Text>
+      <Text 
+        style={[GlobalStyles.text, style.textAuthor, {marginBottom: '30%'}]}
+        onPress={() => {
+          Linking.openURL('https://github.com/matCh00');
+        }}
+      >Mateusz Chalik</Text>
 
-        <Text style={[GlobalStyles.text, style.textHeader]}>Exercise demonstrations:</Text>
+      <Text style={[GlobalStyles.text, style.textHeader]}>Exercise demonstrations:</Text>
 
-        <Text 
-          style={[GlobalStyles.text, style.textSources]}
-          onPress={() => {
-            Linking.openURL('https://www.youtube.com/user/swoldiernation');
-          }}
-        >Steve Cook</Text>
+      <Text 
+        style={[GlobalStyles.text, style.textSources]}
+        onPress={() => {
+          Linking.openURL('https://www.youtube.com/user/swoldiernation');
+        }}
+      >Steve Cook</Text>
 
-        <Text 
-          style={[GlobalStyles.text, style.textSources]}
-          onPress={() => {
-            Linking.openURL('https://www.youtube.com/c/TerronBeckham');
-          }}
-        >Terron Beckham</Text>
+      <Text 
+        style={[GlobalStyles.text, style.textSources]}
+        onPress={() => {
+          Linking.openURL('https://www.youtube.com/c/TerronBeckham');
+        }}
+      >Terron Beckham</Text>
 
-      </View>
     </BackgroundTemplate>
   );
 };

@@ -70,25 +70,23 @@ const ExerciseScreen = ({route, navigation}: Props) => {
   return (
     <BackgroundTemplate>
 
-      <View style={{flex: 1}}>
-        <Text style={[GlobalStyles.text, style.textHeader]}>{exerciseName}</Text>
+      <Text style={[GlobalStyles.text, style.textHeader]}>{exerciseName}</Text>
 
-        {urlLoaded
-        ? <CachedImage source={{uri: url}} cacheKey={exerciseName} style={[GlobalStyles.image, style.image]} />
-        : <ActivityIndicator color={theme.colors.STEP_999} size={40} />
-        }
+      {urlLoaded
+      ? <CachedImage source={{uri: url}} cacheKey={exerciseName} style={[GlobalStyles.image, style.image]} />
+      : <ActivityIndicator color={theme.colors.STEP_999} size={40} />
+      }
 
-        <Text style={[GlobalStyles.text, style.textProp]}>Description:</Text>
-        <Text style={[GlobalStyles.text, style.textValue]}>{exerciseInfo?.description}</Text>
+      <Text style={[GlobalStyles.text, style.textProp]}>Description:</Text>
+      <Text style={[GlobalStyles.text, style.textValue]}>{exerciseInfo?.description}</Text>
 
-        <Text style={[GlobalStyles.text, style.textProp]}>Source:</Text>
-        <Text 
-          style={[GlobalStyles.text, style.textValue]}
-          onPress={() => {
-            Linking.openURL(exerciseInfo?.sourceLink);
-          }}
-        >{exerciseInfo?.sourceLink}</Text>
-      </View>
+      <Text style={[GlobalStyles.text, style.textProp]}>Source:</Text>
+      <Text 
+        style={[GlobalStyles.text, style.textValue]}
+        onPress={() => {
+          Linking.openURL(exerciseInfo?.sourceLink);
+        }}
+      >{exerciseInfo?.sourceLink}</Text>
 
     </BackgroundTemplate>
   );
@@ -101,7 +99,7 @@ const styles = (theme: ThemeModel) =>
     textHeader: {
       color: theme.colors.STEP_99,
       fontSize: theme.typography.size.L,
-      margin: 30,
+      marginTop: -50,
     },
     textProp: {
       color: theme.colors.STEP_99,
@@ -113,4 +111,7 @@ const styles = (theme: ThemeModel) =>
       fontSize: theme.typography.size.S,
       marginTop: 10,
     },
+    image: {
+      marginTop: 30,
+    }
   });

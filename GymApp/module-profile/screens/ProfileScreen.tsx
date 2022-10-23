@@ -3,14 +3,13 @@
  */
 
 import { useContext, useEffect, useState } from 'react';
-import { StyleSheet, ScrollView, SafeAreaView } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import { AuthModel } from '../../module-auth/models/AuthModel';
 import { AuthContext } from '../../module-auth/context/AuthContext';
 import useTheme from '../../module-root/theme/hooks/useTheme';
 import useThemedStyles from '../../module-root/theme/hooks/useThemeStyles';
 import { ThemeModel } from '../../module-root/theme/models/ThemeModel';
 import BackgroundTemplate from '../../shared/components/BackgroundTemplate';
-import { GlobalStyles } from '../../module-root/theme/utils/GlobalStyles';
 import { getAllSummariesDB, getCreatedDB, getPlansDB } from '../../firebase/Database';
 import InfoCard from '../components/InfoCard';
 import { DateFormat } from '../../shared/utils/DateFormat';
@@ -64,16 +63,16 @@ const ProfileScreen = ({navigation}) => {
   
   return (
     <BackgroundTemplate>
-      <SafeAreaView style={GlobalStyles.container}>
-        <ScrollView>
 
-          <InfoCard header='User email' content={email} />
-          <InfoCard header='Created date' content={created} />
-          <InfoCard header='Total plans' content={totalPlans + ''} />
-          <InfoCard header='Done trainings' content={totalSummaries + ''} />
+      <View style={{marginTop: '-30%'}}>
 
-        </ScrollView>
-      </SafeAreaView>
+        <InfoCard header='User email' content={email} />
+        <InfoCard header='Created date' content={created} />
+        <InfoCard header='Total plans' content={totalPlans + ''} />
+        <InfoCard header='Done trainings' content={totalSummaries + ''} />
+
+      </View>
+
     </BackgroundTemplate>
   );
 };

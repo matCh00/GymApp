@@ -63,63 +63,61 @@ const EffortChartScreen = () => {
 
   return (
     <BackgroundTemplate>
-      <View style={GlobalStyles.container}>
         
-        <View style={{flexDirection: 'row', justifyContent: 'space-around', marginTop: -120, marginBottom: 40}}>
+      <View style={{flexDirection: 'row', justifyContent: 'space-around', marginTop: -120, marginBottom: 40}}>
 
-          <View style={{width: '30%'}}>
-            <DropDownPicker
-              open={muscleOpen}
-              value={muscleValue}
-              items={muscleItems}
-              setOpen={setMuscleOpen}
-              setValue={setMuscleValue}
-              placeholder={'Select muscle'}
-              style={{
-                backgroundColor: theme.colors.STEP_999,
-              }}
-              dropDownContainerStyle={{backgroundColor: theme.colors.STEP_9999}}
-            />
-          </View>
-
-          <View style={{width: '30%'}}>
-            <DropDownPicker
-              open={exerciseOpen}
-              value={exerciseValue}
-              items={exerciseItems}
-              setOpen={setExerciseOpen}
-              setValue={setExerciseValue}
-              placeholder={'Select exercise'}
-              bottomOffset={100}
-              style={{
-                backgroundColor: theme.colors.STEP_999,
-              }}
-              dropDownContainerStyle={{backgroundColor: theme.colors.STEP_9999}}
-            />
-          </View>
-
-          <View style={{width: '30%'}}>
-            <DropDownPicker
-              open={effortOpen}
-              value={effortValue}
-              items={effortItems}
-              setOpen={setEffortOpen}
-              setValue={setEffortValue}
-              placeholder={'Select type'}
-              style={{
-                backgroundColor: theme.colors.STEP_999,
-              }}
-              dropDownContainerStyle={{backgroundColor: theme.colors.STEP_9999}}
-            />
-          </View>
-
+        <View style={{width: '30%'}}>
+          <DropDownPicker
+            open={muscleOpen}
+            value={muscleValue}
+            items={muscleItems}
+            setOpen={setMuscleOpen}
+            setValue={setMuscleValue}
+            placeholder={'Select muscle'}
+            style={{
+              backgroundColor: theme.colors.STEP_999,
+            }}
+            dropDownContainerStyle={{backgroundColor: theme.colors.STEP_9999}}
+          />
         </View>
 
-        <Text style={[GlobalStyles.text, style.text]}>{exerciseValue}</Text>
+        <View style={{width: '30%'}}>
+          <DropDownPicker
+            open={exerciseOpen}
+            value={exerciseValue}
+            items={exerciseItems}
+            setOpen={setExerciseOpen}
+            setValue={setExerciseValue}
+            placeholder={'Select exercise'}
+            bottomOffset={100}
+            style={{
+              backgroundColor: theme.colors.STEP_999,
+            }}
+            dropDownContainerStyle={{backgroundColor: theme.colors.STEP_9999}}
+          />
+        </View>
 
-        <EffortChartMonth exerciseName={exerciseValue} type={effortValue} />
+        <View style={{width: '30%'}}>
+          <DropDownPicker
+            open={effortOpen}
+            value={effortValue}
+            items={effortItems}
+            setOpen={setEffortOpen}
+            setValue={setEffortValue}
+            placeholder={'Select type'}
+            style={{
+              backgroundColor: theme.colors.STEP_999,
+            }}
+            dropDownContainerStyle={{backgroundColor: theme.colors.STEP_9999}}
+          />
+        </View>
 
       </View>
+
+      <Text style={[GlobalStyles.text, style.text]}>{exerciseValue}</Text>
+
+      <EffortChartMonth exerciseName={exerciseValue} type={effortValue} />
+
     </BackgroundTemplate>
   );
 };

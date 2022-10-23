@@ -75,38 +75,34 @@ const PlanScreen = ({route, navigation}: Props) => {
 
   return (
     <BackgroundTemplate>
-      <View style={GlobalStyles.container}>
 
-        <View style={{flexDirection: 'row', marginBottom: 10}}>
-          <OwnButton title="Start active workout!" onPress={handleStartActiveWorkout} marginTop={20} width='40%' />
-          <OwnButton title="Start passive workout!" onPress={handleStartPassiveWorkout} marginTop={20} width='40%' />
-        </View>
-
-        <FlatList
-          data={exercises}
-          renderItem={(itemData) => {
-            return (
-              <View style={GlobalStyles.listContainer}>
-
-                <ExerciseItemPlans 
-                  pathName={itemData.item.pathName} 
-                  muscleName={itemData.item.muscleName}
-                  exerciseName={itemData.item.exerciseName}
-                  exerciseKey={itemData.item.exerciseKey}
-                  sets={itemData.item.sets}
-                  reps={itemData.item.reps}
-                  weight={itemData.item.weight}
-                />
-
-              </View>
-            );
-          }}
-          keyExtractor={(item, index) => { return index.toString(); }} 
-
-          numColumns={1}
-        />
-
+      <View style={{flexDirection: 'row', marginTop: 50, marginBottom: 20}}>
+        <OwnButton title="Start active workout!" onPress={handleStartActiveWorkout} marginTop={20} width='40%' />
+        <OwnButton title="Start passive workout!" onPress={handleStartPassiveWorkout} marginTop={20} width='40%' />
       </View>
+
+      <FlatList
+        data={exercises}
+        renderItem={(itemData) => {
+          return (
+            <View style={GlobalStyles.listItem}>
+              <ExerciseItemPlans 
+                pathName={itemData.item.pathName} 
+                muscleName={itemData.item.muscleName}
+                exerciseName={itemData.item.exerciseName}
+                exerciseKey={itemData.item.exerciseKey}
+                sets={itemData.item.sets}
+                reps={itemData.item.reps}
+                weight={itemData.item.weight}
+              />
+            </View>
+          );
+        }}
+        keyExtractor={(item, index) => { return index.toString(); }} 
+
+        numColumns={1}
+      />
+
     </BackgroundTemplate>
   );
 };

@@ -60,30 +60,28 @@ const PlansScreen = () => {
 
   return (
     <BackgroundTemplate>
-      <View style={GlobalStyles.container}>
 
-        <Text style={[GlobalStyles.text, style.text]}>Plans</Text>
+      <Text style={[GlobalStyles.text, style.text]}>Plans</Text>
 
-        <FlatList
-          data={statePlans}
-          renderItem={(itemData) => {
-            return (
-              <View style={GlobalStyles.listContainer}>
-                <PlansListItem 
-                  planName={itemData.item.planName} 
-                  planKey={itemData.item.planKey}
-                  exercises={itemData.item.exercises}
-                  created={itemData.item.created}
-                />
-              </View>
-            );
-          }}
-          keyExtractor={(item, index) => { return index.toString() + item.toString(); }} 
+      <FlatList
+        data={statePlans}
+        renderItem={(itemData) => {
+          return (
+            <View style={GlobalStyles.listItem}>
+              <PlansListItem 
+                planName={itemData.item.planName} 
+                planKey={itemData.item.planKey}
+                exercises={itemData.item.exercises}
+                created={itemData.item.created}
+              />
+            </View>
+          );
+        }}
+        keyExtractor={(item, index) => { return index.toString() + item.toString(); }} 
 
-          numColumns={1}
-        />
+        numColumns={1}
+      />
 
-      </View>
     </BackgroundTemplate>
   );
 };
@@ -95,7 +93,7 @@ const styles = (theme: ThemeModel) =>
     text: {
       color: theme.colors.STEP_999,
       fontSize: theme.typography.size.XL,
-      marginBottom: 10,
-      marginTop: 20,
+      marginTop: 65,
+      marginBottom:10,
     },
   });

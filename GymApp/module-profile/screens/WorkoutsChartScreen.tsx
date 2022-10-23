@@ -33,21 +33,19 @@ const WorkoutsChartScreen = () => {
 
   return (
     <BackgroundTemplate>
-      <View style={GlobalStyles.container}>
 
-        <View style={{flexDirection: 'row', marginBottom: -80}}>
+      <View style={{flexDirection: 'row', marginBottom: -80}}>
 
-          <Text style={[GlobalStyles.text, style.text]}>{mode ? 'Month' : 'Week'}</Text>
-          <OwnButton icon={mode ? 'calendar-week-begin' : 'calendar-weekend'} onPress={handleSwitchMode} width='25%' marginTop={-250} />
-          
-        </View>
-
-        {mode
-          ? <WorkoutsChartMonth setSelectedMonth={(m: Date) => {setSelectedMonth(m)}} />
-          : <WorkoutsChartWeek selectedMonth={selectedMonth} />      
-        }
-
+        <Text style={[GlobalStyles.text, style.text]}>{mode ? 'Month' : 'Week'}</Text>
+        <OwnButton icon={mode ? 'calendar-week-begin' : 'calendar-weekend'} onPress={handleSwitchMode} width='25%' marginTop={-250} />
+        
       </View>
+
+      {mode
+        ? <WorkoutsChartMonth setSelectedMonth={(m: Date) => {setSelectedMonth(m)}} />
+        : <WorkoutsChartWeek selectedMonth={selectedMonth} />      
+      }
+
     </BackgroundTemplate>
   );
 };

@@ -24,7 +24,7 @@ const InfoCard = (props: InfoCardModel) => {
   const style = useThemedStyles(styles);
 
   return (
-    <CardTemplate radius={20}>
+    <CardTemplate radius={20} margin={10}>
 
       <Text style={[GlobalStyles.text, style.textHeader]}>{header}</Text>
       <Text style={[GlobalStyles.text, style.textContent]}>{content}</Text>

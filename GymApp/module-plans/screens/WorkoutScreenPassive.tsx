@@ -91,65 +91,62 @@ const WorkoutScreen = () => {
   
   return (
     <BackgroundTemplate>
-      <View style={GlobalStyles.container}>
 
-        {!trainingFinished
-          ?
-            <>               
+      {!trainingFinished
+        ?
+          <View style={{marginTop: 70, alignItems: 'center'}}>               
+            <FlatList
+              data={statePlan.exercises}
+              renderItem={(itemData) => {
+                return (
+                  <View style={GlobalStyles.listItem}>
+                    <WorkoutItemPassive 
+                      pathName={itemData.item.pathName} 
+                      muscleName={itemData.item.muscleName}
+                      exerciseName={itemData.item.exerciseName}
+                      exerciseKey={itemData.item.exerciseKey}
+                      sets={itemData.item.sets}
+                      reps={itemData.item.reps}
+                      weight={itemData.item.weight}
+                      setDoneSignal={handleSetDoneSignal}
+                    />
+                  </View>
+                );
+              }}
+              keyExtractor={(item, index) => { return item.toString() + index.toString(); }} 
+              numColumns={1} 
+            />
+
+            <OwnButton title={"Finish"} onPress={handleFinish} marginTop={10} marginBottom={12} />
+          </View>
+          
+        :
+          <View style={{marginTop: 70, alignItems: 'center'}}>
+            <OwnButton title="Save" onPress={handleSave} marginTop={5} />
+
               <FlatList
-                data={statePlan.exercises}
+                data={results}
                 renderItem={(itemData) => {
                   return (
-                    <View style={style.listContainer}>
+                    <View style={{width: '100%', paddingHorizontal: '20%'}}>
+                      <Text style={style.headerText}>
+                        {itemData.item.exerciseName}
+                      </Text>
 
-                      <WorkoutItemPassive 
-                        pathName={itemData.item.pathName} 
-                        muscleName={itemData.item.muscleName}
-                        exerciseName={itemData.item.exerciseName}
-                        exerciseKey={itemData.item.exerciseKey}
-                        sets={itemData.item.sets}
-                        reps={itemData.item.reps}
-                        weight={itemData.item.weight}
-                        setDoneSignal={handleSetDoneSignal}
-                      />
+                      <Text style={style.descriptionText}>
+                        reps: {itemData.item.reps}, weight: {itemData.item.weight}
+                      </Text>
+
                     </View>
                   );
                 }}
-                keyExtractor={(item, index) => { return item.toString() + index.toString(); }} 
-                numColumns={1} 
+                keyExtractor={(item, index) => { return index.toString(); }} 
+    
+                numColumns={1}
               />
+          </View>
+      }
 
-              <OwnButton title={"Finish"} onPress={handleFinish} marginTop={10} marginBottom={12} />
-            </>
-            
-          :
-            <>
-              <OwnButton title="Save" onPress={handleSave} marginTop={20} marginBottom={20} />
-
-                <FlatList
-                  data={results}
-                  renderItem={(itemData) => {
-                    return (
-                      <View style={{width: '100%', paddingHorizontal: '20%'}}>
-                        <Text style={style.headerText}>
-                          {itemData.item.exerciseName}
-                        </Text>
-
-                        <Text style={style.descriptionText}>
-                          reps: {itemData.item.reps}, weight: {itemData.item.weight}
-                        </Text>
-
-                      </View>
-                    );
-                  }}
-                  keyExtractor={(item, index) => { return index.toString(); }} 
-      
-                  numColumns={1}
-                />
-            </>
-        }
-
-      </View>
     </BackgroundTemplate>
   );
 };

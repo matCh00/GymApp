@@ -110,7 +110,7 @@ const ExerciseItemCreator = (props: ExerciseModelExtended) => {
       reps: repsCount,
       weight: weightCount
     }}));   
-    setSettingsOpened(o => !o); 
+    setSettingsOpened(false); 
   }
 
   /**
@@ -122,7 +122,7 @@ const ExerciseItemCreator = (props: ExerciseModelExtended) => {
   }
 
   return (
-    <CardTemplate>
+    <CardTemplate width='95%'>
 
       <Text style={[GlobalStyles.text, style.text]}>{exerciseName}</Text>
 
@@ -138,7 +138,7 @@ const ExerciseItemCreator = (props: ExerciseModelExtended) => {
             {stateExercises.filter((e: ExerciseItemModel) => {return e.exerciseKey === exerciseKey}).length > 0
               ?
                 <View style={{flexDirection: 'row'}}>
-                  <OwnButton icon='minus-box-multiple-outline' onPress={handleRemove} />
+                  <OwnButton icon='minus-box-multiple-outline' onPress={handleRemove} width='40%' />
                 </View>
               :
                 <>

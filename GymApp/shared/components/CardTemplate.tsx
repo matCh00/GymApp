@@ -2,6 +2,7 @@
  * Szablon kafelka z okrągłymi rogami
  */
 
+import Animated, { FadeOutUp, ZoomIn } from "react-native-reanimated";
 import { StyleSheet, View } from 'react-native';
 import useTheme from '../../module-root/theme/hooks/useTheme';
 import { ThemeModel } from '../../module-root/theme/models/ThemeModel';
@@ -23,26 +24,29 @@ const CardTemplate = (props: CardTemplateModel) => {
   const style = useThemedStyles(styles);
 
   return (
-    <LinearGradient
-      colors={[
-        theme.colors.STEP_99,
-        theme.colors.STEP_6,
-      ]}
-      start={{ x: 0, y: 0 }}
-      end={{ x: 1, y: 1 }}
-      style={[
-        style.itemContainer,
-        width ? {minWidth: width} : {minWidth: '90%'},
-        radius ? {borderRadius: radius} : {borderRadius: 40},
-        paddingBottom ? {paddingBottom: paddingBottom} : {paddingBottom: 10},
-        paddingVertical ? {paddingVertical: paddingVertical} : {paddingVertical: 10},
-        padding ? {padding: padding} : {padding: 0},
-        margin ? {margin: margin} : {margin: 16},
+    <Animated.View entering={ZoomIn} exiting={FadeOutUp}>
+
+      <LinearGradient
+        colors={[
+          theme.colors.STEP_99,
+          theme.colors.STEP_6,
         ]}
-    >
-      {children}
-    
-    </LinearGradient>
+        start={{ x: 0, y: 0 }}
+        end={{ x: 1, y: 1 }}
+        style={[
+          style.itemContainer,
+          width ? {minWidth: width} : {minWidth: '90%'},
+          radius ? {borderRadius: radius} : {borderRadius: 40},
+          paddingBottom ? {paddingBottom: paddingBottom} : {paddingBottom: 10},
+          paddingVertical ? {paddingVertical: paddingVertical} : {paddingVertical: 10},
+          padding ? {padding: padding} : {padding: 0},
+          margin ? {margin: margin} : {margin: 0},
+          ]}
+      >
+        {children}
+      
+      </LinearGradient>
+    </Animated.View>
   );
 };
 
