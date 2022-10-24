@@ -5,7 +5,7 @@
 import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { useContext, useState } from 'react';
-import { StyleSheet, KeyboardAvoidingView } from 'react-native';
+import { StyleSheet, KeyboardAvoidingView, ToastAndroid } from 'react-native';
 import { logInWithEmailAndPassword } from '../../firebase/Auth';
 import BackgroundTemplate from '../../shared/components/BackgroundTemplate';
 import OwnButton from '../../shared/components/OwnButton';
@@ -47,9 +47,11 @@ const LoginScreen = () => {
       (email: any) => {        
         setEmail(email);
         setLoggedIn(true);
+        ToastAndroid.show('Welcome!', ToastAndroid.SHORT);
       }
     )
     .catch((error: any) => {
+      ToastAndroid.show('Incorrect data', ToastAndroid.SHORT);
       console.log(error);
     })
   }

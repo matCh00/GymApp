@@ -15,7 +15,7 @@ import EffortChartScreen from '../screens/EffortChartScreen';
 import { useContext, useState } from 'react';
 import { AuthModel } from '../../module-auth/models/AuthModel';
 import { AuthContext } from '../../module-auth/context/AuthContext';
-import { Text, View } from 'react-native';
+import { Text, View, ToastAndroid } from 'react-native';
 import useTheme from '../../module-root/theme/hooks/useTheme';
 import AboutScreen from '../screens/AboutScreen';
 import ThemeScreen from '../screens/ThemeScreen';
@@ -58,7 +58,10 @@ const CustomDrawerContent = (props: any) => {
    */
   const handleLogOut = () => {
     logout().then(
-      () => setLoggedIn(false)
+      () => {
+        setLoggedIn(false);
+        ToastAndroid.show('Logged out!', ToastAndroid.SHORT);
+      }
     )
   }
   

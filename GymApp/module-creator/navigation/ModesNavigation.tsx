@@ -37,7 +37,7 @@ const ModesNavigation = () => {
       backBehavior='none'
       screenOptions={{
         tabBarShowLabel: false,
-        tabBarStyle: {backgroundColor: theme.colors.STEP_1},
+        tabBarStyle: {backgroundColor: theme.colors.STEP_1, marginTop: 85, marginBottom: -35},
         tabBarIndicatorStyle: {backgroundColor: theme.colors.STEP_5},
         tabBarActiveTintColor: theme.colors.STEP_9,
         tabBarInactiveTintColor: theme.colors.STEP_5,

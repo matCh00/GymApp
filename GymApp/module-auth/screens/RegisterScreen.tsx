@@ -5,7 +5,7 @@
 import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { useContext, useState } from 'react';
-import { StyleSheet, KeyboardAvoidingView } from 'react-native';
+import { StyleSheet, KeyboardAvoidingView, ToastAndroid } from 'react-native';
 import OwnButton from '../../shared/components/OwnButton';
 import OwnInput from '../../shared/components/OwnInput';
 import { AuthModel } from '../models/AuthModel';
@@ -47,9 +47,11 @@ const RegisterScreen = () => {
       (email: any) => {
         setEmail(email);
         setLoggedIn(true);
+        ToastAndroid.show('Welcome!', ToastAndroid.SHORT);
       }
     )
     .catch((error: any) => {
+      ToastAndroid.show('Email already in use', ToastAndroid.SHORT);
       console.log(error);
     })
   }

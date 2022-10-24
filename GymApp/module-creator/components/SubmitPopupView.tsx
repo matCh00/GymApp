@@ -2,7 +2,7 @@
  * Widok zapisywania planu treningowego
  */
 
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet, View, ToastAndroid } from 'react-native';
 import useTheme from '../../module-root/theme/hooks/useTheme';
 import useThemedStyles from '../../module-root/theme/hooks/useThemeStyles';
 import { ThemeModel } from '../../module-root/theme/models/ThemeModel';
@@ -77,7 +77,8 @@ const SubmitPopupView = ({setSubmitModalOpend}) => {
       email: email
     }));
     dispatch(clearExercises({}));
-    setSubmitModalOpend(false); 
+    setSubmitModalOpend(false);
+    ToastAndroid.show('Plan was saved!', ToastAndroid.SHORT); 
    }
 
   /**
@@ -92,7 +93,8 @@ const SubmitPopupView = ({setSubmitModalOpend}) => {
       email: email
     }));
     dispatch(clearExercises({}));
-    setSubmitModalOpend(false); 
+    setSubmitModalOpend(false);
+    ToastAndroid.show('Plan was overrided!', ToastAndroid.SHORT);
    }
 
   return (

@@ -2,13 +2,12 @@
  * Ekran zmiany motywu
  */
 
- import { StyleSheet, View, Text } from 'react-native';
- import OwnButton from '../../shared/components/OwnButton';
- import useTheme from '../../module-root/theme/hooks/useTheme';
- import useThemedStyles from '../../module-root/theme/hooks/useThemeStyles';
- import { ThemeModel } from '../../module-root/theme/models/ThemeModel';
- import BackgroundTemplate from '../../shared/components/BackgroundTemplate';
- import { GlobalStyles } from '../../module-root/theme/utils/GlobalStyles';
+import { StyleSheet, View, ToastAndroid } from 'react-native';
+import OwnButton from '../../shared/components/OwnButton';
+import useTheme from '../../module-root/theme/hooks/useTheme';
+import useThemedStyles from '../../module-root/theme/hooks/useThemeStyles';
+import { ThemeModel } from '../../module-root/theme/models/ThemeModel';
+import BackgroundTemplate from '../../shared/components/BackgroundTemplate';
 import { ProfileStackParams } from '../navigation/ProfileNavigation';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { useNavigation } from '@react-navigation/native';
@@ -43,7 +42,8 @@ const ThemeScreen = () => {
   const handleSave = () => {
     addThemeDB(email, chosenTheme).then(
       () => {
-        navigation.navigate("Profile")
+        navigation.navigate("Profile");
+        ToastAndroid.show('Theme saved!', ToastAndroid.SHORT);
       }
     )
   }

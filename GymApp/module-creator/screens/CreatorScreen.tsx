@@ -4,7 +4,7 @@
 
 import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
-import { StyleSheet, Text, View, FlatList } from 'react-native';
+import { StyleSheet, Text, View, FlatList, ToastAndroid } from 'react-native';
 import useTheme from '../../module-root/theme/hooks/useTheme';
 import useThemedStyles from '../../module-root/theme/hooks/useThemeStyles';
 import { ThemeModel } from '../../module-root/theme/models/ThemeModel';
@@ -107,6 +107,7 @@ const CreatorScreen = () => {
   const handleReset = () => {
     setStateExercisesFiltered(stateExercises);
     setFilterModalOpened(false);
+    ToastAndroid.show('No filters applied', ToastAndroid.SHORT);
   }
 
   /**
@@ -118,6 +119,7 @@ const CreatorScreen = () => {
     setStateExercisesFiltered(filtered);
     setFilteredItems(filtered)
     setFilterModalOpened(false);
+    ToastAndroid.show('Filters applied!', ToastAndroid.SHORT);
   }
 
   /**
@@ -161,6 +163,7 @@ const CreatorScreen = () => {
     }));
 
     dispatch(clearExercises({}));
+    ToastAndroid.show('Plan was updated', ToastAndroid.SHORT);
 
     /* odświeżenie planów */
     getPlansDB(email).then(

@@ -70,23 +70,27 @@ const ExerciseScreen = ({route, navigation}: Props) => {
   return (
     <BackgroundTemplate>
 
-      <Text style={[GlobalStyles.text, style.textHeader]}>{exerciseName}</Text>
+      <View style={{marginBottom: 'auto', marginTop: 85}}>
 
-      {urlLoaded
-      ? <CachedImage source={{uri: url}} cacheKey={exerciseName} style={[GlobalStyles.image, style.image]} />
-      : <ActivityIndicator color={theme.colors.STEP_999} size={40} />
-      }
+        <Text style={[GlobalStyles.text, style.textHeader]}>{exerciseName}</Text>
 
-      <Text style={[GlobalStyles.text, style.textProp]}>Description:</Text>
-      <Text style={[GlobalStyles.text, style.textValue]}>{exerciseInfo?.description}</Text>
+        {urlLoaded
+        ? <CachedImage source={{uri: url}} cacheKey={exerciseName} style={[GlobalStyles.image, style.image]} />
+        : <ActivityIndicator color={theme.colors.STEP_999} size={40} />
+        }
 
-      <Text style={[GlobalStyles.text, style.textProp]}>Source:</Text>
-      <Text 
-        style={[GlobalStyles.text, style.textValue]}
-        onPress={() => {
-          Linking.openURL(exerciseInfo?.sourceLink);
-        }}
-      >{exerciseInfo?.sourceLink}</Text>
+        <Text style={[GlobalStyles.text, style.textProp]}>Description:</Text>
+        <Text style={[GlobalStyles.text, style.textValue]}>{exerciseInfo?.description}</Text>
+
+        <Text style={[GlobalStyles.text, style.textProp]}>Source:</Text>
+        <Text 
+          style={[GlobalStyles.text, style.textValue]}
+          onPress={() => {
+            Linking.openURL(exerciseInfo?.sourceLink);
+          }}
+        >{exerciseInfo?.sourceLink}</Text>
+      
+      </View>
 
     </BackgroundTemplate>
   );
@@ -99,7 +103,6 @@ const styles = (theme: ThemeModel) =>
     textHeader: {
       color: theme.colors.STEP_99,
       fontSize: theme.typography.size.L,
-      marginTop: -50,
     },
     textProp: {
       color: theme.colors.STEP_99,

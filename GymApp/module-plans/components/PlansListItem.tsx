@@ -4,7 +4,7 @@
 
 import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
-import { StyleSheet, View, Text } from 'react-native';
+import { StyleSheet, View, Text, ToastAndroid } from 'react-native';
 import useTheme from '../../module-root/theme/hooks/useTheme';
 import useThemedStyles from '../../module-root/theme/hooks/useThemeStyles';
 import { ThemeModel } from '../../module-root/theme/models/ThemeModel';
@@ -84,7 +84,8 @@ const PlansListItem = (props: PlanModel) => {
    * usunięcie planu treningowego
    */
   const handleDeletePlan = () => {
-    dispatch(removePlan({email: email, planName: planName})) 
+    dispatch(removePlan({email: email, planName: planName}));
+    ToastAndroid.show('Plan was deleted', ToastAndroid.SHORT);
   }
 
   return (

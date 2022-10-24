@@ -2,12 +2,11 @@
  * Ekran ćwiczeń
  */
 
-import { StyleSheet, Text, View, FlatList } from 'react-native';
+import { StyleSheet, Text, View, FlatList, ToastAndroid } from 'react-native';
 import useTheme from '../../module-root/theme/hooks/useTheme';
 import useThemedStyles from '../../module-root/theme/hooks/useThemeStyles';
 import { ThemeModel } from '../../module-root/theme/models/ThemeModel';
 import BackgroundTemplate from '../../shared/components/BackgroundTemplate';
-import { GlobalStyles } from '../../module-root/theme/utils/GlobalStyles';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { useContext, useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -120,6 +119,7 @@ const WorkoutScreenActive = () => {
 
     addSummaryDB(email, summary);
     navigation.replace("Plans");
+    ToastAndroid.show('Results saved!', ToastAndroid.SHORT);
   }
 
   /**
