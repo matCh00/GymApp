@@ -200,7 +200,7 @@ const EffortChartMonth = ({exerciseName, type}) => {
           <ActivityIndicator color={theme.colors.STEP_999} size={30} />
       }
 
-      <View style={{flexDirection: 'row', marginBottom: -120}}>
+      <View style={{flexDirection: 'row', marginBottom: -120, marginTop: -20}}>
         <OwnButton icon='calendar-arrow-left' onPress={handlePreviousMonth} width='30%' />
         <OwnButton icon='calendar-arrow-right' onPress={handleNextMonth} width='30%' />
         <OwnButton icon='calendar' onPress={handleCurrentMonth} width='30%' />

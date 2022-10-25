@@ -16,7 +16,7 @@ export const GlobalStyles = StyleSheet.create({
   },
   image: {
     resizeMode: 'contain',
-    minWidth: "90%", 
+    minWidth: "85%", 
     height: 160, 
   }
 });

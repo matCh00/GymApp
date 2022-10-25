@@ -7,6 +7,8 @@ import { MaterialCommunityIcons } from "@expo/vector-icons";
 import ImageModeScreen from '../screens/ImageModeScreen';
 import ListModeScreen from '../screens/ListModeScreen';
 import useTheme from '../../module-root/theme/hooks/useTheme';
+import { getDefaultHeaderHeight } from '@react-navigation/elements';
+import { useSafeAreaFrame, useSafeAreaInsets } from 'react-native-safe-area-context';
 
 /** 
  * parametry 
@@ -27,6 +29,13 @@ const ModesStack = createMaterialTopTabNavigator<ModesStackParams>();
 const ModesNavigation = () => {
 
   /**
+   * obliczenie wysokości headera
+   */
+  const frame = useSafeAreaFrame();
+  const insets = useSafeAreaInsets();
+  const headerHeight = getDefaultHeaderHeight(frame, false, insets.top); 
+
+  /**
    * motyw
    */
   const theme = useTheme();
@@ -37,7 +46,7 @@ const ModesNavigation = () => {
       backBehavior='none'
       screenOptions={{
         tabBarShowLabel: false,
-        tabBarStyle: {backgroundColor: theme.colors.STEP_1, marginTop: 85, marginBottom: -35},
+        tabBarStyle: {backgroundColor: theme.colors.STEP_1, marginTop: headerHeight, marginBottom: -35},
         tabBarIndicatorStyle: {backgroundColor: theme.colors.STEP_5},
         tabBarActiveTintColor: theme.colors.STEP_9,
         tabBarInactiveTintColor: theme.colors.STEP_5,

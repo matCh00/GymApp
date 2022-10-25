@@ -50,9 +50,13 @@ const EffortChartScreen = () => {
    * selekcja ćwiczeń na podstawie partii mieśniowej
    */
   useEffect(() => {
-    if (muscleValue && Exercises[muscleValue]) {      
+    if (muscleValue) {      
 
-      Exercises[muscleValue].forEach((val: any) => {        
+      let muscleKey = Object.keys(MusclesEnum).find(
+        key => MusclesEnum[key] === muscleValue
+      )
+
+      Exercises[muscleKey].forEach((val: any) => {        
         setExerciseItems(e => [...e, {label: val.name, value: val.name}]);
       })
     }
@@ -64,9 +68,9 @@ const EffortChartScreen = () => {
   return (
     <BackgroundTemplate>
         
-      <View style={{flexDirection: 'row', justifyContent: 'space-around', marginTop: -120, marginBottom: 40}}>
+      <View style={{flexDirection: 'row', justifyContent: 'space-around', marginTop: -170, marginBottom: 40}}>
 
-        <View style={{width: '30%'}}>
+        <View style={{width: '30%', zIndex: 2000000}}>
           <DropDownPicker
             open={muscleOpen}
             value={muscleValue}
@@ -81,7 +85,7 @@ const EffortChartScreen = () => {
           />
         </View>
 
-        <View style={{width: '30%'}}>
+        <View style={{width: '30%', zIndex: 2000000}}>
           <DropDownPicker
             open={exerciseOpen}
             value={exerciseValue}
@@ -97,7 +101,7 @@ const EffortChartScreen = () => {
           />
         </View>
 
-        <View style={{width: '30%'}}>
+        <View style={{width: '30%', zIndex: 2000000}}>
           <DropDownPicker
             open={effortOpen}
             value={effortValue}
@@ -129,7 +133,6 @@ const styles = (theme: ThemeModel) =>
     text: {
       color: theme.colors.STEP_999,
       fontSize: theme.typography.size.M,
-      marginBottom: 20,
       marginTop: -15,
     },
   });

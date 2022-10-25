@@ -2,7 +2,7 @@
  * SVG interaktywnego widoku, eventy wybierania partii ciała
  */
 
-import { StyleSheet, ActivityIndicator } from "react-native";
+import { StyleSheet, ActivityIndicator, Dimensions } from "react-native";
 import Svg, { Image, Path } from "react-native-svg";
 import { useDispatch } from "react-redux";
 import { ThemeModel } from "../../module-root/theme/models/ThemeModel";
@@ -58,13 +58,22 @@ const BodyPartsBack = (props: any) => {
     dispatch(changeMuscle({muscle: selected}));
   }
 
+  /**
+   * dostosowanie obrazka do różnych rozdzielczości ekranów
+   */
+  const windowHeight = Dimensions.get('window').height;
+  const windowWidth = Dimensions.get('window').width;
+  let a = -10 -(windowHeight / 5);
+  let b = windowHeight - 100;
+  let c = 300 - (windowWidth / 3);
+
   return (
     <>
       {urlLoaded ?
       
         <Svg
           xmlns="http://www.w3.org/2000/svg"
-          viewBox="220 -40 340 400"
+          viewBox={`${c} ${a} 340 ${b}`} // "220 -40 340 400"
           height="100%"
           width="100%"
           style={{}}

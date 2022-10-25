@@ -156,7 +156,8 @@ const TimesChartMonth = () => {
   }
 
   return (
-    <>
+    <View style={{flex: 1, justifyContent: 'space-around', alignItems: 'center'}}>
+
       <Text style={[GlobalStyles.text, style.text]}>{monthName}</Text>
 
       {loadingFinished 
@@ -211,13 +212,13 @@ const TimesChartMonth = () => {
           <ActivityIndicator color={theme.colors.STEP_999} size={30} />
       }
 
-      <View style={{flexDirection: 'row', marginBottom: -120}}>
+      <View style={{flexDirection: 'row', marginBottom: 60}}>
         <OwnButton icon='calendar-arrow-left' onPress={handlePreviousMonth} width='30%' />
         <OwnButton icon='calendar-arrow-right' onPress={handleNextMonth} width='30%' />
         <OwnButton icon='calendar' onPress={handleCurrentMonth} width='30%' />
       </View>
 
-    </>
+    </View>
   );
 };
 
@@ -228,8 +229,7 @@ const styles = (theme: ThemeModel) =>
     text: {
       color: theme.colors.STEP_99,
       fontSize: theme.typography.size.L,
-      marginBottom: 30,
-      marginTop: -125,
+      marginHorizontal: 80,
     },
     legend: {
       color: theme.colors.STEP_99,
