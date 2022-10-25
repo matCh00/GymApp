@@ -2,7 +2,7 @@
  * Wykres starań podczas treningów na przestrzeni miesiąca
  */
 
-import { StyleSheet, ActivityIndicator, View, Dimensions, Text } from 'react-native';
+import { StyleSheet, ActivityIndicator, View, Dimensions } from 'react-native';
 import useTheme from '../../module-root/theme/hooks/useTheme';
 import useThemedStyles from '../../module-root/theme/hooks/useThemeStyles';
 import { ThemeModel } from '../../module-root/theme/models/ThemeModel';
@@ -11,7 +11,7 @@ import { TrainingSummaryModel } from '../../module-plans/models/TrainingSummaryM
 import { getSummariesMonthDB } from '../../firebase/Database';
 import { AuthModel } from '../../module-auth/models/AuthModel';
 import { AuthContext } from '../../module-auth/context/AuthContext';
-import { VictoryArea, VictoryChart, VictoryTheme, VictoryAxis, VictoryLabel } from "victory-native";
+import { VictoryArea, VictoryChart, VictoryTheme, VictoryAxis } from "victory-native";
 import OwnButton from '../../shared/components/OwnButton';
 import { EffortChartModel } from '../models/EffortChartModel';
 import { ResultsModel } from '../../module-plans/models/ResultsModel';
@@ -200,7 +200,7 @@ const EffortChartMonth = ({exerciseName, type}) => {
           <ActivityIndicator color={theme.colors.STEP_999} size={30} />
       }
 
-      <View style={{flexDirection: 'row', marginBottom: -120, marginTop: -20}}>
+      <View style={{flexDirection: 'row'}}>
         <OwnButton icon='calendar-arrow-left' onPress={handlePreviousMonth} width='30%' />
         <OwnButton icon='calendar-arrow-right' onPress={handleNextMonth} width='30%' />
         <OwnButton icon='calendar' onPress={handleCurrentMonth} width='30%' />

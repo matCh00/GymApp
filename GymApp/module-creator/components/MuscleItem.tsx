@@ -98,7 +98,7 @@ const styles = (theme: ThemeModel) =>
       marginBottom: 10,
     },
     image: {
-      width: "85%", 
+      width: "80%", 
       height: 80, 
       resizeMode: 'cover',
       borderRadius: 10,

@@ -11,7 +11,7 @@ import { TrainingSummaryModel } from '../../module-plans/models/TrainingSummaryM
 import { getSummariesMonthDB } from '../../firebase/Database';
 import { AuthModel } from '../../module-auth/models/AuthModel';
 import { AuthContext } from '../../module-auth/context/AuthContext';
-import { VictoryPie, VictoryLabel } from "victory-native";
+import { VictoryPie } from "victory-native";
 import { TimesChartModel } from '../models/TimesChartModel';
 import OwnButton from '../../shared/components/OwnButton';
 import { useNavigation } from '@react-navigation/native';
@@ -156,8 +156,7 @@ const TimesChartMonth = () => {
   }
 
   return (
-    <View style={{flex: 1, justifyContent: 'space-around', alignItems: 'center'}}>
-
+    <>
       <Text style={[GlobalStyles.text, style.text]}>{monthName}</Text>
 
       {loadingFinished 
@@ -218,7 +217,7 @@ const TimesChartMonth = () => {
         <OwnButton icon='calendar' onPress={handleCurrentMonth} width='30%' />
       </View>
 
-    </View>
+    </>
   );
 };
 

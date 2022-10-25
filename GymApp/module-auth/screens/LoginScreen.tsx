@@ -58,12 +58,12 @@ const LoginScreen = () => {
 
   return (
     <BackgroundTemplate>
-      <KeyboardAvoidingView style={GlobalStyles.container}>
+      <KeyboardAvoidingView style={{marginTop: 50, alignItems: 'center'}}>
 
         <OwnInput placeholder='email' value={emailInput} onChangeText={text => setEmailInput(text)} />
         <OwnInput placeholder='password' value={passwordInput} onChangeText={text => setPasswordInput(text)} secureTextEntry />
 
-        <OwnButton title='Login' onPress={handleLogin} />
+        <OwnButton title='Login' onPress={handleLogin} marginBottom={-20} />
 
         <OwnButton title="Create Account" onPress={() => {navigation.replace("Register")}} />
       

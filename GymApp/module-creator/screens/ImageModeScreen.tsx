@@ -7,7 +7,6 @@ import useTheme from '../../module-root/theme/hooks/useTheme';
 import useThemedStyles from '../../module-root/theme/hooks/useThemeStyles';
 import { ThemeModel } from '../../module-root/theme/models/ThemeModel';
 import BackgroundTemplate from '../../shared/components/BackgroundTemplate';
-import { GlobalStyles } from '../../module-root/theme/utils/GlobalStyles';
 import BodyPartsBack from '../components/BodyPartsBack';
 import BodyPartsFront from '../components/BodyPartsFront';
 import { useState } from 'react';
@@ -75,7 +74,7 @@ const ImageModeScreen = () => {
       : <BodyPartsBack />
       }
 
-      <View style={{marginBottom: 80, marginTop: -80, flexDirection: 'row', justifyContent: 'center'}}>
+      <View style={{marginBottom: 80, flexDirection: 'row'}}>
 
         <OwnButton title="Swap" onPress={swapSides} width='40%' />
 

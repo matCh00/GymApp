@@ -58,12 +58,12 @@ const RegisterScreen = () => {
 
   return (
     <BackgroundTemplate>
-      <KeyboardAvoidingView style={GlobalStyles.container}>
+      <KeyboardAvoidingView style={{marginTop: 50, alignItems: 'center'}}>
 
         <OwnInput placeholder='email' value={emailInput} onChangeText={text => setEmailInput(text)} />
         <OwnInput placeholder='password' value={passwordInput} onChangeText={text => setPasswordInput(text)} secureTextEntry />
 
-        <OwnButton title='Register' onPress={handleRegister} />
+        <OwnButton title='Register' onPress={handleRegister} marginBottom={-20} />
 
         <OwnButton title="Back to Login" onPress={() => {navigation.replace("Login")}} />
         

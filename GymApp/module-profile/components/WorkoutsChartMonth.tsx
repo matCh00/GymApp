@@ -2,7 +2,7 @@
  * Wykres zrealizowanych treningów na przestrzeni miesiąca
  */
 
-import { StyleSheet, ActivityIndicator, View, Dimensions, Text } from 'react-native';
+import { StyleSheet, ActivityIndicator, View, Dimensions } from 'react-native';
 import useTheme from '../../module-root/theme/hooks/useTheme';
 import useThemedStyles from '../../module-root/theme/hooks/useThemeStyles';
 import { ThemeModel } from '../../module-root/theme/models/ThemeModel';
@@ -198,7 +198,7 @@ const WorkoutsChartMonth = ({setSelectedMonth}) => {
           <ActivityIndicator color={theme.colors.STEP_999} size={30} />
       }
 
-      <View style={{flexDirection: 'row', marginBottom: -120}}>
+      <View style={{flexDirection: 'row'}}>
         <OwnButton icon='calendar-arrow-left' onPress={handlePreviousMonth} width='30%' />
         <OwnButton icon='calendar-arrow-right' onPress={handleNextMonth} width='30%' />
         <OwnButton icon='calendar' onPress={handleCurrentMonth} width='30%' />

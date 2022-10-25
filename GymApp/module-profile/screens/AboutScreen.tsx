@@ -2,7 +2,7 @@
  * Ekran ustawień profilu
  */
 
-import { StyleSheet, View, Text, Linking } from 'react-native';
+import { StyleSheet, Text, Linking } from 'react-native';
 import useTheme from '../../module-root/theme/hooks/useTheme';
 import useThemedStyles from '../../module-root/theme/hooks/useThemeStyles';
 import { ThemeModel } from '../../module-root/theme/models/ThemeModel';
@@ -29,7 +29,7 @@ const AboutScreen = () => {
   return (
     <BackgroundTemplate>
 
-      <Text style={[GlobalStyles.text, style.textTopic]}>Mobile application for workouts management and monitoring</Text>
+      <Text style={[GlobalStyles.text, style.textTopic, {marginTop: 50}]}>Mobile application for workouts management and monitoring</Text>
 
       <Text 
         style={[GlobalStyles.text, style.textAuthor, {marginBottom: '30%'}]}
@@ -48,7 +48,7 @@ const AboutScreen = () => {
       >Steve Cook</Text>
 
       <Text 
-        style={[GlobalStyles.text, style.textSources]}
+        style={[GlobalStyles.text, style.textSources, {marginBottom: 100}]}
         onPress={() => {
           Linking.openURL('https://www.youtube.com/c/TerronBeckham');
         }}

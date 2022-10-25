@@ -45,11 +45,6 @@ const PlanScreen = ({route, navigation}: Props) => {
   const statePlans = useSelector((state: any) => state.savedPlans.plans);
 
   /**
-   * stan plan z reducera
-   */
-  const statePlan = useSelector((state: any) => state.selectedPlan.plan);
-
-  /**
    * załadowanie ćwiczeń dla konkretnego planu
    */
   useLayoutEffect(() => {

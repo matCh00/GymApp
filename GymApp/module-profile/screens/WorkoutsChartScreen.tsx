@@ -34,10 +34,10 @@ const WorkoutsChartScreen = () => {
   return (
     <BackgroundTemplate>
 
-      <View style={{flexDirection: 'row', marginBottom: -80}}>
+      <View style={{flexDirection: 'row'}}>
 
         <Text style={[GlobalStyles.text, style.text]}>{mode ? 'Month' : 'Week'}</Text>
-        <OwnButton icon={mode ? 'calendar-week-begin' : 'calendar-weekend'} onPress={handleSwitchMode} width='25%' marginTop={-250} />
+        <OwnButton icon={mode ? 'calendar-week-begin' : 'calendar-weekend'} onPress={handleSwitchMode} width='25%' marginTop={-10} />
         
       </View>
 
@@ -57,7 +57,5 @@ const styles = (theme: ThemeModel) =>
     text: {
       color: theme.colors.STEP_999,
       fontSize: theme.typography.size.XL,
-      marginBottom: 20,
-      marginTop: -145,
     },
   });

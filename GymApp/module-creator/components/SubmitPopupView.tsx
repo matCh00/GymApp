@@ -63,6 +63,9 @@ const SubmitPopupView = ({setSubmitModalOpend}) => {
         }
       )
     }
+    else {
+      ToastAndroid.show('Type plan name', ToastAndroid.SHORT);
+    }
   }
 
   /**

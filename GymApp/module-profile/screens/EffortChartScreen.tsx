@@ -9,7 +9,6 @@ import { ThemeModel } from '../../module-root/theme/models/ThemeModel';
 import BackgroundTemplate from '../../shared/components/BackgroundTemplate';
 import { GlobalStyles } from '../../module-root/theme/utils/GlobalStyles';
 import { useEffect, useState } from 'react';
-import OwnButton from '../../shared/components/OwnButton';
 import EffortChartMonth from '../components/EffortChartMonth';
 import DropDownPicker from 'react-native-dropdown-picker';
 import MusclesEnum from '../../module-creator/utils/MusclesEnum';
@@ -50,6 +49,8 @@ const EffortChartScreen = () => {
    * selekcja ćwiczeń na podstawie partii mieśniowej
    */
   useEffect(() => {
+    setExerciseItems([]);
+    
     if (muscleValue) {      
 
       let muscleKey = Object.keys(MusclesEnum).find(
@@ -68,7 +69,7 @@ const EffortChartScreen = () => {
   return (
     <BackgroundTemplate>
         
-      <View style={{flexDirection: 'row', justifyContent: 'space-around', marginTop: -170, marginBottom: 40}}>
+      <View style={{flexDirection: 'row', justifyContent: 'space-around'}}>
 
         <View style={{width: '30%', zIndex: 2000000}}>
           <DropDownPicker
@@ -133,6 +134,7 @@ const styles = (theme: ThemeModel) =>
     text: {
       color: theme.colors.STEP_999,
       fontSize: theme.typography.size.M,
-      marginTop: -15,
+      marginTop: 15,
+      marginBottom: -15,
     },
   });

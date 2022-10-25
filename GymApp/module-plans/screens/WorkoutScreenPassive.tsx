@@ -123,7 +123,7 @@ const WorkoutScreen = () => {
           
         :
           <View style={{marginTop: 70, alignItems: 'center'}}>
-            <OwnButton title="Save" onPress={handleSave} marginTop={5} />
+            <OwnButton title="  Save  " onPress={handleSave} marginTop={5} marginBottom={20} />
 
               <FlatList
                 data={results}

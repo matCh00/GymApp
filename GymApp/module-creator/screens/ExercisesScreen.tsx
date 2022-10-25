@@ -79,7 +79,7 @@ const styles = (theme: ThemeModel) =>
     text: {
       color: theme.colors.STEP_999,
       fontSize: theme.typography.size.XL,
-      marginTop: 65,
-      marginBottom:10,
+      marginTop: 55,
+      marginBottom: 15,
     },
   });

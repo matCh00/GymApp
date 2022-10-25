@@ -61,7 +61,7 @@ const RootNavigation = () => {
       backBehavior='none'
       screenOptions={{
         headerShown: false,
-        tabBarStyle: {backgroundColor: theme.colors.STEP_0, borderTopColor: theme.colors.STEP_00},
+        tabBarStyle: {backgroundColor: theme.colors.STEP_0, borderTopColor: theme.colors.STEP_00, marginTop: -10},
         tabBarActiveBackgroundColor: theme.colors.STEP_1,
         tabBarActiveTintColor: theme.colors.STEP_9,
         tabBarInactiveBackgroundColor: theme.colors.STEP_0,
