@@ -65,7 +65,7 @@ const BodyPartsBack = (props: any) => {
   const windowWidth = Dimensions.get('window').width;
   let a = -10 -(windowHeight / 5);
   let b = windowHeight - 100;
-  let c = 300 - (windowWidth / 3);
+  let c = 310 - (windowWidth / 3);
 
   return (
     <>

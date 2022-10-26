@@ -2,18 +2,30 @@
  * Nawigacja podczas korzystania z aplikacji
  */
 
-import { NavigationContainer } from "@react-navigation/native";
+import { NavigationContainer, DefaultTheme  } from "@react-navigation/native";
 import { useContext } from "react";
 import AuthNavigation from "./module-auth/navigation/AuthNavigation";
 import RootNavigation from "./module-root/navigation/RootNavigation";
 import { AuthModel } from "./module-auth/models/AuthModel";
 import { AuthContext } from "./module-auth/context/AuthContext";
-
+import useTheme from "./module-root/theme/hooks/useTheme";
 
 /** 
  * nawigacja 
  */ 
 const AppNavigation = () => {
+
+  /**
+   * motyw
+   */
+  const theme = useTheme();
+  const customTheme = {
+    ...DefaultTheme,
+    colors: {
+      ...DefaultTheme.colors,
+      background: theme.colors.STEP_3,
+    },
+  };
 
   /**
    * context uwierzytelniania
@@ -37,7 +49,7 @@ const AppNavigation = () => {
   }
 
   return (
-    <NavigationContainer>
+    <NavigationContainer theme={customTheme}>
 
       {renderContent()}
 
