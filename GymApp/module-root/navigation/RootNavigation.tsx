@@ -74,10 +74,10 @@ const RootNavigation = () => {
         component={ProfileNavigation} 
         options={{
           tabBarIcon: ({ color, size }) => {
-            return <MaterialCommunityIcons name="account" color={color} size={size} />
+            return <MaterialCommunityIcons name="home" color={color} size={size} />
           },
           tabBarLabel: ({ color }) => { 
-            return <Text style={{color: color, fontSize: 12}}>Profile</Text>
+            return <Text style={{color: color, fontSize: 12}}>Home</Text>
           },
         }}
       />
