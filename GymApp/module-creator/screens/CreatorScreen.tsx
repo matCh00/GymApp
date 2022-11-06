@@ -44,6 +44,9 @@ const CreatorScreen = () => {
 
   const [filteredItems, setFilteredItems] = useState<ExerciseItemModel[]>([]);
 
+  const [isFilter, setIsFilter] = useState(false);
+  const [isReset, setIsReset] = useState(false);
+
   /**
    * props dla DropDownPicker
    */
@@ -103,24 +106,39 @@ const CreatorScreen = () => {
 
   /**
    * reset filtrów
+   * 2 etapowe ustawienie elementów listy - naprawa poprawnego wyświetlania listy
+   * rozwiązanie problemu niewiadomej kolejności wykonywania setState
    */
   const handleReset = () => {
+    setStateExercisesFiltered([]);
+    setIsReset(r => !r);
+  }
+  useEffect(() => {
     setStateExercisesFiltered(stateExercises);
     setFilterModalOpened(false);
     ToastAndroid.show('No filters applied', ToastAndroid.SHORT);
-  }
+  }, [isReset])
 
   /**
    * zastosowanie filtrów
+   * 2 etapowe ustawienie elementów listy - naprawa poprawnego wyświetlania listy
+   * rozwiązanie problemu niewiadomej kolejności wykonywania setState
    */
   const handleFilter = () => {
+    setStateExercisesFiltered([]);
+    setIsFilter(f => !f);
+  }
+  useEffect(() => {
+    let muscleKey = Object.keys(MusclesEnum).find(
+      value => MusclesEnum[value] === filterValue
+    )
     let filtered: ExerciseItemModel[] = [];
-    filtered = stateExercises.filter((e: ExerciseItemModel) => {return e.muscleName === filterValue});
+    filtered = stateExercises.filter((e: ExerciseItemModel) => {return e.muscleName === muscleKey});
     setStateExercisesFiltered(filtered);
     setFilteredItems(filtered)
     setFilterModalOpened(false);
     ToastAndroid.show('Filters applied!', ToastAndroid.SHORT);
-  }
+  }, [isFilter])
 
   /**
    * sygnał usunięcia elementu listy
@@ -208,20 +226,21 @@ const CreatorScreen = () => {
 
       <FlatList
         data={stateExercisesFiltered}
-        renderItem={(itemData) => {
+        extraData={filteredItems}
+        renderItem={({ item, index }) => {
           return (
             <View style={GlobalStyles.listItem}>
               <ExerciseItemCreator 
-                pathName={itemData.item.pathName} 
-                muscleName={itemData.item.muscleName}
-                exerciseName={itemData.item.exerciseName}
-                exerciseKey={itemData.item.exerciseKey}
+                pathName={item.pathName} 
+                muscleName={item.muscleName}
+                exerciseName={item.exerciseName}
+                exerciseKey={item.exerciseKey}
                 refreshSignal={handleRefreshSignal}
               />
             </View>
           );
         }}
-        keyExtractor={(item, index) => { return index.toString(); }} 
+        keyExtractor={(item, index) => { return index.toString() + item.toString(); }} 
 
         numColumns={1}
       />

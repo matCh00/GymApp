@@ -2,7 +2,7 @@
  * Element listy ćwiczeń na wybraną partię mięśniową (w kreatorze)
  */
 
-import { StyleSheet, Text, View, ActivityIndicator, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View, ActivityIndicator, TouchableOpacity, Image } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import OwnButton from '../../shared/components/OwnButton';
 import useTheme from '../../module-root/theme/hooks/useTheme';
@@ -129,6 +129,7 @@ const ExerciseItemCreator = (props: ExerciseModelExtended) => {
       {urlLoaded
         ? <TouchableOpacity onPress={goToExercise}>
             <CachedImage source={{uri: url}} cacheKey={exerciseKey} style={[GlobalStyles.image, style.image]} />
+            {/* <Image source={{uri: url}} style={[GlobalStyles.image, style.image]} key={url} /> */}
           </TouchableOpacity>
         : <ActivityIndicator color={theme.colors.STEP_0} size={40} />
       }

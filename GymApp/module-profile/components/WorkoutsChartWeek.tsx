@@ -162,7 +162,7 @@ const WorkoutsChartWeek = ({selectedMonth}) => {
         ?
           <VictoryChart 
             theme={VictoryTheme.material} 
-            domain={{x: [dayStart-0.4, dayEnd+0.4]}} 
+            domain={{x: [dayStart-0.5, dayEnd+0.4]}} 
             padding={{top: 20, bottom: 65, right: 20, left: 40}} 
             height={Dimensions.get('window').height / 2}
           >
