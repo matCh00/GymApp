@@ -28,7 +28,7 @@ const WorkoutsChartScreen = () => {
    * zmiana wykresu
    */
   const handleSwitchMode = () => {
-    setMode(m => !m);
+    //setMode(m => !m);
   }
 
   return (
