@@ -51,8 +51,13 @@ const RegisterScreen = () => {
       }
     )
     .catch((error: any) => {
-      ToastAndroid.show('Email already in use', ToastAndroid.SHORT);
-      console.log(error);
+      let errorText = error.code;
+      errorText = errorText.replace('auth/', '');
+      const regEx = new RegExp('-', "g");
+      errorText = errorText.replace(regEx, ' ');
+      ToastAndroid.show("Error: " + errorText, ToastAndroid.SHORT);
+      
+      console.log(error.code);
     })
   }
 

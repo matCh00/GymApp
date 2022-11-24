@@ -51,7 +51,12 @@ const LoginScreen = () => {
       }
     )
     .catch((error: any) => {
-      ToastAndroid.show('Incorrect data', ToastAndroid.SHORT);
+      let errorText = error.code;
+      errorText = errorText.replace('auth/', '');
+      const regEx = new RegExp('-', "g");
+      errorText = errorText.replace(regEx, ' ');
+      ToastAndroid.show("Error: " + errorText, ToastAndroid.SHORT);
+      
       console.log(error);
     })
   }
