@@ -174,34 +174,35 @@ export const Exercises = {
       pathName: 'crunch.gif',
       name: 'crunch',
       sourceLink: 'https://www.youtube.com/watch?v=rrkJA8A_2G8',
-      description: ''
+      description: 'Perform exercises slowly, focus on your technique. Keep moving during rest time, a gentle walk will keep your muscles warm and your heart rate up.'
     },
     {
       muscle: 'upperAbs',
       pathName: 'stability_ball_crunch.gif',
       name: 'stability ball crunch',
       sourceLink: 'https://www.youtube.com/watch?v=rrkJA8A_2G8',
-      description: ''
+      description: 'Perform exercises slowly, focus on your technique. Keep moving during rest time, a gentle walk will keep your muscles warm and your heart rate up.'
     },
     {
       muscle: 'upperAbs',
       pathName: 'wheel_rollouts.gif',
       name: 'wheel rollouts',
       sourceLink: 'https://www.youtube.com/watch?v=cq01IOTDIf8',
-      description: ''
+      description: 'Perform exercises slowly, focus on your technique. Keep moving during rest time, a gentle walk will keep your muscles warm and your heart rate up.'
     },
     {
       muscle: 'upperAbs',
       pathName: 'bicycle_crunch.gif',
       name: 'bicycle crunch',
       sourceLink: 'https://www.youtube.com/watch?v=oaD6j_iPNc0',
-      description: ''
+      description: 'Perform exercises slowly, focus on your technique. Keep moving during rest time, a gentle walk will keep your muscles warm and your heart rate up.'
     },
     {
       muscle: 'upperAbs',
       pathName: 'cable_crunch.gif',
       name: 'cable crunch',
       sourceLink: 'https://www.youtube.com/watch?v=rOx4zOB-OZs',
+      description: 'Perform exercises slowly, focus on your technique. Keep moving during rest time, a gentle walk will keep your muscles warm and your heart rate up.'
     },
   ],
   lowerAbs: [
@@ -210,41 +211,42 @@ export const Exercises = {
       pathName: 'reverse_crunch.gif',
       name: 'reverse crunch',
       sourceLink: 'https://www.youtube.com/watch?v=rrkJA8A_2G8',
-      description: ''
+      description: 'Perform exercises slowly, focus on your technique. Keep moving during rest time, a gentle walk will keep your muscles warm and your heart rate up.'
     },
     {
       muscle: 'lowerAbs',
       pathName: 'incline_reverse_crunch.gif',
       name: 'incline reverse crunch',
       sourceLink: 'https://www.youtube.com/watch?v=rrkJA8A_2G8',
-      description: ''
+      description: 'Perform exercises slowly, focus on your technique. Keep moving during rest time, a gentle walk will keep your muscles warm and your heart rate up.'
     },
     {
       muscle: 'lowerAbs',
       pathName: 'verticle_chair_knee_raises.gif',
       name: 'verticle chair knee raises',
       sourceLink: 'https://www.youtube.com/watch?v=oaD6j_iPNc0',
-      description: ''
+      description: 'Perform exercises slowly, focus on your technique. Keep moving during rest time, a gentle walk will keep your muscles warm and your heart rate up.'
     },
     {
       muscle: 'lowerAbs',
       pathName: 'knee_raises.gif',
       name: 'knee raises',
       sourceLink: 'https://www.youtube.com/watch?v=cq01IOTDIf8',
-      description: ''
+      description: 'Perform exercises slowly, focus on your technique. Keep moving during rest time, a gentle walk will keep your muscles warm and your heart rate up.'
     },
     {
       muscle: 'lowerAbs',
       pathName: 'decline_board_reverse_crunch.gif',
       name: 'decline board reverse crunch',
       sourceLink: 'https://www.youtube.com/watch?v=oaD6j_iPNc0',
-      description: ''
+      description: 'Perform exercises slowly, focus on your technique. Keep moving during rest time, a gentle walk will keep your muscles warm and your heart rate up.'
     },
     {
       muscle: 'lowerAbs',
       pathName: 'cable_crunch.gif',
       name: 'cable crunch',
       sourceLink: 'https://www.youtube.com/watch?v=rOx4zOB-OZs',
+      description: 'Perform exercises slowly, focus on your technique. Keep moving during rest time, a gentle walk will keep your muscles warm and your heart rate up.'
     },
   ],
   oblique: [
@@ -253,41 +255,42 @@ export const Exercises = {
       pathName: 'decline_oblique_crunch.gif',
       name: 'decline oblique crunch',
       sourceLink: 'https://www.youtube.com/watch?v=rrkJA8A_2G8',
-      description: ''
+      description: 'Perform exercises slowly, focus on your technique. Keep moving during rest time, a gentle walk will keep your muscles warm and your heart rate up.'
     },
     {
       muscle: 'oblique',
       pathName: 'barbell_twists.gif',
       name: 'barbell twists',
       sourceLink: 'https://www.youtube.com/watch?v=rrkJA8A_2G8',
-      description: ''
+      description: 'Perform exercises slowly, focus on your technique. Keep moving during rest time, a gentle walk will keep your muscles warm and your heart rate up.'
     },
     {
       muscle: 'oblique',
       pathName: 'stability_ball_barbell_twists.gif',
       name: 'stability ball barbell twists',
       sourceLink: 'https://www.youtube.com/watch?v=rrkJA8A_2G8',
-      description: ''
+      description: 'Perform exercises slowly, focus on your technique. Keep moving during rest time, a gentle walk will keep your muscles warm and your heart rate up.'
     },
     {
       muscle: 'oblique',
       pathName: 'side_plank.gif',
       name: 'side plank',
       sourceLink: 'https://www.youtube.com/watch?v=cq01IOTDIf8',
-      description: ''
+      description: 'Perform exercises slowly, focus on your technique. Keep moving during rest time, a gentle walk will keep your muscles warm and your heart rate up.'
     },
     {
       muscle: 'oblique',
       pathName: 'rotational_side_plank.gif',
       name: 'rotational side plank',
       sourceLink: 'https://www.youtube.com/watch?v=cq01IOTDIf8',
-      description: ''
+      description: 'Perform exercises slowly, focus on your technique. Keep moving during rest time, a gentle walk will keep your muscles warm and your heart rate up.'
     },
     {
       muscle: 'oblique',
       pathName: 'wood_chops_mid.gif',
       name: 'wood chops mid',
       sourceLink: 'https://www.youtube.com/watch?v=9HQsPQ1lPWw',
+      description: 'Perform exercises slowly, focus on your technique. Keep moving during rest time, a gentle walk will keep your muscles warm and your heart rate up.'
     },
   ],
   core: [
@@ -296,34 +299,35 @@ export const Exercises = {
       pathName: 'wood_chops_low_high.gif',
       name: 'wood chops low to high',
       sourceLink: 'https://www.youtube.com/watch?v=rOx4zOB-OZs',
-      description: ''
+      description: 'Perform exercises slowly, focus on your technique. Keep moving during rest time, a gentle walk will keep your muscles warm and your heart rate up.'
     },
     {
       muscle: 'core',
       pathName: 'wood_chops_high_low.gif',
       name: 'wood chops high to low',
       sourceLink: 'https://www.youtube.com/watch?v=rOx4zOB-OZs',
+      description: 'Perform exercises slowly, focus on your technique. Keep moving during rest time, a gentle walk will keep your muscles warm and your heart rate up.'
     },
     {
       muscle: 'core',
       pathName: 'landmine_rotational_punch.gif',
       name: 'landmine rotational punch',
       sourceLink: 'https://www.youtube.com/watch?v=cq01IOTDIf8',
-      description: ''
+      description: 'Perform exercises slowly, focus on your technique. Keep moving during rest time, a gentle walk will keep your muscles warm and your heart rate up.'
     },
     {
       muscle: 'core',
       pathName: 'elbow_plank.gif',
       name: 'elbow plank',
       sourceLink: 'https://www.youtube.com/watch?v=oaD6j_iPNc0',
-      description: ''
+      description: 'Perform exercises slowly, focus on your technique. Keep moving during rest time, a gentle walk will keep your muscles warm and your heart rate up.'
     },
     {
       muscle: 'core',
       pathName: 'superman.gif',
       name: 'superman',
       sourceLink: 'https://www.youtube.com/watch?v=oaD6j_iPNc0',
-      description: ''
+      description: 'Perform exercises slowly, focus on your technique. Keep moving during rest time, a gentle walk will keep your muscles warm and your heart rate up.'
     },
   ],
   pecs: [
@@ -332,112 +336,112 @@ export const Exercises = {
       pathName: 'dumbbell_bench_press.gif',
       name: 'dumbbell bench press',
       sourceLink: 'https://www.youtube.com/watch?v=ceuCAJDPPno',
-      description: ''
+      description: 'Perform exercises slowly, focus on your technique. Keep moving during rest time, a gentle walk will keep your muscles warm and your heart rate up.'
     },
     {
       muscle: 'pecs',
       pathName: 'bench_press.gif',
       name: 'bench press',
       sourceLink: 'https://www.youtube.com/watch?v=ceuCAJDPPno',
-      description: ''
+      description: 'Perform exercises slowly, focus on your technique. Keep moving during rest time, a gentle walk will keep your muscles warm and your heart rate up.'
     },
     {
       muscle: 'pecs',
       pathName: 'machine_pec_press.gif',
       name: 'machine pec press',
       sourceLink: 'https://www.youtube.com/watch?v=sUtksN1W0_g',
-      description: ''
+      description: 'Perform exercises slowly, focus on your technique. Keep moving during rest time, a gentle walk will keep your muscles warm and your heart rate up.'
     },
     {
       muscle: 'pecs',
       pathName: 'machine_fly.gif',
       name: 'machine fly',
       sourceLink: 'https://www.youtube.com/watch?v=ceuCAJDPPno',
-      description: ''
+      description: 'Perform exercises slowly, focus on your technique. Keep moving during rest time, a gentle walk will keep your muscles warm and your heart rate up.'
     },
     {
       muscle: 'pecs',
       pathName: 'incline_bench_press.gif',
       name: 'incline bench press',
       sourceLink: 'https://www.youtube.com/watch?v=O34G_d2VWdg',
-      description: ''
+      description: 'Perform exercises slowly, focus on your technique. Keep moving during rest time, a gentle walk will keep your muscles warm and your heart rate up.'
     },
     {
       muscle: 'pecs',
       pathName: 'chest_dip.gif',
       name: 'chest dip',
       sourceLink: 'https://www.youtube.com/watch?v=O34G_d2VWdg',
-      description: ''
+      description: 'Perform exercises slowly, focus on your technique. Keep moving during rest time, a gentle walk will keep your muscles warm and your heart rate up.'
     },
     {
       muscle: 'pecs',
       pathName: 'barbell_push.gif',
       name: 'barbell push',
       sourceLink: 'https://www.youtube.com/watch?v=O34G_d2VWdg',
-      description: ''
+      description: 'Perform exercises slowly, focus on your technique. Keep moving during rest time, a gentle walk will keep your muscles warm and your heart rate up.'
     },
     {
       muscle: 'pecs',
       pathName: 'cable_cross-over.gif',
       name: 'cable cross-over',
       sourceLink: 'https://www.youtube.com/watch?v=O34G_d2VWdg',
-      description: ''
+      description: 'Perform exercises slowly, focus on your technique. Keep moving during rest time, a gentle walk will keep your muscles warm and your heart rate up.'
     },
     {
       muscle: 'pecs',
       pathName: 'dumbbell_rotation_bench_press.gif',
       name: 'dumbbell rotation bench press',
       sourceLink: 'https://www.youtube.com/watch?v=l6OhnL7qtnM',
-      description: ''
+      description: 'Perform exercises slowly, focus on your technique. Keep moving during rest time, a gentle walk will keep your muscles warm and your heart rate up.'
     },
     {
       muscle: 'pecs',
       pathName: 'squeeze_press.gif',
       name: 'squeeze press',
       sourceLink: 'https://www.youtube.com/watch?v=l6OhnL7qtnM',
-      description: ''
+      description: 'Perform exercises slowly, focus on your technique. Keep moving during rest time, a gentle walk will keep your muscles warm and your heart rate up.'
     },
     {
       muscle: 'pecs',
       pathName: 'decline_dumbbell_press.gif',
       name: 'decline dumbbell press',
       sourceLink: 'https://www.youtube.com/watch?v=l6OhnL7qtnM',
-      description: ''
+      description: 'Perform exercises slowly, focus on your technique. Keep moving during rest time, a gentle walk will keep your muscles warm and your heart rate up.'
     },
     {
       muscle: 'pecs',
       pathName: 'bench_fly.gif',
       name: 'bench fly',
       sourceLink: 'https://www.youtube.com/watch?v=l6OhnL7qtnM',
-      description: ''
+      description: 'Perform exercises slowly, focus on your technique. Keep moving during rest time, a gentle walk will keep your muscles warm and your heart rate up.'
     },
     {
       muscle: 'pecs',
       pathName: 'dumbbell_pullover.gif',
       name: 'dumbbell pullover',
       sourceLink: 'https://www.youtube.com/watch?v=l6OhnL7qtnM',
-      description: ''
+      description: 'Perform exercises slowly, focus on your technique. Keep moving during rest time, a gentle walk will keep your muscles warm and your heart rate up.'
     },
     {
       muscle: 'pecs',
       pathName: 'push-up.gif',
       name: 'push-up',
       sourceLink: 'https://www.youtube.com/watch?v=GsopFpQ3xkM',
-      description: ''
+      description: 'Perform exercises slowly, focus on your technique. Keep moving during rest time, a gentle walk will keep your muscles warm and your heart rate up.'
     },
     {
       muscle: 'pecs',
       pathName: 'single_arm_incline_press.gif',
       name: 'single arm incline press',
       sourceLink: 'https://www.youtube.com/watch?v=tQsHHQvwsc4',
-      description: ''
+      description: 'Perform exercises slowly, focus on your technique. Keep moving during rest time, a gentle walk will keep your muscles warm and your heart rate up.'
     },
     {
       muscle: 'pecs',
       pathName: 'plate_squeeze.gif',
       name: 'plate squeeze',
       sourceLink: 'https://www.youtube.com/watch?v=0QMJwlbRLKg',
-      description: ''
+      description: 'Perform exercises slowly, focus on your technique. Keep moving during rest time, a gentle walk will keep your muscles warm and your heart rate up.'
     },
   ],
   traps: [
@@ -446,14 +450,14 @@ export const Exercises = {
       pathName: 'shrugs.gif',
       name: 'shrugs',
       sourceLink: 'https://www.youtube.com/watch?v=xXV5znmUuGU',
-      description: ''
+      description: 'Perform exercises slowly, focus on your technique. Keep moving during rest time, a gentle walk will keep your muscles warm and your heart rate up.'
     },
     {
       muscle: 'traps',
       pathName: 'barbell_wide_upright_row.gif',
       name: 'barbell wide upright row',
       sourceLink: 'https://www.youtube.com/watch?v=xXV5znmUuGU',
-      description: ''
+      description: 'Perform exercises slowly, focus on your technique. Keep moving during rest time, a gentle walk will keep your muscles warm and your heart rate up.'
     },
   ],
   delts: [
@@ -462,91 +466,91 @@ export const Exercises = {
       pathName: 'seated_lateral_raises.gif',
       name: 'seated lateral raises',
       sourceLink: 'https://www.youtube.com/watch?v=xXV5znmUuGU',
-      description: ''
+      description: 'Perform exercises slowly, focus on your technique. Keep moving during rest time, a gentle walk will keep your muscles warm and your heart rate up.'
     },
     {
       muscle: 'delts',
       pathName: 'dumbbell_press.gif',
       name: 'dumbbell press',
       sourceLink: 'https://www.youtube.com/watch?v=xXV5znmUuGU',
-      description: ''
+      description: 'Perform exercises slowly, focus on your technique. Keep moving during rest time, a gentle walk will keep your muscles warm and your heart rate up.'
     },
     {
       muscle: 'delts',
       pathName: 'cable_lateral_raises.gif',
       name: 'cable lateral raises',
       sourceLink: 'https://www.youtube.com/watch?v=ey4FJW1Q56s',
-      description: ''
+      description: 'Perform exercises slowly, focus on your technique. Keep moving during rest time, a gentle walk will keep your muscles warm and your heart rate up.'
     },
     {
       muscle: 'delts',
       pathName: 'reverse_pec_dec.gif',
       name: 'reverse pec dec',
       sourceLink: 'https://www.youtube.com/watch?v=ey4FJW1Q56s',
-      description: ''
+      description: 'Perform exercises slowly, focus on your technique. Keep moving during rest time, a gentle walk will keep your muscles warm and your heart rate up.'
     },
     {
       muscle: 'delts',
       pathName: 'cable_reverse_fly.gif',
       name: 'cable reverse fly',
       sourceLink: 'https://www.youtube.com/watch?v=xXV5znmUuGU',
-      description: ''
+      description: 'Perform exercises slowly, focus on your technique. Keep moving during rest time, a gentle walk will keep your muscles warm and your heart rate up.'
     },
     {
       muscle: 'delts',
       pathName: 'barbell_front_raise.gif',
       name: 'barbell front raise',
       sourceLink: 'https://www.youtube.com/watch?v=xXV5znmUuGU',
-      description: ''
+      description: 'Perform exercises slowly, focus on your technique. Keep moving during rest time, a gentle walk will keep your muscles warm and your heart rate up.'
     },
     {
       muscle: 'delts',
       pathName: 'barbell_wide_upright_row.gif',
       name: 'barbell wide upright row',
       sourceLink: 'https://www.youtube.com/watch?v=xXV5znmUuGU',
-      description: ''
+      description: 'Perform exercises slowly, focus on your technique. Keep moving during rest time, a gentle walk will keep your muscles warm and your heart rate up.'
     },
     {
       muscle: 'delts',
       pathName: 'smith_machine_shoulder_press.gif',
       name: 'smith machine shoulder press',
       sourceLink: 'https://www.youtube.com/watch?v=9E62GQruGdw',
-      description: ''
+      description: 'Perform exercises slowly, focus on your technique. Keep moving during rest time, a gentle walk will keep your muscles warm and your heart rate up.'
     },
     {
       muscle: 'delts',
       pathName: 'bench_cable_lateral_raises.gif',
       name: 'bench cable lateral raises',
       sourceLink: 'https://www.youtube.com/watch?v=jT2N95H53Ys',
-      description: ''
+      description: 'Perform exercises slowly, focus on your technique. Keep moving during rest time, a gentle walk will keep your muscles warm and your heart rate up.'
     },
     {
       muscle: 'delts',
       pathName: 'incline_facing_lateral_raises.gif',
       name: 'incline facing lateral raises',
       sourceLink: 'https://www.youtube.com/watch?v=ey4FJW1Q56s',
-      description: ''
+      description: 'Perform exercises slowly, focus on your technique. Keep moving during rest time, a gentle walk will keep your muscles warm and your heart rate up.'
     },
     {
       muscle: 'delts',
       pathName: 'machine_shoulder_press.gif',
       name: 'machine shoulder press',
       sourceLink: 'https://www.youtube.com/watch?v=UZ8aswcwNXc',
-      description: ''
+      description: 'Perform exercises slowly, focus on your technique. Keep moving during rest time, a gentle walk will keep your muscles warm and your heart rate up.'
     },
     {
       muscle: 'delts',
       pathName: 'machine_lateral_raises.gif',
       name: 'machine lateral raises',
       sourceLink: 'https://www.youtube.com/watch?v=UZ8aswcwNXc',
-      description: ''
+      description: 'Perform exercises slowly, focus on your technique. Keep moving during rest time, a gentle walk will keep your muscles warm and your heart rate up.'
     },
     {
       muscle: 'delts',
       pathName: 'cable_rope_face_pull.gif',
       name: 'cable rope face pull',
       sourceLink: 'https://www.youtube.com/watch?v=UZ8aswcwNXc',
-      description: ''
+      description: 'Perform exercises slowly, focus on your technique. Keep moving during rest time, a gentle walk will keep your muscles warm and your heart rate up.'
     },
   ],
   back: [
@@ -555,91 +559,91 @@ export const Exercises = {
       pathName: 'reverse_pec_dec.gif',
       name: 'reverse pec dec',
       sourceLink: 'https://www.youtube.com/watch?v=ey4FJW1Q56s',
-      description: ''
+      description: 'Perform exercises slowly, focus on your technique. Keep moving during rest time, a gentle walk will keep your muscles warm and your heart rate up.'
     },
     {
       muscle: 'back',
       pathName: 'barbell_bent-over.gif',
       name: 'barbell bent-over',
       sourceLink: 'https://www.youtube.com/watch?v=Ir_oQ5SMfT4',
-      description: ''
+      description: 'Perform exercises slowly, focus on your technique. Keep moving during rest time, a gentle walk will keep your muscles warm and your heart rate up.'
     },
     {
       muscle: 'back',
       pathName: 'barbell_one_arm_row.gif',
       name: 'barbell one arm row',
       sourceLink: 'https://www.youtube.com/watch?v=Ir_oQ5SMfT4',
-      description: ''
+      description: 'Perform exercises slowly, focus on your technique. Keep moving during rest time, a gentle walk will keep your muscles warm and your heart rate up.'
     },
     {
       muscle: 'back',
       pathName: 'cable_behind_head_pulldown.gif',
       name: 'cable behind head pulldown',
       sourceLink: 'https://www.youtube.com/watch?v=sUtksN1W0_g',
-      description: ''
+      description: 'Perform exercises slowly, focus on your technique. Keep moving during rest time, a gentle walk will keep your muscles warm and your heart rate up.'
     },
     {
       muscle: 'back',
       pathName: 'cable_elevated_row.gif',
       name: 'cable elevated row',
       sourceLink: 'https://www.youtube.com/watch?v=sUtksN1W0_g',
-      description: ''
+      description: 'Perform exercises slowly, focus on your technique. Keep moving during rest time, a gentle walk will keep your muscles warm and your heart rate up.'
     },
     {
       muscle: 'back',
       pathName: 'straight_arm_pullover.gif',
       name: 'straight arm pullover',
       sourceLink: 'https://www.youtube.com/watch?v=u_miK17snOI',
-      description: ''
+      description: 'Perform exercises slowly, focus on your technique. Keep moving during rest time, a gentle walk will keep your muscles warm and your heart rate up.'
     },
     {
       muscle: 'back',
       pathName: 'dumbbell_one_arm_row.gif',
       name: 'dumbbell one arm row',
       sourceLink: 'https://www.youtube.com/watch?v=p-u2jnyn_fI',
-      description: ''
+      description: 'Perform exercises slowly, focus on your technique. Keep moving during rest time, a gentle walk will keep your muscles warm and your heart rate up.'
     },
     {
       muscle: 'back',
       pathName: 'chin-up.gif',
       name: 'chin-up',
       sourceLink: 'https://www.youtube.com/watch?v=Qsy9en0TXkQ',
-      description: ''
+      description: 'Perform exercises slowly, focus on your technique. Keep moving during rest time, a gentle walk will keep your muscles warm and your heart rate up.'
     },
     {
       muscle: 'back',
       pathName: 'hammer_grip_pull-up.gif',
       name: 'hammer grip pull-up',
       sourceLink: 'https://www.youtube.com/watch?v=Ir_oQ5SMfT4',
-      description: ''
+      description: 'Perform exercises slowly, focus on your technique. Keep moving during rest time, a gentle walk will keep your muscles warm and your heart rate up.'
     },
     {
       muscle: 'back',
       pathName: 'machine_row.gif',
       name: 'machine row',
       sourceLink: 'https://www.youtube.com/watch?v=Qsy9en0TXkQ',
-      description: ''
+      description: 'Perform exercises slowly, focus on your technique. Keep moving during rest time, a gentle walk will keep your muscles warm and your heart rate up.'
     },
     {
       muscle: 'back',
       pathName: 'dumbbell_rear_row.gif',
       name: 'dumbbell rear row',
       sourceLink: 'https://www.youtube.com/watch?v=Qsy9en0TXkQ',
-      description: ''
+      description: 'Perform exercises slowly, focus on your technique. Keep moving during rest time, a gentle walk will keep your muscles warm and your heart rate up.'
     },
     {
       muscle: 'back',
       pathName: 'straight_arm_rope_pulldown.gif',
       name: 'straight arm rope pulldown',
       sourceLink: 'https://www.youtube.com/watch?v=Qsy9en0TXkQ',
-      description: ''
+      description: 'Perform exercises slowly, focus on your technique. Keep moving during rest time, a gentle walk will keep your muscles warm and your heart rate up.'
     },
     {
       muscle: 'back',
       pathName: 'machine_iso_row.gif',
       name: 'machine iso row',
       sourceLink: 'https://www.youtube.com/watch?v=KWtjq-fpuk8',
-      description: ''
+      description: 'Perform exercises slowly, focus on your technique. Keep moving during rest time, a gentle walk will keep your muscles warm and your heart rate up.'
     },
   ],
   lats: [
@@ -648,28 +652,28 @@ export const Exercises = {
       pathName: 'cable_underhand_pulldown.gif',
       name: 'cable underhand pulldown',
       sourceLink: 'https://www.youtube.com/watch?v=Ir_oQ5SMfT4',
-      description: ''
+      description: 'Perform exercises slowly, focus on your technique. Keep moving during rest time, a gentle walk will keep your muscles warm and your heart rate up.'
     },
     {
       muscle: 'lats',
       pathName: 'wide_grip_lats_pulldown.gif',
       name: 'wide grip lats pulldown',
       sourceLink: 'https://www.youtube.com/watch?v=KWtjq-fpuk8',
-      description: ''
+      description: 'Perform exercises slowly, focus on your technique. Keep moving during rest time, a gentle walk will keep your muscles warm and your heart rate up.'
     },
     {
       muscle: 'lats',
       pathName: 'cable_lat_pulldown.gif',
       name: 'cable lat pulldown',
       sourceLink: 'https://www.youtube.com/watch?v=Ir_oQ5SMfT4',
-      description: ''
+      description: 'Perform exercises slowly, focus on your technique. Keep moving during rest time, a gentle walk will keep your muscles warm and your heart rate up.'
     },
     {
       muscle: 'lats',
       pathName: 'cable_v_bar_pullover.gif',
       name: 'cable v-bar pullover',
       sourceLink: 'https://www.youtube.com/watch?v=u_miK17snOI',
-      description: ''
+      description: 'Perform exercises slowly, focus on your technique. Keep moving during rest time, a gentle walk will keep your muscles warm and your heart rate up.'
     },
   ],
   lowerBack: [
@@ -678,14 +682,14 @@ export const Exercises = {
       pathName: 'hyperextension.gif',
       name: 'hyperextension',
       sourceLink: 'https://www.youtube.com/watch?v=oaD6j_iPNc0',
-      description: ''
+      description: 'Perform exercises slowly, focus on your technique. Keep moving during rest time, a gentle walk will keep your muscles warm and your heart rate up.'
     },
     {
       muscle: 'lowerBack',
       pathName: 'rack_pull.gif',
       name: 'rack pull',
       sourceLink: 'https://www.youtube.com/watch?v=gpCbQN9Lru4',
-      description: ''
+      description: 'Perform exercises slowly, focus on your technique. Keep moving during rest time, a gentle walk will keep your muscles warm and your heart rate up.'
     },
   ],
   forearms: [
@@ -694,14 +698,14 @@ export const Exercises = {
       pathName: 'reverse_preacher_curl.gif',
       name: 'reverse preacher curl',
       sourceLink: 'https://www.youtube.com/watch?v=P-Fi7mAU1C8',
-      description: ''
+      description: 'Perform exercises slowly, focus on your technique. Keep moving during rest time, a gentle walk will keep your muscles warm and your heart rate up.'
     },
     {
       muscle: 'forearms',
       pathName: 'barbell_reverse_curl.gif',
       name: 'barbell reverse curl',
       sourceLink: 'https://www.youtube.com/watch?v=CeAoD8dZ4wk',
-      description: ''
+      description: 'Perform exercises slowly, focus on your technique. Keep moving during rest time, a gentle walk will keep your muscles warm and your heart rate up.'
     },
   ],
   quads: [
@@ -710,49 +714,49 @@ export const Exercises = {
       pathName: 'wide_leg_press.gif',
       name: 'wide leg press',
       sourceLink: 'https://www.youtube.com/watch?v=RanDIj6_5kc',
-      description: ''
+      description: 'Perform exercises slowly, focus on your technique. Keep moving during rest time, a gentle walk will keep your muscles warm and your heart rate up.'
     },
     {
       muscle: 'quads',
       pathName: 'neutral_leg_press.gif',
       name: 'neutral leg press',
       sourceLink: 'https://www.youtube.com/watch?v=RanDIj6_5kc',
-      description: ''
+      description: 'Perform exercises slowly, focus on your technique. Keep moving during rest time, a gentle walk will keep your muscles warm and your heart rate up.'
     },
     {
       muscle: 'quads',
       pathName: 'smith_machine_squat.gif',
       name: 'smith machine squat',
       sourceLink: 'https://www.youtube.com/watch?v=RanDIj6_5kc',
-      description: ''
+      description: 'Perform exercises slowly, focus on your technique. Keep moving during rest time, a gentle walk will keep your muscles warm and your heart rate up.'
     },
     {
       muscle: 'quads',
       pathName: 'kettlebell_squats.gif',
       name: 'kettlebell squats',
       sourceLink: 'https://www.youtube.com/watch?v=RanDIj6_5kc',
-      description: ''
+      description: 'Perform exercises slowly, focus on your technique. Keep moving during rest time, a gentle walk will keep your muscles warm and your heart rate up.'
     },
     {
       muscle: 'quads',
       pathName: 'sissy_squats.gif',
       name: 'sissy squats',
       sourceLink: 'https://www.youtube.com/watch?v=RanDIj6_5kc',
-      description: ''
+      description: 'Perform exercises slowly, focus on your technique. Keep moving during rest time, a gentle walk will keep your muscles warm and your heart rate up.'
     },
     {
       muscle: 'quads',
       pathName: 'leg_extension.gif',
       name: 'leg extension',
       sourceLink: 'https://www.youtube.com/watch?v=RanDIj6_5kc',
-      description: ''
+      description: 'Perform exercises slowly, focus on your technique. Keep moving during rest time, a gentle walk will keep your muscles warm and your heart rate up.'
     },
     {
       muscle: 'quads',
       pathName: 'horizontal_leg_press.gif',
       name: 'horizontal leg press',
       sourceLink: 'https://www.youtube.com/watch?v=8q1SeIfEJoo',
-      description: ''
+      description: 'Perform exercises slowly, focus on your technique. Keep moving during rest time, a gentle walk will keep your muscles warm and your heart rate up.'
     },
   ],
   glutes: [
@@ -761,35 +765,35 @@ export const Exercises = {
       pathName: 'smith_machine_squat.gif',
       name: 'smith machine squat',
       sourceLink: 'https://www.youtube.com/watch?v=RanDIj6_5kc',
-      description: ''
+      description: 'Perform exercises slowly, focus on your technique. Keep moving during rest time, a gentle walk will keep your muscles warm and your heart rate up.'
     },
     {
       muscle: 'glutes',
       pathName: 'kettlebell_squats.gif',
       name: 'kettlebell squats',
       sourceLink: 'https://www.youtube.com/watch?v=RanDIj6_5kc',
-      description: ''
+      description: 'Perform exercises slowly, focus on your technique. Keep moving during rest time, a gentle walk will keep your muscles warm and your heart rate up.'
     },
     {
       muscle: 'glutes',
       pathName: 'barbell_squat.gif',
       name: 'barbell squat',
       sourceLink: 'https://www.youtube.com/watch?v=8q1SeIfEJoo',
-      description: ''
+      description: 'Perform exercises slowly, focus on your technique. Keep moving during rest time, a gentle walk will keep your muscles warm and your heart rate up.'
     },
     {
       muscle: 'glutes',
       pathName: 'adduction.gif',
       name: 'adduction',
       sourceLink: 'https://www.youtube.com/watch?v=5MeVK-FA5cM',
-      description: ''
+      description: 'Perform exercises slowly, focus on your technique. Keep moving during rest time, a gentle walk will keep your muscles warm and your heart rate up.'
     },
     {
       muscle: 'glutes',
       pathName: 'hip_raise.gif',
       name: 'hip raise',
       sourceLink: 'https://www.youtube.com/watch?v=_jmZAK1E0x8',
-      description: ''
+      description: 'Perform exercises slowly, focus on your technique. Keep moving during rest time, a gentle walk will keep your muscles warm and your heart rate up.'
     },
   ],
   calves: [
@@ -798,21 +802,21 @@ export const Exercises = {
       pathName: 'seated_calf_raise.gif',
       name: 'seated calf raise',
       sourceLink: 'https://www.youtube.com/watch?v=RanDIj6_5kc',
-      description: ''
+      description: 'Perform exercises slowly, focus on your technique. Keep moving during rest time, a gentle walk will keep your muscles warm and your heart rate up.'
     },
     {
       muscle: 'calves',
       pathName: 'standing_calf_raise.gif',
       name: 'standing calf raise',
       sourceLink: 'https://www.youtube.com/watch?v=5MeVK-FA5cM',
-      description: ''
+      description: 'Perform exercises slowly, focus on your technique. Keep moving during rest time, a gentle walk will keep your muscles warm and your heart rate up.'
     },
     {
       muscle: 'calves',
       pathName: 'barbell_standing_calf_raise.gif',
       name: 'barbell standing calf raise',
       sourceLink: 'https://www.youtube.com/watch?v=Mf4AuumqdXU',
-      description: ''
+      description: 'Perform exercises slowly, focus on your technique. Keep moving during rest time, a gentle walk will keep your muscles warm and your heart rate up.'
     },
   ],
   hams: [
@@ -821,35 +825,35 @@ export const Exercises = {
       pathName: 'kettlebell_squats.gif',
       name: 'kettlebell squats',
       sourceLink: 'https://www.youtube.com/watch?v=RanDIj6_5kc',
-      description: ''
+      description: 'Perform exercises slowly, focus on your technique. Keep moving during rest time, a gentle walk will keep your muscles warm and your heart rate up.'
     },
     {
       muscle: 'hams',
       pathName: 'barbell_squat.gif',
       name: 'barbell squat',
       sourceLink: 'https://www.youtube.com/watch?v=8q1SeIfEJoo',
-      description: ''
+      description: 'Perform exercises slowly, focus on your technique. Keep moving during rest time, a gentle walk will keep your muscles warm and your heart rate up.'
     },
     {
       muscle: 'hams',
       pathName: 'hamstring_raise.gif',
       name: 'hamstring raise',
       sourceLink: 'https://www.youtube.com/watch?v=5MeVK-FA5cM',
-      description: ''
+      description: 'Perform exercises slowly, focus on your technique. Keep moving during rest time, a gentle walk will keep your muscles warm and your heart rate up.'
     },
     {
       muscle: 'hams',
       pathName: 'standing_leg_curl.gif',
       name: 'standing leg curl',
       sourceLink: 'https://www.youtube.com/watch?v=5MeVK-FA5cM',
-      description: ''
+      description: 'Perform exercises slowly, focus on your technique. Keep moving during rest time, a gentle walk will keep your muscles warm and your heart rate up.'
     },
     {
       muscle: 'hams',
       pathName: 'lying_leg_curl.gif',
       name: 'lying leg curl',
       sourceLink: 'https://www.youtube.com/watch?v=I6nHPF6BUco',
-      description: ''
+      description: 'Perform exercises slowly, focus on your technique. Keep moving during rest time, a gentle walk will keep your muscles warm and your heart rate up.'
     },
   ]
 }

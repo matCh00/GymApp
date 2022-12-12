@@ -59,12 +59,14 @@ const ThemeScreen = () => {
       <View style={style.innerContainer}>
         <OwnButton title=' green' onPress={() => {chooseTheme('green_black')}} width='50%' />
         <OwnButton title=' vine ' onPress={() => {chooseTheme('vine_red')}} width='50%' />
-        <OwnButton title=' blue ' onPress={() => {chooseTheme('blue_black')}} width='50%' />
-        <OwnButton title='golden' onPress={() => {chooseTheme('gold_black')}} width='50%' />
-        <OwnButton title='purple' onPress={() => {chooseTheme('white_purple')}} width='50%' />
+        <OwnButton title='purple' onPress={() => {chooseTheme('purple_black')}} width='50%' />
         <OwnButton title=' water' onPress={() => {chooseTheme('blue_sea')}} width='50%' />
-        <OwnButton title=' gray ' onPress={() => {chooseTheme('gray_shades')}} width='50%' />
+        <OwnButton title='golden' onPress={() => {chooseTheme('gold_black')}} width='50%' />
         <OwnButton title='coffee' onPress={() => {chooseTheme('milk_coffee')}} width='50%' />
+        <OwnButton title=' dusk ' onPress={() => {chooseTheme('dusk')}} width='50%' />
+        <OwnButton title='almost' onPress={() => {chooseTheme('almost')}} width='50%' />
+        <OwnButton title=' relay' onPress={() => {chooseTheme('relay')}} width='50%' />
+        <OwnButton title=' pinky' onPress={() => {chooseTheme('purple_white')}} width='50%' />
       </View>
 
       <OwnButton title='  Save  ' onPress={handleSave} />

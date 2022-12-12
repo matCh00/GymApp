@@ -32,8 +32,10 @@ export interface ColorsModel {
   vine_red: ColorModel;
   gold_black: ColorModel;
   blue_sea: ColorModel;
-  blue_black: ColorModel;
-  white_purple: ColorModel;
-  gray_shades: ColorModel;
+  purple_black: ColorModel;
   milk_coffee: ColorModel;
+  dusk: ColorModel;
+  almost: ColorModel;
+  relay: ColorModel;
+  purple_white: ColorModel;
 }

@@ -19,7 +19,6 @@ export const ThemeContext = createContext<ThemeModel>(
 
 const ThemeProvider = ({ children }: any) => {
 
-  // TODO: STAN JAKO STRING BO MOŻE BYĆ WIELE MOTYWÓW, KIEDYŚ ZAPISAYWAĆ W BAZIE DANYCH
   const [currentTheme, setCurrentTheme] = useState('green_black');
 
   const theme = {
@@ -28,10 +27,12 @@ const ThemeProvider = ({ children }: any) => {
       currentTheme === 'vine_red' ? colors.vine_red : 
       currentTheme === 'gold_black' ? colors.gold_black : 
       currentTheme === 'blue_sea' ? colors.blue_sea : 
-      currentTheme === 'blue_black' ? colors.blue_black : 
-      currentTheme === 'white_purple' ? colors.white_purple : 
-      currentTheme === 'gray_shades' ? colors.gray_shades :
+      currentTheme === 'purple_black' ? colors.purple_black : 
       currentTheme === 'milk_coffee' ? colors.milk_coffee :
+      currentTheme === 'dusk' ? colors.dusk :
+      currentTheme === 'almost' ? colors.almost :
+      currentTheme === 'relay' ? colors.relay :
+      currentTheme === 'purple_white' ? colors.purple_white :
       colors.green_black,
     typography,
     setCurrentTheme,
